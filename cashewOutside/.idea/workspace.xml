@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="523490f4-a6d9-4d51-b030-586b31f17062" name="Default Changelist" comment="Update files and file structure to sample provided by Big NIC, add GitIgnore. Remove ancillary files from fidgit.">
+    <list default="true" id="523490f4-a6d9-4d51-b030-586b31f17062" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/features/acceptance.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/seng202/team3/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/seng202/team3/MyObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/seng202/team3/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/seng202/team3/AppTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,41 +16,41 @@
     <session id="1452640887">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.7" value="3" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="feature" value="2" />
+          <entry key="feature" value="3" />
           <entry key="java" value="41" />
           <entry key="xml" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Cucumber" value="2" />
+          <entry key="Cucumber" value="3" />
           <entry key="JAVA" value="41" />
           <entry key="XML" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="feature" value="53" />
+          <entry key="feature" value="57" />
           <entry key="java" value="555" />
-          <entry key="txt" value="147" />
+          <entry key="txt" value="206" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Cucumber" value="53" />
+          <entry key="Cucumber" value="57" />
           <entry key="JAVA" value="555" />
-          <entry key="PLAIN_TEXT" value="147" />
+          <entry key="PLAIN_TEXT" value="206" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -73,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
+            <state relative-caret-position="2040">
               <caret line="148" column="63" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -85,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/io/TestLoadIngredientsData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="180">
               <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -98,16 +95,25 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/RunCucumberTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/features/BasketFeatures.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/features/BasketFeatures.feature">
+        <entry file="file://$PROJECT_DIR$/src/test/features/acceptance.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+            <state relative-caret-position="390">
+              <caret line="208" column="20" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -163,6 +169,7 @@
         <option value="$PROJECT_DIR$/src/test/java/seng202/team3/io/TestLoadSupplierData.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/seng202/team3/RunCucumberTest.java" />
+        <option value="$PROJECT_DIR$/src/test/features/acceptance.feature" />
       </list>
     </option>
   </component>
@@ -195,11 +202,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2014" />
-    <option name="y" value="95" />
-    <option name="width" value="1344" />
-    <option name="height" value="885" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="181" />
+    <option name="y" value="154" />
+    <option name="width" value="1334" />
+    <option name="height" value="883" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -207,8 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,20 +332,23 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="clean&#9;ACTION&#9;CodeCleanup" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565242311121" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565317711080" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX-project-template" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -434,7 +442,8 @@
       <workItem from="1564640749021" duration="439000" />
       <workItem from="1564700450726" duration="1422000" />
       <workItem from="1565158575240" duration="2573000" />
-      <workItem from="1565240287772" duration="2023000" />
+      <workItem from="1565240287772" duration="3090000" />
+      <workItem from="1565304301836" duration="1039000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit - with Maven POM">
       <created>1564700740557</created>
@@ -450,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565159294526</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Structured to get Git working with cumber, updated POM">
+      <created>1565242333715</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1565242333716</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Structured to get Git working with cumber, updated POM">
+      <created>1565242374451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1565242374451</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -462,13 +485,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9762000" />
+    <option name="totallyTimeSpent" value="11868000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-1" width="1920" height="1200" extended-state="6" />
-    <editor active="true" />
+    <frame x="1920" y="-1" width="1680" height="1050" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2561366" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25948593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -477,7 +499,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994664" visible="true" weight="0.3283721" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994664" weight="0.3283721" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -507,7 +529,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit - with Maven POM" />
     <MESSAGE value="Update files and file structure to sample provided by Big NIC, add GitIgnore. Remove ancillary files from fidgit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update files and file structure to sample provided by Big NIC, add GitIgnore. Remove ancillary files from fidgit." />
+    <MESSAGE value="Structured to get Git working with cumber, updated POM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Structured to get Git working with cumber, updated POM" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/dependency-reduced-pom.xml">
@@ -615,54 +638,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MyStepdefs.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/cucumberJava.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/annotation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#425#426#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/runTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/seng202/AppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="148" column="63" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/cucumberJava.feature" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/annotation.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/cucumberJava/runTest.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/io/TestLoadSupplierData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -694,13 +672,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/seng202/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="148" column="63" selection-start-line="148" selection-start-column="63" selection-end-line="148" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/io/TestLoadIngredientsData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="180">
           <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/RunCucumberTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/features/BasketFeatures.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -711,17 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/seng202/team3/RunCucumberTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/features/acceptance.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/features/BasketFeatures.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        <state relative-caret-position="390">
+          <caret line="208" column="20" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
         </state>
       </provider>
     </entry>
