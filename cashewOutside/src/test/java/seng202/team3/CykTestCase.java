@@ -28,7 +28,13 @@ public class CykTestCase
         assertFalse(1 == 3);
     }
 
-
+    /**
+     * Hunter's Test Case
+     */
+    @Test
+    public void testForHunter() {
+        assertTrue(1 == 1);
+    }
 
 
 }
