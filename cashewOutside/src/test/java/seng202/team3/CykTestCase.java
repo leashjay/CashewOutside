@@ -3,6 +3,7 @@ package seng202.team3;
 
 import org.junit.Test;
 import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertFalse;
 
 /**
  * @Author Cheng Yi Kok
@@ -20,6 +21,13 @@ public class CykTestCase
         result = 1 + 1;
         assertTrue( result == 2);
     }
+
+    //Andrews test case
+    @Test
+    public void testForAndrew(){
+        assertFalse(1 == 3);
+    }
+
 
 
 
