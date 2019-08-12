@@ -36,5 +36,5 @@ public class CykTestCase
         assertTrue(1 == 1);
     }
 
-
-}
+    @Test
+    public void jeromesTest() { assertFalse(666 == 999); }
