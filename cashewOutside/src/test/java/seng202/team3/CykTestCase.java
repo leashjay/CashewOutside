@@ -38,3 +38,8 @@ public class CykTestCase
 
     @Test
     public void jeromesTest() { assertFalse(666 == 999); }
+
+    //Jacks case
+
+    @Test
+    public void Jackwalshtestyee() {assertFalse(2 == 0); }
