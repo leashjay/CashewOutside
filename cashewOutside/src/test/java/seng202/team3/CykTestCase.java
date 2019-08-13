@@ -11,20 +11,19 @@ import static junit.framework.TestCase.assertFalse;
  * Dummy test case to fulfill set up check list
  */
 
-public class CykTestCase
-{
+public class CykTestCase {
     private int result;
 
 
     @Test
     public void dummyTest() {
         result = 1 + 1;
-        assertTrue( result == 2);
+        assertTrue(result == 2);
     }
 
     //Andrews test case
     @Test
-    public void testForAndrew(){
+    public void testForAndrew() {
         assertFalse(1 == 3);
     }
 
@@ -37,9 +36,15 @@ public class CykTestCase
     }
 
     @Test
-    public void jeromesTest() { assertFalse(666 == 999); }
+    public void jeromesTest() {
+        assertFalse(666 == 999);
+    }
 
     //Jacks case
 
     @Test
-    public void Jackwalshtestyee() {assertFalse(2 == 0); }
+    public void Jackwalshtestyee() {
+        assertFalse(2 == 0);
+    }
+
+}
