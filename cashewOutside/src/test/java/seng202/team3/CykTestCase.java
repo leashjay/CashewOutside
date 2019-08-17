@@ -47,4 +47,13 @@ public class CykTestCase {
         assertFalse(2 == 0);
     }
 
+
+    @Test
+    /*
+    AJJ Test case
+    consolidated test case from first dummy*/
+    public void patienceTest() {
+        result = 1 + 1;
+        assertTrue(result == 2);
+    }
 }
