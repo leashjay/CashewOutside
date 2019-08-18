@@ -1,54 +1,14 @@
 package model;
 
-
 /**
- * <!-- begin-user-doc -->
- *
- * <!--  end-user-doc  -->
- * @generated
+ * Holds information about the food suppliers for the business
  */
-
 public class Supplier
 {
-
 	private int id;
-
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	private String email;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	private String emailAddress;
 	private String name;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	private String phoneNumber;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-
 	private String url;
 
 	/**
@@ -60,8 +20,12 @@ public class Supplier
 	 * @param emailAddress The email address of the supplier
 	 * @param url The suppliers website
 	 */
-	public Supplier(int id, String name, String address, String phoneNumber,  String emailAddress, String url){
-
+	public Supplier(int id, String name, String emailAddress, String phoneNumber,  String emailAddress, String url){
+		this.id = id;
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.url = url;
 	}
 
 	/**
@@ -72,32 +36,27 @@ public class Supplier
 	 * @param phoneNumber The contact phone number of the supplier
 	 * @param emailAddress The email address of the supplier
 	 */
-	public Supplier(int id, String name, String address, String phoneNumber, String emailAddress){
-
+	public Supplier(int id, String name, String emailAddress, String phoneNumber){
+		this.id = id;
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
+	 * Updates the suppliers phone number
+	 * @param newNumber The new number of the supplier
 	 */
-	
-	public String updateNumber(String parameter) {
-		// TODO implement me
-		return "";
+	public void updatePhoneNumber(String newNumber) {
+		phoneNumber = newNumber;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
+	 * Updates the suppliers email address
+	 * @param newEmailAddress The new email address of the supplier
 	 */
-	
-	public String updateEmail(String parameter) {
-		// TODO implement me
-		return "";
+	public void updateEmail(String newEmailAddress) {
+		emailAddress = newEmailAddress;
 	}
 
 }
