@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.ArrayList;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -45,7 +47,6 @@ public class OrderHandler
 	
 	public void addOrder(Order parameter) {
 		// TODO implement me
-		return null;
 	}
 
 	/**
@@ -57,7 +58,6 @@ public class OrderHandler
 	
 	public void removeOrder(Order parameter) {
 		// TODO implement me
-		return null;
 	}
 
 	/**
@@ -69,7 +69,6 @@ public class OrderHandler
 	
 	public void refundOrder(Order parameter) {
 		// TODO implement me
-		return null;
 	}
 
 }

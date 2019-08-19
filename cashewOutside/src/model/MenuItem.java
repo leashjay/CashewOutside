@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class MenuItem
 	 * @ordered
 	 */
 	
-	private boolean isGluetenFree;
+	private boolean isGlutenFree;
 
 	/**
 	 * <!-- begin-user-doc -->

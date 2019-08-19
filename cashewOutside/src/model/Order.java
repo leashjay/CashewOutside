@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.ArrayList;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -9,50 +11,12 @@ package model;
 
 public class Order
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public date dateOrdered;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public time timeOrdered;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+//	public date dateOrdered;
+//	public time timeOrdered;
 	public String orderStatus;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public int changeNeeded;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public float totalCost;
+	private ArrayList<MenuItem> orderItems = new ArrayList<MenuItem>();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +36,7 @@ public class Order
 	
 	public void addToOrder(MenuItem parameter) {
 		// TODO implement me
-		return null;
+		this.orderItems.add(parameter);
 	}
 
 	/**
@@ -84,7 +48,7 @@ public class Order
 	
 	public void removeFromOrder(MenuItem parameter) {
 		// TODO implement me
-		return null;
+		this.orderItems.remove(parameter);
 	}
 
 	/**
@@ -96,8 +60,17 @@ public class Order
 	
 	public void changeStatus(String parameter) {
 		// TODO implement me
-		return null;
 	}
 
+	/**
+	 * For quick testing of functionability
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Order order = new Order();
+		MenuItem item = new MenuItem();
+		order.addToOrder(item);
+		System.out.println("help");
+	}
 }
 

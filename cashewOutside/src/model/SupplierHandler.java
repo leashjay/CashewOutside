@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class SupplierHandler
 	 * @param supplierToAdd The supplier to be added to the list
 	 */
 	public void addSupplier(Supplier supplierToAdd) {
-		suppliers.add(newSupplier);
+		suppliers.add(supplierToAdd);
 	}
 
 	/**
