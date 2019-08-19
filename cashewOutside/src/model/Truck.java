@@ -1,69 +1,42 @@
 package model;
 
 
+import java.util.HashMap;
+
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+Truck class holds truck inventory including stock and cash floats
+ **/
 
 public class Truck
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Inventory inventory;
+	private Inventory truckInventory;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Business business;
+    // cashFloat Key: denomination of type string ("$<denomination")
+    // cashFloat Value: denomination count of type int
+	private HashMap<String, Integer> cashFloat;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Inventory inventory2;
+    /**
+     * Constructor for Truck class
+     */
+	public Truck() {
+		truckInventory = new Inventory();
+		cashFloat = new HashMap<String, Integer>;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Truck(){
-		super();
+		// Add denominations into cash float map
+		cashFloat.put("$100", 0);
+        cashFloat.put("$50", 0);
+        cashFloat.put("$20", 0);
+        cashFloat.put("$10", 0);
+        cashFloat.put("$5", 0);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 	
 	public Void makeSale(MenuItem parameter) {
 		// TODO implement me
 		return null;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+
 	public Void cookFood(MenuItem parameter) {
 		// TODO implement me
 		return null;

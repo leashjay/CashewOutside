@@ -4,74 +4,25 @@ import java.util.Set;
 
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
- */
+ Serves as a main class, holds GUI launcher and XML parser methods
+ **/
 
 public class Business
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public SupplierHandler supplierHandler;
+	private SupplierHandler supplierManager;
+	private Menu menuManager;
+	private OrderHandler orderManager;
+	private Truck thisTruck;
+
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public OrderHandler orderManager;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public ArrayList<Menu> menus;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Set<Menu> menu;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Truck truck;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public OrderHandler orderHandler;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
+	 * Constructor of Business class
 	 */
 	public Business(){
-		super();
+		supplierManager = new SupplierHandler();
+		menuManager = new Menu();
+		orderManager = new OrderHandler();
+		thisTruck = new Truck();
 	}
 
 }

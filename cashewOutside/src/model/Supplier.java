@@ -6,6 +6,7 @@ package model;
 public class Supplier
 {
 	private int id;
+	private String address;
 	private String emailAddress;
 	private String name;
 	private String phoneNumber;
@@ -20,9 +21,10 @@ public class Supplier
 	 * @param emailAddress The email address of the supplier
 	 * @param url The suppliers website
 	 */
-	public Supplier(int id, String name, String emailAddress, String phoneNumber,  String emailAddress, String url){
+	public Supplier(int id, String name, String address, String phoneNumber,  String emailAddress, String url){
 		this.id = id;
 		this.name = name;
+		this.address = address;
 		this.emailAddress = emailAddress;
 		this.phoneNumber = phoneNumber;
 		this.url = url;
