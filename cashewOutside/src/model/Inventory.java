@@ -1,74 +1,34 @@
 package model;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.ArrayList;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- * @generated
+ * Holds information about the inventory
  */
-
 public class Inventory
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
 	public ArrayList<Ingredient> ingredients;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
+	 * A constructor for Inventory class
 	 */
-	
-	public Set<Ingredient> ingredient;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
-	public Truck truck;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
-	public Inventory(){
+	public Inventory() {
 		super();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
+	 * Removes an ingredient form the ingredients ArrayList
+	 * @param removedIngredient The ingredient that's to be removed from the list
 	 */
-	
-	public Void removeIngredient(Ingredient parameter) {
-		// TODO implement me
-		return null;
+	public void removeIngredient(Ingredient removedIngredient) {
+		ingredients.remove(removedIngredient);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
+	 * Adds an ingredient to the ingredients ArrayList
+	 * @param addedIngredient The ingredient that's to be added to the list
 	 */
-	
-	public Void addIngredient(Ingredient parameter) {
-		// TODO implement me
-		return null;
+	public void addIngredient(Ingredient addedIngredient) {
+		ingredients.add(addedIngredient);
 	}
 
 }
