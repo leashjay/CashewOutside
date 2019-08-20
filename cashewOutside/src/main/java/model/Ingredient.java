@@ -10,7 +10,7 @@ public class Ingredient {
 
     private String name;
     private int quantity;
-    private boolean isGluetenFree;
+    private boolean isGlutenFree;
     private boolean isVegan;
     private boolean isVegetarian;
 
@@ -19,14 +19,14 @@ public class Ingredient {
      *
      * @param name          The name of the ingredient
      * @param quantity      The quantity of the ingredient
-     * @param isGluetenFree If the ingredient is gluetenfree or not
+     * @param isGlutenFree If the ingredient is gluten free or not
      * @param isVegan       If the ingredient is vegan or not
      * @param isVegetarian  If the ingredient is vegetarian or not
      */
-    public Ingredient(String name, int quantity, boolean isGluetenFree, boolean isVegan, boolean isVegetarian) {
+    public Ingredient(String name, int quantity, boolean isGlutenFree, boolean isVegan, boolean isVegetarian) {
         this.name = name;
         this.quantity = quantity;
-        this.isGluetenFree = isGluetenFree;
+        this.isGlutenFree = isGlutenFree;
         this.isVegan = isVegan;
         this.isVegetarian = isVegetarian;
     }
