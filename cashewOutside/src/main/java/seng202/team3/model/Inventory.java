@@ -1,4 +1,4 @@
-package model;
+package seng202.team3.model;
 
 import java.util.ArrayList;
 

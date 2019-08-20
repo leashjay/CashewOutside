@@ -1,4 +1,4 @@
-package parser;
+package seng202.team3.parsing;
 
 /**
  * A custom class to demonstrate the basics of using the DOM as
@@ -6,26 +6,17 @@ package parser;
  */
 
 // We'll need some JAXP packages
+import javax.xml.parsers.*;
+import org.xml.sax.*;
+import seng202.team3.model.Ingredient;
+import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.util.UnitType;
 
-import model.Ingredient;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import util.ThreeValueLogic;
-import util.UnitType;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import org.w3c.dom.*;
+// and some of the usual stuff
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
-// and some of the usual stuff
 
 public class IngredientsLoader {
     /*
@@ -40,9 +31,7 @@ public class IngredientsLoader {
 
     private String source;
 
-    /**
-     * Output goes here
-     */
+    /** Output goes here */
     private PrintStream dest;
 
 
@@ -55,7 +44,7 @@ public class IngredientsLoader {
 
     /**
      * Constructor for class.
-     *
+     * 
      * @param pathName
      * @param validating
      * @param dest
@@ -97,6 +86,8 @@ public class IngredientsLoader {
     }
 
 
+
+
     /*
      * The DocumentBuilder can be used to parse the input file and generate a tree
      * ready for later processing.
@@ -113,6 +104,7 @@ public class IngredientsLoader {
         }
     }
 
+   
 
     public Document parsedDoc() {
         return parsedDoc;
@@ -123,7 +115,7 @@ public class IngredientsLoader {
      * the corresponding Ingredient object. Eventually, we need to check whether we
      * already know about each ingredient but for now we assume they are all new to
      * us.
-     *
+     * 
      * @see Ingredient
      */
     public Map<String, Ingredient> getIngredients() {
@@ -137,7 +129,7 @@ public class IngredientsLoader {
 
         for (int n = 0; n < numNodes; n++) {
             /*
-             * If you feel the urge to debug...
+             * If you feel the urge to debug... 
              * System.out.println("Ingredient " + n +
              * " of " + numNodes + ": = " + nodes.item(n).getNodeValue());
              */
@@ -155,17 +147,17 @@ public class IngredientsLoader {
             name = kids.item(3).getTextContent();
 
             switch (atts.getNamedItem("unit").getNodeValue()) {
-                case "g":
-                    unit = UnitType.GRAM;
-                    break;
-                case "ml":
-                    unit = UnitType.ML;
-                    break;
-                case "count":
-                    unit = UnitType.COUNT;
-                    break;
-                default:
-                    // error
+            case "g":
+                unit = UnitType.GRAM;
+                break;
+            case "ml":
+                unit = UnitType.ML;
+                break;
+            case "count":
+                unit = UnitType.COUNT;
+                break;
+            default:
+                // error
             }
             isVeg = yesNoMaybe(atts.getNamedItem("isveg").getNodeValue());
             isVegan = yesNoMaybe(atts.getNamedItem("isvegan").getNodeValue());
@@ -173,7 +165,7 @@ public class IngredientsLoader {
 
             /*
              * If you feel the need, then this sort of thing can be handy for debugging.
-             *
+             * 
              * System.out.println("Code is: " + kids.item(1).getTextContent());
              * System.out.println("Name is: " + name); System.out.println("Unit is: " +
              * unit); System.out.println("Vegetarian: " + isVeg);
@@ -187,24 +179,24 @@ public class IngredientsLoader {
 
     /**
      * We're going to be doing this a lot, so make a method to do it...
-     *
+     * 
      * @param s
      * @return
      */
     private ThreeValueLogic yesNoMaybe(String s) {
         ThreeValueLogic tvl;
         switch (s) {
-            case "yes":
-                tvl = ThreeValueLogic.YES;
-                break;
-            case "no":
-                tvl = ThreeValueLogic.NO;
-                break;
-            case "unknown":
-                tvl = ThreeValueLogic.UNKNOWN;
-                break;
-            default:
-                tvl = ThreeValueLogic.UNKNOWN;
+        case "yes":
+            tvl = ThreeValueLogic.YES;
+            break;
+        case "no":
+            tvl = ThreeValueLogic.NO;
+            break;
+        case "unknown":
+            tvl = ThreeValueLogic.UNKNOWN;
+            break;
+        default:
+            tvl = ThreeValueLogic.UNKNOWN;
         }
         return tvl;
     }

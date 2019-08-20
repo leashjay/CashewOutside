@@ -1,7 +1,6 @@
-package model;
+package seng202.team3.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 
@@ -12,7 +11,7 @@ import java.util.Set;
  * @generated
  */
 
-public class MenuItem {
+public class Menu {
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -21,7 +20,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public boolean isVegetarian;
+    public Set<MenuItem> menuItem;
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -30,7 +29,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public boolean isVegan;
+    public Business business;
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -39,43 +38,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public ArrayList<Ingredient> recipe;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public int salesPrice;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public int costToMake;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public Set<Menu> menu;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    private boolean isGlutenFree;
+    private ArrayList<Menu> menuItems;
 
     /**
      * <!-- begin-user-doc -->
@@ -83,13 +46,10 @@ public class MenuItem {
      *
      * @generated
      */
-    public MenuItem() {
+    public Menu() {
         super();
     }
 
-    public MenuItem(String id, String name, List<String> ingredientNames) {
-    }
-
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -98,7 +58,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public MenuItem createRecipe(ArrayList<Ingredient> parameter) {
+    public MenuItem addToMenu(MenuItem parameter) {
         // TODO implement me
         return null;
     }
@@ -111,7 +71,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public Ingredient addToRecipe(Ingredient parameter) {
+    public MenuItem removeFromMenu(MenuItem parameter) {
         // TODO implement me
         return null;
     }
@@ -124,7 +84,7 @@ public class MenuItem {
      * @ordered
      */
 
-    public Ingredient removeFromRecipe(Ingredient parameter) {
+    public MenuItem filterByRequirements(boolean parameter) {
         // TODO implement me
         return null;
     }

@@ -1,14 +1,17 @@
 package model;
 
+import seng202.team3.model.Menu;
+import seng202.team3.model.Truck;
+
 /**
  * Serves as a main class, holds GUI launcher and XML parser methods
  **/
 
 public class Business {
     private SupplierHandler supplierManager;
-    private Menu menuManager;
+    private seng202.team3.model.Menu menuManager;
     private OrderHandler orderManager;
-    private Truck thisTruck;
+    private seng202.team3.model.Truck thisTruck;
 
 
     /**

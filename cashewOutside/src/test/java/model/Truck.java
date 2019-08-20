@@ -1,6 +1,9 @@
 package model;
 
 
+import seng202.team3.model.Inventory;
+import seng202.team3.model.MenuItem;
+
 import java.util.HashMap;
 
 /**
@@ -8,7 +11,7 @@ import java.util.HashMap;
  **/
 
 public class Truck {
-    private Inventory truckInventory;
+    private seng202.team3.model.Inventory truckInventory;
 
     // cashFloat Key: denomination of type string ("$<denomination")
     // cashFloat Value: denomination count of type int

@@ -1,6 +1,9 @@
-package model;
+package seng202.team3.model;
 
 
+import org.mockito.internal.matchers.Null;
+
+import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 
 /**

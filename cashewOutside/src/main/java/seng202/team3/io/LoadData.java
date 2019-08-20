@@ -1,12 +1,16 @@
-package parser;
-
-import model.Ingredient;
-import model.MenuItem;
-import model.Supplier;
+package seng202.team3.io;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+
+import seng202.team3.model.Ingredient;
+import seng202.team3.model.MenuItem;
+import seng202.team3.model.Supplier;
+import seng202.team3.parsing.MyErrorHandler;
+import seng202.team3.parsing.SupplierHandler;
+import seng202.team3.parsing.IngredientsLoader;
+import seng202.team3.parsing.MenuLoader;
 
 /**
  * Class to demonstrate the basics of using SAX 2.0 as implemented in JAXP. For
@@ -17,7 +21,7 @@ import java.util.Map;
  * (private static) inner class.
  *
  * @author Neville Churcher
- * @see SupplierLoader
+ * @see SupplierHandler
  * @see MyErrorHandler
  */
 
@@ -45,8 +49,8 @@ public class LoadData {
      */
     public static void loadSuppliers(String supplierFile) {
         if (checkFileOK(supplierFile)) {
-            SupplierLoader aSupplierHandler = new SupplierLoader(pathName, validating);
-            suppsLoaded = SupplierLoader.getSuppliers();
+            SupplierHandler aSupplierHandler = new SupplierHandler(pathName, validating);
+            suppsLoaded = SupplierHandler.getSuppliers();
         }
     }
 
@@ -77,7 +81,7 @@ public class LoadData {
         return true;
     }
 
-    public static Map<String, MenuItem> menuItems() {
+    public static Map<String,MenuItem> menuItems() {
         return menuItemsLoaded;
     }
 }

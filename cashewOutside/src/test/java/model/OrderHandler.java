@@ -1,6 +1,8 @@
 package model;
 
 
+import seng202.team3.model.Order;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,7 @@ public class OrderHandler {
      * @ordered
      */
 
-    public ArrayList<Order> orders;
+    public ArrayList<seng202.team3.model.Order> orders;
 
     /**
      * <!-- begin-user-doc -->
@@ -49,7 +51,7 @@ public class OrderHandler {
      * @ordered
      */
 
-    public void addOrder(Order parameter) {
+    public void addOrder(seng202.team3.model.Order parameter) {
         // TODO implement me
     }
 
@@ -61,7 +63,7 @@ public class OrderHandler {
      * @ordered
      */
 
-    public void removeOrder(Order parameter) {
+    public void removeOrder(seng202.team3.model.Order parameter) {
         // TODO implement me
     }
 

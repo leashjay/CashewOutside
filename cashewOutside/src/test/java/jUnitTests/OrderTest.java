@@ -2,7 +2,7 @@ package jUnitTests;
 
 
 import org.junit.Test;
-import model.Order;
+import seng202.team3.model.Order;
 
 public class OrderTest {
 

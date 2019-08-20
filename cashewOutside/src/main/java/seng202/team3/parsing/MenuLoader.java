@@ -1,4 +1,4 @@
-package parser;
+package seng202.team3.parsing;
 
 /**
  * A custom class to demonstrate the basics of using the DOM as
@@ -6,36 +6,29 @@ package parser;
  */
 
 // We'll need some JAXP packages
+import javax.xml.parsers.*;
+import org.xml.sax.*;
 
-import model.MenuItem;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import seng202.team3.model.MenuItem;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import org.w3c.dom.*;
+// and some of the usual stuff
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// and some of the usual stuff
-
 public class MenuLoader {
-    /**
-     * Somewhere to keep track of the names of the ingredients of each item for now
-     */
-    List<String> ingredientNames;
     /**
      * The menu items we find
      */
     private Map<String, MenuItem> menuItems;
+
+    /**
+     * Somewhere to keep track of the names of the ingredients of each item for now
+     */
+    List<String> ingredientNames;
     /*
      * We'll use one of these to parse the input and build the tree.
      */
@@ -48,9 +41,7 @@ public class MenuLoader {
 
     private String source;
 
-    /**
-     * Output goes here
-     */
+    /** Output goes here */
     private PrintStream dest;
 
     private String id;

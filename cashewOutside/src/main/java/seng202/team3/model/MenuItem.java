@@ -1,4 +1,4 @@
-package model;
+package seng202.team3.model;
 
 import java.util.List;
 
@@ -11,6 +11,10 @@ public class MenuItem {
     private String name;
     // just the ingredient names
     private List<String> ingredients;
+
+    public MenuItem(){
+
+    }
 
     /**
      * Constructor for class.
