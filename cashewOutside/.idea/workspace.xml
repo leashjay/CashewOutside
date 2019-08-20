@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="523490f4-a6d9-4d51-b030-586b31f17062" name="Default Changelist" comment="Added sample files that were previously git ignored back to system. Java-11 Original WORKING directory">
+    <list default="true" id="523490f4-a6d9-4d51-b030-586b31f17062" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/cashewOutside.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/data/Ingredients.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seng202/team3/io/LoadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seng202/team3/io/LoadData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MenuLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MenuLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MyErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MyErrorHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/SupplierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seng202/team3/parsing/SupplierHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/PhoneType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/ThreeValueLogic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/UnitType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/features/acceptance.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/jUnitTests/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/jUnitTests/CykTestCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/jUnitTests/OrderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/jUnitTests/OrderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/Ingredient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/Inventory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/MenuItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/OrderHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/OrderHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/Supplier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/SupplierHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/Truck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/Truck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/model/createOrder2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parser/IngredientsLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parser/IngredientsLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parser/MenuLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parser/MenuLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parser/MyErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parser/SupplierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parser/SupplierHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/PhoneType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/ThreeValueLogic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/UnitType.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,9 +59,9 @@
           <entry key="project.closed" value="8" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="4" />
+          <entry key="project.open.time.6" value="5" />
           <entry key="project.open.time.7" value="4" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -43,7 +84,7 @@
         <counts>
           <entry key="feature" value="57" />
           <entry key="java" value="1410" />
-          <entry key="txt" value="350" />
+          <entry key="txt" value="497" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
@@ -51,7 +92,7 @@
         <counts>
           <entry key="Cucumber" value="57" />
           <entry key="JAVA" value="1410" />
-          <entry key="PLAIN_TEXT" value="350" />
+          <entry key="PLAIN_TEXT" value="497" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -71,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="225">
               <caret line="25" selection-start-line="8" selection-start-column="7" selection-end-line="18" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -83,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MenuLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="150">
               <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,10 +146,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/SupplierHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-              <folding>
-                <element signature="e#946#964#0" expanded="true" />
-              </folding>
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -134,7 +172,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/model/MenuItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
+            <state relative-caret-position="225">
               <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
@@ -273,8 +311,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,32 +363,19 @@
               <item name="team3" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cashewOutside" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cashewOutside" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="seng202" type="462c0819:PsiDirectoryNode" />
-              <item name="team3" type="462c0819:PsiDirectoryNode" />
-              <item name="parsing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cashewOutside" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cashewOutside" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="clean&#9;ACTION&#9;CodeCleanup" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566342463388" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566342693280" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX-project-template" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -480,6 +503,7 @@
       <workItem from="1566262104176" duration="1587000" />
       <workItem from="1566269438235" duration="4668000" />
       <workItem from="1566275001954" duration="297000" />
+      <workItem from="1566342283062" duration="410000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit - with Maven POM">
       <created>1564700740557</created>
@@ -523,7 +547,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566273647243</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Git Repository was cleaned by Jack(tutor). Working Java 11 code complete with sample code, cucumber code,&#10;git ignore commited.">
+      <created>1566342445036</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566342445036</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Git Repository was cleaned by Jack(tutor). Working Java 11 code complete with sample code, cucumber code,&#10;git ignore commited.">
+      <created>1566342520290</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566342520290</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -538,12 +576,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19108000" />
+    <option name="totallyTimeSpent" value="19518000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2353255" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2379936" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -615,7 +653,8 @@
     <MESSAGE value="Structured to get Git working with cumber, updated POM" />
     <MESSAGE value="Added Cucumber acceptance tests" />
     <MESSAGE value="Added sample files that were previously git ignored back to system. Java-11 Original WORKING directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sample files that were previously git ignored back to system. Java-11 Original WORKING directory" />
+    <MESSAGE value="Git Repository was cleaned by Jack(tutor). Working Java 11 code complete with sample code, cucumber code,&#10;git ignore commited." />
+    <option name="LAST_COMMIT_MESSAGE" value="Git Repository was cleaned by Jack(tutor). Working Java 11 code complete with sample code, cucumber code,&#10;git ignore commited." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/data/SampleMenu.xml">
@@ -810,23 +849,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/model/Business.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/IngredientsLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="225">
           <caret line="25" selection-start-line="8" selection-start-column="7" selection-end-line="18" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -836,7 +861,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/MenuLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="150">
           <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -854,17 +879,21 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/parsing/SupplierHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="36" column="23" lean-forward="true" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding>
-            <element signature="e#946#964#0" expanded="true" />
-          </folding>
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/model/MenuItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="75">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/model/Business.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -872,6 +901,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seng202/team3/model/MenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
