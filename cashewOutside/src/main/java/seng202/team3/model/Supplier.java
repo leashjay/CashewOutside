@@ -1,6 +1,5 @@
 package seng202.team3.model;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
 
 import seng202.team3.util.PhoneType;
 
@@ -72,28 +71,39 @@ public class Supplier {
         return "[Supplier: " + sid + ", " + name + ", " + address + ", " + phone + ", " + email + ", " + url + "]";
     }
 
-    // Bunch of getters
-    public String id() {
+    /**
+     * Returns the suppliers ID
+     * @return The ID of the supplier
+     */
+    public String getId() {
         return this.sid;
     }
 
-    public String name() {
+    /**
+     *Returns the suppliers name
+     * @return the name of the supplier
+     */
+    public String getName() {
         return this.name;
     }
 
-    public String address() {
+    /**
+     * Returns the address of the supplier
+     * @return The address of the supplier
+     */
+    public String getAddress() {
         return this.address;
     }
 
-    public String phone() {
+    public String getPhoneNumber() {
         return this.phone;
     }
 
-    public PhoneType phoneType() {
+    public PhoneType getPhoneType() {
         return this.phType;
     }
 
-    public String email() {
+    public String getEmail() {
         return this.email;
     }
 
