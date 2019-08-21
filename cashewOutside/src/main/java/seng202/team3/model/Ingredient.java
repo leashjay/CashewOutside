@@ -1,9 +1,9 @@
 package seng202.team3.model;
 
-import java.util.List;
-
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+
+import java.util.List;
 
 /**
  * Class to represent ingredients. Mostly a data class, but that's the breaks...
@@ -22,11 +22,6 @@ public class Ingredient {
     private ThreeValueLogic isVeg;
     private ThreeValueLogic isVegan;
     private ThreeValueLogic isGF;
-
-
-    public Ingredient(String code, String name, util.UnitType unit, util.ThreeValueLogic isVeg, util.ThreeValueLogic isVegan, util.ThreeValueLogic isGF){
-
-    }
 
     public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
             ThreeValueLogic isGF) {
@@ -55,7 +50,7 @@ public class Ingredient {
     }
 
     public ThreeValueLogic isVegan() {
-        return isVeg;
+        return isVegan;
     }
 
     public ThreeValueLogic isGF() {
