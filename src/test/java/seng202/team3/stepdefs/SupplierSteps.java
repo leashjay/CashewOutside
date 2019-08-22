@@ -36,7 +36,7 @@ public class SupplierSteps {
          Map<String, Supplier>suppsLoaded = SupplierHandler.getSuppliers();
  
          for (Supplier sup : suppsLoaded.values()) {
-             if(sup.name().equals("Funky Kumquat")) {
+             if(sup.getName().equals("Funky Kumquat")) {
                  s = sup;
                  break;
              }
