@@ -11,7 +11,7 @@
     unit (ml|g|count) #REQUIRED
     isveg (yes|no|unknown) "no"
     isvegan (yes|no|unknown) "no"
-    isgf (yes|no|unknown) "unknown"
+        isgf (yes|no|unknown) "unknown"
 >
 <!ELEMENT code (#PCDATA)>
 <!ELEMENT name (#PCDATA)>

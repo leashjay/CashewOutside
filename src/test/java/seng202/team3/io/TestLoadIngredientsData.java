@@ -4,20 +4,17 @@
 
 package seng202.team3.io;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import seng202.team3.model.Ingredient;
 import seng202.team3.parsing.IngredientsLoader;
 import seng202.team3.util.ThreeValueLogic;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit tests for example DOM parsing code. Individual tests aren't usually
@@ -33,22 +30,14 @@ public class TestLoadIngredientsData {
      * previous tests have side-effects.
      */
     @Before
-    public void testLoadMenuFile() {
+    public void testLoadMenuFile() throws MalformedURLException {
         String fName = "resources/data/Ingredients.xml";
-        int numExpected = 30; // how many ingredients in this test file
-        String pathName = "";
-        try {
-            pathName = (new File(fName)).toURI().toURL().toString();
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
+        String pathName = (new File(fName)).toURI().toURL().toString();
         IngredientsLoader aDOMdemo = new IngredientsLoader(pathName, true, System.out);
         aDOMdemo.parseInput();
         ingredients = aDOMdemo.getIngredients();
 
-        assertEquals("All XML ingredients records should be added", numExpected, ingredients.size());
+        assertEquals("All XML ingredients records should be added", 30, ingredients.size());
     }
 
     @Test

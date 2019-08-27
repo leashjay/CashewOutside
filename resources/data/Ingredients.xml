@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE ingredients SYSTEM "../dtd/ingredient.dtd">
+<!--<!DOCTYPE ingredients SYSTEM "../dtd/ingredient.dtd">-->
 <ingredients>
     <description>Our ingredients in no particular order (incomplete).</description>
     <ingredient unit="ml">

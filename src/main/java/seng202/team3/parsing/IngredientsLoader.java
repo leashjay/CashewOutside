@@ -6,17 +6,26 @@ package seng202.team3.parsing;
  */
 
 // We'll need some JAXP packages
-import javax.xml.parsers.*;
-import org.xml.sax.*;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import seng202.team3.model.Ingredient;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import org.w3c.dom.*;
-// and some of the usual stuff
-import java.io.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
+
+// and some of the usual stuff
 
 public class IngredientsLoader {
     /*
@@ -161,6 +170,7 @@ public class IngredientsLoader {
             }
             isVeg = yesNoMaybe(atts.getNamedItem("isveg").getNodeValue());
             isVegan = yesNoMaybe(atts.getNamedItem("isvegan").getNodeValue());
+            isGF = yesNoMaybe(atts.getNamedItem("isgf").getNodeValue());
             isGF = yesNoMaybe(atts.getNamedItem("isgf").getNodeValue());
 
             /*
