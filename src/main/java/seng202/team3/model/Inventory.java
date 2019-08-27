@@ -1,18 +1,33 @@
 package seng202.team3.model;
 
-import java.util.ArrayList;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
  * Holds information about the inventory
  */
+@XmlRootElement(name = "ingredients")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Inventory {
-    public ArrayList<Ingredient> ingredients;
+
+    @XmlElement(name = "ingredient")
+    public List<Ingredient> ingredients;
+    @XmlElement(name = "description")
+    private String desc;
 
     /**
      * A constructor for Inventory class
      */
     public Inventory() {
         super();
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     /**

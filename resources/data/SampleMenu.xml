@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE menu SYSTEM "../dtd/menu.dtd">
+<!DOCTYPE menu [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT menu (title, description, (item*))>
+        <!ATTLIST menu
+                from CDATA #IMPLIED
+                to CDATA #IMPLIED
+                >
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT item (id, name, (ingredient*))>
+        <!ATTLIST item type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ATTLIST name serves CDATA "1">
+        <!ELEMENT ingredient (name)>
+        <!ATTLIST ingredient
+                unit (ml|g|count) #REQUIRED
+                quantity CDATA #REQUIRED
+                >
+        ]>
 <menu from="June" to="August">
     <title>Winter warmers</title>
     <description>Sample menu: Things we sell in cold weather</description>
-    <item type="grill">
+    <item type="GRILL">
         <id>BB1</id>
         <name>Beefburger</name>
         <ingredient unit="count" quantity="1">
@@ -28,7 +47,7 @@
             <name>Mayo</name>
         </ingredient>
     </item>
-    <item type="asian">
+    <item type="ASIAN">
         <id>CF</id>
         <name>Chicken fried rice</name>
         <ingredient unit="g" quantity="100">
@@ -47,14 +66,14 @@
             <name>Oil</name>
         </ingredient>
     </item>
-    <item type="beverage">
+    <item type="BEVERAGE">
         <id>Lem</id>
         <name>LemCan</name>
         <ingredient unit="count" quantity="1">
             <name>LemCan</name>
         </ingredient>
     </item>
-    <item type="main">
+    <item type="MAIN">
         <id>CAV</id>
         <name serves="6">Coq au van</name>
         <ingredient unit="g" quantity="1500">
@@ -94,7 +113,7 @@
             <name>Flour</name>
         </ingredient>
     </item>
-    <item type="cocktail">
+    <item type="COCKTAIL">
         <id>BF</id>
         <name>Baby face</name>
         <ingredient unit="ml" quantity="30">
@@ -107,7 +126,7 @@
             <name>Cream</name>
         </ingredient>
     </item>
-    <item type="beverage">
+    <item type="BEVERAGE">
         <id>HotChoc</id>
         <name>Hot Chocolate</name>
         <ingredient unit="g" quantity="2">
@@ -118,3 +137,4 @@
         </ingredient>
     </item>
 </menu>
+

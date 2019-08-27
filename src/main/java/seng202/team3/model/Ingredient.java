@@ -17,11 +17,11 @@ public class Ingredient {
     List<Supplier> suppliers;
 
     /** A short name to use in menus and elsewhere */
-    @XmlElement
+    @XmlElement(name = "code")
     private String code;
 
     /** The full name */
-    @XmlElement
+    @XmlElement(name = "name")
     private String name;
 
     @XmlAttribute

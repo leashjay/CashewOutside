@@ -1,93 +1,57 @@
 package seng202.team3.model;
 
-import java.util.ArrayList;
-import java.util.Set;
+import javax.xml.bind.annotation.*;
+import java.util.List;
 
 
-/**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * @generated
- */
-
+@XmlRootElement(name = "menu")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Menu {
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
 
-    public Set<MenuItem> menuItem;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
 
-    public Business business;
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
+    @XmlElement(name = "title")
+    private String title;
 
-    private ArrayList<Menu> menuItems;
+    @XmlElement(name = "description")
+    private String desc;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     */
-    public Menu() {
-        super();
+    @XmlAttribute(name = "from")
+    private String startMonth;
+
+    @XmlAttribute(name = "to")
+    private String endMonth;
+
+    @XmlElement(name = "item")
+    private List<MenuItem> menuContent;
+
+
+    public List<MenuItem> getMenuItem() {
+        return menuContent;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public MenuItem addToMenu(MenuItem parameter) {
-        // TODO implement me
-        return null;
+    public String getTitle() {
+        return title;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public MenuItem removeFromMenu(MenuItem parameter) {
-        // TODO implement me
-        return null;
+    public String getDesc() {
+        return desc;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
-
-    public MenuItem filterByRequirements(boolean parameter) {
-        // TODO implement me
-        return null;
+    public String getStartMonth() {
+        return startMonth;
     }
+
+    public String getEndMonth() {
+        return endMonth;
+    }
+
+
+//    public void addToCollection(MenuItem) {}
+//
+//    public void removeFromCollection(MenuItem) {}
+//
+//    public List<MenuItem> filterByDietaryReq() {}
+
 
 }
 

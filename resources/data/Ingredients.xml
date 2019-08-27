@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--<!DOCTYPE ingredients SYSTEM "../dtd/ingredient.dtd">-->
+<!DOCTYPE ingredients [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT ingredients (description, (ingredient*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT ingredient (code, name)>
+        <!ATTLIST ingredient
+                unit (ml|g|count) #REQUIRED
+                isveg (yes|no|unknown) "no"
+                isvegan (yes|no|unknown) "no"
+                isgf (yes|no|unknown) "unknown"
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        ]>
 <ingredients>
     <description>Our ingredients in no particular order (incomplete).</description>
     <ingredient unit="ml">
