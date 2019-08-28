@@ -32,7 +32,7 @@ public class Ingredient {
 
     /** Quantity of ingredient */
     @XmlAttribute
-    private float quantity;
+    private float quantity = 0;
 
     /** Information about vegan attribute */
     @XmlAttribute
