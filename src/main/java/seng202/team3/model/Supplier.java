@@ -3,111 +3,142 @@ package seng202.team3.model;
 
 import seng202.team3.util.PhoneType;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
- * Basic info about out suppliers.
+ * Basic info about supplier
  */
 
+@XmlRootElement(name = "supplier")
 public class Supplier {
-    public static final String UNKNOWN_EMAIL = "Unknown email";
-    public static final String UNKNOWN_URL = "Unknown URL";
-
-    private String sid;
-    private String name;
-    private String address;
-    private String phone;
-    private PhoneType phType;
-    private String email = UNKNOWN_EMAIL;
-    private String url = UNKNOWN_URL;
-
-    public Supplier(String s) {
-        sid = s;
-    }
-
-    public Supplier(String s, String name) {
-        sid = s;
-        this.name = name;
-    }
 
     /**
-     * Constructor for class. All the required elements
+     * Supplier id
      */
-    public Supplier(String s, String name, String addr, String ph) {
-        this(s, name, addr, ph, PhoneType.UNKNOWN, UNKNOWN_EMAIL, UNKNOWN_URL);
+    @XmlElement(name = "sid")
+    private String sid;
+
+    /**
+     * Supplier name
+     */
+    @XmlElement (name = "name")
+    private String name;
+
+    /**
+     * Supplier address
+     */
+    @XmlElement (name = "address")
+    private String address;
+
+    /** Supplier phone number */
+    @XmlElement (name = "phone")
+    private String phone;
+
+    /**
+     * Supplier phone type
+     */
+    @XmlAttribute(name = "type")
+    private PhoneType type;
+
+    /**
+     * Suppler email
+     */
+    @XmlElement(name = "email")
+    private String email = "Null";
+
+    /**
+     * Supplier business website
+     */
+    @XmlElement(name = "url")
+    private String url = "Null";
+
+
+    /**
+     * Temporary constructor
+     */
+    public Supplier() {
+        this.type = PhoneType.UNKNOWN;
     }
 
     /**
-     * Constructor for class. All elements.
-     * 
-     * @param s
-     * @param n
-     * @param addr
-     * @param ph
+     * Constructor for Supplier class
+     *
+     * @param sid
+     * @param name
+     * @param address
+     * @param type
+     * @param phone
      * @param email
      * @param url
      */
-    public Supplier(String s, String n, String addr, String ph, PhoneType pt, String email, String url) {
-        sid = s;
-        name = n;
-        address = addr;
-        phone = ph;
-        phType = pt;
+    public Supplier(String sid, String name, String address, PhoneType type, String phone, String email, String url) {
+        this.sid = sid;
+        this.name = name;
+        this.address = address;
+        this.type = type;
+        this.phone = phone;
+        this.type = PhoneType.UNKNOWN;
         this.email = email;
         this.url = url;
-    }
-
-    public void setPhoneType(PhoneType pt) {
-        phType = pt;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setURL(String url) {
-        this.url = url;
-    }
-
-    public String toString() {
-        return "[Supplier: " + sid + ", " + name + ", " + address + ", " + phone + ", " + email + ", " + url + "]";
     }
 
     /**
-     * Returns the suppliers ID
-     * @return The ID of the supplier
+     * Getter for supplier id
+     * @return sid
      */
-    public String getId() {
-        return this.sid;
+    public String getSid() {
+        return sid;
     }
 
     /**
-     *Returns the suppliers name
-     * @return the name of the supplier
+     * Getter for supplier name
+     * @return name
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
-     * Returns the address of the supplier
-     * @return The address of the supplier
+     * Getter for supplier address
+     * @return address
      */
     public String getAddress() {
-        return this.address;
+        return address;
     }
 
-    public String getPhoneNumber() {
-        return this.phone;
+    /**
+     * Getter for supplier phone number
+     * @return phone
+     */
+    public String getPhone() {
+        return phone;
     }
 
-    public PhoneType getPhoneType() {
-        return this.phType;
+    /**
+     * Getter for supplier phone type
+     * @return type
+     */
+    public PhoneType getType() {
+        return type;
     }
 
+    /**
+     * Getter for supplier email
+     * @return email
+     */
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
-    public String url() {
-        return this.url;
+    /**
+     * Getter for supplier business website
+     * @return url
+     */
+    public String getUrl() {
+        return url;
     }
+
+
 }

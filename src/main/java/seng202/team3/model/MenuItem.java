@@ -15,26 +15,36 @@ import java.util.List;
 @XmlRootElement(name = "item")
 public class MenuItem {
 
+    /**
+     * Short name for menu item
+     */
     @XmlElement(name = "id")
     private String id;
 
+    /** Full name for menu item */
     @XmlElement(name = "name")
     private String name;
 
-    // just the ingredient names
+    /** List of ingredients needed to make the menu item */
     @XmlElement(name = "ingredient")
     private List<String> ingredients;
 
+    /** Type of cuisine */
     @XmlAttribute(name = "type")
     private ItemType type;
 
-
+    /**
+     * Temporary constructor
+     */
     public MenuItem() {
-        ;
     }
 
     /**
-     * Constructor for class.
+     * Constructor for MenuItem class
+     * @param id
+     * @param name
+     * @param ingredients
+     * @param type
      */
     public MenuItem(String id, String name, List<String> ingredients, ItemType type) {
         this.id = id;
@@ -45,7 +55,6 @@ public class MenuItem {
 
     /**
      * Getter for menu item id
-     *
      * @return id
      */
     public String getId() {
@@ -53,12 +62,29 @@ public class MenuItem {
     }
 
     /**
-     * Getter for list of ingredients
+     * Getter for menu item's full name
      *
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Getter for list of ingredients
      * @return ingredients
      */
     public List<String> getIngredients() {
         return ingredients;
+    }
+
+    /**
+     * Getter for type of cuisine
+     *
+     * @return type
+     */
+    public ItemType getType() {
+        return type;
     }
 
 

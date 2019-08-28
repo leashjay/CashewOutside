@@ -18,7 +18,7 @@ public class Truck {
      * Constructor for Truck class
      */
     public Truck() {
-        truckInventory = new Inventory();
+        //truckInventory = new Inventory();
         cashFloat = new HashMap<String, Integer>();
 
         // Add denominations into cash float map

@@ -24,59 +24,112 @@ public class Ingredient {
     @XmlElement(name = "name")
     private String name;
 
+    /**
+     * Ingredient measurement type
+     */
     @XmlAttribute
     private UnitType unit;
 
+    /** Quantity of ingredient */
     @XmlAttribute
-    private String quantity;
+    private float quantity;
 
+    /** Information about vegan attribute */
     @XmlAttribute
     private ThreeValueLogic isVeg = ThreeValueLogic.UNKNOWN;
 
+    /** Information about vegetarian attribute */
     @XmlAttribute
     private ThreeValueLogic isVegan = ThreeValueLogic.UNKNOWN;
 
+    /** Information about gluten free attribute */
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
+    /**
+     * Temporary constructor
+     */
     public Ingredient() {
+        ;
     }
 
-    public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
+    /**
+     * Constructor for Ingredient class
+     *
+     * @param code
+     * @param name
+     * @param quantity
+     * @param unit
+     * @param isVeg
+     * @param isVegan
+     * @param isGF
+     */
+    public Ingredient(String code, String name, float quantity, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
             ThreeValueLogic isGF) {
         this.code = code;
         this.name = name;
         this.unit = unit;
+        this.quantity = quantity;
         this.isVeg = isVeg;
         this.isVegan = isVegan;
         this.isGF = isGF;
     }
 
-    public String code() {
+    /**
+     * Getter for ingredient's short name
+     * @return code
+     */
+    public String getCode() {
         return code;
     }
 
-    public String name() {
+    /**
+     * Getter for ingredient's long name
+     * @return name
+     */
+    public String getName() {
         return name;
     }
 
-    public UnitType unit() {
+    /**
+     * Getter for ingredient's unit type
+     * @return unit
+     */
+    public UnitType getUnit() {
         return unit;
     }
 
-    public String getQuantity() {
+    /**
+     * Getter for quantity of ingredient
+     *
+     * @return quantity
+     */
+    public float getQuantity() {
         return quantity;
     }
 
-    public ThreeValueLogic isVeg() {
+    /**
+     * Getter for ingredient's vegetarian attribute
+     *
+     * @return isVeg
+     */
+    public ThreeValueLogic getIsVeg() {
         return isVeg;
     }
 
-    public ThreeValueLogic isVegan() {
+    /**
+     * Getter for ingredient's vegan attribute
+     * @return isVegan
+     */
+    public ThreeValueLogic getIsVegan() {
         return isVegan;
     }
 
-    public ThreeValueLogic isGF() {
+    /**
+     * Getter for ingredient's gluten free attribute
+     * @return isGF
+     */
+    public ThreeValueLogic getIsGF() {
         return isGF;
     }
 }
