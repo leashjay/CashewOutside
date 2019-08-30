@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE ingredients [
+<!DOCTYPE inventory [
         <!ENTITY version "V0.01 (C) Neville Churcher 2019">
-        <!ELEMENT ingredients (description, (ingredient*))>
+        <!ELEMENT inventory (description, ingredients)>
+        <!ELEMENT ingredients ((ingredient*))>
         <!ELEMENT description (#PCDATA)>
         <!ELEMENT ingredient (code, name)>
         <!ATTLIST ingredient
@@ -13,126 +14,128 @@
         <!ELEMENT code (#PCDATA)>
         <!ELEMENT name (#PCDATA)>
         ]>
-<ingredients>
+<inventory>
     <description>Our ingredients in no particular order (incomplete).</description>
-    <ingredient unit="ML">
-        <code>Salt</code>
-        <name>Table salt</name>
-    </ingredient>
-    <ingredient unit="COUNT" isgf="NO">
-        <code>BBun</code>
-        <name>Hamburger bun</name>
-    </ingredient>
-    <ingredient unit="COUNT" isveg="NO" isvegan="NO">
-        <code>BPat</code>
-        <name>Beef patty</name>
-    </ingredient>
-    <ingredient unit="G" isveg="YES">
-        <code>Onion</code>
-        <name>Diced onion</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>TSauce</code>
-        <name>Tomato sauce</name>
-    </ingredient>
-    <ingredient unit="COUNT" isgf="YES">
-        <code>Beetroot</code>
-        <name>Beetroot slice</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Lettuce</code>
-        <name>Sliced Iceberg lettuce</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Mayo</code>
-        <name>Eater plain Mayonnaise</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Chicken</code>
-        <name>Chicken breast, diced</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Rice</code>
-        <name>Long grain rice</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Soy</code>
-        <name>Soy sauce, dark</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Oil</code>
-        <name>Canola oil</name>
-    </ingredient>
-    <ingredient unit="COUNT">
-        <code>LemCan</code>
-        <name>Lemonade, 300ml Can</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>OlOil</code>
-        <name>Olive oil, extra virgin</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Bacon</code>
-        <name>Bacon, shoulder</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Garlic</code>
-        <name>Garlic, sliced</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Brandy</code>
-        <name>Brandy, Courvoisier, 1l</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>RedWine</code>
-        <name>Red wine, 1l cask</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>CStock</code>
-        <name>Chicken stock</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Herbs</code>
-        <name>Mixed herbs, dried</name>
-    </ingredient>
-    <ingredient unit="COUNT">
-        <code>Bay</code>
-        <name>Bay leaf, dried</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Shrooms</code>
-        <name>Button mushrooms, sliced</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Flour</code>
-        <name>Flour, plain</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Vodka</code>
-        <name>Vodka, Ivan's special brew, 1l</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Cassis</code>
-        <name>Torlesse Cassis, 750ml</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>Cream</code>
-        <name>Cream</name>
-    </ingredient>
-    <ingredient unit="G">
-        <code>Choc</code>
-        <name>Smith's Drinking chocolate</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>RegMilk</code>
-        <name>Milk, homogenised</name>
-    </ingredient>
-    <ingredient unit="ML">
-        <code>TrimMilk</code>
-        <name>Trim milk</name>
-    </ingredient>
-    <ingredient unit="COUNT">
-        <code>Cheese</code>
-        <name>Cheddar cheese slice</name>
-    </ingredient>
-</ingredients>
+    <ingredients>
+        <ingredient unit="ML">
+            <code>Salt</code>
+            <name>Table salt</name>
+        </ingredient>
+        <ingredient unit="COUNT" isgf="NO">
+            <code>BBun</code>
+            <name>Hamburger bun</name>
+        </ingredient>
+        <ingredient unit="COUNT" isveg="NO" isvegan="NO">
+            <code>BPat</code>
+            <name>Beef patty</name>
+        </ingredient>
+        <ingredient unit="G" isveg="YES">
+            <code>Onion</code>
+            <name>Diced onion</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>TSauce</code>
+            <name>Tomato sauce</name>
+        </ingredient>
+        <ingredient unit="COUNT" isgf="YES">
+            <code>Beetroot</code>
+            <name>Beetroot slice</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Lettuce</code>
+            <name>Sliced Iceberg lettuce</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Mayo</code>
+            <name>Eater plain Mayonnaise</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Chicken</code>
+            <name>Chicken breast, diced</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Rice</code>
+            <name>Long grain rice</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Soy</code>
+            <name>Soy sauce, dark</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Oil</code>
+            <name>Canola oil</name>
+        </ingredient>
+        <ingredient unit="COUNT">
+            <code>LemCan</code>
+            <name>Lemonade, 300ml Can</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>OlOil</code>
+            <name>Olive oil, extra virgin</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Bacon</code>
+            <name>Bacon, shoulder</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Garlic</code>
+            <name>Garlic, sliced</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Brandy</code>
+            <name>Brandy, Courvoisier, 1l</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>RedWine</code>
+            <name>Red wine, 1l cask</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>CStock</code>
+            <name>Chicken stock</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Herbs</code>
+            <name>Mixed herbs, dried</name>
+        </ingredient>
+        <ingredient unit="COUNT">
+            <code>Bay</code>
+            <name>Bay leaf, dried</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Shrooms</code>
+            <name>Button mushrooms, sliced</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Flour</code>
+            <name>Flour, plain</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Vodka</code>
+            <name>Vodka, Ivan's special brew, 1l</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Cassis</code>
+            <name>Torlesse Cassis, 750ml</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>Cream</code>
+            <name>Cream</name>
+        </ingredient>
+        <ingredient unit="G">
+            <code>Choc</code>
+            <name>Smith's Drinking chocolate</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>RegMilk</code>
+            <name>Milk, homogenised</name>
+        </ingredient>
+        <ingredient unit="ML">
+            <code>TrimMilk</code>
+            <name>Trim milk</name>
+        </ingredient>
+        <ingredient unit="COUNT">
+            <code>Cheese</code>
+            <name>Cheddar cheese slice</name>
+        </ingredient>
+    </ingredients>
+</inventory>

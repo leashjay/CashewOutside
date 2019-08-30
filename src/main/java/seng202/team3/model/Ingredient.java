@@ -12,6 +12,7 @@ import java.util.List;
  * Class to represent ingredients. Mostly a data class, but that's the breaks...
  */
 
+
 @XmlRootElement(name = "ingredient")
 public class Ingredient {
     List<Supplier> suppliers;

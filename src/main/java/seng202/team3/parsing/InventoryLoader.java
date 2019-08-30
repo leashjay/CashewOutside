@@ -19,4 +19,14 @@ public class InventoryLoader {
         Inventory inventoryLoad = (Inventory) unmarshaller.unmarshal(new File(fileName));
         return inventoryLoad;
     }
+
+    public static void main(String[] args) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Inventory.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        Inventory inventoryLoad = (Inventory) unmarshaller.unmarshal(new File("./resources/data/Ingredients.xml"));
+
+        System.out.println(inventoryLoad.getDesc());
+        System.out.println(inventoryLoad.getIngredients().keySet());
+
+    }
 }

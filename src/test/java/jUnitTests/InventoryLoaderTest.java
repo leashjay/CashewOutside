@@ -5,14 +5,15 @@ import org.junit.Test;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.parsing.InventoryLoader;
-import seng202.team3.util.UnitType;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit tests for loading Ingredients data in JAXB
@@ -20,6 +21,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class InventoryLoaderTest {
     private Inventory testInventory;
+    HashMap<String, Ingredient> ingredients;
 
     @Before
     public void testLoadIngredientsXML() throws JAXBException {
@@ -37,7 +39,7 @@ public class InventoryLoaderTest {
 
         InventoryLoader testLoader = new InventoryLoader();
         testInventory = testLoader.readIngredientsFile(fName);
-        List<Ingredient> ingredients = testInventory.getIngredients();
+        ingredients = testInventory.getIngredients();
 
         assertEquals("All XML ingredients record should be added", numExpected, ingredients.size());
     }
@@ -45,6 +47,10 @@ public class InventoryLoaderTest {
     @Test
     public void testKnownValues() {
         //Ingredient testIngredient = new Ingredient("Salt", "Table Salt", 0, UnitType.ML, ThreeValueLogic.UNKNOWN, ThreeValueLogic.UNKNOWN, ThreeValueLogic.UNKNOWN);
-        assertEquals("Known ingredient in ingredient list", testInventory.getIngredients().get(0).getUnit(), UnitType.ML);
+        String aCode = "BBun";
+        assertTrue("Key in keylist", ingredients.keySet().contains(aCode));
+        Ingredient i = ingredients.get(aCode);
+        assertNotNull("Corresponding object in collection", i);
+        assertEquals("It's a burger bun, isn't it?", "Hamburger bun", i.getName());
     }
 }
