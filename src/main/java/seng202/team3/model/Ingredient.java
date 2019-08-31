@@ -47,6 +47,8 @@ public class Ingredient {
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
+    private float cost;
+
     /**
      * Temporary constructor
      */
@@ -59,21 +61,20 @@ public class Ingredient {
      *
      * @param code
      * @param name
-     * @param quantity
      * @param unit
      * @param isVeg
      * @param isVegan
      * @param isGF
      */
-    public Ingredient(String code, String name, float quantity, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
-            ThreeValueLogic isGF) {
+    public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
+                      ThreeValueLogic isGF, float cost) {
         this.code = code;
         this.name = name;
         this.unit = unit;
-        this.quantity = quantity;
         this.isVeg = isVeg;
         this.isVegan = isVegan;
         this.isGF = isGF;
+        this.cost = cost;
     }
 
     /**
@@ -132,5 +133,9 @@ public class Ingredient {
      */
     public ThreeValueLogic getIsGF() {
         return isGF;
+    }
+
+    public float getCost() {
+        return cost;
     }
 }

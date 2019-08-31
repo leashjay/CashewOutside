@@ -1,6 +1,6 @@
 package seng202.team3.parsing;
 
-import seng202.team3.model.Suppliers;
+import seng202.team3.model.SupplierHandler;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,12 +12,12 @@ public class SuppliersLoader {
     JAXBContext context;
 
     public SuppliersLoader() throws JAXBException {
-        context = JAXBContext.newInstance(Suppliers.class);
+        context = JAXBContext.newInstance(SupplierHandler.class);
     }
 
-    public Suppliers loadSuppliersData(String fileName) throws JAXBException {
+    public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        Suppliers suppliersLoad = (Suppliers) unmarshaller.unmarshal(new File(fileName));
+        SupplierHandler suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(new File(fileName));
         return suppliersLoad;
     }
 }

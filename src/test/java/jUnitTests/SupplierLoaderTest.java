@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Supplier;
-import seng202.team3.model.Suppliers;
+import seng202.team3.model.SupplierHandler;
 import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.PhoneType;
 
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class SupplierLoaderTest {
     private HashMap<String, Supplier> suppsLoaded;
-    private Suppliers suppliers;
+    private SupplierHandler suppliers;
 
     /**
      * Make sure each test starts with a clean copy of the loaded data - in case
@@ -59,7 +59,7 @@ public class SupplierLoaderTest {
     @Test
     public void testPhoneTypeAttribute() {
         Supplier s = suppsLoaded.get("s2");
-        assertEquals("Loaded attribute", PhoneType.MOBILE, s.getType());
+        assertEquals("Loaded attribute", PhoneType.MOBILE, s.getPhoneType());
     }
 }
 

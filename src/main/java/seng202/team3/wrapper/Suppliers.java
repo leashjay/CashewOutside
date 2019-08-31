@@ -4,8 +4,8 @@ import seng202.team3.model.Supplier;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class Providers {
+public class Suppliers {
 
     @XmlElement(name = "supplier")
-    public Supplier[] suppliers;
+    public Supplier[] providers;
 }

@@ -1,10 +1,13 @@
 package seng202.team3.model;
 
 import seng202.team3.util.ItemType;
+import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.util.UnitType;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,18 +36,48 @@ public class MenuItem {
     @XmlAttribute(name = "type")
     private ItemType type;
 
+    private ArrayList<ItemType> itemTypes;
+    private UnitType foodType;
+
     /**
-     * Temporary constructor
+     * shows if the menuitem is gluten free
+     */
+    private ThreeValueLogic isGlutenFree;
+
+    /**
+     * shows if the menuitem is vegetarian
+     */
+    private ThreeValueLogic isVegetarian;
+
+    /**
+     * shows if the menuitem is vegan
+     */
+    private ThreeValueLogic isVegan;
+
+    /**
+     * The price the business sells the item for
+     */
+    private float salePrice;
+
+    /**
+     * The number of servings the menu item has
+     */
+    private int numServings;
+
+
+    /**
+     * No arg constructor for JAXB
      */
     public MenuItem() {
+        ;
     }
 
     /**
      * Constructor for MenuItem class
-     * @param id
-     * @param name
-     * @param ingredients
-     * @param type
+     * @param id A short description of the menu item
+     * @param name a long description of the menu item
+     * @param ingredients A hashset of the ingredients in the menu item and their quantities
+     * @param type Shows what type the menu item is e.g, beverage, snack, main...
      */
     public MenuItem(String id, String name, List<Ingredient> ingredients, ItemType type) {
         this.id = id;
@@ -91,13 +124,46 @@ public class MenuItem {
         ingredients.add(it);
     }
 
-    public String ingredients() {
-        String recipeText;
-        recipeText = "[" + id + "(" + name + "):";
-        for (Ingredient ing : ingredients) {
-            recipeText += " " + ing.getName();
-        }
-        recipeText += "]";
-        return recipeText;
-    }
+    /**
+     * Adds the given ingredient to the recipe
+     * @param ingredient the ingredient to be added
+     * @param quantity the quantity of that ingredient to be added
+     */
+//        public void addIngredientToRecipe (Ingredient ingredient, Float quantity){
+//            ingredients.put(ingredient, quantity);
+//        }
+
+    /**
+     * Removes an ingredient from the recipe
+     * @param ingredientToRemove The ingredient to be removed from the recipe
+     */
+//        public void removeIngredientFromReipe (Ingredient ingredientToRemove){
+//            ingredients.remove(ingredientToRemove);
+//        }
+
+    /**
+     * Calculates the price it takes to create the given recipe
+     * @return a float showing the price to create the given recipe
+     */
+//        public float getCostPrice () {
+//            float totalPrice = 0;
+//            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+//                Ingredient ingredient = entry.getKey();
+//                totalPrice += ingredient.getCost() * entry.getValue();
+//            }
+//            return totalPrice;
+//            //TODO Test this method
+
+//        }
+
+//    public String ingredients() {
+//        String recipeText;
+//        recipeText = "[" + id + "(" + name + "):";
+//        for(String s:ingredients) {
+//            recipeText += " " + s;
+//        }
+//        recipeText += "]";
+//        return recipeText;
+//    }
+
 }
