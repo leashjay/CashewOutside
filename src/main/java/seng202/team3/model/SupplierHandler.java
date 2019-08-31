@@ -31,14 +31,6 @@ public class SupplierHandler {
     @XmlElement(name = "supplier")
     private List<Supplier> suppliers;
 
-
-    /**
-     * Temporary constructor
-     */
-    public SupplierHandler() {
-        ;
-    }
-
     /**
      * Constructor for supplier class
      *
@@ -106,6 +98,7 @@ public class SupplierHandler {
         }
         System.out.println(orderInfo);
         orderHistory.add(order);
+        //TODO: Change quantities of inventory based on what is in the order
         return orderInfo;
     }
 }
