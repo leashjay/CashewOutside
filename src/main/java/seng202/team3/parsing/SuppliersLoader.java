@@ -22,7 +22,7 @@ public class SuppliersLoader {
         System.out.println(suppliersRead.getDesc());
         System.out.println(suppliersRead.getSuppliers().get(0).getName());
         System.out.println(suppliersRead.getSuppliers().get(0).getSid());
-        System.out.println(suppliersRead.getSuppliers().get(0).getType());
+        System.out.println(suppliersRead.getSuppliers().get(0).getPhoneType());
     }
 }
 
