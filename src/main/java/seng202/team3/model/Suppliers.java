@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -66,6 +67,32 @@ public class Suppliers {
 
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
+    }
+
+    /**
+     * Adds a new supplier to the current list of suppliers
+     * @param supplierToBeAdded the supplier to be added to the list
+     */
+    public void addSupplier(Supplier supplierToBeAdded){
+        suppliers.add(supplierToBeAdded);
+    }
+
+    /**
+     * Removes a supplier currently in the list of suppliers
+     * @param supplierToBeRemoved
+     */
+    public void removeSupplier(Supplier supplierToBeRemoved){
+        suppliers.remove(supplierToBeRemoved);
+    }
+
+    /**
+     * Makes an order of the specificied ingredient from the given supplier
+     * @param supplier
+     * @param ingredient The ingredient and quantity to be ordered
+     * @return A string showing details about the order
+     */
+    public String makeOrder(Supplier supplier, HashMap<Ingredient, Float> ingredient){
+        return "function not implemented yet";
     }
 }
 
