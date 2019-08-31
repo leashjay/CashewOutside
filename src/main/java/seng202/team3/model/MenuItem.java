@@ -27,7 +27,7 @@ public class MenuItem {
 
     /** List of ingredients needed to make the menu item */
     @XmlElement(name = "ingredient")
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
 
     /** Type of cuisine */
     @XmlAttribute(name = "type")
@@ -46,7 +46,7 @@ public class MenuItem {
      * @param ingredients
      * @param type
      */
-    public MenuItem(String id, String name, List<String> ingredients, ItemType type) {
+    public MenuItem(String id, String name, List<Ingredient> ingredients, ItemType type) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -74,7 +74,7 @@ public class MenuItem {
      * Getter for list of ingredients
      * @return ingredients
      */
-    public List<String> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -87,17 +87,15 @@ public class MenuItem {
         return type;
     }
 
-
-
-    public void addIngredient(String it) {
+    public void addIngredient(Ingredient it) {
         ingredients.add(it);
     }
 
     public String ingredients() {
         String recipeText;
         recipeText = "[" + id + "(" + name + "):";
-        for(String s:ingredients) {
-            recipeText += " " + s;
+        for (Ingredient ing : ingredients) {
+            recipeText += " " + ing.getName();
         }
         recipeText += "]";
         return recipeText;

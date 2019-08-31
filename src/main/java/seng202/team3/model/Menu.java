@@ -1,7 +1,10 @@
 package seng202.team3.model;
 
+import seng202.team3.parsing.MenuItemAdapter;
+
 import javax.xml.bind.annotation.*;
-import java.util.List;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.HashMap;
 
 /**
  * Collection of menu item
@@ -28,8 +31,9 @@ public class Menu {
     private String endMonth;
 
     /** List of available menu item in the menu */
-    @XmlElement(name = "item")
-    private List<MenuItem> menuContent;
+    @XmlElement(name = "items")
+    @XmlJavaTypeAdapter(MenuItemAdapter.class)
+    private HashMap<String, MenuItem> menuContent;
 
     /**
      * Temporary Constructor
@@ -47,7 +51,7 @@ public class Menu {
      * @param endMonth
      * @param menuContent
      */
-    public Menu(String title, String desc, String startMonth, String endMonth, List<MenuItem> menuContent) {
+    public Menu(String title, String desc, String startMonth, String endMonth, HashMap<String, MenuItem> menuContent) {
         this.title = title;
         this.desc = desc;
         this.startMonth = startMonth;
@@ -59,7 +63,7 @@ public class Menu {
      * Getter for list of menu item
      * @return menuContent
      */
-    public List<MenuItem> getMenuItem() {
+    public HashMap<String, MenuItem> getMenuItem() {
         return menuContent;
     }
 

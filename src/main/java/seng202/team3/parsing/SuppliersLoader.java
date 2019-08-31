@@ -9,20 +9,23 @@ import java.io.File;
 
 
 public class SuppliersLoader {
+    JAXBContext context;
 
-    public static void main(String[] args) throws JAXBException {
+    public SuppliersLoader() throws JAXBException {
+        context = JAXBContext.newInstance(Suppliers.class);
+    }
 
-        //Supplier supplier = new Supplier("S123", "Jacks", "This place is hell", "75509", "jack@", "www.jack.s");
-        JAXBContext context = JAXBContext.newInstance(Suppliers.class);
-        //Marshaller mar = context.createMarshaller();
-        //mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        //mar.marshal(supplier, new File("./resources/data/TESTsupplier.xml"));
+    public Suppliers loadSuppliersData(String fileName) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        Suppliers suppliersRead = (Suppliers) unmarshaller.unmarshal(new File("./resources/data/Suppliers.xml"));
-        System.out.println(suppliersRead.getDesc());
-        System.out.println(suppliersRead.getSuppliers().get(0).getName());
-        System.out.println(suppliersRead.getSuppliers().get(0).getSid());
-        System.out.println(suppliersRead.getSuppliers().get(0).getType());
+        Suppliers suppliersLoad = (Suppliers) unmarshaller.unmarshal(new File(fileName));
+        return suppliersLoad;
     }
 }
+
+
+//Supplier supplier = new Supplier("S123", "Jacks", "This place is hell", "75509", "jack@", "www.jack.s");
+//    JAXBContext context = JAXBContext.newInstance(Suppliers.class);
+//Marshaller mar = context.createMarshaller();
+//mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//mar.marshal(supplier, new File("./resources/data/TESTsupplier.xml"));
 

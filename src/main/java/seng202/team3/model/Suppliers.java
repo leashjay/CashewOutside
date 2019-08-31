@@ -1,10 +1,13 @@
 package seng202.team3.model;
 
+import seng202.team3.parsing.SupplierAdapter;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.HashMap;
 
 /**
  * Container for Supplier class
@@ -23,8 +26,9 @@ public class Suppliers {
     /**
      * List of suppliers
      */
-    @XmlElement(name = "supplier")
-    private List<Supplier> suppliers;
+    @XmlElement(name = "providers")
+    @XmlJavaTypeAdapter(SupplierAdapter.class)
+    private HashMap<String, Supplier> providers;
 
 
     /**
@@ -40,9 +44,9 @@ public class Suppliers {
      * @param desc
      * @param suppliers
      */
-    public Suppliers(String desc, List<Supplier> suppliers) {
+    public Suppliers(String desc, HashMap<String, Supplier> suppliers) {
         this.desc = desc;
-        this.suppliers = suppliers;
+        this.providers = suppliers;
     }
 
     /**
@@ -59,13 +63,13 @@ public class Suppliers {
      *
      * @return suppliers
      */
-    public List<Supplier> getSuppliers() {
-        return suppliers;
+    public HashMap<String, Supplier> getSuppliers() {
+        return providers;
     }
 
 
-    public void setSuppliers(List<Supplier> suppliers) {
-        this.suppliers = suppliers;
+    public void setSuppliers(HashMap<String, Supplier> suppliers) {
+        this.providers = suppliers;
     }
 }
 

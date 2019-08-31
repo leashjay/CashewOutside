@@ -1,4 +1,6 @@
-package seng202.team3.model;
+package seng202.team3.wrapper;
+
+import seng202.team3.model.Ingredient;
 
 import javax.xml.bind.annotation.XmlElement;
 

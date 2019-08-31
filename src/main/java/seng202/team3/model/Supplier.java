@@ -11,9 +11,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Basic info about supplier
  */
 
+
 @XmlRootElement(name = "supplier")
 public class Supplier {
 
+    public static final String UNKNOWN_URL = "Null";
     /**
      * Supplier id
      */

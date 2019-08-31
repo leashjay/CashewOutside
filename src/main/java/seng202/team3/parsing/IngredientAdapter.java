@@ -1,7 +1,7 @@
 package seng202.team3.parsing;
 
 import seng202.team3.model.Ingredient;
-import seng202.team3.model.Ingredients;
+import seng202.team3.wrapper.Ingredients;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.Collection;
