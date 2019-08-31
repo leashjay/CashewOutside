@@ -10,10 +10,10 @@ import static org.junit.Assert.assertNotEquals;
 
 public class SupplierTest {
 
-    @Test
     /**
      * Tests the constructor of a new supplier creation of a new supplier
      */
+    @Test
     public void supplierCreationTest(){
         Supplier supplier = new Supplier("1", "Countdown", "20 Riccarton Road", PhoneType.WORK, "9599999", "countdown@gmail.com", "www.countdown.com");
         assertEquals(supplier.getName(), "Countdown");
@@ -28,6 +28,7 @@ public class SupplierTest {
     /**
      * Tests the modification of a suppliers attributes
      */
+    @Test
     public void supplierModificationTest(){
         Supplier supplier = new Supplier("1", "Countdown", "20 Riccarton Road", PhoneType.WORK, "9599999", "countdown@gmail.com", "www.countdown.com");
         supplier.setAddress("13 Church Corner");
