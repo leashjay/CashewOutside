@@ -121,9 +121,13 @@ public class MenuItem {
         ingredients.remove(ingredientToRemove);
     }
 
+    public MenuItem(){
+
+    }
+
     /**
      * Calculates the price it takes to create the given recipe
-     * @return
+     * @return a float showing the price to create the given recipe
      */
     public float getCostPrice(){
         float totalPrice = 0;
