@@ -29,11 +29,22 @@ public class SupplierOrder {
         return orderDate;
     }
 
+    /**
+     * Returns the supplier that made the order
+     * @return the supplier that made the order
+     */
     public Supplier getSupplier(){
         return supplier;
     }
 
+    /**
+     * Constructor for the SupplierOrder class
+     * @param supplier The supplier that made the order
+     * @param orderItems A hashset of the items and quantities in the order
+     * @param orderDate the date at which the order took place
+     */
     public SupplierOrder(Supplier supplier, HashMap<Ingredient,Float> orderItems, Date orderDate){
+        this.supplier = supplier;
         this.orderItems = orderItems;
         this.orderDate = orderDate;
     }
