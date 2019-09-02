@@ -47,6 +47,7 @@ public class Ingredient {
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
+    @XmlAttribute(name = "cost")
     private float cost;
 
     /**
@@ -111,6 +112,15 @@ public class Ingredient {
     }
 
     /**
+     * Increase quantity of ingredient by value
+     *
+     * @param value
+     */
+    public void incQuantityBy(float value) {
+        quantity += value;
+    }
+
+    /**
      * Getter for ingredient's vegetarian attribute
      *
      * @return isVeg
@@ -135,6 +145,10 @@ public class Ingredient {
         return isGF;
     }
 
+    /**
+     * Getter for cost of ingredient
+     * @return cost
+     */
     public float getCost() {
         return cost;
     }

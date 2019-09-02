@@ -36,7 +36,9 @@ public class MenuItem {
     @XmlAttribute(name = "type")
     private ItemType type;
 
+
     private ArrayList<ItemType> itemTypes;
+
     private UnitType foodType;
 
     /**
@@ -129,32 +131,43 @@ public class MenuItem {
      * @param ingredient the ingredient to be added
      * @param quantity the quantity of that ingredient to be added
      */
-//        public void addIngredientToRecipe (Ingredient ingredient, Float quantity){
-//            ingredients.put(ingredient, quantity);
-//        }
+    public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
+        ingredients.add(ingredient);
+        ingredient.incQuantityBy(quantity);
+
+    }
 
     /**
      * Removes an ingredient from the recipe
      * @param ingredientToRemove The ingredient to be removed from the recipe
      */
-//        public void removeIngredientFromReipe (Ingredient ingredientToRemove){
-//            ingredients.remove(ingredientToRemove);
-//        }
+    public void removeIngredientFromReipe(Ingredient ingredientToRemove) {
+        ingredients.remove(ingredientToRemove);
+    }
 
     /**
      * Calculates the price it takes to create the given recipe
      * @return a float showing the price to create the given recipe
      */
-//        public float getCostPrice () {
-//            float totalPrice = 0;
+    public float getCostPrice() {
+        float totalPrice = 0;
+
+        for (Ingredient ing : ingredients) {
+            totalPrice += ing.getCost();
+        }
+
 //            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
 //                Ingredient ingredient = entry.getKey();
 //                totalPrice += ingredient.getCost() * entry.getValue();
 //            }
 //            return totalPrice;
-//            //TODO Test this method
+        //TODO Test this method
 
-//        }
+        return totalPrice;
+    }
+
+}
+
 
 //    public String ingredients() {
 //        String recipeText;
@@ -165,5 +178,3 @@ public class MenuItem {
 //        recipeText += "]";
 //        return recipeText;
 //    }
-
-}
