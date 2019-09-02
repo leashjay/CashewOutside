@@ -74,6 +74,7 @@ public class InventoryLoaderTest {
         assertNotNull("Corresponding object in collection", i);
         assertEquals("It's Eater plain Mayonnaise, isn't it?", "Eater plain Mayonnaise", i.getName());
         assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGF());
+        assertEquals("How much does mayo cost?", (float) 1.1, i.getCost());
     }
 
 

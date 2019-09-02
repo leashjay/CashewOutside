@@ -1,9 +1,6 @@
 package seng202.team3.model;
 
 
-import org.mockito.internal.matchers.Null;
-
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +26,15 @@ public class Order {
      */
     public Order() {
         super();
+    }
+
+    /**
+     * Getter for totalCost
+     *
+     * @return totalCost
+     */
+    public float getTotalCost() {
+        return totalCost;
     }
 
     /**
