@@ -8,14 +8,15 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class InventoryLoader {
-    public static void main(String[] args) throws JAXBException {
+    JAXBContext context;
 
-        JAXBContext context = JAXBContext.newInstance(Inventory.class);
+    public InventoryLoader() throws JAXBException {
+        context = JAXBContext.newInstance(Inventory.class);
+    }
+
+    public Inventory loadIngredientsData(String fileName) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        Inventory inventoryLoad = (Inventory) unmarshaller.unmarshal(new File("./resources/data/Ingredients.xml"));
-
-        System.out.println(inventoryLoad.getDesc());
-
+        Inventory inventoryLoad = (Inventory) unmarshaller.unmarshal(new File(fileName));
+        return inventoryLoad;
     }
 }

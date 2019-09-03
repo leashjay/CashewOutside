@@ -12,6 +12,7 @@ import java.util.List;
  * Class to represent ingredients. Mostly a data class, but that's the breaks...
  */
 
+
 @XmlRootElement(name = "ingredient")
 public class Ingredient {
     List<Supplier> suppliers;
@@ -32,7 +33,7 @@ public class Ingredient {
 
     /** Quantity of ingredient */
     @XmlAttribute
-    private float quantity;
+    private float quantity = 0;
 
     /** Information about vegan attribute */
     @XmlAttribute
@@ -46,6 +47,9 @@ public class Ingredient {
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
+    @XmlAttribute(name = "cost")
+    private float cost;
+
     /**
      * Temporary constructor
      */
@@ -58,21 +62,20 @@ public class Ingredient {
      *
      * @param code
      * @param name
-     * @param quantity
      * @param unit
      * @param isVeg
      * @param isVegan
      * @param isGF
      */
-    public Ingredient(String code, String name, float quantity, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
-            ThreeValueLogic isGF) {
+    public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
+                      ThreeValueLogic isGF, float cost) {
         this.code = code;
         this.name = name;
         this.unit = unit;
-        this.quantity = quantity;
         this.isVeg = isVeg;
         this.isVegan = isVegan;
         this.isGF = isGF;
+        this.cost = cost;
     }
 
     /**
@@ -109,6 +112,15 @@ public class Ingredient {
     }
 
     /**
+     * Increase quantity of ingredient by value
+     *
+     * @param value
+     */
+    public void incQuantityBy(float value) {
+        quantity += value;
+    }
+
+    /**
      * Getter for ingredient's vegetarian attribute
      *
      * @return isVeg
@@ -131,5 +143,13 @@ public class Ingredient {
      */
     public ThreeValueLogic getIsGF() {
         return isGF;
+    }
+
+    /**
+     * Getter for cost of ingredient
+     * @return cost
+     */
+    public float getCost() {
+        return cost;
     }
 }

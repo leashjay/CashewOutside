@@ -10,6 +10,6 @@ import org.junit.runner.RunWith;
 		 glue="seng202.team3.stepdefs",
          plugin={"pretty"},
          snippets = SnippetType.CAMELCASE)
-		 
+
 public class RunCucumberTest {
 }

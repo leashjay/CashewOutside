@@ -9,14 +9,16 @@ import java.io.File;
 
 public class MenuLoader {
 
-    public static void main(String[] args) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Menu.class);
+    JAXBContext context;
+
+    public MenuLoader() throws JAXBException {
+        context = JAXBContext.newInstance(Menu.class);
+    }
+
+    public Menu loadMenuData(String fileName) throws JAXBException {
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        Menu menuLoad = (Menu) unmarshaller.unmarshal(new File("./resources/data/SampleMenu.xml"));
-
-        System.out.println(menuLoad.getTitle());
-        System.out.println(menuLoad.getMenuItem().get(0).getId());
-
+        Menu menuLoad = (Menu) unmarshaller.unmarshal(new File(fileName));
+        return menuLoad;
     }
 
 }

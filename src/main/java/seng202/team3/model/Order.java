@@ -2,8 +2,11 @@ package seng202.team3.model;
 
 
 import org.mockito.internal.matchers.Null;
+import seng202.team3.util.OrderStatus;
 
 import javax.lang.model.type.NullType;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -14,12 +17,15 @@ import java.util.ArrayList;
  */
 
 public class Order {
-    //	public date dateOrdered;
-//	public time timeOrdered;
-    public String orderStatus;
-    public int changeNeeded;
-    public float totalCost;
-    private ArrayList<MenuItem> orderItems = new ArrayList<MenuItem>();
+    public LocalDate dateOrdered;
+	public LocalTime timeOrdered;
+	private int orderId; // should be unique across multiple orders
+    public OrderStatus orderStatus;
+    public float orderCost;
+    public ArrayList<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+    public boolean isGFFlag;
+    public boolean isVegFlag;
+    public boolean isVeganFlag;
 
     /**
      * <!-- begin-user-doc -->
@@ -32,15 +38,21 @@ public class Order {
     }
 
     /**
-     * For quick testing of functionability
+     * Getter for totalCost
      *
-     * @param args
+     * @return totalCost
      */
-    public static void main(String[] args) {
-        Order order = new Order();
-        MenuItem item = new MenuItem();
-        order.addToOrder(item);
-        System.out.println("help");
+    public float getTotalCost() {
+        return orderCost;
+    }
+
+    public int getOrderId() {
+        // TODO throw an error if no orderId
+        return this.orderId;
+    }
+
+    public void setOrderId(int newOrderId) {
+        this.orderId = newOrderId;
     }
 
     /**
@@ -51,34 +63,54 @@ public class Order {
      * @ordered
      */
 
-    public void addToOrder(MenuItem parameter) {
+    public void addToOrder(MenuItem itemToAdd) {
         // TODO implement me
-        this.orderItems.add(parameter);
+        this.itemsOrdered.add(itemToAdd);
+        this.orderCost += itemToAdd.getCostPrice();
     }
 
     /**
      * <!-- begin-user-doc -->
+     * Removes a given item from the itemsOrdered and removes it's cost, if it was present.
      * <!--  end-user-doc  -->
      *
      * @generated
      * @ordered
      */
 
-    public void removeFromOrder(MenuItem parameter) {
+    public void removeFromOrder(MenuItem itemToRemove) {
         // TODO implement me
-        this.orderItems.remove(parameter);
+        boolean removalSuccess = this.itemsOrdered.remove(itemToRemove);
+        if (removalSuccess) {
+            this.orderCost -= itemToRemove.getCostPrice();
+        }
     }
 
     /**
      * <!-- begin-user-doc -->
+     * changes an order's status to the new status,
+     * does not perform any error checking.
+     * i.e. shouldn't go from COMPLETE to QUEUED
      * <!--  end-user-doc  -->
      *
      * @generated
      * @ordered
      */
-
-    public void changeStatus(String parameter) {
+    public void changeStatus(OrderStatus newStatus) {
         // TODO implement me
+        this.orderStatus = newStatus;
+    }
+
+    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
+        float cost = 0;
+        for (MenuItem item : itemsToCalculate) {
+            cost += item.getCostPrice();
+        }
+        return cost;
+    }
+
+    public OrderStatus getStatus() {
+        return this.orderStatus;
     }
 }
 
