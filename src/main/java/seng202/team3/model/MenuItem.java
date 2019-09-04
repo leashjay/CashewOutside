@@ -8,7 +8,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class to keep track of menu items and their ingredients. Only a sample --
@@ -28,9 +30,9 @@ public class MenuItem {
     @XmlElement(name = "name")
     private String name;
 
-    /** List of ingredients needed to make the menu item */
+    /** List of ingredients and their quantities needed to make the menu item */
     @XmlElement(name = "ingredient")
-    private List<Ingredient> ingredients;
+    private HashMap<Ingredient, Float> ingredients;
 
     /** Type of cuisine */
     @XmlAttribute(name = "type")
@@ -81,7 +83,7 @@ public class MenuItem {
      * @param ingredients A hashset of the ingredients in the menu item and their quantities
      * @param type Shows what type the menu item is e.g, beverage, snack, main...
      */
-    public MenuItem(String id, String name, List<Ingredient> ingredients, ItemType type) {
+    public MenuItem(String id, String name, HashMap<Ingredient, Float> ingredients, ItemType type) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -109,7 +111,7 @@ public class MenuItem {
      * Getter for list of ingredients
      * @return ingredients
      */
-    public List<Ingredient> getIngredients() {
+    public HashMap<Ingredient, Float> getIngredients() {
         return ingredients;
     }
 
@@ -122,9 +124,9 @@ public class MenuItem {
         return type;
     }
 
-    public void addIngredient(Ingredient it) {
-        ingredients.add(it);
-    }
+    //public void addIngredient(Ingredient ingredient, Float quantity) {
+   //     ingredients.add(it);
+    //}
 
     /**
      * Adds the given ingredient to the recipe
@@ -132,9 +134,7 @@ public class MenuItem {
      * @param quantity the quantity of that ingredient to be added
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
-        ingredients.add(ingredient);
-        ingredient.incQuantityBy(quantity);
-
+        ingredients.put(ingredient, quantity);
     }
 
     /**
@@ -152,16 +152,10 @@ public class MenuItem {
     public float getCostPrice() {
         float totalPrice = 0;
 
-        for (Ingredient ing : ingredients) {
-            totalPrice += ing.getCost();
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            totalPrice += ingredient.getCost() * entry.getValue();
         }
-
-//            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
-//                Ingredient ingredient = entry.getKey();
-//                totalPrice += ingredient.getCost() * entry.getValue();
-//            }
-//            return totalPrice;
-        //TODO Test this method
 
         return totalPrice;
     }
