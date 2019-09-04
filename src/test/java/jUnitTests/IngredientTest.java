@@ -34,7 +34,7 @@ public class IngredientTest {
         ingredient.setCost(999);
         ingredient.setQuantity(1000);
         assertEquals(ingredient.getIsVegan(), ThreeValueLogic.NO);
-        assertEquals(ingredient.getCost(), 999);
-        assertEquals(ingredient.getQuantity(), 1000);
+        assertEquals(ingredient.getCost(), 999f);
+        assertEquals(ingredient.getQuantity(), 1000f);
     }
 }
