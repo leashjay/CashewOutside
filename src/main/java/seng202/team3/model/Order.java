@@ -1,10 +1,8 @@
 package seng202.team3.model;
 
 
-import org.mockito.internal.matchers.Null;
 import seng202.team3.util.OrderStatus;
 
-import javax.lang.model.type.NullType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;

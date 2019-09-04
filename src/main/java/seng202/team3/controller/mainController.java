@@ -1,8 +1,5 @@
 package seng202.team3.controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-
 public class mainController {
     //@FXML
     //private Text pressedCountText;

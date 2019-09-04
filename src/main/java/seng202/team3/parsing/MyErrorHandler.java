@@ -1,8 +1,10 @@
 package seng202.team3.parsing;
 
-import org.xml.sax.*;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
-import java.io.*;
+import java.io.PrintStream;
 
 /**
  * A custom error handler to report errors and warnings.  We could
