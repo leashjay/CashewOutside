@@ -44,21 +44,6 @@ public class MenuItem {
     private UnitType foodType;
 
     /**
-     * shows if the menuitem is gluten free
-     */
-    private ThreeValueLogic isGlutenFree;
-
-    /**
-     * shows if the menuitem is vegetarian
-     */
-    private ThreeValueLogic isVegetarian;
-
-    /**
-     * shows if the menuitem is vegan
-     */
-    private ThreeValueLogic isVegan;
-
-    /**
      * The price the business sells the item for
      */
     private float salePrice;
@@ -73,7 +58,7 @@ public class MenuItem {
      * No arg constructor for JAXB
      */
     public MenuItem() {
-        ;
+
     }
 
     /**
@@ -135,6 +120,7 @@ public class MenuItem {
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
         ingredients.put(ingredient, quantity);
+        //IF ingredient is not glueten free
     }
 
     /**
@@ -159,6 +145,67 @@ public class MenuItem {
 
         return totalPrice;
     }
+
+
+    //TODO Possibly change this into a singular method with parameters
+    /**
+     * Method to check if an ingredient is gluten free
+     * @return Three value logic showing if the menu item is gluten free
+     */
+    public ThreeValueLogic isGlutenFree(){
+        ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGF() == ThreeValueLogic.UNKNOWN){
+                isGlutenFree = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsGF() == ThreeValueLogic.NO){
+                isGlutenFree = ThreeValueLogic.NO;
+            }
+
+        }
+        return isGlutenFree;
+    }
+
+    /**
+     * Method to check if an ingredient is vegetarian
+     * @return Three value logic showing if the menu item is vegetarian
+     */
+    public ThreeValueLogic isVegetarian(){
+        ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVeg() == ThreeValueLogic.UNKNOWN){
+                isVegetarian = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+                isVegetarian = ThreeValueLogic.NO;
+            }
+
+        }
+        return isVegetarian;
+    }
+
+    /**
+     * Three value logic showing if the menu item is Vegan
+     * @return
+     */
+    public ThreeValueLogic isVegan(){
+        ThreeValueLogic isVegan = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
+                isVegan = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+                isVegan = ThreeValueLogic.NO;
+            }
+
+        }
+        return isVegan;
+    }
+
+
 
 }
 
