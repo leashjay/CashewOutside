@@ -8,7 +8,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class to keep track of menu items and their ingredients. Only a sample --
@@ -28,9 +30,9 @@ public class MenuItem {
     @XmlElement(name = "name")
     private String name;
 
-    /** List of ingredients needed to make the menu item */
+    /** List of ingredients and their quantities needed to make the menu item */
     @XmlElement(name = "ingredient")
-    private List<Ingredient> ingredients;
+    private HashMap<Ingredient, Float> ingredients;
 
     /** Type of cuisine */
     @XmlAttribute(name = "type")
@@ -40,21 +42,6 @@ public class MenuItem {
     private ArrayList<ItemType> itemTypes;
 
     private UnitType foodType;
-
-    /**
-     * shows if the menuitem is gluten free
-     */
-    private ThreeValueLogic isGlutenFree;
-
-    /**
-     * shows if the menuitem is vegetarian
-     */
-    private ThreeValueLogic isVegetarian;
-
-    /**
-     * shows if the menuitem is vegan
-     */
-    private ThreeValueLogic isVegan;
 
     /**
      * The price the business sells the item for
@@ -71,7 +58,7 @@ public class MenuItem {
      * No arg constructor for JAXB
      */
     public MenuItem() {
-        ;
+
     }
 
     /**
@@ -81,7 +68,7 @@ public class MenuItem {
      * @param ingredients A hashset of the ingredients in the menu item and their quantities
      * @param type Shows what type the menu item is e.g, beverage, snack, main...
      */
-    public MenuItem(String id, String name, List<Ingredient> ingredients, ItemType type) {
+    public MenuItem(String id, String name, HashMap<Ingredient, Float> ingredients, ItemType type) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -109,7 +96,7 @@ public class MenuItem {
      * Getter for list of ingredients
      * @return ingredients
      */
-    public List<Ingredient> getIngredients() {
+    public HashMap<Ingredient, Float> getIngredients() {
         return ingredients;
     }
 
@@ -122,9 +109,9 @@ public class MenuItem {
         return type;
     }
 
-    public void addIngredient(Ingredient it) {
-        ingredients.add(it);
-    }
+    //public void addIngredient(Ingredient ingredient, Float quantity) {
+   //     ingredients.add(it);
+    //}
 
     /**
      * Adds the given ingredient to the recipe
@@ -132,9 +119,8 @@ public class MenuItem {
      * @param quantity the quantity of that ingredient to be added
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
-        ingredients.add(ingredient);
-        ingredient.incQuantityBy(quantity);
-
+        ingredients.put(ingredient, quantity);
+        //IF ingredient is not glueten free
     }
 
     /**
@@ -152,19 +138,74 @@ public class MenuItem {
     public float getCostPrice() {
         float totalPrice = 0;
 
-        for (Ingredient ing : ingredients) {
-            totalPrice += ing.getCost();
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            totalPrice += ingredient.getCost() * entry.getValue();
         }
-
-//            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
-//                Ingredient ingredient = entry.getKey();
-//                totalPrice += ingredient.getCost() * entry.getValue();
-//            }
-//            return totalPrice;
-        //TODO Test this method
 
         return totalPrice;
     }
+
+
+    //TODO Possibly change this into a singular method with parameters
+    /**
+     * Method to check if an ingredient is gluten free
+     * @return Three value logic showing if the menu item is gluten free
+     */
+    public ThreeValueLogic isGlutenFree(){
+        ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGF() == ThreeValueLogic.UNKNOWN){
+                isGlutenFree = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsGF() == ThreeValueLogic.NO){
+                isGlutenFree = ThreeValueLogic.NO;
+            }
+
+        }
+        return isGlutenFree;
+    }
+
+    /**
+     * Method to check if an ingredient is vegetarian
+     * @return Three value logic showing if the menu item is vegetarian
+     */
+    public ThreeValueLogic isVegetarian(){
+        ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVeg() == ThreeValueLogic.UNKNOWN){
+                isVegetarian = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+                isVegetarian = ThreeValueLogic.NO;
+            }
+
+        }
+        return isVegetarian;
+    }
+
+    /**
+     * Three value logic showing if the menu item is Vegan
+     * @return
+     */
+    public ThreeValueLogic isVegan(){
+        ThreeValueLogic isVegan = ThreeValueLogic.YES;
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
+                isVegan = ThreeValueLogic.UNKNOWN;
+            }
+            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+                isVegan = ThreeValueLogic.NO;
+            }
+
+        }
+        return isVegan;
+    }
+
+
 
 }
 
