@@ -2,6 +2,7 @@ package seng202.team3.model;
 
 
 import seng202.team3.parsing.IngredientAdapter;
+import seng202.team3.util.UnitType;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -9,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Holds information about the inventory
@@ -28,18 +30,33 @@ public class Inventory {
     @XmlElement(name = "description")
     private String desc;
 
+    /**
+     * A number that indicates that an ingredient with the unit type COUNT has low stock
+     */
+    // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
+    private Float lowStockCount = 10f;
+
+    /**
+     * A number that indicates that an ingredient with the unit type GRAMS has low stock
+     */
+    private Float lowStockGrams = 1000f;
+
+    /**
+     * A number that indicates that an ingredient with the unit type ML has low stock
+     */
+    private Float lowStockML = 1000f;
+
 
     /**
      * Temporary constructor
      */
-    public Inventory() {
-        ;
-    }
+    public Inventory() { }
 
     /**
      * Constructor for Inventory class
-     * @param desc
-     * @param ingredients
+     *
+     * @param desc a description of the inventory
+     * @param ingredients a HashMap where the ingredients, along with their code are stored
      */
     public Inventory(String desc, HashMap<String, Ingredient> ingredients) {
         this.desc = desc;
@@ -66,19 +83,119 @@ public class Inventory {
 
     /**
      * Removes an ingredient form the ingredients ArrayList
+     *
      * @param removedIngredient The ingredient that's to be removed from the list
      */
-    public void removeIngredient(Ingredient removedIngredient) {
+    public void removeIngredient(String removedIngredient) {
         ingredients.remove(removedIngredient);
     }
 
     /**
      * Adds an ingredient to the ingredients ArrayList
+     *
      * @param addedIngredient The ingredient that's to be added to the list
      */
-//    public void addIngredient(Ingredient addedIngredient) {
-//        ingredients.a(addedIngredient);
-//    }
+    public void addIngredient(Ingredient addedIngredient) {
+        ingredients.put(addedIngredient.getCode(), addedIngredient);
+    }
+
+    /**
+     * Replaces an ingredient object in the HashMap with a new modified version
+     *
+     * @param modifiedIngredient The newly modified ingredient to be added to the HashMap
+     */
+    // Identifies ingredient to be replaced by getCode(), meaning you can't modify the code. better way of doing this?
+    public void modifyIngredient(Ingredient modifiedIngredient) {
+        ingredients.replace(modifiedIngredient.getCode(), modifiedIngredient);
+    }
+
+    /**
+     * Increases the quantity of an Ingredient object in the ingredient HashMap
+     *
+     * @param ingredient The ingredient whose stock is being increased
+     * @param quantityGained The amount of stock being added
+     */
+    public void addStock(Ingredient ingredient, Float quantityGained) {
+        ingredient.setQuantity(ingredient.getQuantity() + quantityGained);
+    }
+
+    /**
+     * Decreases the quantity of an Ingredient object in the ingredient HashMap
+     *
+     * @param ingredient ingredient whose stock is being decreased
+     * @param quantityLost The amount of stock that's been taken away
+     */
+    public void removeStock(Ingredient ingredient, Float quantityLost) {
+        ingredient.setQuantity(ingredient.getQuantity() - quantityLost);
+        if (ingredient.getQuantity() < 0) {
+            ingredient.setQuantity(0);
+        }
+    }
+
+    /**
+     * Check the stock level for the ingredients
+     *
+     * @return a HashMap containing the ingredient and the quantity
+     */
+    public HashMap<Ingredient, Float> checkStock() {
+        HashMap<Ingredient, Float> map = new HashMap<>();
+        for (Map.Entry<String, Ingredient> entry : ingredients.entrySet()) {
+            map.put(entry.getValue(), entry.getValue().getQuantity());
+        }
+        return map;
+    }
+
+    /**
+     * Checks if an ingredient has low stock
+     *
+     * @param ingredient the ingredient which stock is getting checked
+     * @return a boolean indicating whether the ingredient has low stock
+     */
+    private Boolean checkLowStock(Ingredient ingredient) {
+        if (ingredient.getUnit() == UnitType.COUNT && ingredient.getQuantity() <= lowStockCount) {
+            return true;
+        } else if (ingredient.getUnit() == UnitType.ML && ingredient.getQuantity() <= lowStockML) {
+            return true;
+        } else if (ingredient.getUnit() == UnitType.GRAM && ingredient.getQuantity() <= lowStockGrams) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Checks the stock level of the ingredients to to find whether they have low stock
+     *
+     * @return a HashMap containing the ingredient and the quantity
+     */
+    public HashMap<Ingredient, Float>lowStockReport() {
+        HashMap<Ingredient, Float> lowStockMap = new HashMap<>();
+        for (Map.Entry<String, Ingredient> entry : ingredients.entrySet()) {
+            if (checkLowStock(entry.getValue())) {
+                lowStockMap.put(entry.getValue(), entry.getValue().getQuantity());
+            }
+        }
+        return lowStockMap;
+    }
+
+    /**
+     * Checks if an ingredient is in the ingredients HashMap.
+     *
+     * @param searchedIngredient the ingredient that is being searched for in the HashMap
+     * @return boolean indicating whether the ingredient is in the HashMap
+     */
+    // This has only been used for junit testing
+    public Boolean searchStock(Ingredient searchedIngredient) {
+        for (Map.Entry<String, Ingredient> entry : ingredients.entrySet()) {
+            if (entry.getValue() == searchedIngredient) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 
 }
 
