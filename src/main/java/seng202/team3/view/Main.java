@@ -1,8 +1,8 @@
 package seng202.team3.view;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
-        businessApp.main(args);
+        BusinessApp.main(args);
     }
 }

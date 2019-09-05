@@ -1,9 +1,7 @@
 package seng202.team3.model;
 
-import org.apache.commons.lang3.ObjectUtils;
 import seng202.team3.util.OrderStatus;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SalesHandler {
