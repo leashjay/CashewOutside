@@ -3,9 +3,7 @@ package seng202.team3.model;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -14,6 +12,7 @@ import java.util.List;
 
 
 @XmlRootElement(name = "ingredient")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Ingredient {
     List<Supplier> suppliers;
 
@@ -47,25 +46,23 @@ public class Ingredient {
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
-    @XmlAttribute(name = "cost")
+    @XmlAttribute
     private float cost;
 
     /**
      * Temporary constructor
      */
-    public Ingredient() {
-        ;
-    }
+    public Ingredient() { }
 
     /**
      * Constructor for Ingredient class
      *
-     * @param code
-     * @param name
-     * @param unit
-     * @param isVeg
-     * @param isVegan
-     * @param isGF
+     * @param code the code of the ingredient
+     * @param name the name of the ingredient
+     * @param unit the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
+     * @param isVeg ThreeTypeLogic deciding if the ingredient is vegetarian
+     * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
+     * @param isGF ThreeTypeLogic deciding if the ingredient is gluten free
      */
     public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
                       ThreeValueLogic isGF, float cost) {
@@ -80,6 +77,7 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's short name
+     *
      * @return code
      */
     public String getCode() {
@@ -88,6 +86,7 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's long name
+     *
      * @return name
      */
     public String getName() {
@@ -96,6 +95,7 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's unit type
+     *
      * @return unit
      */
     public UnitType getUnit() {
@@ -112,15 +112,6 @@ public class Ingredient {
     }
 
     /**
-     * Increase quantity of ingredient by value
-     *
-     * @param value
-     */
-    public void incQuantityBy(float value) {
-        quantity += value;
-    }
-
-    /**
      * Getter for ingredient's vegetarian attribute
      *
      * @return isVeg
@@ -131,6 +122,7 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's vegan attribute
+     *
      * @return isVegan
      */
     public ThreeValueLogic getIsVegan() {
@@ -139,6 +131,7 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's gluten free attribute
+     *
      * @return isGF
      */
     public ThreeValueLogic getIsGF() {
@@ -146,10 +139,83 @@ public class Ingredient {
     }
 
     /**
-     * Getter for cost of ingredient
+     * Getter for ingredient's cost attribute
      * @return cost
      */
     public float getCost() {
         return cost;
     }
+
+    /**
+     * Sets the name of the ingredient to the String given
+     *
+     * @param newName the new name of the ingredient
+     */
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    /**
+     * Sets the code for the ingredient to the String given
+     *
+     * @param newCode the new code for the ingredient
+     */
+    public void setCode(String newCode) {
+        code = newCode;
+    }
+
+    /**
+     * Sets the unit type of the ingredient
+     *
+     * @param newUnit the new unit type for the ingredient
+     */
+    public void setUnit(UnitType newUnit) {
+        unit = newUnit;
+    }
+
+    /**
+     * Sets whether the ingredient is vegetarian
+     *
+     * @param newIsVeg an enum which stores whether an ingredient is vegetarian
+     */
+    public void setIsVeg(ThreeValueLogic newIsVeg) {
+        isVeg = newIsVeg;
+    }
+
+    /**
+     * Sets whether the ingredient is vegan
+     *
+     * @param newIsVegan an enum which stores whether an ingredient is vegan
+     */
+    public void setIsVegan(ThreeValueLogic newIsVegan) {
+        isVegan = newIsVegan;
+    }
+
+    /**
+     * Sets whether the ingredient is gluten free
+     *
+     * @param newIsGF an enum which stores whether an ingredient is gluten free
+     */
+    public void setIsGF(ThreeValueLogic newIsGF) {
+        isGF = newIsGF;
+    }
+
+    /**
+     * Sets the cost of the ingredient to the given float
+     *
+     * @param newCost the new cost of the ingredient
+     */
+    public void setCost(float newCost) {
+        cost = newCost;
+    }
+
+    /**
+     * Sets the quantity of the ingredient to the given float
+     *
+     * @param newQuantity the new quantity of the ingredient
+     */
+    public void setQuantity(float newQuantity) {
+        quantity = newQuantity;
+    }
+
 }
