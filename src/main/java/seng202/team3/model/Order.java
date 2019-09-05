@@ -2,6 +2,7 @@ package seng202.team3.model;
 
 
 import seng202.team3.util.OrderStatus;
+import seng202.team3.util.ThreeValueLogic;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,15 +16,16 @@ import java.util.ArrayList;
  */
 
 public class Order {
-    public LocalDate dateOrdered;
-	public LocalTime timeOrdered;
+    private LocalDate dateOrdered;
+	private LocalTime timeOrdered;
 	private int orderId; // should be unique across multiple orders
-    public OrderStatus orderStatus;
-    public float orderCost;
-    public ArrayList<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
-    public boolean isGFFlag;
-    public boolean isVegFlag;
-    public boolean isVeganFlag;
+    private OrderStatus orderStatus;
+    private float orderCost;
+    private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
+    private ThreeValueLogic isGFFlag = ThreeValueLogic.YES;
+    private ThreeValueLogic isVegFlag = ThreeValueLogic.YES;
+    private ThreeValueLogic isVeganFlag = ThreeValueLogic.YES;
+    private boolean flagsChecked = true;
 
     /**
      * <!-- begin-user-doc -->
@@ -33,6 +35,8 @@ public class Order {
      */
     public Order() {
         super();
+        timeOrdered = LocalTime.now();
+        dateOrdered = LocalDate.now();
     }
 
     /**
@@ -55,6 +59,8 @@ public class Order {
 
     /**
      * <!-- begin-user-doc -->
+     * Adds a given MenuItem to the itemsOrdered and it's cost to the orderCost.
+     * The flags for isGF, isVeg and isVegan are also updated accordingly.
      * <!--  end-user-doc  -->
      *
      * @generated
@@ -63,8 +69,35 @@ public class Order {
 
     public void addToOrder(MenuItem itemToAdd) {
         // TODO implement me
+        this.isGFFlag = getFlagAdding(this.isGFFlag, itemToAdd.isGlutenFree());
+        this.isVegFlag = getFlagAdding(this.isVegFlag, itemToAdd.isVegetarian());
+        this.isVeganFlag = getFlagAdding(this.isVeganFlag, itemToAdd.isVegan());
         this.itemsOrdered.add(itemToAdd);
         this.orderCost += itemToAdd.getCostPrice();
+    }
+
+    /**
+     * Helper of addToOrder and ***,
+     * Updates the flagFromOrder based on flagFromMenu,
+     * it cannot make a flag that wasn't YES: YES nor a flag that is NO not NO
+     * @param flagFromOrder the flag that will be updated from the Order
+     * @param flagFromMenu the flag from the MenuItem to check against
+     */
+    private ThreeValueLogic getFlagAdding(ThreeValueLogic flagFromOrder, ThreeValueLogic flagFromMenu) {
+        if (flagFromMenu != ThreeValueLogic.YES && flagFromOrder != ThreeValueLogic.NO) {
+            return flagFromMenu;
+        } else {
+            return flagFromOrder;
+        }
+    }
+
+    private ThreeValueLogic getFlagRemoving(ThreeValueLogic flagFromOrder, ThreeValueLogic flagFromMenu) {
+        if (flagFromMenu == ThreeValueLogic.YES) {
+            return flagFromOrder;
+        } else {
+            this.flagsChecked = false;
+            return ThreeValueLogic.UNKNOWN;
+        }
     }
 
     /**
@@ -80,8 +113,29 @@ public class Order {
         // TODO implement me
         boolean removalSuccess = this.itemsOrdered.remove(itemToRemove);
         if (removalSuccess) {
+            this.isGFFlag = getFlagRemoving(this.isGFFlag, itemToRemove.isGlutenFree());
+            this.isVegFlag = getFlagRemoving(this.isVegFlag, itemToRemove.isVegetarian());
+            this.isVeganFlag = getFlagRemoving(this.isVeganFlag, itemToRemove.isVegan());
+            if (!flagsChecked) {
+                updateFlags();
+            }
             this.orderCost -= itemToRemove.getCostPrice();
         }
+    }
+
+    /**
+     * ensures all of the gluten free, vegetarian and vegan flags are correct
+     */
+    public void updateFlags() {
+        this.isGFFlag = ThreeValueLogic.YES;
+        this.isVegFlag = ThreeValueLogic.YES;
+        this.isVeganFlag = ThreeValueLogic.YES;
+        for (MenuItem menuItem : this.itemsOrdered) {
+            this.isGFFlag = getFlagAdding(this.isGFFlag, menuItem.isGlutenFree());
+            this.isVegFlag = getFlagAdding(this.isVegFlag, menuItem.isVegetarian());
+            this.isVeganFlag = getFlagAdding(this.isVeganFlag, menuItem.isVegan());
+        }
+        flagsChecked = true;
     }
 
     /**
