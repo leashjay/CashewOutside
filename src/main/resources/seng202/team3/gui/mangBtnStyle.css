@@ -1,0 +1,24 @@
+.root {
+    -fx-background-color: transparent;
+    -fx-alignment: centre;
+    -fx-font-size: 12pt;
+}
+
+.label {
+    -fx-text-fill: #273746;
+}
+
+.button {
+    -fx-background-color: Purple;
+    -fx-background-radius: 10;
+    -fx-border-color: #273746;
+    -fx-border-radius: 10;
+    -fx-max-width: 100;
+    -fx-max-height: 100;
+    -fx-padding: 10;
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+}
