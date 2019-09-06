@@ -208,8 +208,8 @@ public class Inventory {
             }
             addStock(ingredient, entry.getValue());
         }
-        order.setBeenRecieved(true);
-        order.setRecievedDate(new Date());
+        order.setBeenReceived(true);
+        order.setReceivedDate(new Date());
     }
 
 }
