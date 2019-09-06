@@ -70,7 +70,6 @@ public class SupplierHandlerTest {
 
     @Test
     public void replaceSuppliersTest(){
-        HashMap<String, Supplier> oldSuppliers = new HashMap<>();
         SupplierHandler supplierHandler = new SupplierHandler(suppliers);
         supplierHandler.addSupplier(countdown);
         supplierHandler.addSupplier(mootsMeatMarket);
