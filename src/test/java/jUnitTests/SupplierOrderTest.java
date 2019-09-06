@@ -45,7 +45,7 @@ public class SupplierOrderTest {
     public void createSupplierOrder(){
         SupplierOrder supplierOrder = new SupplierOrder(countdown, ingredientFloatHashMap);
         assertEquals(supplierOrder.getOrderItems(), ingredientFloatHashMap);
-        assertFalse(supplierOrder.getOrderRecieved());
+        assertFalse(supplierOrder.getOrderReceived());
         assertEquals(supplierOrder.getSupplier(), countdown);
         assertNull(supplierOrder.getRecievedDate());
 
@@ -59,7 +59,7 @@ public class SupplierOrderTest {
         HashMap<Ingredient, Float> ingredientFloatHashMap = new HashMap<>();
         ingredientFloatHashMap.put(beans, 5000f);
         inventory.receiveOrder(supplierOrder);
-        assertTrue(supplierOrder.getOrderRecieved());
+        assertTrue(supplierOrder.getOrderReceived());
         assertNotNull(supplierOrder.getOrderDate());
         assertNotNull(supplierOrder.getRecievedDate());
 

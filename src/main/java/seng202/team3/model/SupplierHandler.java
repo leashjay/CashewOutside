@@ -108,22 +108,14 @@ public class SupplierHandler {
     }
 
     /**
-     * Orders ingredients from a supplier and updates the inventory count
+     * Orders ingredients from a supplier
      *
      * @param order     Hashset of items and quantities in the order
-     * @param inventory The trucks inventory
-     * @return a string containing information about the order
      */
-    public String orderFromSupplier(SupplierOrder order, Inventory inventory) {
-        String orderInfo = "Order has been made from " + order.getSupplier().getName() + "\n";
-        HashMap<Ingredient, Float> map = order.getOrderItems();
-        for (Map.Entry<Ingredient, Float> entry : map.entrySet()) {
-            Ingredient ingredient = entry.getKey();
-            orderInfo += ingredient.getName() + ":  " + entry.getValue() + "\n";
-        }
-        System.out.println(orderInfo);
+    public void orderFromSupplier(SupplierOrder order) {
         orderHistory.add(order);
-        return orderInfo;
     }
+
+
 }
 
