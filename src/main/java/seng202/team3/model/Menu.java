@@ -1,6 +1,7 @@
 package seng202.team3.model;
 
 import seng202.team3.parsing.MenuItemAdapter;
+import seng202.team3.util.MenuType;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -22,13 +23,10 @@ public class Menu {
     @XmlElement(name = "description")
     private String desc;
 
-    /** Start month of the menu */
-    @XmlAttribute(name = "from")
-    private String startMonth;
-
-    /** End month of the menu */
-    @XmlAttribute(name = "to")
-    private String endMonth;
+    /** Type of Menu {SUMMER, WINTER, FESTIVAL} */
+    @XmlAttribute(name = "type")
+    //@XmlJavaTypeAdapter()
+    private MenuType menuType;
 
     /** List of available menu item in the menu */
     @XmlElement(name = "items")
@@ -38,24 +36,20 @@ public class Menu {
     /**
      * Temporary Constructor
      */
-    public Menu() {
-        ;
-    }
+    public Menu() {    }
 
     /**
      * Constructor for Menu class
      *
-     * @param title
-     * @param desc
-     * @param startMonth
-     * @param endMonth
-     * @param menuContent
+     * @param title The title of the menu
+     * @param desc The description of the menu
+     * @param menuType The type of menu
+     * @param menuContent The content of the menu
      */
-    public Menu(String title, String desc, String startMonth, String endMonth, HashMap<String, MenuItem> menuContent) {
+    public Menu(String title, String desc, MenuType menuType, HashMap<String, MenuItem> menuContent) {
         this.title = title;
         this.desc = desc;
-        this.startMonth = startMonth;
-        this.endMonth = endMonth;
+        this.menuType = menuType;
         this.menuContent = menuContent;
     }
 
@@ -84,23 +78,12 @@ public class Menu {
     }
 
     /**
-     * Getter for start month of menu
-     * @return startMonth
+     * Getter for the type of Menu
+     * @return menuType
      */
-    public String getStartMonth() {
-        return startMonth;
-    }
+    public MenuType getMenuType() { return menuType; }
 
-    /**
-     * Getter for end month of menu
-     * @return endMonth
-     */
-    public String getEndMonth() {
-        return endMonth;
-    }
-
-
-//    public void addToCollection(MenuItem) {}
+    //    public void addToCollection(MenuItem) {}
 //
 //    public void removeFromCollection(MenuItem) {}
 //

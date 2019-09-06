@@ -33,7 +33,7 @@ public class MenuItem {
     @XmlElement(name = "ingredient")
     private HashMap<Ingredient, Float> ingredients;
 
-    /** Type of cuisine */
+    /** Type 0900of cuisine */
     @XmlAttribute(name = "type")
     private ItemType type;
 
@@ -126,7 +126,7 @@ public class MenuItem {
      * Removes an ingredient from the recipe
      * @param ingredientToRemove The ingredient to be removed from the recipe
      */
-    public void removeIngredientFromReipe(Ingredient ingredientToRemove) {
+    public void removeIngredientFromRecipe(Ingredient ingredientToRemove) {
         ingredients.remove(ingredientToRemove);
     }
 

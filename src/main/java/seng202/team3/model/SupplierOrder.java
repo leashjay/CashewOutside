@@ -15,6 +15,7 @@ public class SupplierOrder {
     private boolean orderRecieved;
 
 
+
     /**
      * Constructor for the SupplierOrder class
      *
