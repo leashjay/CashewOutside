@@ -12,6 +12,7 @@ public class SupplierOrder {
     private HashMap<Ingredient, Float> orderItems;
     private Date orderDate;
     private Date recievedDate;
+    private boolean orderRecieved;
 
 
     /**
@@ -19,12 +20,13 @@ public class SupplierOrder {
      *
      * @param supplier   The supplier that made the order
      * @param orderItems A hashset of the items and quantities in the order
-     * @param orderDate  the date at which the order took place
      */
-    public SupplierOrder(Supplier supplier, HashMap<Ingredient, Float> orderItems, Date orderDate) {
+    public SupplierOrder(Supplier supplier, HashMap<Ingredient, Float> orderItems) {
         this.supplier = supplier;
         this.orderItems = orderItems;
-        this.orderDate = orderDate;
+        orderDate = new Date();
+        orderRecieved = false;
+        recievedDate = null;
     }
 
     /**
@@ -52,6 +54,38 @@ public class SupplierOrder {
      */
     public Supplier getSupplier() {
         return supplier;
+    }
+
+    /**
+     * Sets the date at which the order has been recieved
+     * @param recievedDate the date at which the order was recieved
+     */
+    public void setRecievedDate(Date recievedDate) {
+        this.recievedDate = recievedDate;
+    }
+
+    /**
+     * Sets whether the order has been recieved or not
+     * @param hasBeenRecieved boolean showing if the order has been recieved
+     */
+    public void setBeenRecieved(boolean hasBeenRecieved){
+        orderRecieved = hasBeenRecieved;
+    }
+
+    /**
+     * Gets the date at which the order was recieved
+     * @return if the order has been recieved
+     */
+    public boolean getOrderRecieved(){
+        return orderRecieved;
+    }
+
+    /**
+     *Gets the date at which the order was recieved
+     * @return the date at which the order was recieved
+     */
+    public Date getRecievedDate(){
+        return recievedDate;
     }
 
 
