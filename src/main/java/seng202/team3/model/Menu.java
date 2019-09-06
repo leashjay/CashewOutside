@@ -28,6 +28,8 @@ public class Menu {
     //@XmlJavaTypeAdapter()
     private MenuType menuType;
 
+    private Boolean isActive;
+
     /** List of available menu item in the menu */
     @XmlElement(name = "items")
     @XmlJavaTypeAdapter(MenuItemAdapter.class)
@@ -52,6 +54,42 @@ public class Menu {
         this.menuType = menuType;
         this.menuContent = menuContent;
     }
+
+    /**
+     * getter for isActive attribute
+     * @return isActive
+     */
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    /**
+     * sets isActive to true
+     * void
+     */
+    public void activate() {
+        isActive = true;
+    }
+
+    /**
+     * sets isActive to true
+     * void
+     */
+    public void deActivate() {
+        isActive = false;
+    }
+
+    /**
+     * flips boolean value for isActive (for gui button beside menu status
+     */
+    public void flipActive() {
+        if (isActive) {
+            activate();
+        } else {
+            deActivate();
+        }
+    }
+
 
     /**
      * Getter for list of menu item
@@ -88,7 +126,6 @@ public class Menu {
 //    public void removeFromCollection(MenuItem) {}
 //
 //    public List<MenuItem> filterByDietaryReq() {}
-
 
 }
 
