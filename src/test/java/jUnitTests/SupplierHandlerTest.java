@@ -48,8 +48,8 @@ public class SupplierHandlerTest {
         orderHashMap.put(beans, 20f);
         orderHashMap.put(carrots, 40f);
         orderHashMap.put(brocolli, 50f);
-        SupplierOrder supplierOrder = new SupplierOrder(countdown, orderHashMap, new Date());
-        supplierHandler.orderFromSupplier(supplierOrder, inventory);
+        SupplierOrder supplierOrder = new SupplierOrder(countdown, orderHashMap);
+        supplierHandler.orderFromSupplier(supplierOrder);
     }
 
     //TODO agree on whether to use a hashmap or a list for suppliers

@@ -2,6 +2,7 @@ package seng202.team3.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Contains information about orders of ingredients from suppliers
@@ -12,6 +13,7 @@ public class SupplierOrder {
     private HashMap<Ingredient, Float> orderItems;
     private Date orderDate;
     private Date recievedDate;
+    private boolean orderRecieved;
 
 
 
@@ -20,12 +22,13 @@ public class SupplierOrder {
      *
      * @param supplier   The supplier that made the order
      * @param orderItems A hashset of the items and quantities in the order
-     * @param orderDate  the date at which the order took place
      */
-    public SupplierOrder(Supplier supplier, HashMap<Ingredient, Float> orderItems, Date orderDate) {
+    public SupplierOrder(Supplier supplier, HashMap<Ingredient, Float> orderItems) {
         this.supplier = supplier;
         this.orderItems = orderItems;
-        this.orderDate = orderDate;
+        orderDate = new Date();
+        orderRecieved = false;
+        recievedDate = null;
     }
 
     /**
@@ -53,6 +56,47 @@ public class SupplierOrder {
      */
     public Supplier getSupplier() {
         return supplier;
+    }
+
+    /**
+     * Sets the date at which the order has been recieved
+     * @param recievedDate the date at which the order was recieved
+     */
+    public void setReceivedDate(Date recievedDate) {
+        this.recievedDate = recievedDate;
+    }
+
+    /**
+     * Sets whether the order has been recieved or not
+     * @param hasBeenReceived boolean showing if the order has been recieved
+     */
+    public void setBeenReceived(boolean hasBeenReceived){
+        orderRecieved = hasBeenReceived;
+    }
+
+    /**
+     * Gets the date at which the order was recieved
+     * @return if the order has been recieved
+     */
+    public boolean getOrderReceived(){
+        return orderRecieved;
+    }
+
+    /**
+     *Gets the date at which the order was received
+     * @return the date at which the order was received
+     */
+    public Date getRecievedDate(){
+        return recievedDate;
+    }
+
+    public String getOrderAsString(){
+        String orderInfo = "Order has been made from " + supplier + "\n";
+        for (Map.Entry<Ingredient, Float> entry : orderItems.entrySet()) {
+            Ingredient ingredient = entry.getKey();
+            orderInfo += ingredient.getName() + ":  " + entry.getValue() + "\n";
+        }
+        return orderInfo;
     }
 
 

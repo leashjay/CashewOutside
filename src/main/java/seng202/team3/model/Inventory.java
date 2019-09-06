@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -198,7 +199,7 @@ public class Inventory {
      * Adds ingredient to hashmap if not already there and updates quantity.
      * @param order the order to be recieved
      */
-    public void recieveOrder(SupplierOrder order){
+    public void receiveOrder(SupplierOrder order){
         HashMap<Ingredient, Float >itemsToAdd = order.getOrderItems();
         for(Map.Entry<Ingredient, Float> entry : itemsToAdd.entrySet()){
             Ingredient ingredient = entry.getKey();
@@ -207,6 +208,8 @@ public class Inventory {
             }
             addStock(ingredient, entry.getValue());
         }
+        order.setBeenReceived(true);
+        order.setReceivedDate(new Date());
     }
 
 }
