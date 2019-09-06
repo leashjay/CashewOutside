@@ -11,6 +11,7 @@ public class SupplierOrder {
     private Supplier supplier;
     private HashMap<Ingredient, Float> orderItems;
     private Date orderDate;
+    private Date recievedDate;
 
 
     /**

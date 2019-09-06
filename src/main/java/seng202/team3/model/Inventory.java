@@ -208,6 +208,6 @@ public class Inventory {
             addStock(ingredient, entry.getValue());
         }
     }
-    
+
 }
 
