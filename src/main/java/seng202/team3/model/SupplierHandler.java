@@ -20,10 +20,10 @@ import java.util.Map;
 public class SupplierHandler {
 
     /**
-     * Description of the SupplierS XML data
+     * Description of the Suppliers XML data
      */
     @XmlElement(name = "description")
-    public String descriptionOfXMLData;
+    private String descriptionOfXMLData;
     /**
      * Holds the history of the businesses orders
      */
@@ -40,17 +40,25 @@ public class SupplierHandler {
      * No arg constructor for JAXB
      */
     public SupplierHandler() {
-        ;
+
     }
 
     /**
      * Constructor for supplier class
      *
      * @param descriptionOfXMLData A description of the XML data loaded
-     * @param suppliers
+     * @param suppliers A list of the suppliers the business has
      */
     public SupplierHandler(String descriptionOfXMLData, HashMap<String, Supplier> suppliers) {
         this.descriptionOfXMLData = descriptionOfXMLData;
+        this.suppliers = suppliers;
+    }
+
+    /**
+     * Constructor without describing xml data
+     * @param suppliers A list of the suppliers the business has
+     */
+    public SupplierHandler(HashMap<String, Supplier> suppliers){
         this.suppliers = suppliers;
     }
 
@@ -93,10 +101,10 @@ public class SupplierHandler {
     /**
      * Removes a supplier currently in the list of suppliers
      *
-     * @param supplierToBeRemoved
+     * @param supplierID The ID of the supplier to be removed
      */
-    public void removeSupplier(Supplier supplierToBeRemoved) {
-        suppliers.remove(supplierToBeRemoved);
+    public void removeSupplier(String supplierID) {
+        suppliers.remove(supplierID);
     }
 
     /**
@@ -115,7 +123,6 @@ public class SupplierHandler {
         }
         System.out.println(orderInfo);
         orderHistory.add(order);
-        //TODO: Change quantities of inventory based on what is in the order
         return orderInfo;
     }
 }

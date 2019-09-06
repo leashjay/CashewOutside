@@ -193,9 +193,21 @@ public class Inventory {
         return false;
     }
 
-
-
-
+    /**
+     * Method called to update stock levels when business has recieved an order
+     * Adds ingredient to hashmap if not already there and updates quantity.
+     * @param order the order to be recieved
+     */
+    public void recieveOrder(SupplierOrder order){
+        HashMap<Ingredient, Float >itemsToAdd = order.getOrderItems();
+        for(Map.Entry<Ingredient, Float> entry : itemsToAdd.entrySet()){
+            Ingredient ingredient = entry.getKey();
+            if(searchStock(ingredient)) {
+                addIngredient(ingredient);
+            }
+            addStock(ingredient, entry.getValue());
+        }
+    }
 
 }
 
