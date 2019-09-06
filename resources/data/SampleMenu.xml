@@ -20,7 +20,7 @@
                 quantity CDATA #REQUIRED
                 >
         ]>
-<menu from="June" to="August">
+<menu type="WINTER">
     <title>Winter warmers</title>
     <description>Sample menu: Things we sell in cold weather</description>
     <items>
