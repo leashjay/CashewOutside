@@ -2,13 +2,17 @@ package seng202.team3.model;
 
 
 import seng202.team3.parsing.IngredientAdapter;
+import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +87,7 @@ public class Inventory {
     }
 
     /**
-     * Removes an ingredient form the ingredients ArrayList
+     * Removes an ingredient from the ingredients HashMap
      *
      * @param removedIngredient The ingredient that's to be removed from the list
      */
@@ -92,12 +96,24 @@ public class Inventory {
     }
 
     /**
-     * Adds an ingredient to the ingredients ArrayList
+     * Adds an ingredient to the ingredients HashMap
      *
      * @param addedIngredient The ingredient that's to be added to the list
      */
     public void addIngredient(Ingredient addedIngredient) {
         ingredients.put(addedIngredient.getCode(), addedIngredient);
+    }
+
+    /**
+     * Adds Ingredients from an XML file to the ingredients HashMap
+     *
+     * @param file The path to the XML file that is being used
+     */
+    public void addIngredientsFromXML(String file) throws JAXBException {
+        InventoryLoader inventoryLoader = new InventoryLoader();
+        Inventory inventory = inventoryLoader.loadIngredientsData(file);
+        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
+        ingredients.putAll(newIngredients);
     }
 
     /**
@@ -195,9 +211,9 @@ public class Inventory {
     }
 
     /**
-     * Method called to update stock levels when business has recieved an order
+     * Method called to update stock levels when business has received an order
      * Adds ingredient to hashmap if not already there and updates quantity.
-     * @param order the order to be recieved
+     * @param order the order to be received
      */
     public void receiveOrder(SupplierOrder order){
         HashMap<Ingredient, Float >itemsToAdd = order.getOrderItems();
