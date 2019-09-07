@@ -200,7 +200,6 @@ public class Inventory {
      * @param searchedIngredient the ingredient that is being searched for in the HashMap
      * @return boolean indicating whether the ingredient is in the HashMap
      */
-    // This has only been used for junit testing
     public Boolean searchStock(Ingredient searchedIngredient) {
         for (Map.Entry<String, Ingredient> entry : ingredients.entrySet()) {
             if (entry.getValue() == searchedIngredient) {
