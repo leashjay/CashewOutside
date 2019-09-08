@@ -1,5 +1,6 @@
 package seng202.team3.parsing;
 
+import javafx.collections.ObservableList;
 import seng202.team3.model.Supplier;
 import seng202.team3.wrapper.Suppliers;
 
@@ -25,6 +26,8 @@ public class SupplierAdapter extends XmlAdapter<Suppliers, Map<String, Supplier>
         supplierCont.providers = supplierCollection.toArray(new Supplier[supplierCollection.size()]);
         return supplierCont;
     }
+
+
 }
 
 

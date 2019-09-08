@@ -1,5 +1,7 @@
 package seng202.team3.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seng202.team3.parsing.SupplierAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -114,6 +116,14 @@ public class SupplierHandler {
      */
     public void orderFromSupplier(SupplierOrder order) {
         orderHistory.add(order);
+    }
+
+    public ObservableList<Supplier> getSuppliersAsObservableList(){
+        ObservableList<Supplier> listOfSuppliers = FXCollections.observableArrayList();
+        for (Map.Entry<String, Supplier> entry : suppliers.entrySet()){
+            listOfSuppliers.add(entry.getValue());
+        }
+        return listOfSuppliers;
     }
 
 
