@@ -26,12 +26,12 @@
                 <Image url="@../images/sales.png" />
             </image>
         </ImageView>
-        <ImageView id="kitchenImg" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <ImageView id="kitchenImg" fx:id="stockBtn" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
             <image>
                 <Image url="@../images/kitchen.png" />
             </image>
         </ImageView>
-        <ImageView id="ManageImg" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <ImageView id="ManageImg" fx:id="managementBtn" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
             <image>
                 <Image url="@../images/management.png" />
             </image>
