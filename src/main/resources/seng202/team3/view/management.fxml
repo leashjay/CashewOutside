@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -14,85 +15,57 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1000.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="seng202.team3.controller.mainController">
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.mainController">
 
     <children>
-        <TabPane prefHeight="1000.0" prefWidth="1000.0" side="RIGHT" stylesheets="@../gui/tabStyle.css"
-                 tabClosingPolicy="UNAVAILABLE">
+        <TabPane prefHeight="1000.0" prefWidth="1000.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Load from File">
                     <content>
-                        <GridPane prefHeight="800.0" prefWidth="900.0" snapToPixel="false"
-                                  stylesheets="@../gui/foodBtnStyle.css">
+                        <GridPane prefHeight="800.0" prefWidth="900.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0"
-                                                   prefWidth="389.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0"
-                                                   prefWidth="211.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0" prefWidth="389.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="211.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="182.0"
-                                                vgrow="SOMETIMES"/>
-                                <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="185.0"
-                                                vgrow="SOMETIMES"/>
-                                <RowConstraints maxHeight="369.0" minHeight="10.0" prefHeight="189.0"
-                                                vgrow="SOMETIMES"/>
-                                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="240.0"
-                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="369.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="240.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" stylesheets="@../gui/mangBtnStyle.css"
-                                        text="Import Menus (.xml)" textAlignment="CENTER" textFill="WHITE"
-                                        wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER"
-                                        GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Button mnemonicParsing="false" stylesheets="@../gui/mangBtnStyle.css" text="Import Menus (.xml)" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0"/>
+                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="792.0" layoutY="60.0" mnemonicParsing="false"
-                                        stylesheets="@../gui/mangBtnStyle.css" text="Import Ingredients (.xml)"
-                                        textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2"
-                                        GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                <Button layoutX="792.0" layoutY="60.0" mnemonicParsing="false" stylesheets="@../gui/mangBtnStyle.css" text="Import Ingredients (.xml)" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0"/>
+                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="723.0" layoutY="260.0" mnemonicParsing="false"
-                                        stylesheets="@../gui/mangBtnStyle.css" text="Import Suppliers (.xml)"
-                                        textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2"
-                                        GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <Button layoutX="723.0" layoutY="260.0" mnemonicParsing="false" stylesheets="@../gui/mangBtnStyle.css" text="Import Suppliers (.xml)" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="13.0"/>
+                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                 </Button>
-                                <TextField prefHeight="26.0" prefWidth="398.0" promptText="Enter FilePath here"
-                                           GridPane.columnIndex="1"/>
-                                <TextField layoutX="231.0" layoutY="89.0" prefHeight="26.0" prefWidth="398.0"
-                                           promptText="Enter FilePath here" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="1"/>
-                                <TextField layoutX="231.0" layoutY="89.0" prefHeight="26.0" prefWidth="398.0"
-                                           promptText="Enter FilePath here" GridPane.columnIndex="1"
-                                           GridPane.rowIndex="2"/>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="File Validity Display"
-                                      GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                                <TextField prefHeight="26.0" prefWidth="398.0" promptText="Enter FilePath here" GridPane.columnIndex="1" />
+                                <TextField layoutX="231.0" layoutY="89.0" prefHeight="26.0" prefWidth="398.0" promptText="Enter FilePath here" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField layoutX="231.0" layoutY="89.0" prefHeight="26.0" prefWidth="398.0" promptText="Enter FilePath here" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="File Validity Display" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                                     <GridPane.margin>
-                                        <Insets top="110.0"/>
+                                        <Insets top="110.0" />
                                     </GridPane.margin>
                                 </Text>
-                                <Text layoutX="496.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="File Validity Display" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                                      GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                <Text layoutX="496.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Validity Display" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                     <GridPane.margin>
-                                        <Insets top="110.0"/>
+                                        <Insets top="110.0" />
                                     </GridPane.margin>
                                 </Text>
-                                <Text layoutX="231.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="File Validity Display" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                                      GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                <Text layoutX="231.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Validity Display" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                     <GridPane.margin>
-                                        <Insets top="110.0"/>
+                                        <Insets top="110.0" />
                                     </GridPane.margin>
                                 </Text>
                             </children>
@@ -105,25 +78,53 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <TabPane layoutY="6.0" prefHeight="819.0" prefWidth="924.0" side="BOTTOM"
-                                                 tabClosingPolicy="UNAVAILABLE">
+                                        <TabPane layoutY="6.0" prefHeight="819.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
                                             <tabs>
                                                 <Tab text="Ingredient">
                                                     <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                                                    prefWidth="200.0"/>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField layoutX="25.0" layoutY="86.0" />
+                                                <Text layoutX="30.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+                                                <Text layoutX="35.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit:" />
+                                                <Text layoutX="24.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost per unit:" />
+                                                <Text layoutX="30.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietary constraints:" />
+                                                <ChoiceBox layoutX="30.0" layoutY="158.0" prefWidth="150.0" />
+                                                <ChoiceBox layoutX="30.0" layoutY="325.0" prefWidth="150.0" />
+                                                <TextField layoutX="26.0" layoutY="238.0" />
+                                                <Button layoutX="38.0" layoutY="411.0" mnemonicParsing="false" text="Add Ingredient">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                </Button>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                                <Text layoutX="27.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add an ingredient">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Text>
+                                             </children></AnchorPane>
                                                     </content>
                                                 </Tab>
-                                                <Tab text="Menus">
+                                                <Tab text="Menu">
                                                     <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                                                    prefWidth="200.0"/>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                                     </content>
                                                 </Tab>
-                                                <Tab text="Suppliers">
+                                                <Tab text="Supplier">
                                                     <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                                                    prefWidth="200.0"/>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="supplierNameEntryField" layoutX="26.0" layoutY="114.0" />
+                                                <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Supplier" />
+                                                <Text layoutX="26.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                                                <Text layoutX="31.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+                                                <TextField fx:id="supplierAddressEntryField" layoutX="30.0" layoutY="215.0" />
+                                                <Text layoutX="31.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
+                                                <TextField fx:id="supplierPhoneNumberEntryField" layoutX="26.0" layoutY="311.0" />
+                                                <ChoiceBox fx:id="supplierPhoneTypeChoiceBox" layoutX="206.0" layoutY="311.0" prefWidth="150.0" />
+                                                <Text layoutX="41.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL" />
+                                             </children></AnchorPane>
                                                     </content>
                                                 </Tab>
                                             </tabs>
@@ -138,8 +139,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0"
-                                          text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)"/>
+                                <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -148,8 +148,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0"
-                                          text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations"/>
+                                <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations" />
                             </children>
                         </AnchorPane>
                     </content>
