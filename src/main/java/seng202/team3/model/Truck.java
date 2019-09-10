@@ -36,36 +36,17 @@ public class Truck {
         cashFloat = new HashMap<Integer, Integer>();
 
         // Add denominations (to nearest cent) into cash float map
-        cashFloat.put(1000, 0);
-        cashFloat.put(500, 0);
-        cashFloat.put(200, 0);
-        cashFloat.put(100, 0);
-        cashFloat.put(50, 0);
-        cashFloat.put(20, 0);
-        cashFloat.put(10, 0);
-        cashFloat.put(5, 0);
-        cashFloat.put(2, 0);
-        cashFloat.put(1, 0);
+        cashFloat.put(10000, 10);
+        cashFloat.put(5000, 10);
+        cashFloat.put(2000, 10);
+        cashFloat.put(1000, 10);
+        cashFloat.put(500, 10);
+        cashFloat.put(200, 10);
+        cashFloat.put(100, 10);
+        cashFloat.put(50, 10);
+        cashFloat.put(20, 10);
+        cashFloat.put(10, 10);
     }
-
-
-    /**
-     * Calculate the difference of amountTendered and saleOrder
-     * and returns the exact denomination for change
-     *
-     * @param amountTendered total amount paid by customer
-     * @param saleOrder      sales ordered by customer
-     * @return denomReqd of type HashMap<String, Integer> which records the exact amount of denomination for change
-     */
-//    public HashMap<String, Integer> makeSale(double amountTendered, Order saleOrder) {
-//        float totalCost = saleOrder.getTotalCost();
-//        if (amountTendered > totalCost) {
-//            double change = amountTendered - totalCost;
-//            int changeInt = (int) change;
-//            changeDenom(changeInt);
-//        }
-//        return denomReqd;
-//    }
 
     /**
      * Called from Sales Screen to add denomination paid by customer accordingly
@@ -76,84 +57,40 @@ public class Truck {
         int denom;
         switch (denomStr) {
             case "NZD 100":
-                denom = 1000;
+                denom = 10000;
                 break;
             case "NZD 50":
-                denom = 500;
+                denom = 5000;
                 break;
             case "NZD 20":
-                denom = 200;
+                denom = 2000;
                 break;
             case "NZD 10":
-                denom = 100;
+                denom = 1000;
                 break;
             case "NZD 5":
-                denom = 50;
+                denom = 500;
                 break;
             case "NZD 2":
-                denom = 20;
+                denom = 200;
                 break;
             case "NZD 1":
-                denom = 10;
+                denom = 100;
                 break;
             case "NZD 0.5":
-                denom = 5;
+                denom = 50;
                 break;
             case "NZD 0.2":
-                denom = 2;
+                denom = 20;
                 break;
             case "NZD 0.1":
-                denom = 1;
+                denom = 10;
                 break;
             default:
-                denom = 0;
+                denom = 00;
         }
         cashFloat.put(denom, cashFloat.get(denom) + 1);
     }
-
-
-    /**
-     * Utilise dynamic programming to approach denomination changing problem
-     *
-     * @param change    amount needed to return to the customer
-     * @param denomReqd HashMap<String, integer> storing the denomination for change
-     * @return denomReqd which records the denomination for change
-     */
-//    public static HashMap<String, Integer> changeDenom(Integer change) {
-//
-//        ArrayList<Integer> coinage = new ArrayList<Integer>(new TreeSet(cashFloat.keySet()));
-//
-//        System.out.println(coinage);
-//
-//        long[] table = new long[change+1];
-//        Arrays.fill(table, 0);
-//
-//        table[0] = 1;
-//
-//        for (int i=0; i<coinage.size(); i++) {
-//            for (int j=coinage.get(i); j<change; j++ ) {
-//                table[j] += table[j - coinage.get(i)];
-//            }
-//        }
-//
-//
-//        System.out.println(Arrays.toString(table));
-//
-//        return null;
-//    }
-
-
-//    public static void main(String args[]) throws JAXBException{
-//        Truck newTruck = new Truck();
-//        HashMap<String, Integer> sth = changeDenom(325);
-//
-//
-//    }
-
-    public Void cookFood(MenuItem parameter) {
-        // TODO implement me
-        return null;
-    }
-
+    
 }
 

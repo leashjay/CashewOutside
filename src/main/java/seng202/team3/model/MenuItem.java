@@ -30,7 +30,7 @@ public class MenuItem {
     private String name;
 
     /** List of ingredients and their quantities needed to make the menu item */
-    @XmlElement(name = "ingredient")
+    @XmlElement(name = "ingredients")
     private HashMap<Ingredient, Float> ingredients;
 
     /** Type 0900of cuisine */
@@ -50,6 +50,7 @@ public class MenuItem {
     /**
      * The number of servings the menu item has
      */
+    @XmlAttribute(name = "serves")
     private int numServings;
 
 

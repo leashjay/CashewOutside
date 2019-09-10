@@ -2,6 +2,7 @@ package jUnitTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import seng202.team3.model.Ingredient;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
@@ -10,9 +11,14 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class MenuLoaderTest {
     private Menu menu;
@@ -52,10 +58,18 @@ public class MenuLoaderTest {
     public void testBabyFace() {
         assertNotNull("Baby face is in the sample menu", menuContent.get("BF"));
         item = menuContent.get("BF");
-        //assertEquals("Made with vodka", item.getIngredients().get(0).getName(), "Vodka");
-        //assertEquals("Made with cassis", item.getIngredients().get(1).getName(), "Cassis");
-        //assertEquals("Made with cream", item.getIngredients().get(2).getName(), "Cream");
-        //assertEquals("Made from three things", 3, item.getIngredients().size());
-//        assertFalse("Not made with Beetroot", item.getIngredients().contains("Beetroot"));
+        Set<String> ingredientNames = new HashSet<String>();
+        Set<Float> ingredientQuantities = new HashSet<Float>();
+        for (Map.Entry<Ingredient, Float> entry : item.getIngredients().entrySet()) {
+            ingredientNames.add(entry.getKey().getCode());
+            ingredientQuantities.add(entry.getValue());
+        }
+        assertTrue("Made with vodka", ingredientNames.contains("Vodka"));
+        assertTrue("Made with cassis", ingredientNames.contains("Cassis"));
+        assertTrue("Made with cream", ingredientNames.contains("Cream"));
+        assertEquals("Made from three things", 3, item.getIngredients().size());
+        assertFalse("Not made with Beetroot", ingredientNames.contains("BeetRoot"));
+
+        assertEquals("All ingredients in BabyFace are of size 30ml", 1, ingredientQuantities.size());
     }
 }
