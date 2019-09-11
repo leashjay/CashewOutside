@@ -8,7 +8,6 @@ import seng202.team3.model.SupplierHandler;
 import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.PhoneType;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ public class SupplierLoaderTest {
      * previous tests have side-effects.
      */
     @Before
-    public void testLoadSupplierFile() throws JAXBException {
+    public void testLoadSupplierFile() throws Exception {
         String fName = "./resources/data/Suppliers.xml";
         int numExpected = 4;
         String pathName = "";

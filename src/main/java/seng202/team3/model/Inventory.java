@@ -5,14 +5,11 @@ import seng202.team3.parsing.IngredientAdapter;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -106,14 +103,15 @@ public class Inventory {
 
     /**
      * Adds Ingredients from an XML file to the ingredients HashMap
-     *
+     * CY: When loadIngredientsData is called, the stock will be updated to HashMap (see InventoryLoaderTest)
+     *     Do you reckon it is better to call this function from Business class since it's a persistence feature?
      * @param file The path to the XML file that is being used
      */
-    public void addIngredientsFromXML(String file) throws JAXBException {
+    public void addIngredientsFromXML(String file) throws Exception {
         InventoryLoader inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
-        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
-        ingredients.putAll(newIngredients);
+        HashMap<String, Ingredient> newIngredients = inventory.getIngredients(); //redundant
+        ingredients.putAll(newIngredients); //redundant
     }
 
     /**

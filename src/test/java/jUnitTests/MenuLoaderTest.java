@@ -7,7 +7,6 @@ import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class MenuLoaderTest {
      * previous tests have side-effects.
      */
     @Before
-    public void testLoadMenuFile() throws JAXBException {
+    public void testLoadMenuFile() throws Exception {
         String fName = "./resources/data/SampleMenu.xml";
         int numExpected = 6;
         String pathName = "";

@@ -1,13 +1,14 @@
 package jUnitTests;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.util.UnitType;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,14 +20,17 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit tests for loading Ingredients data in JAXB
  */
-
 public class InventoryLoaderTest {
+    private InventoryLoader testLoader;
+    private String fName;
     private Inventory testInventory;
-    HashMap<String, Ingredient> ingredients;
+    private HashMap<String, Ingredient> ingredients;
+
+
 
     @Before
-    public void testLoadIngredientsXML() throws JAXBException {
-        String fName = "./resources/data/Ingredients.xml";
+    public void testLoadIngredientsXML() throws Exception {
+        fName = "./resources/data/Ingredients.xml";
         int numExpected = 30;
         String pathName = "";
 
@@ -38,7 +42,7 @@ public class InventoryLoaderTest {
             System.exit(666);// a bit brutal!
         }
 
-        InventoryLoader testLoader = new InventoryLoader();
+        testLoader = new InventoryLoader();
         testInventory = testLoader.loadIngredientsData(fName);
         ingredients = testInventory.getIngredients();
 
@@ -75,6 +79,21 @@ public class InventoryLoaderTest {
         assertEquals("It's Eater plain Mayonnaise, isn't it?", "Eater plain Mayonnaise", i.getName());
         assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGF());
         assertEquals("How much does mayo cost?", (float) 1.1, i.getCost());
+    }
+
+    @Ignore
+    public void testExportDBtoXML() throws Exception {
+        Ingredient newEntry = new Ingredient("Kimchi", "chikim", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.NO, ThreeValueLogic.UNKNOWN, (float) 1.2);
+        testInventory.getIngredients().put(newEntry.getCode(), newEntry);
+        testLoader.exportIngredientsData(fName);
+
+
+        ingredients.clear();
+        assertEquals("All XML ingredients record should be added", 0, ingredients.size());
+
+        testInventory = testLoader.loadIngredientsData(fName);
+        ingredients = testInventory.getIngredients();
+        assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }
 
 

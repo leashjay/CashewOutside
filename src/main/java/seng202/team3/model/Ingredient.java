@@ -31,7 +31,6 @@ public class Ingredient {
     private UnitType unit;
 
     /** Quantity of ingredient */
-    @XmlAttribute
     private float quantity = 0;
 
     /** Information about vegan attribute */

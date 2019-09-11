@@ -7,7 +7,6 @@ import seng202.team3.model.Inventory;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,7 +124,7 @@ public class InventoryTests {
      * Tests if the method to add ingredients from an XML file is working
      */
     @Test
-    public void testAddIngredientFromXML() throws JAXBException {
+    public void testAddIngredientFromXML() throws Exception {
         assertEquals(0, inventory.getIngredients().size());
         inventory.addIngredientsFromXML("./resources/data/Ingredients.xml");
         assertEquals(30, inventory.getIngredients().size());

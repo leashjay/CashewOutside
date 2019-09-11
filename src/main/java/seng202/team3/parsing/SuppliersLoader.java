@@ -4,21 +4,33 @@ import seng202.team3.model.SupplierHandler;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
+import java.io.*;
 
 
 public class SuppliersLoader {
-    JAXBContext context;
+    private JAXBContext context;
+    private SupplierHandler suppliersLoad;
+
 
     public SuppliersLoader() throws JAXBException {
         context = JAXBContext.newInstance(SupplierHandler.class);
     }
 
-    public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
+    public SupplierHandler loadSuppliersData(String fileName) throws Exception {
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        SupplierHandler suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(new File(fileName));
+        InputStream inputStream = new FileInputStream(new File(fileName));
+        suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
         return suppliersLoad;
+    }
+
+    public void exportSupplierData(String fileName) throws Exception {
+        Marshaller marshaller = context.createMarshaller();
+        OutputStream outputStream = new FileOutputStream(new File(fileName));
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.marshal(suppliersLoad, outputStream);
+        outputStream.close();
     }
 }
 

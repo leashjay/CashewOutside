@@ -3,7 +3,6 @@ package seng202.team3.model;
 
 import seng202.team3.parsing.InventoryLoader;
 
-import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 /**
@@ -29,7 +28,7 @@ public class Truck {
     /**
      * Constructor for Truck class
      */
-    public Truck() throws JAXBException {
+    public Truck() throws Exception {
         String fName = "./resources/data/Ingredients.xml";
         InventoryLoader inventoryLoad = new InventoryLoader();
         truckInventory = inventoryLoad.loadIngredientsData(fName);
