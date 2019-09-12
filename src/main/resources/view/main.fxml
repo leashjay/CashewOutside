@@ -46,7 +46,6 @@
                 <Insets />
             </GridPane.margin>
         </Text>
-        <Button fx:id="salesBtn" mnemonicParsing="false" opacity="0.01" prefHeight="250.0" prefWidth="300.0" text="Sales" textFill="WHITE" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <font>
             <Font size="26.0" />
