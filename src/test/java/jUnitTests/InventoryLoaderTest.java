@@ -1,7 +1,6 @@
 package jUnitTests;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
@@ -81,17 +80,17 @@ public class InventoryLoaderTest {
         assertEquals("How much does mayo cost?", (float) 1.1, i.getCost());
     }
 
-    @Ignore
+    @Test
     public void testExportDBtoXML() throws Exception {
         Ingredient newEntry = new Ingredient("Kimchi", "chikim", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.NO, ThreeValueLogic.UNKNOWN, (float) 1.2);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
-        testLoader.exportIngredientsData(fName);
+        testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml");
 
 
         ingredients.clear();
-        assertEquals("All XML ingredients record should be added", 0, ingredients.size());
+        assertEquals("Reset list of ingredients", 0, ingredients.size());
 
-        testInventory = testLoader.loadIngredientsData(fName);
+        testInventory = testLoader.loadIngredientsData("./resources/data/testdata/testIngredients.xml");
         ingredients = testInventory.getIngredients();
         assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }

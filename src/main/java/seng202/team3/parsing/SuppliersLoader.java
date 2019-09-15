@@ -29,6 +29,20 @@ public class SuppliersLoader {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty("com.sun.xml.bind.xmlHeaders", "\n<!DOCTYPE suppliers [\n" +
+                "        <!ENTITY version \"V0.01 (C) Neville Churcher 2019\">\n" +
+                "        <!ELEMENT suppliers (description, providers)>\n" +
+                "        <!ELEMENT providers ((supplier*))>\n" +
+                "        <!ELEMENT description (#PCDATA)>\n" +
+                "        <!ELEMENT supplier (sid, name, address, phone, email?, url?)>\n" +
+                "        <!ELEMENT sid (#PCDATA)>\n" +
+                "        <!ELEMENT name (#PCDATA)>\n" +
+                "        <!ELEMENT address (#PCDATA)>\n" +
+                "        <!ELEMENT phone (#PCDATA)>\n" +
+                "        <!ATTLIST supplier type (MOBILE|WORK|HOME|UNKNOWN) \"UNKNOWN\">\n" +
+                "        <!ELEMENT email (#PCDATA)>\n" +
+                "        <!ELEMENT url (#PCDATA)>\n" +
+                "        ]>");
         marshaller.marshal(suppliersLoad, outputStream);
         outputStream.close();
     }
