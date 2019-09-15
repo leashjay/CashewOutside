@@ -5,10 +5,7 @@ import seng202.team3.parsing.IngredientAdapter;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,35 +19,40 @@ import java.util.Map;
 public class Inventory {
 
     /**
+     * Inventory description
+     */
+    @XmlElement
+    private String description;
+
+    /**
      * List of ingredients in the inventory
      */
     @XmlElement(name = "ingredients")
     @XmlJavaTypeAdapter(IngredientAdapter.class)
     private HashMap<String, Ingredient> ingredients;
 
-    /** Inventory description */
-    @XmlElement(name = "description")
-    private String desc;
-
     /**
      * A number that indicates that an ingredient with the unit type COUNT has low stock
      */
     // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
+    @XmlTransient
     private Float lowStockCount = 10f;
 
     /**
      * A number that indicates that an ingredient with the unit type GRAMS has low stock
      */
+    @XmlTransient
     private Float lowStockGrams = 1000f;
 
     /**
      * A number that indicates that an ingredient with the unit type ML has low stock
      */
+    @XmlTransient
     private Float lowStockML = 1000f;
 
 
     /**
-     * Temporary constructor
+     * No-arg constructor for JAXB
      */
     public Inventory() { }
 
@@ -61,7 +63,7 @@ public class Inventory {
      * @param ingredients a HashMap where the ingredients, along with their code are stored
      */
     public Inventory(String desc, HashMap<String, Ingredient> ingredients) {
-        this.desc = desc;
+        this.description = desc;
         this.ingredients = ingredients;
     }
 
@@ -71,7 +73,7 @@ public class Inventory {
      * @return desc
      */
     public String getDesc() {
-        return desc;
+        return description;
     }
 
     /**
@@ -103,8 +105,8 @@ public class Inventory {
 
     /**
      * Adds Ingredients from an XML file to the ingredients HashMap
-     * CY: When loadIngredientsData is called, the stock will be updated to HashMap (see InventoryLoaderTest)
-     *     Do you reckon it is better to call this function from Business class since it's a persistence feature?
+     * CY: When loadIngredientsData is called, the stock will be automatically updated to ingredients HashMap (see InventoryLoaderTest)
+     *     hence we don't need to explicitly map that
      * @param file The path to the XML file that is being used
      */
     public void addIngredientsFromXML(String file) throws Exception {

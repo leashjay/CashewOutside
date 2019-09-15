@@ -15,8 +15,9 @@ import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 public class SupplierLoaderTest {
+    private SuppliersLoader testLoader;
     private HashMap<String, Supplier> suppsLoaded;
-    private SupplierHandler suppliers;
+    private SupplierHandler suppHandler;
 
     /**
      * Make sure each test starts with a clean copy of the loaded data - in case
@@ -36,9 +37,9 @@ public class SupplierLoaderTest {
             System.exit(666);// a bit brutal!
         }
 
-        SuppliersLoader testLoader = new SuppliersLoader();
-        suppliers = testLoader.loadSuppliersData(fName);
-        suppsLoaded = suppliers.getSuppliers();
+        testLoader = new SuppliersLoader();
+        suppHandler = testLoader.loadSuppliersData(fName);
+        suppsLoaded = suppHandler.getSuppliers();
 
         TestCase.assertEquals("All XML record should be added", numExpected, suppsLoaded.size());
     }
@@ -59,6 +60,23 @@ public class SupplierLoaderTest {
     public void testPhoneTypeAttribute() {
         Supplier s = suppsLoaded.get("s2");
         assertEquals("Loaded attribute", PhoneType.MOBILE, s.getPhoneType());
+    }
+
+    @Test
+    public void testExportDBtoXML() throws Exception {
+        Supplier westfield = new Supplier();
+        westfield.setAddress("Somewhere riccarton road");
+        westfield.setName("Westfield");
+        suppsLoaded.put("Westfield", westfield);
+        testLoader.exportSupplierData("./resources/data/testdata/testSupplier.xml");
+
+
+        suppsLoaded.clear();
+        assertEquals("Reset list of suppliers", 0, suppsLoaded.size());
+
+        suppHandler = testLoader.loadSuppliersData("./resources/data/testdata/testSupplier.xml");
+        suppsLoaded = suppHandler.getSuppliers();
+        assertEquals("All XML ingredients record should be added", 5, suppsLoaded.size());
     }
 }
 

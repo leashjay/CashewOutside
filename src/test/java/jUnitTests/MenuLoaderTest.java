@@ -6,6 +6,7 @@ import seng202.team3.model.Ingredient;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
+import seng202.team3.util.UnitType;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +19,11 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static seng202.team3.util.ItemType.ASIAN;
 
 public class MenuLoaderTest {
-    private Menu menu;
+    private MenuLoader testLoader;
+    private Menu testMenu;
     private HashMap<String, MenuItem> menuContent;
     private MenuItem item;
 
@@ -42,9 +45,9 @@ public class MenuLoaderTest {
             System.exit(666);// a bit brutal!
         }
 
-        MenuLoader testLoader = new MenuLoader();
-        menu = testLoader.loadMenuData(fName);
-        menuContent = menu.getMenuItem();
+        testLoader = new MenuLoader();
+        testMenu = testLoader.loadMenuData(fName);
+        menuContent = testMenu.getMenuItem();
 
         assertEquals("All XML ingredients record should be added", numExpected, menuContent.size());
     }
@@ -55,7 +58,7 @@ public class MenuLoaderTest {
      */
     @Test
     public void testBabyFace() {
-        assertNotNull("Baby face is in the sample menu", menuContent.get("BF"));
+        assertNotNull("Baby face is in the sample testMenu", menuContent.get("BF"));
         item = menuContent.get("BF");
         Set<String> ingredientNames = new HashSet<String>();
         Set<Float> ingredientQuantities = new HashSet<Float>();
@@ -70,5 +73,25 @@ public class MenuLoaderTest {
         assertFalse("Not made with Beetroot", ingredientNames.contains("BeetRoot"));
 
         assertEquals("All ingredients in BabyFace are of size 30ml", 1, ingredientQuantities.size());
+    }
+
+    @Test
+    public void testExportDBtoXML() throws Exception {
+        HashMap<Ingredient, Float> testIngredients = new HashMap<Ingredient, Float>();
+        Ingredient Kimchi = new Ingredient();
+        Kimchi.setCode("Kimchi");
+        Kimchi.setUnit(UnitType.GRAM);
+        testIngredients.put(Kimchi, (float) 100);
+        MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
+        menuContent.put("KimchiStew", newEntry);
+        testLoader.exportMenuData("./resources/data/testdata/testMenu.xml");
+
+
+        menuContent.clear();
+        assertEquals("Reset list of menu items", 0, menuContent.size());
+
+        testMenu = testLoader.loadMenuData("./resources/data/testdata/testMenu.xml");
+        menuContent = testMenu.getMenuItem();
+        assertEquals("All XML ingredients record should be added", 7, menuContent.size());
     }
 }

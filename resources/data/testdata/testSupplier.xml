@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE suppliers [
         <!ENTITY version "V0.01 (C) Neville Churcher 2019">
         <!ELEMENT suppliers (description, providers)>
@@ -16,21 +16,6 @@
 <suppliers>
     <description>Some sample supplier data</description>
     <providers>
-        <supplier type="WORK">
-            <sid>s1</sid>
-            <name>Countup</name>
-            <address>12 High Street, Christchurch</address>
-            <phone>3451234</phone>
-            <email>daveG@countup.co.nz</email>
-            <url>countup.co.nz/high</url>
-        </supplier>
-        <supplier type="MOBILE">
-            <sid>s2</sid>
-            <name>Funky Kumquat</name>
-            <address>125 Woodside Lane, Christchurch</address>
-            <phone>021352176</phone>
-            <email>maryC@fkveg.co.nz</email>
-        </supplier>
         <supplier type="MOBILE">
             <sid>s3</sid>
             <name>Admiral Benjamin's Seafoods</name>
@@ -46,6 +31,28 @@
             <phone>3515666</phone>
             <email>daved@davesdrinks.co.nz</email>
             <url></url>
+        </supplier>
+        <supplier type="WORK">
+            <sid>s1</sid>
+            <name>Countup</name>
+            <address>12 High Street, Christchurch</address>
+            <phone>3451234</phone>
+            <email>daveG@countup.co.nz</email>
+            <url>countup.co.nz/high</url>
+        </supplier>
+        <supplier type="UNKNOWN">
+            <name>Westfield</name>
+            <address>Somewhere riccarton road</address>
+            <email>Null</email>
+            <url>Null</url>
+        </supplier>
+        <supplier type="MOBILE">
+            <sid>s2</sid>
+            <name>Funky Kumquat</name>
+            <address>125 Woodside Lane, Christchurch</address>
+            <phone>021352176</phone>
+            <email>maryC@fkveg.co.nz</email>
+            <url>Null</url>
         </supplier>
     </providers>
 </suppliers>

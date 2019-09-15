@@ -7,6 +7,7 @@ import seng202.team3.util.UnitType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,14 +38,16 @@ public class MenuItem {
     @XmlAttribute(name = "type")
     private ItemType type;
 
-
+    @XmlTransient
     private ArrayList<ItemType> itemTypes;
 
+    @XmlTransient
     private UnitType foodType;
 
     /**
      * The price the business sells the item for
      */
+    @XmlTransient
     private float salePrice;
 
     /**
@@ -58,7 +61,6 @@ public class MenuItem {
      * No arg constructor for JAXB
      */
     public MenuItem() {
-
     }
 
     /**

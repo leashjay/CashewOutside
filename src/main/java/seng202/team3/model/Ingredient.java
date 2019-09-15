@@ -21,7 +21,7 @@ public class Ingredient {
     private String code;
 
     /** The full name */
-    @XmlElement(name = "name")
+    @XmlElement
     private String name;
 
     /**
@@ -31,7 +31,8 @@ public class Ingredient {
     private UnitType unit;
 
     /** Quantity of ingredient */
-    private float quantity = 0;
+    @XmlElement
+    private float quantity;
 
     /** Information about vegan attribute */
     @XmlAttribute
@@ -49,7 +50,7 @@ public class Ingredient {
     private float cost;
 
     /**
-     * Temporary constructor
+     * No-arg constructor for JAXB
      */
     public Ingredient() { }
 
@@ -63,6 +64,7 @@ public class Ingredient {
      * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
      * @param isGF ThreeTypeLogic deciding if the ingredient is gluten free
      */
+
     public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
                       ThreeValueLogic isGF, float cost) {
         this.code = code;

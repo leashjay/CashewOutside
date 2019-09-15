@@ -36,7 +36,7 @@ public class Menu {
     private HashMap<String, MenuItem> menuContent;
 
     /**
-     * Temporary Constructor
+     * No-arg constructor for JAXB
      */
     public Menu() {    }
 

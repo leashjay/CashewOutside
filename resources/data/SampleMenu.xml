@@ -9,14 +9,23 @@
         <!ELEMENT title (#PCDATA)>
         <!ELEMENT description (#PCDATA)>
         <!ELEMENT item (id, name, ingredients)>
-        <!ATTLIST item type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED>
+        <!ATTLIST item
+                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED
+                serves CDATA "1"
+                >
         <!ELEMENT id (#PCDATA)>
         <!ELEMENT name (#PCDATA)>
-        <!ATTLIST name serves CDATA "1">
         <!ELEMENT ingredients (entry*)>
         <!ELEMENT entry (key, value)>
         <!ELEMENT key (code)>
-        <!ATTLIST key unit (ML|G|COUNT) #REQUIRED>
+        <!ATTLIST key
+                unit (ML|GRAM|COUNT) #REQUIRED
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA "0"
+                >
         <!ELEMENT code (#PCDATA)>
         <!ELEMENT value (#PCDATA)>
         ]>
@@ -41,7 +50,7 @@
                     <value>1</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Onion</code>
                     </key>
                     <value>50</value>
@@ -59,7 +68,7 @@
                     <value>1</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Lettuce</code>
                     </key>
                     <value>15</value>
@@ -77,13 +86,13 @@
             <name>Chicken fried rice</name>
             <ingredients>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Chicken</code>
                     </key>
                     <value>100</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Rice</code>
                     </key>
                     <value>50</value>
@@ -95,7 +104,7 @@
                     <value>10</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Onion</code>
                     </key>
                     <value>50</value>
@@ -120,12 +129,12 @@
                 </entry>
             </ingredients>
         </item>
-        <item type="MAIN">
+        <item type="MAIN" serves="6">
             <id>CAV</id>
-            <name serves="6">Coq au van</name>
+            <name>Coq au van</name>
             <ingredients>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Chicken</code>
                     </key>
                     <value>1500</value>
@@ -137,19 +146,19 @@
                     <value>15</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Bacon</code>
                     </key>
                     <value>100</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Onion</code>
                     </key>
                     <value>200</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Garlic</code>
                     </key>
                     <value>10</value>
@@ -173,7 +182,7 @@
                     <value>150</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Herbs</code>
                     </key>
                     <value>1</value>
@@ -185,13 +194,13 @@
                     <value>2</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Shrooms</code>
                     </key>
                     <value>250</value>
                 </entry>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Flour</code>
                     </key>
                     <value>5</value>
@@ -227,7 +236,7 @@
             <name>Hot Chocolate</name>
             <ingredients>
                 <entry>
-                    <key unit="G">
+                    <key unit="GRAM">
                         <code>Choc</code>
                     </key>
                     <value>2</value>

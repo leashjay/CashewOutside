@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE inventory [
         <!ENTITY version "V0.01 (C) Neville Churcher 2019">
         <!ELEMENT inventory (description, ingredients)>
         <!ELEMENT ingredients ((ingredient*))>
         <!ELEMENT description (#PCDATA)>
-        <!ELEMENT ingredient (code, name)>
+        <!ELEMENT ingredient (code, name, quantity)>
         <!ATTLIST ingredient
-                unit (ML|G|COUNT) #REQUIRED
-                isveg (YES|NO|UNKNOWN) "NO"
-                isvegan (YES|NO|UNKNOWN) "NO"
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
                 isgf (YES|NO|UNKNOWN) "UNKNOWN"
                 cost CDATA #REQUIRED
                 >
         <!ELEMENT code (#PCDATA)>
         <!ELEMENT name (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
         ]>
 <inventory>
     <description>Our ingredients in no particular order (incomplete).</description>
@@ -21,122 +22,152 @@
         <ingredient unit="ML" cost="0.2">
             <code>Salt</code>
             <name>Table salt</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="COUNT" isgf="NO" cost="1.0">
             <code>BBun</code>
             <name>Hamburger bun</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="COUNT" isveg="NO" isvegan="NO" cost="2.0">
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" cost="2.0">
             <code>BPat</code>
             <name>Beef patty</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" isveg="YES" cost="0.5">
+        <ingredient unit="GRAM" isVeg="YES" cost="0.5">
             <code>Onion</code>
             <name>Diced onion</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="1.8">
             <code>TSauce</code>
             <name>Tomato sauce</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="COUNT" isgf="YES" cost="0.8">
             <code>Beetroot</code>
             <name>Beetroot slice</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="0.2">
+        <ingredient unit="GRAM" cost="0.2">
             <code>Lettuce</code>
             <name>Sliced Iceberg lettuce</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="1.1">
             <code>Mayo</code>
             <name>Eater plain Mayonnaise</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="1.5">
+        <ingredient unit="GRAM" cost="1.5">
             <code>Chicken</code>
             <name>Chicken breast, diced</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="0.4">
+        <ingredient unit="GRAM" cost="0.4">
             <code>Rice</code>
             <name>Long grain rice</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="0.7">
             <code>Soy</code>
             <name>Soy sauce, dark</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="0.6">
             <code>Oil</code>
             <name>Canola oil</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="COUNT" cost="1.7">
             <code>LemCan</code>
             <name>Lemonade, 300ml Can</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="2.1">
             <code>OlOil</code>
             <name>Olive oil, extra virgin</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="2.5">
+        <ingredient unit="GRAM" cost="2.5">
             <code>Bacon</code>
             <name>Bacon, shoulder</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="0.7">
+        <ingredient unit="GRAM" cost="0.7">
             <code>Garlic</code>
             <name>Garlic, sliced</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="15.9">
             <code>Brandy</code>
             <name>Brandy, Courvoisier, 1l</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="20.0">
             <code>RedWine</code>
             <name>Red wine, 1l cask</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="3.5">
             <code>CStock</code>
             <name>Chicken stock</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="2.0">
+        <ingredient unit="GRAM" cost="2.0">
             <code>Herbs</code>
             <name>Mixed herbs, dried</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="COUNT" cost="3.0">
             <code>Bay</code>
             <name>Bay leaf, dried</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="1.5">
+        <ingredient unit="GRAM" cost="1.5">
             <code>Shrooms</code>
             <name>Button mushrooms, sliced</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="1.0">
+        <ingredient unit="GRAM" cost="1.0">
             <code>Flour</code>
             <name>Flour, plain</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="25.0">
             <code>Vodka</code>
             <name>Vodka, Ivan's special brew, 1l</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="17.0">
             <code>Cassis</code>
             <name>Torlesse Cassis, 750ml</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="4.5">
             <code>Cream</code>
             <name>Cream</name>
+            <quantity>0</quantity>
         </ingredient>
-        <ingredient unit="G" cost="4.0">
+        <ingredient unit="GRAM" cost="4.0">
             <code>Choc</code>
             <name>Smith's Drinking chocolate</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="3.5">
             <code>RegMilk</code>
             <name>Milk, homogenised</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="ML" cost="3.7">
             <code>TrimMilk</code>
             <name>Trim milk</name>
+            <quantity>0</quantity>
         </ingredient>
         <ingredient unit="COUNT" cost="5.0">
             <code>Cheese</code>
             <name>Cheddar cheese slice</name>
+            <quantity>0</quantity>
         </ingredient>
     </ingredients>
 </inventory>
