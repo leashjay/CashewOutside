@@ -1,4 +1,4 @@
-package seng202.team3.view;
+package seng202.team3.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Management extends Application {
+public class ManagementController extends Application {
     private Stage window;
     private Parent root;
 
@@ -19,7 +19,7 @@ public class Management extends Application {
     public void start(Stage managementStage) throws IOException {
         window = managementStage;
         root = FXMLLoader.load(getClass().getResource("management.fxml"));
-        window.setTitle("Management");
+        window.setTitle("ManagementController");
         window.setScene(new Scene(root, 800, 300));
         window.show();
 

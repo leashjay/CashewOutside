@@ -12,8 +12,12 @@ public class MainController {
     }
 
     public void managementButtonPressed() throws IOException {
-        System.out.println("Management button pressed");
+        System.out.println("ManagementController button pressed");
         BusinessApp.loadManagementPage();
     }
 
+    public void kitchenButtonPressed() throws IOException {
+        System.out.println("Kitchen button pressed");
+        BusinessApp.loadKitchenPage();
+    }
 }
