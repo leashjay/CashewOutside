@@ -11,4 +11,9 @@ public class MainController {
         BusinessApp.loadSalesPage();
     }
 
+    public void managementButtonPressed() throws IOException {
+        System.out.println("Management button pressed");
+        BusinessApp.loadManagementPage();
+    }
+
 }

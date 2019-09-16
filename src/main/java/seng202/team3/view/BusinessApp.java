@@ -36,5 +36,13 @@ public class BusinessApp extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
+    public static void loadManagementPage() throws IOException {
+        Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/management.fxml"));
+        primaryStage.setTitle("Management Page");
+        primaryStage.setScene(new Scene(root, 1000, 800));
+    }
+
+
+
 }
 
