@@ -1,86 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
+<AnchorPane maxWidth="-Infinity" prefHeight="1000.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
 
     <children>
-      <HBox prefHeight="80.0" prefWidth="1000.0">
+      <VBox prefHeight="1000.0" prefWidth="1000.0">
          <children>
-              <TabPane prefHeight="80.0" prefWidth="709.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
-                  <tabs>
-                      <Tab text="Suppliers">
+            <HBox prefHeight="80.0" prefWidth="1000.0">
+               <children>
+                    <TabPane prefHeight="80.0" prefWidth="709.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
+                        <tabs>
+                            <Tab text="Suppliers">
+                                <content>
+                                    <GridPane prefHeight="800.0" prefWidth="900.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0" prefWidth="389.0" />
+                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="211.0" />
+                                        </columnConstraints>
+                                        <rowConstraints>
+                                            <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="369.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="240.0" vgrow="SOMETIMES" />
+                                        </rowConstraints>
+                                    </GridPane>
+                                </content>
+                            </Tab>
+                            <Tab text="Ingredients">
+                                <content>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                                        <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                <children>
+                                                    <TabPane layoutY="6.0" prefHeight="819.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" />
+                                                </children>
+                                            </AnchorPane>
+                                        </content>
+                                    </ScrollPane>
+                                </content>
+                            </Tab>
+                        <Tab text="Menus">
                           <content>
-                              <GridPane prefHeight="800.0" prefWidth="900.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
-                                  <columnConstraints>
-                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="389.0" minWidth="10.0" prefWidth="389.0" />
-                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="211.0" />
-                                  </columnConstraints>
-                                  <rowConstraints>
-                                      <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
-                                      <RowConstraints maxHeight="368.0" minHeight="10.0" prefHeight="185.0" vgrow="SOMETIMES" />
-                                      <RowConstraints maxHeight="369.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
-                                      <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="240.0" vgrow="SOMETIMES" />
-                                  </rowConstraints>
-                              </GridPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                           </content>
-                      </Tab>
-                      <Tab text="Ingredients">
-                          <content>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                                          <children>
-                                              <TabPane layoutY="6.0" prefHeight="819.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" />
-                                          </children>
-                                      </AnchorPane>
-                                  </content>
-                              </ScrollPane>
-                          </content>
-                      </Tab>
-                  <Tab text="Menus">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
-                      <Tab text="Export Data">
-                          <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                  <children>
-                                      <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)" />
-                                  </children>
-                              </AnchorPane>
-                          </content>
-                      </Tab>
-                      <Tab text="Analysis">
-                          <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                  <children>
-                                      <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations" />
-                                  </children>
-                              </AnchorPane>
-                          </content>
-                      </Tab>
-                  </tabs>
-              </TabPane>
-            <Button fx:id="backButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backButtonPressed" text="Back">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
+                        </Tab>
+                            <Tab text="Export Data">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <children>
+                                            <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)" />
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                            <Tab text="Analysis">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <children>
+                                            <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations" />
+                                        </children>
+                                    </AnchorPane>
+                                </content>
+                            </Tab>
+                        </tabs>
+                    </TabPane>
+                  <Button fx:id="backButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backButtonPressed" text="Back">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+              <TableView fx:id="foodItemsTable" editable="true" prefHeight="110.0" prefWidth="957.0">
+                  <columnResizePolicy>
+                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                  </columnResizePolicy>
+                  <columns>
+                      <TableColumn fx:id="idCol" prefWidth="100.0" text="ID" />
+                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
+                      <TableColumn fx:id="addressCol" prefWidth="100.0" text="Address" />
+                      <TableColumn fx:id="emailCol" prefWidth="100.0" text="Email" />
+                      <TableColumn fx:id="phoneCol" prefWidth="100.0" text="Phone" />
+                      <TableColumn fx:id="urlCol" prefWidth="100.0" text="URL" />
+                      <TableColumn fx:id="editButtonCol" prefWidth="100.0" text="Edit" />
+                  </columns>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+              </TableView>
          </children>
-      </HBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+
     </children>
 
 </AnchorPane>
