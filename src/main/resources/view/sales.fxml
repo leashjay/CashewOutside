@@ -17,9 +17,9 @@
             <tabs>
                 <Tab text="Food Items">
                     <content>
-                        <ScrollPane hbarPolicy="ALWAYS" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                        <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" pannable="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
                             <content>
-                                <GridPane prefHeight="600.0" prefWidth="950.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
+                                <GridPane fx:id="foodItemGrid" centerShape="false" maxHeight="500000.0" maxWidth="950.0" minHeight="600.0" minWidth="950.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,9 +46,28 @@
                 <Tab text="Drinks">
                     <content>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                            </content>
+                     <content>
+                        <GridPane fx:id="drinkItemGrid" prefHeight="600.0" prefWidth="950.0" snapToPixel="false" stylesheets="@../gui/foodBtnStyle.css">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button mnemonicParsing="false" stylesheets="@../gui/foodBtnStyle.css" text="Water" textFill="#010006" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </content>
                         </ScrollPane>
                     </content>
                 </Tab>
@@ -64,6 +83,6 @@
                 </Tab>
             </tabs>
         </TabPane>
-      <Button layoutX="886.0" layoutY="14.0" maxHeight="119.0" maxWidth="176.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="119.0" prefWidth="176.0" stylesheets="@../gui/backBtnStyle.css" text="Back" />
+      <Button fx:id="backButton" layoutX="886.0" layoutY="14.0" maxHeight="119.0" maxWidth="176.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="119.0" prefWidth="176.0" stylesheets="@../gui/backBtnStyle.css" text="Back" />
     </children>
 </AnchorPane>

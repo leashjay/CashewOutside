@@ -67,6 +67,7 @@
         </ingredient>
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
             <code>Salt</code>
+            <name>Table salt</name>
             <quantity>0.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
