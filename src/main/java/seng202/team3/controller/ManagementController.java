@@ -7,26 +7,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
 
-public class ManagementController extends Application {
+public class ManagementController{
     private Stage window;
     private Parent root;
 
 
-    @Override
-    public void start(Stage managementStage) throws IOException {
-        window = managementStage;
-        root = FXMLLoader.load(getClass().getResource("management.fxml"));
-        window.setTitle("ManagementController");
-        window.setScene(new Scene(root, 800, 300));
-        window.show();
+    @FXML
+    private Button backButton;
 
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+    /**
+     * sends the user back to the main screen.;
+     * Some kind of clean up / persistence should be implemented here.
+     * @throws IOException idk?
+     */
+    public void backButtonPressed() throws IOException {
+        System.out.println("Back button pressed");
+        BusinessApp.loadMainPage();
     }
 
 }
