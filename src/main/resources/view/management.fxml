@@ -95,13 +95,13 @@
                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                   </columnResizePolicy>
                   <columns>
-                      <TableColumn fx:id="idCol" prefWidth="100.0" text="ID" />
+                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
                       <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
                       <TableColumn fx:id="addressCol" prefWidth="100.0" text="Address" />
                       <TableColumn fx:id="emailCol" prefWidth="100.0" text="Email" />
                       <TableColumn fx:id="phoneCol" prefWidth="100.0" text="Phone" />
                       <TableColumn fx:id="urlCol" prefWidth="100.0" text="URL" />
-                      <TableColumn fx:id="editButtonCol" prefWidth="100.0" text="Edit" />
+                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
                   </columns>
                <VBox.margin>
                   <Insets top="25.0" />
