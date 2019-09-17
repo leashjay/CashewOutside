@@ -35,6 +35,12 @@ public class SalesLoaderTest {
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
         order1.addToOrder(newEntry);
         testSales.addOrder(order1);
+        Order order2 = new Order();
+        order2.setOrderId(2);
+        order2.changeStatus(OrderStatus.COOKING);
+        order2.updateFlags();
+        order2.addToOrder(newEntry);
+        testSales.addOrder(order2);
     }
 
     @Test

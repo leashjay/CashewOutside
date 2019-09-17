@@ -7,13 +7,22 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashMap;
+import java.util.List;
 
 @XmlRootElement(name = "sales")
 @XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {
 
-    @XmlElement(name = "orders")
     private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
+
+    /**
+     * Simple list of the orders as taken from the Map.
+     * @return A List of the Orders matching the ones in the Map
+     */
+    @XmlElement(name = "orders")
+    public List<Order> getOrders() {
+        return List.copyOf(orders.values());
+    }
 
     /**
      *

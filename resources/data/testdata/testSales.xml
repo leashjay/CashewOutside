@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sales [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT sales (orders*)>
+        <!ELEMENT orders (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>
+        <!ATTLIST orders
+                dateOrdered CDATA #REQUIRED
+                timeOrdered CDATA #REQUIRED
+                isGF (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                >
+        <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT orderStatus (#PCDATA)>
+        <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT itemsOrdered (id, name)>
+        <!ELEMENT flagsChecked (#PCDATA)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        ]>
+
+<sales>
+   <orders dateOrdered="2019-09-17" timeOrdered="15:02:13.821339">
+      <orderId>1</orderId>
+      <orderStatus>COMPLETE</orderStatus>
+      <orderCost>320.0</orderCost>
+      <itemsOrdered>
+         <id>KimchiStew</id>
+         <name>A korean cuisine</name>
+      </itemsOrdered>
+      <flagsChecked>true</flagsChecked>
+   </orders>
+   <orders dateOrdered="2019-09-17" timeOrdered="15:02:13.823255">
+      <orderId>2</orderId>
+      <orderStatus>COOKING</orderStatus>
+      <orderCost>320.0</orderCost>
+      <itemsOrdered>
+         <id>KimchiStew</id>
+         <name>A korean cuisine</name>
+      </itemsOrdered>
+      <flagsChecked>true</flagsChecked>
+   </orders>
+</sales>
