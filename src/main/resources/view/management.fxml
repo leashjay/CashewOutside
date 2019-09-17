@@ -21,9 +21,9 @@
     <children>
       <VBox prefHeight="1000.0" prefWidth="1000.0">
          <children>
-            <HBox prefHeight="80.0" prefWidth="1000.0">
+            <HBox prefHeight="60.0" prefWidth="1000.0">
                <children>
-                    <TabPane prefHeight="80.0" prefWidth="709.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
+                    <TabPane prefHeight="80.0" prefWidth="709.0" stylesheets="@../gui/Styles.css" tabClosingPolicy="UNAVAILABLE">
                         <tabs>
                             <Tab text="Suppliers">
                                 <content>
@@ -90,7 +90,7 @@
                   </Button>
                </children>
             </HBox>
-              <TableView fx:id="foodItemsTable" editable="true" prefHeight="110.0" prefWidth="957.0">
+              <TableView fx:id="foodItemsTable" editable="true" prefWidth="957.0" stylesheets="@../gui/Styles.css">
                   <columnResizePolicy>
                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                   </columnResizePolicy>
@@ -104,9 +104,23 @@
                       <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
                   </columns>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
               </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Add Manually">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Add from XML">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />
