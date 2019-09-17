@@ -68,25 +68,25 @@ public class ManagementController{
     @FXML
     public void initialize() {
 
-        // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
-        idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        urlCol.setCellValueFactory(new PropertyValueFactory<>("Url"));
-
-
-        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {
-            // You can put whatever logic in here, or even open a new window.
-            // For example here we'll just toggle the isGf
-            //foodItem.setGlutenFree(!foodItem.isGlutenFree());
-            //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
-            System.out.println("BUTTON CLICKED");
-        }));
-
-        List<Supplier> foodItems = createTestData(); // This would come from your real data however you access that.
-        foodItemsTable.setItems(FXCollections.observableArrayList(foodItems));
+//        // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
+//        idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
+//        nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+//        addressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
+//        phoneCol.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+//        emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
+//        urlCol.setCellValueFactory(new PropertyValueFactory<>("Url"));
+//
+//
+//        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {
+//            // You can put whatever logic in here, or even open a new window.
+//            // For example here we'll just toggle the isGf
+//            //foodItem.setGlutenFree(!foodItem.isGlutenFree());
+//            //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
+//            System.out.println("BUTTON CLICKED");
+//        }));
+//
+//        List<Supplier> foodItems = createTestData(); // This would come from your real data however you access that.
+//        foodItemsTable.setItems(FXCollections.observableArrayList(foodItems));
 
 
     }
