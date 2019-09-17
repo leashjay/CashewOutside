@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Supplier;
@@ -21,9 +22,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class ManagementController{
+
+
     private Stage window;
     private Parent root;
 
+    @FXML private Button addManuallyButton;
 
     @FXML
     private Button backButton;
@@ -99,6 +103,22 @@ public class ManagementController{
     public void backButtonPressed() throws IOException {
         System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
+    }
+
+    public void openAddSupplierScreen(){
+        System.out.println("Add supplier button clicked");
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/view/addsupplier.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Add supplier");
+            stage.setScene(new Scene(root, 400, 400));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     private List<Supplier> createTestData() {
