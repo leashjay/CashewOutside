@@ -2,9 +2,17 @@ package seng202.team3.model;
 
 import seng202.team3.util.OrderStatus;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashMap;
 
+@XmlRootElement(name = "sales")
+@XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {
+
+    @XmlElement(name = "orders")
     private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
     /**

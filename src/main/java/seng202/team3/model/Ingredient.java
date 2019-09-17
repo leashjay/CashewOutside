@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @XmlRootElement(name = "ingredient")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Ingredient {
     List<Supplier> suppliers;
 

@@ -98,7 +98,13 @@ public class MenuItem {
      * Getter for list of ingredients
      * @return ingredients
      */
+    @XmlTransient
     public HashMap<Ingredient, Float> getIngredients() {
+        return ingredients;
+    }
+
+    @XmlElement(name = "ingredients")
+    private HashMap<Ingredient, Float> getIngredientsForREST() {
         return ingredients;
     }
 
