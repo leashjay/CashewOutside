@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 public class Order {
-    // TODO make Order Observable so SalesGUI is dynamically updated when MenuItems are added etc.
+    // TODO make Order Observable so Sales is dynamically updated when MenuItems are added etc.
     private LocalDate dateOrdered;
 	private LocalTime timeOrdered;
 	private int orderId; // should be unique across multiple orders
