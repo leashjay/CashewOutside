@@ -21,24 +21,26 @@
         ]>
 
 <sales>
-   <orders dateOrdered="2019-09-17" timeOrdered="15:02:13.821339">
-      <orderId>1</orderId>
-      <orderStatus>COMPLETE</orderStatus>
-      <orderCost>320.0</orderCost>
-      <itemsOrdered>
-         <id>KimchiStew</id>
-         <name>A korean cuisine</name>
-      </itemsOrdered>
-      <flagsChecked>true</flagsChecked>
-   </orders>
-   <orders dateOrdered="2019-09-17" timeOrdered="15:02:13.823255">
-      <orderId>2</orderId>
-      <orderStatus>COOKING</orderStatus>
-      <orderCost>320.0</orderCost>
-      <itemsOrdered>
-         <id>KimchiStew</id>
-         <name>A korean cuisine</name>
-      </itemsOrdered>
-      <flagsChecked>true</flagsChecked>
+   <orders>
+      <order dateOrdered="2019-09-17" timeOrdered="15:46:00.675614">
+         <orderId>1</orderId>
+         <orderStatus>COMPLETE</orderStatus>
+         <orderCost>320.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-09-17" timeOrdered="15:46:00.679563">
+         <orderId>2</orderId>
+         <orderStatus>COOKING</orderStatus>
+         <orderCost>320.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
    </orders>
 </sales>

@@ -12,6 +12,7 @@ import seng202.team3.util.UnitType;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
 import static seng202.team3.util.ItemType.ASIAN;
 
 public class SalesLoaderTest {
@@ -19,13 +20,16 @@ public class SalesLoaderTest {
     private SalesLoader testLoader;
     private SalesHandler testSales;
 
+    private Order testOrder;
+    private Order testOrder2;
+
     @Before
     public void populateDBSales() {
         testSales = new SalesHandler();
-        Order order1 = new Order();
-        order1.setOrderId(1);
-        order1.changeStatus(OrderStatus.COMPLETE);
-        order1.updateFlags();
+        testOrder = new Order();
+        testOrder.setOrderId(1);
+        testOrder.changeStatus(OrderStatus.COMPLETE);
+        testOrder.updateFlags();
         HashMap<Ingredient, Float> testIngredients = new HashMap<Ingredient, Float>();
         Ingredient Kimchi = new Ingredient();
         Kimchi.setCode("Kimchi");
@@ -33,14 +37,14 @@ public class SalesLoaderTest {
         Kimchi.setCost((float) 3.2);
         testIngredients.put(Kimchi, (float) 100);
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
-        order1.addToOrder(newEntry);
-        testSales.addOrder(order1);
-        Order order2 = new Order();
-        order2.setOrderId(2);
-        order2.changeStatus(OrderStatus.COOKING);
-        order2.updateFlags();
-        order2.addToOrder(newEntry);
-        testSales.addOrder(order2);
+        testOrder.addToOrder(newEntry);
+        testSales.addOrder(testOrder);
+        testOrder2 = new Order();
+        testOrder2.setOrderId(2);
+        testOrder2.changeStatus(OrderStatus.COOKING);
+        testOrder2.updateFlags();
+        testOrder2.addToOrder(newEntry);
+        testSales.addOrder(testOrder2);
     }
 
     @Test
@@ -48,5 +52,12 @@ public class SalesLoaderTest {
         fName = "./resources/data/testdata/testSales.xml";
         testLoader = new SalesLoader();
         testLoader.exportIngredientsData(fName, testSales);
+
+        SalesHandler handler = testLoader.loadSalesData("./resources/data/testdata/testSales.xml");
+
+        assertEquals(handler.getOrder(1).getStatus(), testOrder.getStatus());
+        assertEquals(handler.getOrder(2).getStatus(), testOrder2.getStatus());
+        assertEquals(handler.getOrder(1).getTotalCost(), testOrder.getTotalCost(), 0.01);
+        assertEquals(handler.getOrder(2).getTotalCost(), testOrder2.getTotalCost(), 0.01);
     }
 }
