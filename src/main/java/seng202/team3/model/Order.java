@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @generated
  */
 
-@XmlRootElement(name = "orders")
+@XmlRootElement(name = "entry")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Order {
     // TODO make Order Observable so Sales is dynamically updated when MenuItems are added etc.
@@ -36,13 +36,13 @@ public class Order {
     @XmlElement(name = "itemsOrdered")
     private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
 
-    @XmlAttribute(name = "isGF")
+    @XmlAttribute(name = "isGFFlag")
     private ThreeValueLogic isGFFlag = ThreeValueLogic.YES;
 
-    @XmlAttribute(name = "isVeg")
+    @XmlAttribute(name = "isVegFlag")
     private ThreeValueLogic isVegFlag = ThreeValueLogic.YES;
 
-    @XmlAttribute(name = "isVegan")
+    @XmlAttribute(name = "isVeganFlag")
     private ThreeValueLogic isVeganFlag = ThreeValueLogic.YES;
 
     @XmlElement(name = "flagsChecked")

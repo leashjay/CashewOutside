@@ -31,7 +31,6 @@ public class MenuItem {
     private String name;
 
     /** List of ingredients and their quantities needed to make the menu item */
-    @XmlElement(name = "ingredients")
     private HashMap<Ingredient, Float> ingredients;
 
     /** Type 0900of cuisine */

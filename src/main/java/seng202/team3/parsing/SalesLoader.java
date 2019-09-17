@@ -23,23 +23,26 @@ public class SalesLoader {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.setProperty("com.sun.xml.bind.xmlHeaders", "\n<!DOCTYPE sales [\n" +
                 "        <!ENTITY version \"V0.01 (C) Neville Churcher 2019\">\n" +
-                "        <!ELEMENT sales (orders*)>\n" +
-                "        <!ELEMENT orders (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
-                "        <!ATTLIST orders\n" +
-                "                dateOrdered (#PCDATA)\n" +
-                "                timeOrdered (#PCDATA) \n" +
-                "                isGF (YES|NO|UNKNOWN) \"NO\"\n" +
-                "                isVegan (YES|NO|UNKNOWN) \"NO\"\n" +
-                "                isgf (YES|NO|UNKNOWN) \"UNKNOWN\"\n" +
-                "                >\n" +
+                "        <!ELEMENT sales (orders)>\n" +
+                "        <!ELEMENT orders (entry*)>\n" +
+                "        <!ELEMENT entry (key, value)>\n" +
+                "        <!ELEMENT key (#PCDATA)>\n" +
+                "        <!ELEMENT value (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
                 "        <!ELEMENT orderId (#PCDATA)>\n" +
                 "        <!ELEMENT orderStatus (#PCDATA)>\n" +
                 "        <!ELEMENT orderCost (#PCDATA)>\n" +
                 "        <!ELEMENT itemsOrdered (id, name)>\n" +
-                "        <!ELEMENT flagsChecked (#PCDATA)>\n" +
                 "        <!ELEMENT id (#PCDATA)>\n" +
                 "        <!ELEMENT name (#PCDATA)>\n" +
-                "        ]>\n");
+                "        <!ELEMENT flagsChecked (#PCDATA)>\n" +
+                "        <!ATTRIBUTE value\n" +
+                "            dateOrdered (#PCDATA)\n" +
+                "            timeOrdered (#PCDATA)\n" +
+                "            isGFFlag (YES|NO|UNKNOWN) \"NO\"\n" +
+                "            isVeganFlag (YES|NO|UNKNOWN) \"NO\"\n" +
+                "            isVegFlag (YES|NO|UNKNOWN) \"UNKNOWN\"\n" +
+                "        >\n" +
+                "        ]>");
         marshaller.marshal(salesLoad, outputStream);
         outputStream.close();
     }
