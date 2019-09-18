@@ -16,22 +16,22 @@ import java.util.HashMap;
 
 public class Truck {
     /**
+     * cashFloat Key: denomination of type int (round to the nearest hundredth)
+     * cashFloat Value: denomination count of type int
+     */
+    private static HashMap<Integer, Integer> cashFloat;
+    /**
      * Inventory specific to a truck
      */
     private Inventory truckInventory;
 
-    /* cashFloat Key: denomination of type string ("$<denomination")
-     *  cashFloat Value: denomination count of type int
-     */
-    private static HashMap<Integer, Integer> cashFloat;
-
     /**
      * Constructor for Truck class
+     * @param ingredientsXML path to ingredientsXML
+     * @throws Exception
      */
-    public Truck() throws Exception {
-        String fName = "./resources/data/Ingredients.xml";
-        InventoryLoader inventoryLoad = new InventoryLoader();
-        truckInventory = inventoryLoad.loadIngredientsData(fName);
+    public Truck(String ingredientsXML) throws Exception {
+        createTruckInventory(ingredientsXML);
         cashFloat = new HashMap<Integer, Integer>();
 
         // Add denominations (to nearest cent) into cash float map
@@ -48,9 +48,19 @@ public class Truck {
     }
 
     /**
-     * Called from Sales Screen to add denomination paid by customer accordingly
+     * Create truckInventory
      *
-     * @param denomStr denomination string eg: "NZD 100"
+     * @param fileName path to ingredientsXML
+     * @throws Exception
+     */
+    public void createTruckInventory(String fileName) throws Exception {
+        InventoryLoader inventoryLoad = new InventoryLoader();
+        truckInventory = inventoryLoad.loadIngredientsData(fileName);
+    }
+
+    /**
+     * Parse denomination string into cashFloat
+     * @param denomStr denomination string from Sales Screen
      */
     public void addDenom(String denomStr) {
         int denom;
@@ -86,7 +96,7 @@ public class Truck {
                 denom = 10;
                 break;
             default:
-                denom = 00;
+                denom = 0;
         }
         cashFloat.put(denom, cashFloat.get(denom) + 1);
     }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE inventory [
-        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ENTITY version "V0.01 (C) CashewOutside 2019">
         <!ELEMENT inventory (description, ingredients)>
         <!ELEMENT ingredients ((ingredient*))>
         <!ELEMENT description (#PCDATA)>
         <!ELEMENT ingredient (code, name, quantity)>
         <!ATTLIST ingredient
                 unit (ML|GRAM|COUNT) #REQUIRED
-                isVeg (YES|NO|UNKNOWN) "NO"
-                isVegan (YES|NO|UNKNOWN) "NO"
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                isVegan (YES|NO|UNKNOWN) "UNKNOWN"
                 isgf (YES|NO|UNKNOWN) "UNKNOWN"
                 cost CDATA #REQUIRED
                 >
@@ -106,10 +106,10 @@
             <name>Mixed herbs, dried</name>
             <quantity>0.0</quantity>
         </ingredient>
-        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.2">
+        <ingredient unit="GRAM" isVeg="UNKNOWN" isVegan="UNKNOWN" isgf="UNKNOWN" cost="1.2">
             <code>Kimchi</code>
             <name>chikim</name>
-            <quantity>0.0</quantity>
+            <quantity>3.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
             <code>Onion</code>
