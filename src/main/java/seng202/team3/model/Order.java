@@ -4,6 +4,7 @@ package seng202.team3.model;
 import seng202.team3.util.OrderStatus;
 import seng202.team3.util.ThreeValueLogic;
 
+import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,17 +16,36 @@ import java.util.ArrayList;
  * @generated
  */
 
+@XmlRootElement(name = "entry")
+@XmlAccessorType(XmlAccessType.NONE)
 public class Order {
     // TODO make Order Observable so Sales is dynamically updated when MenuItems are added etc.
     private LocalDate dateOrdered;
+
 	private LocalTime timeOrdered;
-	private int orderId; // should be unique across multiple orders
+
+    @XmlElement(name = "orderId")
+    private int orderId; // should be unique across multiple orders
+
+    @XmlElement(name = "orderStatus")
     private OrderStatus orderStatus;
+
+    @XmlElement(name = "orderCost")
     private float orderCost;
+
+    @XmlElement(name = "itemsOrdered")
     private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
+
+    @XmlAttribute(name = "isGFFlag")
     private ThreeValueLogic isGFFlag = ThreeValueLogic.YES;
+
+    @XmlAttribute(name = "isVegFlag")
     private ThreeValueLogic isVegFlag = ThreeValueLogic.YES;
+
+    @XmlAttribute(name = "isVeganFlag")
     private ThreeValueLogic isVeganFlag = ThreeValueLogic.YES;
+
+    @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
     /**
@@ -50,6 +70,26 @@ public class Order {
         return orderCost;
     }
 
+    /**
+     * Getter for DateOrdered of type string
+     *
+     * @return dateOrdered
+     */
+    @XmlAttribute(name = "dateOrdered")
+    public String getDateOrdered() {
+        return dateOrdered.toString();
+    }
+
+    /**
+     * Getter for timeOrdered of type string
+     *
+     * @return timeOrdered
+     */
+    @XmlAttribute(name = "timeOrdered")
+    public String getTimeOrdered() {
+        return timeOrdered.toString();
+    }
+
     public int getOrderId() {
         // TODO throw an error if no orderId
         return this.orderId;
@@ -58,6 +98,7 @@ public class Order {
     public void setOrderId(int newOrderId) {
         this.orderId = newOrderId;
     }
+
 
     /**
      * <!-- begin-user-doc -->
