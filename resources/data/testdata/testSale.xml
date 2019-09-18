@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sales [
+        <!ENTITY version "V0.01 (C) seng202_team3">
+        <!ELEMENT sales (orders)>
+        <!ELEMENT orders (order*)>
+        <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>
+        <!ATTLIST order
+                dateOrdered CDATA #REQUIRED
+                timeOrdered CDATA #REQUIRED
+                isGF (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                >
+        <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT orderStatus (#PCDATA)>
+        <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT itemsOrdered (id, name)>
+        <!ELEMENT flagsChecked (#PCDATA)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        ]>
+<sales>
+   <orders>
+       <order dateOrdered="2019-09-18" timeOrdered="14:20:43.746268">
+         <orderId>1</orderId>
+         <orderStatus>COMPLETE</orderStatus>
+         <orderCost>320.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+       <order dateOrdered="2019-09-18" timeOrdered="14:20:43.748936">
+         <orderId>2</orderId>
+         <orderStatus>COOKING</orderStatus>
+         <orderCost>320.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+   </orders>
+</sales>
