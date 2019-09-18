@@ -12,10 +12,11 @@ import java.io.*;
 public class SalesLoader {
 
     private static final String XML_HEADER = "\n<!DOCTYPE sales [\n" +
-            "        <!ENTITY version \"V0.01 (C) Neville Churcher 2019\">\n" +
-            "        <!ELEMENT sales (orders*)>\n" +
-            "        <!ELEMENT orders (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
-            "        <!ATTLIST orders\n" +
+            "        <!ENTITY version \"V0.01 (C) seng202_team3\">\n" +
+            "        <!ELEMENT sales (orders)>\n" +
+            "        <!ELEMENT orders (order*)>\n" +
+            "        <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
+            "        <!ATTLIST order\n" +
             "                dateOrdered CDATA #REQUIRED\n" +
             "                timeOrdered CDATA #REQUIRED\n" +
             "                isGF (YES|NO|UNKNOWN) \"NO\"\n" +
@@ -29,7 +30,7 @@ public class SalesLoader {
             "        <!ELEMENT flagsChecked (#PCDATA)>\n" +
             "        <!ELEMENT id (#PCDATA)>\n" +
             "        <!ELEMENT name (#PCDATA)>\n" +
-            "        ]>\n"; //TODO: Update this DTD to match the output
+            "        ]>";
 
     private final JAXBContext context;
 
@@ -68,8 +69,4 @@ public class SalesLoader {
         marshaller.marshal(salesLoad, outputStream);
         outputStream.close();
     }
-
-//    public static void main(String[]args) {
-//        SalesLoader loader = new SalesLoader();
-//    }
 }

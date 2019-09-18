@@ -16,20 +16,8 @@ public class SalesHandler {
     private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
     /**
-     * Container class to allow JAXB serialization/deserialization
-     */
-    static class Orders {
-        public List<Order> order;
-
-        public Orders() {}
-
-        Orders(List<Order> order) {
-            this.order = order;
-        }
-    }
-
-    /**
      * Used for JAXB custom serialization
+     *
      * @return The Orders object to be serialized
      */
     @XmlElement(name = "orders")
@@ -39,12 +27,27 @@ public class SalesHandler {
 
     /**
      * Used for JAXB custom deserialization
+     *
      * @param orders The Orders object to be deserialized
      */
     @XmlElement(name = "orders")
     private void setOrders(Orders orders) {
         for (Order order : orders.order) {
             this.orders.put(order.getOrderId(), order);
+        }
+    }
+
+    /**
+     * Container class to allow JAXB serialization/deserialization
+     */
+    static class Orders {
+        public List<Order> order;
+
+        public Orders() {
+        }
+
+        Orders(List<Order> order) {
+            this.order = order;
         }
     }
 
