@@ -75,7 +75,7 @@ public class Order {
      *
      * @return dateOrdered
      */
-    @XmlAttribute(name = "dataOrdered")
+    @XmlAttribute(name = "dateOrdered")
     public String getDateOrdered() {
         return dateOrdered.toString();
     }

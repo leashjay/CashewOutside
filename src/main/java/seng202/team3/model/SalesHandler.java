@@ -7,13 +7,46 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashMap;
+import java.util.List;
 
 @XmlRootElement(name = "sales")
 @XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {
 
-    @XmlElement(name = "orders")
     private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
+
+    /**
+     * Container class to allow JAXB serialization/deserialization
+     */
+    static class Orders {
+        public List<Order> order;
+
+        public Orders() {}
+
+        Orders(List<Order> order) {
+            this.order = order;
+        }
+    }
+
+    /**
+     * Used for JAXB custom serialization
+     * @return The Orders object to be serialized
+     */
+    @XmlElement(name = "orders")
+    private Orders getOrders() {
+        return new Orders(List.copyOf(orders.values()));
+    }
+
+    /**
+     * Used for JAXB custom deserialization
+     * @param orders The Orders object to be deserialized
+     */
+    @XmlElement(name = "orders")
+    private void setOrders(Orders orders) {
+        for (Order order : orders.order) {
+            this.orders.put(order.getOrderId(), order);
+        }
+    }
 
     /**
      *
