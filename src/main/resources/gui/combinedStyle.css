@@ -1,0 +1,72 @@
+#backButton {
+    -fx-background-color: #b2060b;
+}
+
+#foodButton {
+    -fx-background-color: #f4d03f;
+}
+
+#drinkButton {
+    -fx-background-color: #4dabff;
+}
+
+#manageButton {
+    -fx-background-color: Purple;
+}
+
+/*
+the style taken from tabStyle.css, will be used for the tab classes across the different screens
+ */
+
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 120px;
+    -fx-tab-max-width: 120px;
+    -fx-tab-min-height: 50px;
+    -fx-tab-max-height: 50px;
+}
+
+.tab {
+    -fx-font-family: Helvetica;
+    -fx-font-size: 18;
+    -fx-background-color: grey;
+}
+
+.tab:selected {
+    -fx-background-color: lightyellow;
+}
+
+/*
+some other general style stuff
+ */
+
+.root {
+    -fx-background-color: transparent;
+    -fx-alignment: centre;
+    -fx-font-size: 12pt;
+}
+
+.label {
+    -fx-text-fill: #273746;
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+}
+
+/*
+default style for buttons
+ */
+
+.button {
+    -fx-background-radius: 10;
+    -fx-border-color: #273746;
+    -fx-border-radius: 10;
+    -fx-max-width: 100;
+    -fx-max-height: 100;
+    -fx-padding: 10;
+}
