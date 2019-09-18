@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE sales [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT sales (orders*)>
+        <!ELEMENT orders (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>
+        <!ATTLIST orders
+                dateOrdered (#PCDATA)
+                timeOrdered (#PCDATA)
+                isGF (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                >
+        <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT orderStatus (#PCDATA)>
+        <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT itemsOrdered (id, name)>
+        <!ELEMENT flagsChecked (#PCDATA)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        ]>
+
+<sales>
+    <orders>
+        <entry>
+            <key>1</key>
+            <value isGF="UNKNOWN" isVeg="UNKNOWN" isVegan="UNKNOWN" dataOrdered="2019-09-17"
+                   timeOrdered="12:29:32.799964">
+                <orderId>1</orderId>
+                <orderStatus>COMPLETE</orderStatus>
+                <orderCost>320.0</orderCost>
+                <itemsOrdered type="ASIAN" serves="0">
+                    <id>KimchiStew</id>
+                    <name>A korean cuisine</name>
+                    <ingredients>
+                        <entry>
+                            <key unit="GRAM" isVeg="UNKNOWN" isVegan="UNKNOWN" isgf="UNKNOWN" cost="3.2">
+                                <code>Kimchi</code>
+                                <quantity>0.0</quantity>
+                            </key>
+                            <value>100.0</value>
+                        </entry>
+                    </ingredients>
+                    <ingredientsForREST>
+                        <entry>
+                            <key unit="GRAM" isVeg="UNKNOWN" isVegan="UNKNOWN" isgf="UNKNOWN" cost="3.2">
+                                <code>Kimchi</code>
+                                <quantity>0.0</quantity>
+                            </key>
+                            <value>100.0</value>
+                        </entry>
+                    </ingredientsForREST>
+                </itemsOrdered>
+                <flagsChecked>true</flagsChecked>
+            </value>
+        </entry>
+    </orders>
+</sales>
