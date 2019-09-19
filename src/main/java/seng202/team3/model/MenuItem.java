@@ -158,10 +158,10 @@ public class MenuItem {
         ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGF() == ThreeValueLogic.UNKNOWN){
+            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN){
                 isGlutenFree = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsGF() == ThreeValueLogic.NO){
+            if(ingredient.getIsGlutenFree() == ThreeValueLogic.NO){
                 isGlutenFree = ThreeValueLogic.NO;
             }
 
@@ -177,10 +177,10 @@ public class MenuItem {
         ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVeg() == ThreeValueLogic.UNKNOWN){
+            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN){
                 isVegetarian = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
                 isVegetarian = ThreeValueLogic.NO;
             }
 
@@ -199,7 +199,7 @@ public class MenuItem {
             if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
                 isVegan = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
                 isVegan = ThreeValueLogic.NO;
             }
 

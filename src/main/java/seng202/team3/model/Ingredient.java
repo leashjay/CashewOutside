@@ -106,7 +106,7 @@ public class Ingredient {
      * Getter for ingredient's vegetarian attribute
      * @return isVeg
      */
-    public ThreeValueLogic getIsVeg() {
+    public ThreeValueLogic getIsVegetarian() {
         return isVeg;
     }
 
@@ -122,7 +122,7 @@ public class Ingredient {
      * Getter for ingredient's gluten free attribute
      * @return isGF
      */
-    public ThreeValueLogic getIsGF() {
+    public ThreeValueLogic getIsGlutenFree() {
         return isGF;
     }
 

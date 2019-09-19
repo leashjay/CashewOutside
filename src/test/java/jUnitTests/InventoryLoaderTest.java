@@ -66,7 +66,7 @@ public class InventoryLoaderTest {
         Ingredient i = ingredients.get(aCode);
         assertNotNull("Corresponding object in collection", i);
         assertEquals("It's a beetroot slice, isn't it?", "Beetroot slice", i.getName());
-        assertEquals("Beetroot is gluten free", ThreeValueLogic.YES, i.getIsGF());
+        assertEquals("Beetroot is gluten free", ThreeValueLogic.YES, i.getIsGlutenFree());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class InventoryLoaderTest {
         Ingredient i = ingredients.get(aCode);
         assertNotNull("Corresponding object in collection", i);
         assertEquals("It's Eater plain Mayonnaise, isn't it?", "Eater plain Mayonnaise", i.getName());
-        assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGF());
+        assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGlutenFree());
         assertEquals("How much does mayo cost?", (float) 1.1, i.getCost());
     }
 
