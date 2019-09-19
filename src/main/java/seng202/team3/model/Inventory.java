@@ -57,6 +57,7 @@ public class Inventory {
         this.ingredients = ingredients;
     }
 
+
     /**
      * Getter for inventory description
      * @return desc

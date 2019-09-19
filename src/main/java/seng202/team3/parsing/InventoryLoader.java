@@ -1,8 +1,12 @@
 package seng202.team3.parsing;
 
+import org.xml.sax.SAXException;
 import seng202.team3.model.Inventory;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.*;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.*;
 
 /**
@@ -51,7 +55,7 @@ public class InventoryLoader {
 
     public static void main(String arg[]) throws Exception {
         InventoryLoader inventoryload = new InventoryLoader();
-        inventoryload.loadIngredientsData("./resources/data/testdata/errorfile.xml");
+        inventoryload.loadIngredientsData("./resources/data/testdata/Ingredients.xml");
     }
 
     /**
@@ -59,17 +63,33 @@ public class InventoryLoader {
      * @param fileName path to ingredient XML file
      * @return instance of Inventory class
      */
-    public Inventory loadIngredientsData(String fileName) throws Exception {
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshaller.setEventHandler(new ValidationEventHandler() {
-            @Override
-            public boolean handleEvent(ValidationEvent ve) {
-                System.out.println("Unmarshaller event handler says: " + ve.getMessage() + " (Exception: " + ve.getLinkedException() + ")");
-                return false;
-            }
-        });
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
+    public Inventory loadIngredientsData(String fileName) {
+        try {
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.XML_DTD_NS_URI);
+            Schema schema = sf.newSchema(new File("./resources/data/dtd/ingredients.dtd"));
+            unmarshaller.setSchema(schema);
+            unmarshaller.setEventHandler(new ValidationEventHandler() {
+                @Override
+                public boolean handleEvent(ValidationEvent ve) {
+                    System.out.println("Unmarshaller event handler says: " + ve.getMessage() + " (Exception: " + ve.getLinkedException() + ")");
+                    return false;
+                }
+            });
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
+            inputStream.close();
+        } catch (FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+        } catch (JAXBException jaxbe) {
+            jaxbe.printStackTrace();
+        } catch (IOException ioe) {
+            System.err.println("Problem reading file: <" + fileName + ">  Check for typos");
+            System.err.println(ioe);
+            System.exit(666);// a bit brutal!
+        } catch (SAXException se) {
+            se.printStackTrace();
+        }
         return inventoryLoad;
     }
 
