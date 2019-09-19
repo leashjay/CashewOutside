@@ -1,8 +1,10 @@
 package seng202.team3.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import seng202.team3.model.Business;
 import seng202.team3.model.Supplier;
 import seng202.team3.model.SupplierHandler;
@@ -33,6 +35,9 @@ public class ManuallyAddSupplierController {
     TextField urlTextField;
 
     @FXML
+    Button addSupplierButton;
+
+    @FXML
     ChoiceBox<PhoneType> phoneTypeChoiceBox;
 
     public void initialize(){
@@ -54,9 +59,10 @@ public class ManuallyAddSupplierController {
         PhoneType phoneType = phoneTypeChoiceBox.getValue();
         String url = urlTextField.getText();
 
-        //Supplier newSupplier =
-        System.out.println("Name is " + nameTextField.getText()); //+ nameTextField.getText());
-
+        Supplier newSupplier = new Supplier(id, name, address, phoneType, phoneNumber, email, url);
+        supplierHandler.addSupplier(newSupplier);
+        Stage stage = (Stage) addSupplierButton.getScene().getWindow();
+        stage.close();
     }
 
 //    private boolean isInt(TextField input, String message){
