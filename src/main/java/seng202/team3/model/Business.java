@@ -28,7 +28,7 @@ public class Business {
      * @param menuXML        path to menuXML
      * @param suppliersXML   path to suppliersXML
      */
-    public void Business(String ingredientsXML, String menuXML, String suppliersXML) throws Exception {
+    public Business(String ingredientsXML, String menuXML, String suppliersXML) throws Exception {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);

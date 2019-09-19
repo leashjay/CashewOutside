@@ -13,10 +13,7 @@ public class MainController {
 
 
     public void initialize() throws Exception {
-        this.business = new Business();
-        business.createMenuManager(menuXML);
-        business.createSupplierManager(suppliersXML);
-
+        this.business = new Business(ingredientsXML, menuXML, suppliersXML);
     }
 
     public void salesButtonPressed() throws IOException {
