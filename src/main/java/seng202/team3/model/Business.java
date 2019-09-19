@@ -27,9 +27,8 @@ public class Business {
      * @param ingredientsXML path to ingredientsXML
      * @param menuXML        path to menuXML
      * @param suppliersXML   path to suppliersXML
-     * @throws Exception
      */
-    public void Business(String ingredientsXML, String menuXML, String suppliersXML) throws Exception {
+    public Business(String ingredientsXML, String menuXML, String suppliersXML) throws Exception {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
@@ -56,6 +55,22 @@ public class Business {
         menuManager = menuLoad.loadMenuData(fileName);
     }
 
-   
+    public Truck getTruck() {
+        return thisTruck;
+    }
+
+    public SupplierHandler getSupplierHandler() {
+        return supplierManager;
+    }
+
+    public Menu getMenuManager() {
+        return menuManager;
+    }
+
+    public SalesHandler getSalesHandler() {
+        return salesManager;
+    }
+
+
 
 }
