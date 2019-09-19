@@ -3,10 +3,15 @@ package seng202.team3.controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Supplier;
 import seng202.team3.util.ItemType;
@@ -15,9 +20,16 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
 import java.util.List;
 
 public class IngredientTabController {
+
+    @FXML
+    private Button addManuallyButton;
+
+    @FXML
+    private Button addFromXMLButton;
 
     @FXML
     private TableView<Ingredient> ingredientTable;
@@ -48,6 +60,23 @@ public class IngredientTabController {
 
     @FXML
     private TableColumn<Ingredient, ThreeValueLogic> veganCol;
+
+    private static IngredientTabController instance;
+
+    /**
+     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
+     */
+    public IngredientTabController(){
+        instance = this;
+    }
+
+    /**
+     * Returns an instance of the SupplierTabController so other controller classes can use its methods
+     * @return an instance of the SupplierTabController class
+     */
+    public static IngredientTabController getInstance(){
+        return instance;
+    }
 
     public void initialize() {
 
@@ -83,6 +112,23 @@ public class IngredientTabController {
                 new Ingredient("3", "Tomatoes", 30f, UnitType.COUNT, 30f )
         );
     }
+
+    public void openAddIngredientScreen(){
+        System.out.println("Add Ingredient button clicked");
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Add supplier");
+            stage.setScene(new Scene(root, 350, 500));
+            stage.showAndWait();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 }

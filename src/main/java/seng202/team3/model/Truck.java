@@ -58,6 +58,10 @@ public class Truck {
         truckInventory = inventoryLoad.loadIngredientsData(fileName);
     }
 
+    public Inventory getTruckInventory(){
+        return truckInventory;
+    }
+
     /**
      * Parse denomination string into cashFloat
      * @param denomStr denomination string from Sales Screen
