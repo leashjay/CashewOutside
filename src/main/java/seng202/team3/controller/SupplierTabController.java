@@ -18,6 +18,7 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierTabController
@@ -107,7 +108,7 @@ public class SupplierTabController
             System.out.println("Delete BUTTON CLICKED");
         }));
 
-        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
         updateSupplierTable();
@@ -140,11 +141,21 @@ public class SupplierTabController
 
     }
 
+    public void openAddSupplierXMLScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/addsupplierxml.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Add supplier");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
     /**
      * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
      */
     public void updateSupplierTable(){
-        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
         System.out.println("Update supplier table called");
     }

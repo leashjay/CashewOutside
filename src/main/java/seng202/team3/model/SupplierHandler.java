@@ -1,7 +1,5 @@
 package seng202.team3.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seng202.team3.parsing.SupplierAdapter;
 import seng202.team3.parsing.SuppliersLoader;
 
@@ -12,7 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Container for Supplier class
@@ -132,14 +129,6 @@ public class SupplierHandler {
      */
     public void orderFromSupplier(SupplierOrder order) {
         orderHistory.add(order);
-    }
-
-    public ObservableList<Supplier> getSuppliersAsObservableList(){
-        ObservableList<Supplier> listOfSuppliers = FXCollections.observableArrayList();
-        for (Map.Entry<String, Supplier> entry : suppliers.entrySet()){
-            listOfSuppliers.add(entry.getValue());
-        }
-        return listOfSuppliers;
     }
 
 

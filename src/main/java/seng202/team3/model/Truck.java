@@ -59,6 +59,16 @@ public class Truck {
     }
 
     /**
+     * Getter for truck inventory
+     *
+     * @return truck inventory
+     */
+    public Inventory getInventory() {
+        return truckInventory;
+    }
+
+
+    /**
      * Parse denomination string into cashFloat
      * @param denomStr denomination string from Sales Screen
      */
