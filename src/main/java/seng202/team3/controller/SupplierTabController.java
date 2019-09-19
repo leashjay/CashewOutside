@@ -12,29 +12,38 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Supplier;
+import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierTabController
 
 {
 
+    private SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
     private static SupplierTabController instance;
 
     /**
-     * Holds an instance of the supp
+     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
      */
     public SupplierTabController(){
         instance = this;
     }
 
+    /**
+     * Returns an instance of the SupplierTabController so other controller classes can use its methods
+     * @return an instance of the SupplierTabController class
+     */
     public static SupplierTabController getInstance(){
         return instance;
     }
+
+
 
     @FXML
     private TableView<Supplier> supplierTable;
@@ -72,6 +81,9 @@ public class SupplierTabController
     @FXML
     private TableColumn<Supplier, Button> editButtonCol;
 
+    @FXML
+    private TableColumn<Supplier, Button> deleteButtonCol;
+
     public void initialize() {
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
@@ -92,7 +104,13 @@ public class SupplierTabController
             System.out.println("BUTTON CLICKED");
         }));
 
-        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", supplier -> {
+            supplierHandler.removeSupplier(supplier.getSid());
+            updateSupplierTable();
+            System.out.println("Delete BUTTON CLICKED");
+        }));
+
+        List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
         updateSupplierTable();
@@ -125,11 +143,21 @@ public class SupplierTabController
 
     }
 
+    public void openAddSupplierXMLScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/addsupplierxml.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Add supplier");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
     /**
      * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
      */
     public void updateSupplierTable(){
-        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
         System.out.println("Update supplier table called");
     }
