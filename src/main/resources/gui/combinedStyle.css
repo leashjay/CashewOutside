@@ -14,6 +14,13 @@
     -fx-background-color: Purple;
 }
 
+#menuItemGrid {
+    -fx-cell-size: 225, 200;
+    -fx-background-color: Green;
+    -fx-pref-width: 950;
+    -fx-pref-height: 600;
+}
+
 /*
 the style taken from tabStyle.css, will be used for the tab classes across the different screens
  */

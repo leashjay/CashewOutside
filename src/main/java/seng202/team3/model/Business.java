@@ -15,6 +15,7 @@ public class Business {
 
     public void Business(String ingredientsData, String menuData, String supplierData) throws Exception {
         thisTruck = new Truck();
+        salesManager = new SalesHandler();
     }
 
 
@@ -28,6 +29,8 @@ public class Business {
         menuManager = menuLoad.loadMenuData(fileName);
     }
 
-   
 
+    public SalesHandler getSalesManager() {
+        return salesManager;
+    }
 }
