@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE sales [
-        <!ENTITY version "V0.01 (C) seng202_team3">
+        <!ENTITY version "V0.01 (C) CashewOutside">
         <!ELEMENT sales (orders)>
         <!ELEMENT orders (order*)>
         <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>
@@ -22,7 +22,7 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-09-18" timeOrdered="14:20:43.746268">
+      <order dateOrdered="2019-09-19" timeOrdered="20:49:07.184022200">
          <orderId>1</orderId>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>320.0</orderCost>
@@ -32,7 +32,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-09-18" timeOrdered="14:20:43.748936">
+      <order dateOrdered="2019-09-19" timeOrdered="20:49:07.186018100">
          <orderId>2</orderId>
          <orderStatus>COOKING</orderStatus>
          <orderCost>320.0</orderCost>

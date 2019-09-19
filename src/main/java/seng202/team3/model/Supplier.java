@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 
 
 @XmlRootElement(name = "supplier")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Supplier {
 
     public static final String UNKNOWN_URL = "Null";

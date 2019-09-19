@@ -7,12 +7,21 @@ import seng202.team3.model.SalesHandler;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
+import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+
+/**
+ * JAXB parser for sales record
+ */
 public class SalesLoader {
 
+    /**
+     * DTD for sales XML file
+     */
     private static final String XML_HEADER = "\n<!DOCTYPE sales [\n" +
-            "        <!ENTITY version \"V0.01 (C) seng202_team3\">\n" +
+            "        <!ENTITY version \"V0.01 (C) CashewOutside\">\n" +
             "        <!ELEMENT sales (orders)>\n" +
             "        <!ELEMENT orders (order*)>\n" +
             "        <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
@@ -32,10 +41,15 @@ public class SalesLoader {
             "        <!ELEMENT name (#PCDATA)>\n" +
             "        ]>";
 
+    /** Instance of JAXB context */
     private final JAXBContext context;
 
+    /** Set of elements to be added to XML file */
     private final ObjectGraph salesInfo;
 
+    /**
+     * Constructor for SalesLoader
+     */
     public SalesLoader() throws Exception {
         context = JAXBContext.newInstance(SalesHandler.class);
 
@@ -52,7 +66,17 @@ public class SalesLoader {
         itemsOrdered.addSubgraph("name");
     }
 
+    /**
+     * Import sales data from sales XML file
+     * @param fileName path to sales XML file
+     * @return Instance of SalesHandler
+     */
     public SalesHandler loadSalesData(String fileName) throws Exception {
+        try {
+            validateXmlFile(fileName);
+        } catch (ParserConfigurationException pce) {
+            String errorMessage = pce.getMessage();
+        }
         Unmarshaller unmarshaller = context.createUnmarshaller();
         unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
         InputStream inputStream = new FileInputStream(new File(fileName));
@@ -60,7 +84,13 @@ public class SalesLoader {
     }
 
 
-    public void exportIngredientsData(String fileName, SalesHandler salesLoad) throws Exception {
+    /**
+     * Export sales data to sales XML file
+     *
+     * @param fileName  path to sales XML file
+     * @param salesLoad instance of SalesHandler to be loaded
+     */
+    public void exportSalesData(String fileName, SalesHandler salesLoad) throws Exception {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(MarshallerProperties.OBJECT_GRAPH, salesInfo);

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import seng202.team3.model.Business;
 
 import java.io.IOException;
 
@@ -12,6 +13,19 @@ import java.io.IOException;
 public class BusinessApp extends Application {
 
     private static Stage primaryStage;
+    private static Business business;
+
+    private static final String ingredientsXML = "./resources/data/Ingredients.xml";
+    private static final String menuXML = "./resources/data/SampleMenu.xml";
+    private static final String suppliersXML = "./resources/data/Suppliers.xml";
+
+    static {
+        try {
+            business = new Business(ingredientsXML, menuXML, suppliersXML);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void start(Stage pStage) throws IOException {
@@ -46,6 +60,14 @@ public class BusinessApp extends Application {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/kitchen.fxml"));
         primaryStage.setTitle("ManagementController Page");
         primaryStage.setScene(new Scene(root, 1000, 800));
+    }
+
+    /**
+     * Gets the singular business
+     * @return the singular business which can be used to access handlers.
+     */
+    public static Business getBusiness(){
+        return business;
     }
 
 

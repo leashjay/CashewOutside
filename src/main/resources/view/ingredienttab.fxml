@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.IngredientTabController">
+    <children>
+        <TableView fx:id="ingredientTable" layoutX="6.0" layoutY="7.0" prefHeight="325.0" prefWidth="993.0">
+            <columns>
+                <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
+                <TableColumn fx:id="quantityCol" prefWidth="150.0" text="Quantity" />
+                <TableColumn fx:id="unitTypeCol" prefWidth="150.0" text="Unit type" />
+                <TableColumn fx:id="costPerUnitCol" prefWidth="100.0" text="Cost per unit" />
+                <TableColumn fx:id="glutenFreeCol" prefWidth="100.0" text="GlutenFree" />
+                <TableColumn fx:id="vegetarianCol" prefWidth="100.0" text="Vegetarian" />
+                <TableColumn fx:id="veganCol" prefWidth="100.0" text="Vegan" />
+                <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
+            </columns>
+        </TableView>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Text layoutX="130.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the inventory!" />
-   </children>
+    </children>
 </AnchorPane>

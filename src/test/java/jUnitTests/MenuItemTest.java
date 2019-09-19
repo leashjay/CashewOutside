@@ -4,10 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
-import seng202.team3.model.Supplier;
 import seng202.team3.util.ItemType;
-import seng202.team3.util.PhoneType;
-import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
 import java.util.HashMap;
@@ -24,15 +21,11 @@ public class MenuItemTest {
     private MenuItem friedRice;
 
     @Before
-    public void setup(){
-        rice = new Ingredient("1", "Rice", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.001f);
-        carrot = new Ingredient("2", "Carrot", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        peas = new Ingredient("3", "Peas", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        egg = new Ingredient("4", "Rice", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 1f);
+    public void setup() {
+        rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
+        carrot = new Ingredient("2", "Carrot", 2f, UnitType.COUNT, 0.01f);
+        peas = new Ingredient("3", "Peas", 3f, UnitType.GRAM, 0.01f);
+        egg = new Ingredient("4", "Rice", 4f, UnitType.GRAM, 1f);
 
         friedRiceIngredients = new HashMap<>();
         friedRiceIngredients.put(rice, 200f);
