@@ -108,4 +108,11 @@ public class SupplierTabController
         }
 
     }
+
+    /**
+     * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
+     */
+    public void addSupplier(){
+        System.out.println("ADD Supplier button clicked");
+    }
 }
