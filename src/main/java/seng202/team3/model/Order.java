@@ -207,5 +207,9 @@ public class Order {
     public OrderStatus getStatus() {
         return this.orderStatus;
     }
+
+    public ArrayList<MenuItem> getItemsOrdered() {
+        return this.itemsOrdered;
+    }
 }
 
