@@ -101,11 +101,18 @@ public class SupplierTabController
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle("Add supplier");
-            stage.setScene(new Scene(root, 400, 400));
+            stage.setScene(new Scene(root, 350, 500));
             stage.show();
         } catch (IOException e){
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
+     */
+    public void addSupplier(){
+        System.out.println("ADD Supplier button clicked");
     }
 }
