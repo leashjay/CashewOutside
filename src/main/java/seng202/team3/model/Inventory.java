@@ -15,7 +15,7 @@ import java.util.Map;
  * Holds information about the inventory
  */
 @XmlRootElement(name = "inventory")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Inventory {
 
     /**
@@ -24,29 +24,19 @@ public class Inventory {
     @XmlElement
     private String description;
 
-    /**
-     * List of ingredients in the inventory
-     */
+    /** List of ingredients in the inventory */
     @XmlElement(name = "ingredients")
     @XmlJavaTypeAdapter(IngredientAdapter.class)
     private HashMap<String, Ingredient> ingredients;
 
-    /**
-     * A number that indicates that an ingredient with the unit type COUNT has low stock
-     */
+    /** A number that indicates that an ingredient with the unit type COUNT has low stock */
     // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
-    @XmlTransient
     private Float lowStockCount = 10f;
 
-    /**
-     * A number that indicates that an ingredient with the unit type GRAMS has low stock
-     */
-    @XmlTransient
+    /** A number that indicates that an ingredient with the unit type GRAMS has low stock */
     private Float lowStockGrams = 1000f;
 
-    /**
-     * A number that indicates that an ingredient with the unit type ML has low stock
-     */
+    /** A number that indicates that an ingredient with the unit type ML has low stock */
     @XmlTransient
     private Float lowStockML = 1000f;
 
@@ -69,7 +59,6 @@ public class Inventory {
 
     /**
      * Getter for inventory description
-     *
      * @return desc
      */
     public String getDesc() {
@@ -78,7 +67,6 @@ public class Inventory {
 
     /**
      * Getter for list of ingredients
-     *
      * @return ingredients
      */
     public HashMap<String, Ingredient> getIngredients() {
@@ -87,7 +75,6 @@ public class Inventory {
 
     /**
      * Removes an ingredient from the ingredients HashMap
-     *
      * @param removedIngredient The ingredient that's to be removed from the list
      */
     public void removeIngredient(String removedIngredient) {
@@ -96,7 +83,6 @@ public class Inventory {
 
     /**
      * Adds an ingredient to the ingredients HashMap
-     *
      * @param addedIngredient The ingredient that's to be added to the list
      */
     public void addIngredient(Ingredient addedIngredient) {
@@ -105,15 +91,13 @@ public class Inventory {
 
     /**
      * Adds Ingredients from an XML file to the ingredients HashMap
-     * CY: When loadIngredientsData is called, the stock will be automatically updated to ingredients HashMap (see InventoryLoaderTest)
-     *     hence we don't need to explicitly map that
      * @param file The path to the XML file that is being used
      */
     public void addIngredientsFromXML(String file) throws Exception {
         InventoryLoader inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
-        HashMap<String, Ingredient> newIngredients = inventory.getIngredients(); //redundant
-        ingredients.putAll(newIngredients); //redundant
+        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
+        ingredients.putAll(newIngredients);
     }
 
     /**

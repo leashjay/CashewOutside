@@ -26,9 +26,9 @@ public class InventoryTests {
         inventoryHashMap = new HashMap<>();
         inventory = new Inventory("I'm a description", inventoryHashMap);
 
-        BBun = new Ingredient("BBun", "Hamburger bun", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.NO, 10);
-        Cheese = new Ingredient("Cheese", "Cheddar cheese slice", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.NO, ThreeValueLogic.YES, 10);
-        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.NO, ThreeValueLogic.YES, 10);
+        BBun = new Ingredient("BBun", "Hamburger bun", 0f, UnitType.COUNT, 10);
+        Cheese = new Ingredient("Cheese", "Cheddar cheese slice", 0f, UnitType.COUNT, 10);
+        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", 0f, UnitType.ML, 10);
 
     }
 

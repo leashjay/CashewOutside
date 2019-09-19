@@ -82,7 +82,7 @@ public class InventoryLoaderTest {
 
     @Test
     public void testExportDBtoXML() throws Exception {
-        Ingredient newEntry = new Ingredient("Kimchi", "chikim", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.NO, ThreeValueLogic.UNKNOWN, (float) 1.2);
+        Ingredient newEntry = new Ingredient("Kimchi", "chikim", 3f, UnitType.GRAM, 1.2f);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
         testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml");
 

@@ -4,10 +4,7 @@ import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ import java.util.Map;
  */
 
 @XmlRootElement(name = "item")
+@XmlAccessorType(XmlAccessType.NONE)
 public class MenuItem {
 
     /**
@@ -34,20 +32,21 @@ public class MenuItem {
     @XmlElement
     private HashMap<Ingredient, Float> ingredients;
 
-    /** Type 0900of cuisine */
+    /**
+     * Type of cuisine
+     */
     @XmlAttribute(name = "type")
     private ItemType type;
 
-    @XmlTransient
+
     private ArrayList<ItemType> itemTypes;
 
-    @XmlTransient
+
     private UnitType foodType;
 
     /**
      * The price the business sells the item for
      */
-    @XmlTransient
     private float salePrice;
 
     /**
