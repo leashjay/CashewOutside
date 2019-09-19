@@ -3,9 +3,14 @@ package seng202.team3.parsing;
 import seng202.team3.model.SupplierHandler;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.util.ArrayList;
+
+import static seng202.team3.parsing.XMLValidation.validateXmlFile;
 
 /**
  * JAXB parser for supplierHandler
@@ -37,12 +42,18 @@ public class SuppliersLoader {
     /** SupplierHandler to be mapped */
     private SupplierHandler suppliersLoad;
 
+    /**
+     * errorMessage to be printed in output
+     */
+    public static ArrayList<String> errorMessage;
+
 
     /**
      * Constructor of SuppliersLoader
      */
     public SuppliersLoader() throws Exception {
         context = JAXBContext.newInstance(SupplierHandler.class);
+        errorMessage = new ArrayList<>();
     }
 
     /**
@@ -50,10 +61,21 @@ public class SuppliersLoader {
      * @param fileName path to suppliers XML file
      * @return instance of SupplierHandler
      */
-    public SupplierHandler loadSuppliersData(String fileName) throws Exception {
+    public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
+        errorMessage.clear();
+        try {
+            validateXmlFile(fileName);
+        } catch (ParserConfigurationException pce) {
+            errorMessage.add(pce.getMessage());
+        }
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
+
+        try {
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
+        } catch (FileNotFoundException fnfe) {
+            errorMessage.add(fnfe.getMessage());
+        }
         return suppliersLoad;
     }
 
@@ -70,6 +92,7 @@ public class SuppliersLoader {
         marshaller.marshal(suppliersLoad, outputStream);
         outputStream.close();
     }
+
 }
 
 
