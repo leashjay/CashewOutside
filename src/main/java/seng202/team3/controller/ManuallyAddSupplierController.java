@@ -1,6 +1,9 @@
 package seng202.team3.controller;
 
+
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -11,6 +14,9 @@ import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
+
+import java.io.IOException;
+import java.rmi.server.LoaderHandler;
 
 public class ManuallyAddSupplierController {
 
@@ -50,7 +56,7 @@ public class ManuallyAddSupplierController {
     }
 
     //TODO Add input validation on this form
-    public void addSupplier(){
+    public void addSupplier() throws IOException {
         String id = idTextField.getText();
         String name = nameTextField.getText();
         String address = addressTextField.getText();
@@ -62,8 +68,22 @@ public class ManuallyAddSupplierController {
         Supplier newSupplier = new Supplier(id, name, address, phoneType, phoneNumber, email, url);
         supplierHandler.addSupplier(newSupplier);
         Stage stage = (Stage) addSupplierButton.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/suppliertab.fxml"));
+
+        //Todo implement this so adding updates the view of the controller.
+        SupplierTabController supplierTabController = loader.getController();
+        if(supplierTabController == null){
+            System.out.println("Controller IS NULL");
+        } else {
+            supplierTabController.updateSupplierTable();
+        }
+
         stage.close();
+
+
     }
+
 
 //    private boolean isInt(TextField input, String message){
 //        try{

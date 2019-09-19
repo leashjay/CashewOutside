@@ -104,7 +104,7 @@ public class SupplierTabController
             stage.setResizable(false);
             stage.setTitle("Add supplier");
             stage.setScene(new Scene(root, 350, 500));
-            stage.show();
+            stage.showAndWait();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -114,7 +114,9 @@ public class SupplierTabController
     /**
      * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
      */
-    public void addSupplier(){
-        System.out.println("ADD Supplier button clicked");
+
+
+    public void updateSupplierTable(){
+        supplierTable.refresh();
     }
 }
