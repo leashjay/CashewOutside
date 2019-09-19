@@ -22,7 +22,7 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-09-19" timeOrdered="15:26:59.398553">
+       <order dateOrdered="2019-09-19" timeOrdered="18:09:02.783185">
          <orderId>1</orderId>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>320.0</orderCost>
@@ -32,7 +32,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-09-19" timeOrdered="15:26:59.401666">
+       <order dateOrdered="2019-09-19" timeOrdered="18:09:02.785538">
          <orderId>2</orderId>
          <orderStatus>COOKING</orderStatus>
          <orderCost>320.0</orderCost>
