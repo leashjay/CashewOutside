@@ -32,7 +32,7 @@ public class IngredientTabController {
     private TableColumn<Ingredient, String> quantityCol;
 
     @FXML
-    private TableColumn<Ingredient, String> unitTypeCol;
+    private TableColumn<Ingredient, UnitType> unitTypeCol;
 
     @FXML
     private TableColumn<Ingredient, String> costPerUnitCol;
@@ -58,7 +58,7 @@ public class IngredientTabController {
         glutenFreeCol.setCellValueFactory(new PropertyValueFactory<>("isGlutenFree"));
         vegetarianCol.setCellValueFactory(new PropertyValueFactory<>("isVegetarian"));
         veganCol.setCellValueFactory(new PropertyValueFactory<>("isVegan"));
-
+        unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
 

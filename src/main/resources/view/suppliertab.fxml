@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SupplierTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SupplierTabController">
     <children>
-        <TableView fx:id="supplierTable" layoutX="14.0" layoutY="14.0" prefHeight="379.0" prefWidth="981.0">
-            <columns>
-                <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
-                <TableColumn fx:id="addressCol" prefWidth="150.0" text="Address" />
-                <TableColumn fx:id="emailCol" prefWidth="150.0" text="Email" />
-                <TableColumn fx:id="phoneNumberCol" prefWidth="100.0" text="Phone Number" />
-                <TableColumn fx:id="phoneTypeCol" prefWidth="100.0" text="Phone Type" />
-                <TableColumn fx:id="urlCol" prefWidth="150.0" text="URL" />
-                <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
-
-
-            </columns>
-        </TableView>
+      <GridPane layoutY="6.0" prefHeight="593.0" prefWidth="1000.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.6666666666667" minWidth="10.0" prefWidth="1000.6666666666667" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.33331298828125" minWidth="0.0" prefWidth="0.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="457.6666564941406" minHeight="10.0" prefHeight="457.6666564941406" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="290.33331298828125" minHeight="10.0" prefHeight="135.000010172526" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+              <TableView fx:id="supplierTable" prefHeight="198.0" prefWidth="592.0">
+                  <columns>
+                      <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
+                      <TableColumn fx:id="addressCol" prefWidth="158.6666717529297" text="Address" />
+                      <TableColumn fx:id="emailCol" prefWidth="141.33331298828125" text="Email" />
+                      <TableColumn fx:id="phoneNumberCol" prefWidth="100.0" text="Phone Number" />
+                      <TableColumn fx:id="phoneTypeCol" prefWidth="100.0" text="Phone Type" />
+                      <TableColumn fx:id="urlCol" prefWidth="150.0" text="URL" />
+                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
+      
+      
+                  </columns>
+              </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="addManuallyButton" onAction="#openAddSupplierScreen" mnemonicParsing="false" text="Add manually">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin></Button>
+                  <Button mnemonicParsing="false" text="Add from XML">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
     </children>
 </AnchorPane>
