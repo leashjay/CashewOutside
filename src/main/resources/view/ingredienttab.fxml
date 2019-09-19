@@ -4,34 +4,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="seng202.team3.controller.IngredientTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.IngredientTabController">
     <children>
-        <TableView layoutX="18.0" layoutY="37.0" prefHeight="325.0" prefWidth="552.0">
+        <TableView fx:id="ingredientTable" layoutX="18.0" layoutY="37.0" prefHeight="325.0" prefWidth="552.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="ID"/>
-                <TableColumn prefWidth="75.0" text="Name"/>
-               <TableColumn prefWidth="75.0" text="Test"/>
+                <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
+                <TableColumn fx:id="quantityCol" prefWidth="150.0" text="Quantity" />
+                <TableColumn fx:id="unitTypeCol" prefWidth="150.0" text="Unit type" />
+                <TableColumn fx:id="costPerUnitCol" prefWidth="100.0" text="Cost per unit" />
+                <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
             </columns>
         </TableView>
 
-<!--        <TableView fx:id="foodItemsTable" editable="true" prefWidth="957.0" stylesheets="@../gui/Styles.css">&ndash;&gt;-->
-        <!--                  <columnResizePolicy>-->
-        <!--                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />-->
-        <!--                  </columnResizePolicy>-->
-        <!--                  <columns>-->
-        <!--                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />-->
-        <!--                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />-->
-        <!--                      <TableColumn fx:id="addressCol" prefWidth="100.0" text="Address" />-->
-        <!--                      <TableColumn fx:id="emailCol" prefWidth="100.0" text="Email" />-->
-        <!--                      <TableColumn fx:id="phoneCol" prefWidth="100.0" text="Phone" />-->
-        <!--                      <TableColumn fx:id="urlCol" prefWidth="100.0" text="URL" />-->
-        <!--                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />-->
-        <!--                  </columns>-->
-        <!--               <VBox.margin>-->
-        <!--                  <Insets left="5.0" right="5.0" top="5.0" />-->
-        <!--               </VBox.margin>-->
-        <!--              </TableView>-->
+
     </children>
 </AnchorPane>

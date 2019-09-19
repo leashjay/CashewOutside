@@ -71,8 +71,8 @@ public class SupplierTabController
             System.out.println("BUTTON CLICKED");
         }));
 
-        List<Supplier> foodItems = createTestData(); // This would come from your real data however you access that.
-        supplierTable.setItems(FXCollections.observableArrayList(foodItems));
+        List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
+        supplierTable.setItems(FXCollections.observableArrayList(suppliers));
 
 
     }
