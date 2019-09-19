@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManuallyAddIngredientController">
+   <children>
+      <GridPane prefHeight="500.0" prefWidth="350.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Ingredient" GridPane.columnSpan="3" GridPane.halignment="LEFT">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unit type" GridPane.columnSpan="2" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="idTextFIeld" promptText="Ingredient ID" GridPane.columnSpan="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="nameTextField" promptText="Ingredient name" GridPane.columnSpan="3" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost per unit" GridPane.columnSpan="2" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="costTextField" promptText="Ingredient cost per unit" GridPane.columnSpan="3" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <CheckBox fx:id="glutenFreeCheckBox" mnemonicParsing="false" text="Gluten Free" GridPane.halignment="LEFT" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox fx:id="vegetarianCheckBox" mnemonicParsing="false" text="Vegetarian" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets right="5.0" />
+               </GridPane.margin></CheckBox>
+            <CheckBox fx:id="veganCheckBox" mnemonicParsing="false" text="Vegan" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </CheckBox>
+            <ChoiceBox fx:id="unitTypeChoiceBox" prefWidth="150.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ChoiceBox>
+            <Button fx:id="addButton" alignment="CENTER" mnemonicParsing="false" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="closeButton" mnemonicParsing="false" text="Close" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

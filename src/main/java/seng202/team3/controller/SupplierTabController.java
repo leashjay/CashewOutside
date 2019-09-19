@@ -43,6 +43,8 @@ public class SupplierTabController
         return instance;
     }
 
+
+
     @FXML
     private TableView<Supplier> supplierTable;
 
