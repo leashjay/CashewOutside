@@ -61,9 +61,9 @@ public class SalesController {
      * This method is called automatically by the FXMLLoader
      */
     public void initialize() {
-        business = new Business();
+//        business = new Business();
         curOrder = new Order();
-        salesManager = business.getSalesManager();
+        salesManager = business.getSalesHandler();
 
         ArrayList<MenuItem> foodMenuItems = new ArrayList<>(); //getFoodItems();
 //         Test Code
