@@ -7,7 +7,10 @@ import seng202.team3.model.SalesHandler;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+
+import static seng202.team3.parsing.XMLValidation.validateXmlFile;
 
 /**
  * JAXB parser for sales record
@@ -69,6 +72,11 @@ public class SalesLoader {
      * @return Instance of SalesHandler
      */
     public SalesHandler loadSalesData(String fileName) throws Exception {
+        try {
+            validateXmlFile(fileName);
+        } catch (ParserConfigurationException pce) {
+            String errorMessage = pce.getMessage();
+        }
         Unmarshaller unmarshaller = context.createUnmarshaller();
         unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
         InputStream inputStream = new FileInputStream(new File(fileName));

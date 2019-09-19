@@ -1,12 +1,16 @@
 package seng202.team3.parsing;
 
+import org.xml.sax.SAXException;
 import seng202.team3.model.Menu;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+
+import static seng202.team3.parsing.XMLValidation.validateXmlFile;
 
 /**
  * JAXB parser for menu xml file
@@ -70,7 +74,12 @@ public class MenuLoader {
      * @param fileName path to menu XML file
      * @return instance of Menu class
      */
-    public Menu loadMenuData(String fileName) throws Exception {
+    public Menu loadMenuData(String fileName) throws IOException, SAXException, JAXBException {
+        try {
+            validateXmlFile(fileName);
+        } catch (ParserConfigurationException pce) {
+            String errorMessage = pce.getMessage();
+        }
         Unmarshaller unmarshaller = context.createUnmarshaller();
         InputStream inputStream = new FileInputStream(new File(fileName));
         menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
@@ -82,7 +91,7 @@ public class MenuLoader {
      *
      * @param fileName path to menu XML file
      */
-    public void exportMenuData(String fileName) throws Exception {
+    public void exportMenuData(String fileName) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

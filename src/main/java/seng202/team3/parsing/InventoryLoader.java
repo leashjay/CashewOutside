@@ -6,6 +6,7 @@ import seng202.team3.model.Inventory;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
@@ -55,22 +56,23 @@ public class InventoryLoader {
         errorHandler = new MyErrorHandler();
     }
 
-    public static void main(String arg[]) throws Exception {
-        InventoryLoader inventoryload = new InventoryLoader();
-        inventoryload.loadIngredientsData("./resources/data/testdata/Ingredients.xml");
-    }
-
     /**
      * Import ingredients from ingredient XML file
      * @param fileName path to ingredient XML file
      * @return instance of Inventory class
      */
-    public Inventory loadIngredientsData(String fileName) throws JAXBException, IOException, ParserConfigurationException, SAXException {
+    public Inventory loadIngredientsData(String fileName) throws IOException, SAXException, JAXBException {
         try {
             validateXmlFile(fileName);
         } catch (ParserConfigurationException pce) {
             String errorMessage = pce.getMessage();
         }
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        unmarshaller.setEventHandler(validationEvent -> false);
+
+        InputStream inputStream = new FileInputStream(new File(fileName));
+        inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
         return inventoryLoad;
     }
 
@@ -78,23 +80,13 @@ public class InventoryLoader {
      * Export ingredients to ingredient XML file
      * @param fileName path to ingredient XML filese.printStackTrace();
      */
-    public void exportIngredientsData(String fileName) throws Exception {
-        try {
-            Marshaller marshaller = context.createMarshaller();
-            OutputStream outputStream = new FileOutputStream(new File(fileName));
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.setProperty("com.sun.xml.bind.xmlHeaders", XML_HEADER);
-            marshaller.marshal(inventoryLoad, outputStream);
-            outputStream.close();
-        } catch (FileNotFoundException fnfe) {
-            System.err.println(fnfe);
-        } catch (JAXBException jaxbe) {
-            System.err.println(jaxbe);
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fileName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
+    public void exportIngredientsData(String fileName) throws IOException, JAXBException {
+        Marshaller marshaller = context.createMarshaller();
+        OutputStream outputStream = new FileOutputStream(new File(fileName));
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty("com.sun.xml.bind.xmlHeaders", XML_HEADER);
+        marshaller.marshal(inventoryLoad, outputStream);
+        outputStream.close();
     }
 
 }

@@ -7,7 +7,6 @@ import org.xml.sax.SAXParseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 public class XMLValidation {
 
@@ -24,7 +23,7 @@ public class XMLValidation {
         return parseExceptionInfo;
     }
 
-    public static void validateXmlFile(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public static void validateXmlFile(String fileName) throws ParserConfigurationException {
         DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
         domFactory.setValidating(true);
         DocumentBuilder builder = domFactory.newDocumentBuilder();
