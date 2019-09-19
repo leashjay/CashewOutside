@@ -23,6 +23,19 @@ public class SupplierTabController
 
 {
 
+    private static SupplierTabController instance;
+
+    /**
+     * Holds an instance of the supp
+     */
+    public SupplierTabController(){
+        instance = this;
+    }
+
+    public static SupplierTabController getInstance(){
+        return instance;
+    }
+
     @FXML
     private TableView<Supplier> supplierTable;
 
@@ -82,6 +95,7 @@ public class SupplierTabController
         List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
+        updateSupplierTable();
 
 
     }
@@ -114,9 +128,10 @@ public class SupplierTabController
     /**
      * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
      */
-
-
     public void updateSupplierTable(){
-        supplierTable.refresh();
+        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        supplierTable.setItems(FXCollections.observableArrayList(suppliers));
+        System.out.println("Update supplier table called");
     }
+
 }

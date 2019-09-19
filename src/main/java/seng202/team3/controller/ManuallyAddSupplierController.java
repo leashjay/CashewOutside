@@ -54,6 +54,7 @@ public class ManuallyAddSupplierController {
         phoneTypeChoiceBox.getItems().add(PhoneType.UNKNOWN);
 
         phoneTypeChoiceBox.setValue(PhoneType.UNKNOWN);
+
     }
 
     //TODO Add input validation on this form
@@ -70,15 +71,7 @@ public class ManuallyAddSupplierController {
         supplierHandler.addSupplier(newSupplier);
         Stage stage = (Stage) addSupplierButton.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/suppliertab.fxml"));
-
-        //Todo implement this so adding updates the view of the controller.
-        SupplierTabController supplierTabController = loader.getController();
-        if(supplierTabController == null){
-            System.out.println("Controller IS NULL");
-        } else {
-            supplierTabController.updateSupplierTable();
-        }
+        SupplierTabController.getInstance().updateSupplierTable();
 
         stage.close();
 
