@@ -8,8 +8,6 @@ import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
@@ -32,15 +30,6 @@ public class InventoryLoaderTest {
         fName = "./resources/data/Ingredients.xml";
         int numExpected = 30;
         String pathName = "";
-
-        try {
-            pathName = (new File(fName)).toURI().toURL().toString();
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
-
         testLoader = new InventoryLoader();
         testInventory = testLoader.loadIngredientsData(fName);
         ingredients = testInventory.getIngredients();

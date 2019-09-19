@@ -71,6 +71,28 @@ public class Ingredient {
     }
 
     /**
+     * Constructor for Ingredient class
+     *
+     * @param code    the code of the ingredient
+     * @param name    the name of the ingredient
+     * @param unit    the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
+     * @param isVeg   ThreeTypeLogic deciding if the ingredient is vegetarian
+     * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
+     * @param isGF    ThreeTypeLogic deciding if the ingredient is gluten free
+     */
+
+    public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
+                      ThreeValueLogic isGF, float cost) {
+        this.code = code;
+        this.name = name;
+        this.unit = unit;
+        this.isVeg = isVeg;
+        this.isVegan = isVegan;
+        this.isGF = isGF;
+        this.cost = cost;
+    }
+
+    /**
      * Getter for ingredient's short name
      * @return code
      */
