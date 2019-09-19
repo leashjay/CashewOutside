@@ -3,27 +3,20 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="seng202.team3.controller.SupplierTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SupplierTabController">
     <children>
-        <Text layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIERS"
-              wrappingWidth="121.74139404296875">
-            <font>
-                <Font size="19.0"/>
-            </font>
-        </Text>
-        <TableView layoutX="40.0" layoutY="100.0" prefHeight="200.0" prefWidth="468.0">
+        <TableView layoutX="14.0" layoutY="14.0" prefHeight="379.0" prefWidth="981.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="ID"/>
-                <TableColumn prefWidth="75.0" text="Name"/>
-                <TableColumn prefWidth="75.0" text="Address"/>
-                <TableColumn prefWidth="75.0" text="Email"/>
-                <TableColumn prefWidth="75.0" text="Phone"/>
-                <TableColumn prefWidth="75.0" text="URL"/>
+                <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
+                <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
+                <TableColumn fx:id="phoneNumberCol" prefWidth="75.0" text="Phone Number" />
+                <TableColumn fx:id="phoneTypeCol" prefWidth="75.0" text="Phone Type" />
+                <TableColumn fx:id="urlCol" prefWidth="75.0" text="URL" />
+                <TableColumn fx:id="editButtonCol" prefWidth="75.0" text="Edit" />
+
 
             </columns>
         </TableView>
