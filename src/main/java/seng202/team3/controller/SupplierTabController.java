@@ -61,6 +61,7 @@ public class SupplierTabController
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
         urlCol.setCellValueFactory(new PropertyValueFactory<>("Url"));
+        phoneTypeCol.setCellValueFactory(new PropertyValueFactory<>("phoneType"));
 
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {

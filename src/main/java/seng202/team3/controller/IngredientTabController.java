@@ -1,5 +1,6 @@
 package seng202.team3.controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Supplier;
+import seng202.team3.util.ItemType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
@@ -38,11 +40,26 @@ public class IngredientTabController {
     @FXML
     private TableColumn<Ingredient, Button> editButtonCol;
 
+    @FXML
+    private TableColumn<Ingredient, ThreeValueLogic> glutenFreeCol;
+
+    @FXML
+    private TableColumn<Ingredient, ThreeValueLogic> vegetarianCol;
+
+    @FXML
+    private TableColumn<Ingredient, ThreeValueLogic> veganCol;
+
     public void initialize() {
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
         idCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        glutenFreeCol.setCellValueFactory(new PropertyValueFactory<>("isGlutenFree"));
+        vegetarianCol.setCellValueFactory(new PropertyValueFactory<>("isVegetarian"));
+        veganCol.setCellValueFactory(new PropertyValueFactory<>("isVegan"));
+
+        costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {

@@ -19,9 +19,9 @@ public class IngredientTest {
         assertEquals(ingredient.getName(), "Pasta");
         assertEquals(ingredient.getUnit(), UnitType.COUNT);
         assertEquals(ingredient.getQuantity(), 12.1f);
-        assertEquals(ingredient.getIsVeg(), ThreeValueLogic.UNKNOWN);
+        assertEquals(ingredient.getIsVegetarian(), ThreeValueLogic.UNKNOWN);
         assertEquals(ingredient.getIsVegan(), ThreeValueLogic.UNKNOWN);
-        assertEquals(ingredient.getIsGF(), ThreeValueLogic.UNKNOWN);
+        assertEquals(ingredient.getIsGlutenFree(), ThreeValueLogic.UNKNOWN);
         assertEquals(ingredient.getCost(), 10f);
     }
 
