@@ -72,9 +72,6 @@ public class Menu {
         isActive = true;
     }
 
-    public MenuType getType() {
-        return menuType;
-    }
 
     /**
      * sets isActive to true
