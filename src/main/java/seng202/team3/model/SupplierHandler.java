@@ -3,6 +3,7 @@ package seng202.team3.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seng202.team3.parsing.SupplierAdapter;
+import seng202.team3.parsing.SuppliersLoader;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +19,7 @@ import java.util.Map;
  */
 
 @XmlRootElement(name = "suppliers")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class SupplierHandler {
 
     /**
@@ -26,10 +27,12 @@ public class SupplierHandler {
      */
     @XmlElement(name = "description")
     private String descriptionOfXMLData;
+
     /**
      * Holds the history of the businesses orders
      */
     private ArrayList orderHistory = new ArrayList<SupplierOrder>();
+
     /**
      * List of suppliers
      */
@@ -98,6 +101,19 @@ public class SupplierHandler {
      */
     public void addSupplier(Supplier supplierToBeAdded) {
         suppliers.put(supplierToBeAdded.getSid(), supplierToBeAdded);
+    }
+
+    /**
+     * Adds suppliers from an XML file to the suppliers HashMap
+     *
+     * @param file path to supplier XML file
+     * @throws Exception
+     */
+    public void addSupplierFromXML(String file) throws Exception {
+        SuppliersLoader suppliersLoader = new SuppliersLoader();
+        SupplierHandler supplierHandler = suppliersLoader.loadSuppliersData(file);
+        HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();
+        suppliers.putAll(newSuppliers);
     }
 
     /**
