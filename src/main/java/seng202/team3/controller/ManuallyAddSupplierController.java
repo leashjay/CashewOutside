@@ -22,7 +22,6 @@ public class ManuallyAddSupplierController {
 
     SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
 
-
     @FXML
     TextField idTextField;
 
@@ -58,6 +57,11 @@ public class ManuallyAddSupplierController {
     }
 
     //TODO Add input validation on this form
+
+    /**
+     * Method that adds a supplier using the data that the user has given
+     * @throws IOException
+     */
     public void addSupplier() throws IOException {
         String id = idTextField.getText();
         String name = nameTextField.getText();

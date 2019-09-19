@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Supplier;
+import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
@@ -23,15 +24,20 @@ public class SupplierTabController
 
 {
 
+    private SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
     private static SupplierTabController instance;
 
     /**
-     * Holds an instance of the supp
+     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
      */
     public SupplierTabController(){
         instance = this;
     }
 
+    /**
+     * Returns an instance of the SupplierTabController so other controller classes can use its methods
+     * @return an instance of the SupplierTabController class
+     */
     public static SupplierTabController getInstance(){
         return instance;
     }
@@ -72,6 +78,9 @@ public class SupplierTabController
     @FXML
     private TableColumn<Supplier, Button> editButtonCol;
 
+    @FXML
+    private TableColumn<Supplier, Button> deleteButtonCol;
+
     public void initialize() {
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
@@ -90,6 +99,12 @@ public class SupplierTabController
             //foodItem.setGlutenFree(!foodItem.isGlutenFree());
             //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
             System.out.println("BUTTON CLICKED");
+        }));
+
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", supplier -> {
+            supplierHandler.removeSupplier(supplier.getSid());
+            updateSupplierTable();
+            System.out.println("Delete BUTTON CLICKED");
         }));
 
         List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();

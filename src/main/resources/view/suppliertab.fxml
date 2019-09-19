@@ -24,7 +24,7 @@
          <children>
               <TableView fx:id="supplierTable" prefHeight="198.0" prefWidth="592.0">
                   <columns>
-                      <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
                       <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
                       <TableColumn fx:id="addressCol" prefWidth="158.6666717529297" text="Address" />
                       <TableColumn fx:id="emailCol" prefWidth="141.33331298828125" text="Email" />
@@ -32,6 +32,7 @@
                       <TableColumn fx:id="phoneTypeCol" prefWidth="100.0" text="Phone Type" />
                       <TableColumn fx:id="urlCol" prefWidth="150.0" text="URL" />
                       <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
+                      <TableColumn fx:id="deleteButtonCol" prefWidth="50.0" text="Delete" />
       
       
                   </columns>
