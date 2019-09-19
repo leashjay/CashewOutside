@@ -22,6 +22,7 @@ public class ManuallyAddSupplierController {
 
     SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
 
+
     @FXML
     TextField idTextField;
 

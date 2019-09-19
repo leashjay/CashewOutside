@@ -27,6 +27,8 @@ public class MenuTest {
 
     @Before
     public void setup() {
+
+        menuContents = new HashMap<String, MenuItem>();
         rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
         riceStuff = new HashMap<>();
         riceStuff.put(rice, 200f);
@@ -37,11 +39,13 @@ public class MenuTest {
         wingsStuff = new HashMap<>();
         wingsStuff.put(wings, 6f);
         justWings = new MenuItem("12", "Wings", wingsStuff, ItemType.GRILL);
+
+        notOnlyRice = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
     }
 
     @Test
     public void menuCreationTest() {
-            notOnlyRice = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
+
             assertEquals(notOnlyRice.getTitle(), "Not Only Rice");
             assertEquals(notOnlyRice.getDesc(), "More than rice");
             assertEquals(notOnlyRice.getMenuType(), MenuType.FESTIVAL);
