@@ -21,7 +21,7 @@ public class MenuItemTest {
     private MenuItem friedRice;
 
     @Before
-    public void setup(){
+    public void setup() {
         rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
         carrot = new Ingredient("2", "Carrot", 2f, UnitType.COUNT, 0.01f);
         peas = new Ingredient("3", "Peas", 3f, UnitType.GRAM, 0.01f);
