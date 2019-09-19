@@ -1,7 +1,6 @@
 package seng202.team3.controller;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +14,7 @@ import javafx.stage.Stage;
 import seng202.team3.model.Supplier;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
 import java.util.List;
@@ -79,13 +79,15 @@ public class SupplierTabController
             System.out.println("BUTTON CLICKED");
         }));
 
-        List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
+        List<Supplier> suppliers = BusinessApp.getBusiness().getSupplierHandler().getSuppliersAsObservableList();
+        //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
 
 
     }
 
     private List<Supplier> createTestData() {
+
         return List.of(
                 new Supplier("1", "Countdown", "52 Church Corner", PhoneType.WORK, "9593145", "countdown@gmail.com", "www.countdown.com"),
                 new Supplier("2", "Pak n Save", "20 Riccarton Road", PhoneType.WORK, "89137841", "paknsave@gmail.com", "www.paknsave.com"),
