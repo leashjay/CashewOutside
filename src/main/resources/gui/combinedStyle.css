@@ -1,5 +1,6 @@
 #backButton {
-    -fx-background-color: #b2060b;
+    -fx-background-color: #006b7b;
+    -fx-text-fill: #ffffff;
 }
 
 #foodButton {
@@ -10,13 +11,9 @@
     -fx-background-color: #4dabff;
 }
 
-#manageButton {
-    -fx-background-color: Purple;
-}
-
 #menuItemGrid {
     -fx-cell-size: 225, 200;
-    -fx-background-color: Green;
+    -fx-background-color: #bdbdbd;
     -fx-pref-width: 950;
     -fx-pref-height: 600;
 }
@@ -39,11 +36,11 @@ the style taken from tabStyle.css, will be used for the tab classes across the d
 .tab {
     -fx-font-family: Helvetica;
     -fx-font-size: 18;
-    -fx-background-color: grey;
+    -fx-background-color: #00e8ff;
 }
 
 .tab:selected {
-    -fx-background-color: lightyellow;
+    -fx-background-color: #8ec9ff;
 }
 
 /*
@@ -51,7 +48,7 @@ some other general style stuff
  */
 
 .root {
-    -fx-background-color: transparent;
+    /*-fx-background-color: transparent;*/
     -fx-alignment: centre;
     -fx-font-size: 12pt;
 }

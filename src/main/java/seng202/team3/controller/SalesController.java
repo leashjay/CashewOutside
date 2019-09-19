@@ -10,10 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import seng202.team3.model.Business;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
@@ -31,6 +28,9 @@ public class SalesController {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private HBox currentOrderHBox;
 
     @FXML
     private GridPane foodItemGrid;
@@ -61,23 +61,18 @@ public class SalesController {
      * This method is called automatically by the FXMLLoader
      */
     public void initialize() {
-//        business = new Business();
+
+        business = BusinessApp.getBusiness();
         curOrder = new Order();
         salesManager = business.getSalesHandler();
 
-        ArrayList<MenuItem> foodMenuItems = new ArrayList<>(); //getFoodItems();
-//         Test Code
-        for (int i = 0; i < 30; i++) {
-            MenuItem itemToAdd = new MenuItem(String.valueOf(i), "Hot_Chocolate", null, null);
-            foodMenuItems.add(itemToAdd);
-        }
+        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem();
 
-//         End Test Code
         ArrayList<MenuItem> drinkMenuItems = new ArrayList<>(); //getDrinkItems();
         setUpGridPane(foodItemGrid);
         setUpGridPane(drinkItemGrid);
         addMenuItemButtonsToGridPane(foodMenuItems, foodItemGrid);
-        addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
+//        addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
     }
 
     /**
@@ -107,7 +102,7 @@ public class SalesController {
      * @param gridPane the GridPane to add the buttons to
      */
 
-    private void addMenuItemButtonsToGridPane(ArrayList<MenuItem> menuItems, GridPane gridPane) {
+    private void addMenuItemButtonsToGridPane(HashMap<String, MenuItem> menuItems, GridPane gridPane) {
 
         final int numChildrenAtStart = gridPane.getChildren().size();
         final int numColumnsAtStart = gridPane.getColumnCount();
@@ -115,18 +110,21 @@ public class SalesController {
         int row = numChildrenAtStart / numColumnsAtStart; // Java Integer Division, so floors the result
         int column = numChildrenAtStart % numColumnsAtStart;
 
-        for (MenuItem menuItem : menuItems) {
+        for (MenuItem menuItem : menuItems.values()) {
             Button newButton = new Button();
-            // TODO Find out how to set this button's style to foodBtnStyle.css
+            // TODO Find out how to set this button's style to combinedStyle.css #foodButton
             // TODO Have the buttons display their flags (gf, veg, vegan)
             // TODO Format GridPane properly.
 
             newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
-                    "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #f4d03f;-fx-wrap-text: true;");
+                    "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
+
             newButton.setPadding(gridPadding); // This line maybe irrelevant, unsure right now.
             GridPane.setConstraints(newButton, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
             newButton.setText(menuItem.getName());
-            newButton.setOnAction(e -> curOrder.addToOrder(menuItem)); // lambda function
+            newButton.setOnAction(e -> {
+                addToCurrentOrder(menuItem);
+            }); // lambda function
             gridPane.add(newButton, column, row);
 
             column++;
@@ -136,6 +134,11 @@ public class SalesController {
                 setUpNewRow(row, gridPane);
             }
         }
+    }
+
+    private void addToCurrentOrder(MenuItem menuItem) {
+        curOrder.addToOrder(menuItem);
+        currentOrderHBox.getChildren().add(new MenuItemNode(menuItem));
     }
 
     /**
