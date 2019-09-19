@@ -51,7 +51,7 @@ public class SalesLoaderTest {
     public void testExportSalesXML() throws Exception {
         fName = "./resources/data/testdata/testSale.xml";
         testLoader = new SalesLoader();
-        testLoader.exportIngredientsData(fName, testSales);
+        testLoader.exportSalesData(fName, testSales);
 
         SalesHandler handler = testLoader.loadSalesData("./resources/data/testdata/testSale.xml");
 

@@ -1,6 +1,5 @@
 package seng202.team3.parsing;
 
-import javafx.collections.ObservableList;
 import seng202.team3.model.Supplier;
 import seng202.team3.wrapper.Suppliers;
 
@@ -9,8 +8,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Adapter to map Array of suppliers to HashMap and vice versa
+ */
 public class SupplierAdapter extends XmlAdapter<Suppliers, Map<String, Supplier>> {
 
+    /**
+     * Converting array of suppliers to HashMap
+     *
+     * @param value Array of suppliers from wrapper class
+     * @return HashMap of suppliers
+     */
     @Override
     public Map<String, Supplier> unmarshal(Suppliers value) throws Exception {
         Map<String, Supplier> map = new HashMap<String, Supplier>();
@@ -19,6 +27,11 @@ public class SupplierAdapter extends XmlAdapter<Suppliers, Map<String, Supplier>
         return map;
     }
 
+    /**
+     * Converting HashMap of suppliers to Array
+     * @param map HashMap of suppliers
+     * @return Array of suppliers
+     */
     @Override
     public Suppliers marshal(Map<String, Supplier> map) throws Exception {
         Suppliers supplierCont = new Suppliers();
