@@ -203,7 +203,9 @@ public class Order {
         }
         return cost;
     }
-
+    public ArrayList<MenuItem> getOrderedItems() {
+        return this.itemsOrdered;
+    }
     public OrderStatus getStatus() {
         return this.orderStatus;
     }
