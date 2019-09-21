@@ -2,11 +2,14 @@ package jUnitTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import seng202.team3.model.Business;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,11 +127,15 @@ public class InventoryTests {
      * Tests if the method to add ingredients from an XML file is working
      */
     @Test
-    public void testAddIngredientFromXML() throws Exception {
-        assertEquals(0, inventory.getIngredients().size());
-        inventory.addIngredientsFromXML("./resources/data/Ingredients.xml");
-        assertEquals(30, inventory.getIngredients().size());
-        assertTrue(inventory.getIngredients().keySet().contains("BBun"));
+    public void testAddIngredientFromXML() throws JAXBException {
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        Inventory testInventory = testBusiness.getTruck().getInventory();
+        assertEquals(30, testInventory.getIngredients().size());
+
+
+        testInventory.addIngredientsFromXML("./resources/data/testdata/testIngredients1.xml");
+        assertEquals(31, testInventory.getIngredients().size());
+        assertTrue(testInventory.getIngredients().keySet().contains("OSauce"));
     }
 }
 

@@ -114,7 +114,7 @@
       <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
          <code>Onion</code>
          <name>Diced onion</name>
-         <quantity>0.0</quantity>
+         <quantity>12.5</quantity>
       </ingredient>
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="15.9">
          <code>Brandy</code>

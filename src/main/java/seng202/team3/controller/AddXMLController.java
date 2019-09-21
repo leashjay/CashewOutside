@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seng202.team3.model.Inventory;
+import seng202.team3.model.Menu;
 import seng202.team3.model.SupplierHandler;
 import seng202.team3.view.BusinessApp;
 
@@ -19,6 +20,8 @@ public class AddXMLController {
     private SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
 
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+    private Menu menu = BusinessApp.getBusiness().getMenuManager();
 
     private FileChooser fileChooser = new FileChooser();
 
@@ -53,7 +56,7 @@ public class AddXMLController {
 
 
     /**
-     * Called by importFromSuppplierXML Button to load SupplierXML into database
+     * Called by importSuppplierXMLButton to load SupplierXML into database
      */
     public void addSupplierXML(){
         try {
@@ -68,6 +71,9 @@ public class AddXMLController {
         SupplierTabController.getInstance().updateSupplierTable();
     }
 
+    /**
+     * Called by importIngredientXMLButton to load Ingredient XML into database
+     */
     public void addIngredientXML() {
         try {
             inventory.addIngredientsFromXML(fileString);
@@ -81,7 +87,30 @@ public class AddXMLController {
         IngredientTabController.getInstance().updateIngredientTable();
     }
 
+    /**
+     * Called by importMenuItemXMLButton to load menu items into database
+     */
+    public void addMenuItemXML() {
+        try {
+            menu.addMenuItemFromXML(fileString);
+        } catch (JAXBException jaxbe) {
+            errorMessageList.add(jaxbe.getMessage());
+        }
 
+        showErrorMessage(fileString);
+
+        //TODO: link menu item tab with menuitemxml screen
+        //stage = (Stage) importIngredientXMLButton.getScene().getWindow();
+        //IngredientTabController.getInstance().updateIngredientTable();
+    }
+
+
+    /**
+     * Compiles error message caught from exception handling in loader classes and return to end user.
+     * Clears the list of error message caught after the message is being compiled/ returned
+     *
+     * @param fileName path to XML file
+     */
     public void showErrorMessage(String fileName) {
         errorMessage = "";
         for (String message : errorMessageList) {
@@ -98,13 +127,15 @@ public class AddXMLController {
     }
 
 
+    /**
+     * Called by browseButton to open up a dialog for end user to choose file to import.
+     */
     public void browseButtonPressed() {
         fileChooser.setTitle("Select XML files");
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
-        }
-        else {
+        } else {
             pathString.setText("File selection cancelled.");
         }
 

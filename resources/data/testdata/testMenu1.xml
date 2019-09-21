@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE menu [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT menu (title, description, items)>
+        <!ELEMENT items (item*)>
+        <!ATTLIST menu
+                type CDATA #IMPLIED
+                >
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT item (id, name, ingredients)>
+        <!ATTLIST item
+                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED
+                serves CDATA "1"
+                >
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT ingredients (entry*)>
+        <!ELEMENT entry (key, value)>
+        <!ELEMENT key (code)>
+        <!ATTLIST key
+                unit (ML|GRAM|COUNT) #REQUIRED
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA "0"
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT value (#PCDATA)>
+        ]>
+<menu type="WINTER">
+    <title>Winter warmers</title>
+    <description>Sample menu: Things we sell in cold weather</description>
+    <items>
+        <item type="ASIAN">
+            <id>KS1</id>
+            <name>Kimchi Stew</name>
+            <ingredients>
+                <entry>
+                    <key unit="GRAM">
+                        <code>Kimchi</code>
+                    </key>
+                    <value>1</value>
+                </entry>
+            </ingredients>
+        </item>
+    </items>
+</menu>
