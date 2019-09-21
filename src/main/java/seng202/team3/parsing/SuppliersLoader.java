@@ -41,18 +41,12 @@ public class SuppliersLoader {
     /** SupplierHandler to be mapped */
     private SupplierHandler suppliersLoad;
 
-    /**
-     * errorMessage to be printed in output
-     */
-    public static ArrayList<String> errorMessage;
-
 
     /**
      * Constructor of SuppliersLoader
      */
     public SuppliersLoader() throws JAXBException {
         context = JAXBContext.newInstance(SupplierHandler.class);
-        errorMessage = new ArrayList<>();
     }
 
     /**
@@ -61,7 +55,6 @@ public class SuppliersLoader {
      * @return instance of SupplierHandler
      */
     public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
-        errorMessage.clear();
         try {
             validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {

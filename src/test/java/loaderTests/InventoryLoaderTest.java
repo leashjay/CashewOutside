@@ -1,4 +1,4 @@
-package jUnitTests;
+package loaderTests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -83,8 +83,6 @@ public class InventoryLoaderTest {
         ingredients = testInventory.getIngredients();
         assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }
-
-
 
 
 }

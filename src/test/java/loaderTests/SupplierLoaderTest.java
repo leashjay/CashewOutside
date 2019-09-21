@@ -1,4 +1,4 @@
-package jUnitTests;
+package loaderTests;
 
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -8,6 +8,7 @@ import seng202.team3.model.SupplierHandler;
 import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.PhoneType;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,19 +25,9 @@ public class SupplierLoaderTest {
      * previous tests have side-effects.
      */
     @Before
-    public void testLoadSupplierFile() throws Exception {
+    public void testLoadSupplierFile() throws JAXBException {
         String fName = "./resources/data/Suppliers.xml";
         int numExpected = 4;
-        String pathName = "";
-
-        try {
-            pathName = (new File(fName)).toURI().toURL().toString();
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
-
         testLoader = new SuppliersLoader();
         suppHandler = testLoader.loadSuppliersData(fName);
         suppsLoaded = suppHandler.getSuppliers();
@@ -62,11 +53,11 @@ public class SupplierLoaderTest {
         assertEquals("Loaded attribute", PhoneType.MOBILE, s.getPhoneType());
     }
 
+
+
     @Test
     public void testExportDBtoXML() throws Exception {
-        Supplier westfield = new Supplier();
-        westfield.setAddress("Somewhere riccarton road");
-        westfield.setName("Westfield");
+        Supplier westfield = new Supplier("s5", "Westfield", "Somewhere riccarton road", PhoneType.WORK, "023131", "westfield@gmail.com", "");
         suppsLoaded.put("Westfield", westfield);
         testLoader.exportSupplierData("./resources/data/testdata/testSupplier.xml");
 
@@ -78,5 +69,6 @@ public class SupplierLoaderTest {
         suppsLoaded = suppHandler.getSuppliers();
         assertEquals("All XML ingredients record should be added", 5, suppsLoaded.size());
     }
+
 }
 

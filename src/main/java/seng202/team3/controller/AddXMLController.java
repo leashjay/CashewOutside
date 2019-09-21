@@ -26,29 +26,29 @@ public class AddXMLController {
 
     private String fileString;
 
-    public static ArrayList<String> errorMessageList = new ArrayList<String>();
+    public static ArrayList<String> errorMessageList = new ArrayList<>();
 
     private String errorMessage;
 
-    private Stage stage;
+    Stage stage;
 
     @FXML
-    private Button browseButton;
+    Button browseButton;
 
     @FXML
-    private TextField pathString;
+    TextField pathString;
 
     @FXML
-    private Button importSupplierXMLButton;
+    Button importSupplierXMLButton;
 
     @FXML
-    private Button importIngredientXMLButton;
+    Button importIngredientXMLButton;
 
     @FXML
-    private Text feedbackMessage;
+    Text feedbackMessage;
 
     @FXML
-    private Button closeScreen;
+    Button closeScreen;
 
 
 
@@ -83,12 +83,13 @@ public class AddXMLController {
 
 
     public void showErrorMessage(String fileName) {
+        errorMessage = "";
         for (String message : errorMessageList) {
             errorMessage += message;
             errorMessage += " \n";
         }
 
-        if (errorMessage.length() == 0) {
+        if (errorMessage != null && errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
         } else {
             feedbackMessage.setText(errorMessage);
