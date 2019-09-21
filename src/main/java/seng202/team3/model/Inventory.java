@@ -5,6 +5,7 @@ import seng202.team3.parsing.IngredientAdapter;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
@@ -95,7 +96,7 @@ public class Inventory {
      * Adds Ingredients from an XML file to the ingredients HashMap
      * @param file The path to the XML file that is being used
      */
-    public void addIngredientsFromXML(String file) throws Exception {
+    public void addIngredientsFromXML(String file) throws JAXBException {
         InventoryLoader inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
         HashMap<String, Ingredient> newIngredients = inventory.getIngredients();

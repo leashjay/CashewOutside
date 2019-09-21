@@ -1,0 +1,123 @@
+package seng202.team3.controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import seng202.team3.model.Inventory;
+import seng202.team3.model.SupplierHandler;
+import seng202.team3.view.BusinessApp;
+
+import javax.xml.bind.JAXBException;
+import java.io.File;
+import java.util.ArrayList;
+
+public class AddXMLController {
+
+    private SupplierHandler supplierHandler = BusinessApp.getBusiness().getSupplierHandler();
+
+    private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+    private FileChooser fileChooser = new FileChooser();
+
+    private File selectedFile;
+
+    private String fileString;
+
+    public static ArrayList<String> errorMessageList = new ArrayList<String>();
+
+    private String errorMessage;
+
+    private Stage stage;
+
+    @FXML
+    private Button browseButton;
+
+    @FXML
+    private TextField pathString;
+
+    @FXML
+    private Button importSupplierXMLButton;
+
+    @FXML
+    private Button importIngredientXMLButton;
+
+    @FXML
+    private Text feedbackMessage;
+
+    @FXML
+    private Button closeScreen;
+
+
+
+    /**
+     * Called by importFromSuppplierXML Button to load SupplierXML into database
+     */
+    public void addSupplierXML(){
+        try {
+            supplierHandler.addSupplierFromXML(fileString);
+        } catch (JAXBException jaxbe) {
+            errorMessageList.add(jaxbe.getMessage());
+        }
+
+        showErrorMessage(fileString);
+
+        stage = (Stage) importSupplierXMLButton.getScene().getWindow();
+        SupplierTabController.getInstance().updateSupplierTable();
+    }
+
+    public void addIngredientXML() {
+        try {
+            inventory.addIngredientsFromXML(fileString);
+        } catch (JAXBException jaxbe) {
+            errorMessageList.add(jaxbe.getMessage());
+        }
+
+        showErrorMessage(fileString);
+
+        stage = (Stage) importIngredientXMLButton.getScene().getWindow();
+        IngredientTabController.getInstance().updateIngredientTable();
+    }
+
+
+    public void showErrorMessage(String fileName) {
+        for (String message : errorMessageList) {
+            errorMessage += message;
+            errorMessage += " \n";
+        }
+
+        if (errorMessage.length() == 0) {
+            feedbackMessage.setText("Import from " + fileName + " is a success!");
+        } else {
+            feedbackMessage.setText(errorMessage);
+            errorMessageList.clear();
+        }
+    }
+
+
+    public void browseButtonPressed() {
+        fileChooser.setTitle("Select XML files");
+        selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            pathString.setText("File selected: " + selectedFile.getName());
+        }
+        else {
+            pathString.setText("File selection cancelled.");
+        }
+
+        fileString = selectedFile.getPath();
+    }
+
+
+    /**
+     * Go back to Suppliers tab in Management screen
+     */
+    public void closeAddXMLScreen() {
+        stage.close();
+    }
+
+
+
+}

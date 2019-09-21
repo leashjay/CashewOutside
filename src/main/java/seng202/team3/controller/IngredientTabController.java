@@ -18,9 +18,11 @@ import seng202.team3.util.ItemType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientTabController {
@@ -127,6 +129,22 @@ public class IngredientTabController {
             e.printStackTrace();
         }
 
+    }
+
+    public void openAddIngredientXMLScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/addingredientxml.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Add supplier");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    public void updateIngredientTable(){
+        List<Ingredient> ingredients= new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+        ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
+        System.out.println("Update ingredient table called");
     }
 
 

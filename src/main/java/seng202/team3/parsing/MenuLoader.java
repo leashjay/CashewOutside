@@ -10,7 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
-import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 /**
  * JAXB parser for menu xml file
@@ -76,7 +76,7 @@ public class MenuLoader {
      */
     public Menu loadMenuData(String fileName) throws IOException, SAXException, JAXBException {
         try {
-            validateXmlFile(fileName);
+            validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
             String errorMessage = pce.getMessage();
         }

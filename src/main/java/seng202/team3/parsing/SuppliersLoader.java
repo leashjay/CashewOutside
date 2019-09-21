@@ -1,16 +1,15 @@
 package seng202.team3.parsing;
 
+import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.SupplierHandler;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
 
-import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 /**
  * JAXB parser for supplierHandler
@@ -51,7 +50,7 @@ public class SuppliersLoader {
     /**
      * Constructor of SuppliersLoader
      */
-    public SuppliersLoader() throws Exception {
+    public SuppliersLoader() throws JAXBException {
         context = JAXBContext.newInstance(SupplierHandler.class);
         errorMessage = new ArrayList<>();
     }
@@ -64,17 +63,22 @@ public class SuppliersLoader {
     public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
         errorMessage.clear();
         try {
-            validateXmlFile(fileName);
+            validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
-            errorMessage.add(pce.getMessage());
+            AddXMLController.errorMessageList.add(pce.getMessage());
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add(spe.getMessage());
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
         }
+
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
         try {
             InputStream inputStream = new FileInputStream(new File(fileName));
             suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
         } catch (FileNotFoundException fnfe) {
-            errorMessage.add(fnfe.getMessage());
+            AddXMLController.errorMessageList.add(fnfe.getMessage());
         }
         return suppliersLoad;
     }
