@@ -1,5 +1,5 @@
 #backButton {
-    -fx-background-color: #006b7b;
+    -fx-background-color: SteelBlue;
     -fx-text-fill: #ffffff;
 }
 
@@ -9,6 +9,11 @@
 
 #drinkButton {
     -fx-background-color: #4dabff;
+}
+
+#removeButton {
+    -fx-background-color: SteelBlue;
+    -fx-text-fill: #ffffff;
 }
 
 #menuItemGrid {

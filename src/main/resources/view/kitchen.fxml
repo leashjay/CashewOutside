@@ -2,12 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.KitchenController">
     <children>
@@ -15,7 +17,16 @@
             <children>
                 <VBox prefHeight="704.0" prefWidth="1000.0">
                     <children>
-                        <ScrollPane hbarPolicy="ALWAYS" pannable="true" prefHeight="169.0" prefWidth="1000.0">
+                  <AnchorPane prefHeight="47.0" prefWidth="1000.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="5.0" prefHeight="37.0" prefWidth="259.0" text="Orders">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                        <ScrollPane pannable="true" prefHeight="151.0" prefWidth="1000.0">
                             <content>
                                 <GridPane fx:id="orderGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0">
                                     <rowConstraints>
@@ -24,7 +35,14 @@
                                 </GridPane>
                             </content>
                         </ScrollPane>
-                        <AnchorPane prefHeight="31.0" prefWidth="1000.0" />
+                        <AnchorPane prefHeight="54.0" prefWidth="1000.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="37.0" prefWidth="318.0" text="Recipes">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
                         <ScrollPane prefHeight="222.0" prefWidth="1000.0">
                             <content>
                                 <GridPane fx:id="menuItemGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0">
@@ -36,9 +54,9 @@
                         </ScrollPane>
                         <AnchorPane prefHeight="86.0" prefWidth="1000.0">
                             <children>
-                                <Button fx:id="testButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#popFromOrderGrid" text="Remove Order" />
-                                <Button fx:id="backButton" layoutX="873.0" layoutY="17.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" text="Back" />
-                                <ComboBox fx:id="removeOrderCombo" layoutX="134.0" layoutY="14.0" prefWidth="150.0" />
+                                <Button fx:id="backButton" layoutX="873.0" layoutY="40.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Back" />
+                                <ComboBox fx:id="removeOrderCombo" layoutX="135.0" layoutY="40.0" prefWidth="150.0" />
+                        <Button fx:id="removeButton" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#popFromOrderGrid" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Remove" />
                             </children>
                         </AnchorPane>
                     </children>

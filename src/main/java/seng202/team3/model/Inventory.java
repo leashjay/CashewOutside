@@ -110,6 +110,10 @@ public class Inventory {
      */
     // Identifies ingredient to be replaced by getCode(), meaning you can't modify the code. better way of doing this?
     public void modifyIngredient(Ingredient modifiedIngredient) {
+//        if (ingredients.get(modifiedIngredient).getCost() != modifiedIngredient.getCost()) {
+//            Float newCost = ((ingredients.get(modifiedIngredient).getQuantity()*ingredients.get(modifiedIngredient).getCost()) + (modifiedIngredient.getQuantity()*modifiedIngredient.getCost())) / (modifiedIngredient.getQuantity() + ingredients.get(modifiedIngredient).getQuantity());
+//            modifiedIngredient.setCost(newCost);
+//        }
         ingredients.replace(modifiedIngredient.getCode(), modifiedIngredient);
     }
 
@@ -216,4 +220,3 @@ public class Inventory {
 
 
 }
-

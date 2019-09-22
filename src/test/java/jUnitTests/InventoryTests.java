@@ -61,6 +61,7 @@ public class InventoryTests {
 
         for (Map.Entry<String, Ingredient> entry : inventoryHashMap.entrySet()) {
             if (entry.getValue() == TrimMilk) {
+                System.out.println(entry.getValue().getIsVegan());
                 assertEquals(ThreeValueLogic.YES, entry.getValue().getIsVegan());
             }
         }
