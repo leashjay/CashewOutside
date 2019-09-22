@@ -1,15 +1,11 @@
 package seng202.team3.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
@@ -23,24 +19,45 @@ import java.util.*;
 
 public class KitchenController {
 
+    /**
+     * A button to return to the main screen
+     */
     @FXML
     private Button backButton;
 
+    /**
+     * A button that removes the the given order
+     */
     @FXML
-    private Button testButton;
+    private Button removeButton;
 
+    /**
+     * A combo box that selects the order to be removed
+     */
+    @FXML
+    private ComboBox removeOrderCombo;
+
+    /**
+     * A grid pane to hold the text areas that contain the orders
+     */
     @FXML
     private GridPane orderGridPane;
 
+    /**
+     * A grid pane to hold the text areas that contain the menu items and ingredients
+     */
     @FXML
     private GridPane menuItemGridPane;
 
-    @FXML
-    private TextField deleteTextField;
+    /**
+     * An ArrayList to store the menu items used in the current orders
+     */
+    public ArrayList<MenuItem> menuItems = new ArrayList<>();
 
-    public ArrayList<MenuItem> items = new ArrayList<>();
-
-    public ArrayList<Order> testArray = new ArrayList<>();
+    /**
+     * An ArrayList to store the current orders
+     */
+    public ArrayList<Order> orders = new ArrayList<>();
 
     /**
      * sends the user back to the main screen.;
@@ -48,30 +65,47 @@ public class KitchenController {
      * @throws IOException idk?
      */
     public void backButtonPressed() throws IOException {
-        System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
     }
 
+    /**
+     * Populates the menuItems ArrayList with the menu items used in the current orders
+     */
     public void createMenuItemsArray() {
-        items = new ArrayList<>();
-        for (Order order: testArray) {
+        menuItems = new ArrayList<>();
+        for (Order order: orders) {
             for (MenuItem item: order.getItemsOrdered()) {
-                if (items.contains(item) == false) {
-                    items.add(item);
+                if (menuItems.contains(item) == false) {
+                    menuItems.add(item);
                 }
             }
         }
     }
 
-
-    public void initialize() {
-        testArray.addAll(getOrders());
-        items = new ArrayList<>();
-        addOrderToGridPane(testArray, orderGridPane);
-        createMenuItemsArray();
-        addMenuToGridPane(items, menuItemGridPane);
+    /**
+     * Puts the order numbers into the combo box
+     */
+    public void createOrderComboBox() {
+        for (Order order: orders) {
+            removeOrderCombo.getItems().add(order.getOrderId());
+        }
     }
 
+    /**
+     * used to setup the buttons and etc in the scene.
+     * *IMPORTANT*
+     * This method is called automatically by the FXMLLoader
+     */
+    public void initialize() {
+        orders.addAll(getOrders());
+        menuItems = new ArrayList<>();
+        addOrderToGridPane();
+        createMenuItemsArray();
+        addMenuToGridPane();
+        createOrderComboBox();
+    }
+
+    //Just for testing
     private ArrayList<Order> getOrders() {
         Ingredient rice = new Ingredient("1", "Rice", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
                 ThreeValueLogic.YES, 0.001f);
@@ -121,26 +155,34 @@ public class KitchenController {
         return orders;
     }
 
+    /**
+     * Removes a text area containing an order from the orderGridPane. Called when the remove button is pressed
+     */
     public void popFromOrderGrid() {
-        String text = deleteTextField.getText();
-
-        List<Order> removed = new ArrayList<>();
-        for (Order ordered : testArray) {
-            if (ordered.getOrderId() == Integer.parseInt(text)) {
-                removed.add(ordered);
-                int index = testArray.indexOf(ordered);
-                System.out.println(index);
+        Object checkForNull = removeOrderCombo.getValue();
+        if (checkForNull != null) {
+            int orderNum = (Integer) removeOrderCombo.getSelectionModel().getSelectedItem();
+            List<Order> removed = new ArrayList<>();
+            for (Order ordered : orders) {
+                if (ordered.getOrderId() == orderNum) {
+                    removed.add(ordered);
+                    int index = orders.indexOf(ordered);
+                    removeOrderCombo.getItems().remove(index);
+                }
             }
+            orders.removeAll(removed);
+            addOrderToGridPane();
+            createMenuItemsArray();
+            addMenuToGridPane();
         }
-        testArray.removeAll(removed);
-        addOrderToGridPane(testArray, orderGridPane);
-        createMenuItemsArray();
-        addMenuToGridPane(items, menuItemGridPane);
     }
 
-    private void addMenuToGridPane(ArrayList<MenuItem> menuItems, GridPane gridPane) {
+    /**
+     * Adds a text area (containing a menu item and ingredients) to the menu item grid pane
+     */
+    private void addMenuToGridPane() {
         menuItemGridPane.getChildren().clear();
-        final int numColumnsAtStart = gridPane.getColumnCount();
+        final int numColumnsAtStart = menuItemGridPane.getColumnCount();
 
         int row = 0;
         int column = 0;
@@ -154,44 +196,53 @@ public class KitchenController {
                 ingredients.add(entry.getKey());
                 strings += "\n\n    " + entry.getKey().getName() + "\n    Quantity: " + entry.getValue();
             }
-            TextArea text = new TextArea();
-            text.setEditable(false);
+            TextFlow text = new TextFlow();
             text.setPrefHeight(200);
             text.setPrefWidth(150);
-            text.setText(strings);
-            gridPane.add(text, column, row);
+            text.getChildren().add(new Text(strings));
+            menuItemGridPane.add(text, column, row);
             if (column > numColumnsAtStart) {
                 ColumnConstraints columnConstraints = new ColumnConstraints();
                 columnConstraints.setPrefWidth(150);
-                gridPane.getColumnConstraints().add(columnConstraints);
+                menuItemGridPane.getColumnConstraints().add(columnConstraints);
             }
             column++;
         }
     }
 
-    private void addOrderToGridPane(ArrayList<Order> menuItems, GridPane gridPane) {
+    /**
+     * Adds a text area containing the current orders to the orders grid pane
+     */
+    private void addOrderToGridPane() {
         orderGridPane.getChildren().clear();
 
-        final int numColumnsAtStart = gridPane.getColumnCount();
+        final int numColumnsAtStart = orderGridPane.getColumnCount();
 
         int row = 0;
         int column = 0;
 
-        for (Order order : menuItems) {
-            String strings = "  Order Num: " + order.getOrderId() + "\n    MenuItems:";
-            for (MenuItem name: order.getItemsOrdered()) {
-                strings += "\n\n    " + name.getName();
-            }
-            TextArea text = new TextArea();
-            text.setEditable(false);
+        for (Order order : orders) {
+            TextFlow text = new TextFlow();
             text.setPrefHeight(200);
             text.setPrefWidth(120);
-            text.setText(strings);
-            gridPane.add(text, column, row);
+
+            Text string = new Text("  Order Num: " + order.getOrderId());
+            string.setStyle("-fx-font-weight: bold");
+            text.getChildren().add(string);
+
+            Text string2 = new Text( "\n    MenuItems:");
+            text.getChildren().add(string2);
+
+            for (MenuItem name: order.getItemsOrdered()) {
+                Text string3 = new Text("\n\n    " + name.getName());
+                text.getChildren().add(string3);
+            }
+
+            orderGridPane.add(text, column, row);
             if (column > numColumnsAtStart) {
                 ColumnConstraints columnConstraints = new ColumnConstraints();
                 columnConstraints.setPrefWidth(120);
-                gridPane.getColumnConstraints().add(columnConstraints);
+                orderGridPane.getColumnConstraints().add(columnConstraints);
             }
             column++;
         }
