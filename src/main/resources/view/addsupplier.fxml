@@ -125,7 +125,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                <children>
                   <TextField fx:id="idTextField" prefHeight="25.0" prefWidth="291.0" promptText="Enter ID here" />
-                  <Text fx:id="idErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter valid ID" />
+                  <Text fx:id="idErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter valid ID" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -134,7 +134,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="7">
                <children>
                   <TextField fx:id="nameTextField" promptText="Enter Name here" />
-                  <Text fx:id="nameErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Name" />
+                  <Text fx:id="nameErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Name" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -143,7 +143,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
                <children>
                   <TextField fx:id="addressTextField" promptText="Enter Address here" />
-                  <Text fx:id="addressErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Address" />
+                  <Text fx:id="addressErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Address" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -152,7 +152,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="13">
                <children>
                   <TextField fx:id="emailTextField" promptText="Enter Email here" />
-                  <Text fx:id="emailErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a valid Email" />
+                  <Text fx:id="emailErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a valid Email" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -161,7 +161,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="19">
                <children>
                   <TextField fx:id="urlTextField" promptText="Enter URL here" />
-                  <Text fx:id="urlErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid URL" />
+                  <Text fx:id="urlErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid URL" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -172,7 +172,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </TextField>
-            <Text fx:id="phoneErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a valid Number" GridPane.rowIndex="17">
+            <Text fx:id="phoneErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a valid Number" visible="false" GridPane.rowIndex="17">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>

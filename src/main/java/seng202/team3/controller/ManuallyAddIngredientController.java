@@ -5,12 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
-import seng202.team3.model.Supplier;
-import seng202.team3.model.SupplierHandler;
-import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
@@ -45,6 +43,15 @@ public class ManuallyAddIngredientController {
     @FXML
     private Button addIngredientButton;
 
+    @FXML
+    private Text idErrorText;
+
+    @FXML
+    private Text nameErrorText;
+
+    @FXML
+    private Text costErrorText;
+
     public void initialize(){
 
 
@@ -64,12 +71,60 @@ public class ManuallyAddIngredientController {
      * Method to error check fields have been filled and values are correct
      * @return
      */
-    public boolean errorCheckFields(){
-        if(idTextField.getText().isEmpty()){
-            System.out.println("error fill in ID field");
+    public boolean checkForErrors(){
+        boolean hasError = false;
+
+        if(checkEmpty(idTextField, idErrorText)){
+            hasError = true;
         }
-        return  false;
+        if(checkEmpty(nameTextField, nameErrorText)){
+            hasError = true;
+        }
+
+        if(!isValidFloat(costTextField, costErrorText)){
+            hasError = true;
+        }
+
+        return hasError;
     }
+
+    /**
+     * Method that true empty if a textfield contains no text
+     * @param textField the textfield to be checked
+     * @param text the error text to be displayed if the textfield is empty
+     * @return whether or not the textfield is empty
+     */
+    private boolean checkEmpty(TextField textField, Text text){
+        boolean hasError = false;
+        if(textField.getText().isEmpty()){
+            text.setVisible(true);
+            hasError = true;
+        } else {
+            text.setVisible(false);
+        }
+        return hasError;
+    }
+
+    /**
+     * Checks whether a textfield contains a valid float
+     * @param textField the textfield that is being checked
+     * @param errorText the error text to be displayed if the textfield does not contain a valid float
+     * @return a boolean showing whether or not the textfield has a valid float.
+     */
+    private boolean isValidFloat(TextField textField, Text errorText){
+        float temp = 0 ;
+        boolean isFloat = true;
+        try {
+            temp = Float.parseFloat(textField.getText());
+            errorText.setVisible(false);
+        } catch (NumberFormatException ex) {
+            isFloat = false;
+            errorText.setVisible(true);
+        }
+
+        return isFloat;
+    }
+
 
 //    private boolean containsInput(){
 //        return len()
@@ -80,43 +135,44 @@ public class ManuallyAddIngredientController {
      * @throws IOException
      */
     public void addIngredient() throws IOException {
-        String id = idTextField.getText();
-        String name = nameTextField.getText();
-        UnitType unitType = unitTypeChoiceBox.getValue();
-        float cost = Float.valueOf(costTextField.getText());
+        if(checkForErrors() == false) {
+            String id = idTextField.getText();
+            String name = nameTextField.getText();
+            UnitType unitType = unitTypeChoiceBox.getValue();
+            float cost = Float.valueOf(costTextField.getText());
 
-        ThreeValueLogic isGlutenFree;
-        ThreeValueLogic isVegan;
-        ThreeValueLogic isVegetarian;
+            ThreeValueLogic isGlutenFree;
+            ThreeValueLogic isVegan;
+            ThreeValueLogic isVegetarian;
 
-        if(glutenFreeCheckBox.isSelected()){
-             isGlutenFree = ThreeValueLogic.YES;
-        } else {
-             isGlutenFree = ThreeValueLogic.NO;
+            if (glutenFreeCheckBox.isSelected()) {
+                isGlutenFree = ThreeValueLogic.YES;
+            } else {
+                isGlutenFree = ThreeValueLogic.NO;
+            }
+
+            if (vegetarianCheckBox.isSelected()) {
+                isVegetarian = ThreeValueLogic.YES;
+            } else {
+                isVegetarian = ThreeValueLogic.NO;
+            }
+
+            if (veganCheckBox.isSelected()) {
+                isVegan = ThreeValueLogic.YES;
+            } else {
+                isVegan = ThreeValueLogic.NO;
+            }
+
+
+            Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost);
+
+            truckInventory.addIngredient(newIngredient);
+            Stage stage = (Stage) addIngredientButton.getScene().getWindow();
+
+            IngredientTabController.getInstance().updateIngredientTable();
+
+            stage.close();
         }
-
-        if(vegetarianCheckBox.isSelected()){
-             isVegetarian = ThreeValueLogic.YES;
-        } else {
-             isVegetarian = ThreeValueLogic.NO;
-        }
-
-        if(veganCheckBox.isSelected()){
-             isVegan = ThreeValueLogic.YES;
-        } else {
-             isVegan = ThreeValueLogic.NO;
-        }
-
-
-        Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost);
-
-        truckInventory.addIngredient(newIngredient);
-        Stage stage = (Stage) addIngredientButton.getScene().getWindow();
-
-        IngredientTabController.getInstance().updateIngredientTable();
-
-        stage.close();
-
 
     }
 }
