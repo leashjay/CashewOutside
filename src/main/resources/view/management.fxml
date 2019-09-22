@@ -8,16 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="-Infinity" prefHeight="1000.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
+<AnchorPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
 
     <children>
       <VBox prefHeight="1000.0" prefWidth="1000.0">
          <children>
-            <HBox prefHeight="1008.0" prefWidth="1000.0">
+            <HBox prefHeight="1008.0">
                <children>
-                    <TabPane prefHeight="1000.0" prefWidth="917.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
+                    <TabPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/combinedStyle.css" tabClosingPolicy="UNAVAILABLE">
                         <tabs>
                             <Tab fx:id="suppliersTab" text="Suppliers">
                                 <fx:include source="suppliertab.fxml" />
@@ -48,16 +47,9 @@
                                     </AnchorPane>
                                 </content>
                             </Tab>
+                            <Tab fx:id="backTab" text="Back" />
                         </tabs>
                     </TabPane>
-                  <Button fx:id="backButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backButtonPressed" text="Back">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
             </HBox>
          </children>
@@ -65,7 +57,11 @@
             <Insets />
          </opaqueInsets>
       </VBox>
+      <Button mnemonicParsing="false" text="Back" />
 
     </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 
 </AnchorPane>

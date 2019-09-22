@@ -10,18 +10,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.IngredientTabController">
+<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.IngredientTabController">
     <children>
-      <GridPane prefHeight="400.0" prefWidth="1000.0">
+      <GridPane prefWidth="1000.0">
         <columnConstraints>
+
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="335.3333435058594" minHeight="10.0" prefHeight="334.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="194.66665649414062" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+              <TableView fx:id="ingredientTable" GridPane.columnSpan="2">
+                  <columns>
+                      <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
+                      <TableColumn fx:id="quantityCol" prefWidth="75.0" text="Quantity" />
+                      <TableColumn fx:id="unitTypeCol" prefWidth="75.0" text="Unit type" />
+                      <TableColumn fx:id="costPerUnitCol" prefWidth="100.0" text="Cost per unit" />
+                      <TableColumn fx:id="glutenFreeCol" prefWidth="100.0" text="Gluten Free" />
+                      <TableColumn fx:id="vegetarianCol" prefWidth="100.0" text="Vegetarian" />
+                      <TableColumn fx:id="veganCol" prefWidth="100.0" text="Vegan" />
+                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
+                      <TableColumn fx:id="deleteButtonCol" prefWidth="75.0" text="Delete" />
+                  </columns>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" top="10.0" />
+               </GridPane.margin>
+              </TableView>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Button fx:id="addManuallyButton" mnemonicParsing="false" onAction="#openAddIngredientScreen" text="Add manually">
@@ -36,23 +54,6 @@
                   </Button>
                </children>
             </HBox>
-              <TableView fx:id="ingredientTable" prefHeight="335.0" prefWidth="993.0" GridPane.columnSpan="2">
-                  <columns>
-                      <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
-                      <TableColumn fx:id="quantityCol" prefWidth="75.0" text="Quantity" />
-                      <TableColumn fx:id="unitTypeCol" prefWidth="75.0" text="Unit type" />
-                      <TableColumn fx:id="costPerUnitCol" prefWidth="100.0" text="Cost per unit" />
-                      <TableColumn fx:id="glutenFreeCol" prefWidth="100.0" text="Gluten Free" />
-                      <TableColumn fx:id="vegetarianCol" prefWidth="100.0" text="Vegetarian" />
-                      <TableColumn fx:id="veganCol" prefWidth="100.0" text="Vegan" />
-                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
-                      <TableColumn fx:id="deleteButtonCol" prefWidth="75.0" text="Delete" />
-                  </columns>
-               <GridPane.margin>
-                  <Insets left="5.0" top="10.0" />
-               </GridPane.margin>
-              </TableView>
          </children>
       </GridPane>
 
