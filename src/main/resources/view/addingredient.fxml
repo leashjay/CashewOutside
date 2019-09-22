@@ -66,7 +66,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="idTextFIeld" promptText="Ingredient ID" GridPane.columnSpan="3" GridPane.rowIndex="2">
+            <TextField fx:id="idTextField" promptText="Ingredient ID" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </GridPane.margin>
@@ -108,7 +108,7 @@
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </ChoiceBox>
-            <Button fx:id="addButton" alignment="CENTER" mnemonicParsing="false" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
+            <Button fx:id="addIngredientButton" alignment="CENTER" mnemonicParsing="false" onAction="#addIngredient" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>

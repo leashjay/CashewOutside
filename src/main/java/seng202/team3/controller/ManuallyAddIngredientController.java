@@ -98,7 +98,7 @@ public class ManuallyAddIngredientController {
         truckInventory.addIngredient(newIngredient);
         Stage stage = (Stage) addIngredientButton.getScene().getWindow();
 
-        //SupplierTabController.getInstance().updateSupplierTable();
+        IngredientTabController.getInstance().updateIngredientTable();
 
         stage.close();
 

@@ -101,8 +101,10 @@ public class IngredientTabController {
             System.out.println("BUTTON CLICKED");
         }));
 
-        List<Ingredient> ingredients = createTestData(); // This would come from your real data however you access that.
+        List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+        //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
+        updateIngredientTable();
 
 
     }
