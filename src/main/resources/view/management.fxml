@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="1008.0" prefWidth="1000.0">
                <children>
-                    <TabPane prefHeight="1000.0" prefWidth="917.0" stylesheets="@../gui/Styles.css" tabClosingPolicy="UNAVAILABLE">
+                    <TabPane prefHeight="1000.0" prefWidth="917.0" stylesheets="@../gui/tabStyle.css" tabClosingPolicy="UNAVAILABLE">
                         <tabs>
                             <Tab fx:id="suppliersTab" text="Suppliers">
                                 <fx:include source="suppliertab.fxml" />

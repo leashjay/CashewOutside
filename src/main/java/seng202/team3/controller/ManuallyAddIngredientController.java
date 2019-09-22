@@ -61,6 +61,21 @@ public class ManuallyAddIngredientController {
     //TODO Add input validation on this form
 
     /**
+     * Method to error check fields have been filled and values are correct
+     * @return
+     */
+    public boolean errorCheckFields(){
+        if(idTextField.getText() == ""){
+            System.out.println("error fill in ID field");
+        }
+        return  false;
+    }
+
+//    private boolean containsInput(){
+//        return len()
+//    }
+
+    /**
      * Method that adds a supplier using the data that the user has given
      * @throws IOException
      */

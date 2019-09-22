@@ -13,7 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
+import seng202.team3.model.Inventory;
 import seng202.team3.model.Supplier;
+import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
@@ -55,6 +57,9 @@ public class IngredientTabController {
     private TableColumn<Ingredient, Button> editButtonCol;
 
     @FXML
+    private TableColumn<Ingredient, Button> deleteButtonCol;
+
+    @FXML
     private TableColumn<Ingredient, ThreeValueLogic> glutenFreeCol;
 
     @FXML
@@ -64,6 +69,8 @@ public class IngredientTabController {
     private TableColumn<Ingredient, ThreeValueLogic> veganCol;
 
     private static IngredientTabController instance;
+
+    private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
 
     /**
      * Holds an instance of the SupplierTabController class so other controllers can call it's methods
@@ -101,20 +108,18 @@ public class IngredientTabController {
             System.out.println("BUTTON CLICKED");
         }));
 
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
+            inventory.removeIngredient(ingredient.getCode());
+            updateIngredientTable();
+            System.out.println("Delete BUTTON CLICKED");
+        }));
+
         List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
         updateIngredientTable();
 
 
-    }
-
-    private List<Ingredient> createTestData() {
-        return List.of(
-                new Ingredient("1", "Beans", 500f, UnitType.GRAM, 10f),
-                new Ingredient("2", "Greens", 100f, UnitType.ML, 20f),
-                new Ingredient("3", "Tomatoes", 30f, UnitType.COUNT, 30f )
-        );
     }
 
     public void openAddIngredientScreen(){
