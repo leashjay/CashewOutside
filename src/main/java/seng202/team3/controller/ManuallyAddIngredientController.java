@@ -65,7 +65,7 @@ public class ManuallyAddIngredientController {
      * @return
      */
     public boolean errorCheckFields(){
-        if(idTextField.getText() == ""){
+        if(idTextField.getText().isEmpty()){
             System.out.println("error fill in ID field");
         }
         return  false;

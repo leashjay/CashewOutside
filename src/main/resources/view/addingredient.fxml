@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -66,16 +67,6 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="idTextField" promptText="Ingredient ID" GridPane.columnSpan="3" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="nameTextField" promptText="Ingredient name" GridPane.columnSpan="3" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-               </GridPane.margin>
-            </TextField>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost per unit" GridPane.columnSpan="2" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
@@ -84,11 +75,6 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="costTextField" promptText="Ingredient cost per unit" GridPane.columnSpan="3" GridPane.rowIndex="8">
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-               </GridPane.margin>
-            </TextField>
             <CheckBox fx:id="glutenFreeCheckBox" mnemonicParsing="false" text="Gluten Free" GridPane.halignment="LEFT" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets left="20.0" />
@@ -118,6 +104,33 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Button>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+               <children>
+                  <TextField fx:id="idTextField" prefHeight="25.0" prefWidth="239.0" promptText="Ingredient ID" />
+                  <Text fx:id="idErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter valid ID" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+               <children>
+                  <TextField fx:id="nameTextField" promptText="Ingredient name" style="-fx-fill: red;" />
+                  <Text fx:id="nameErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Name" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+               <children>
+                  <TextField fx:id="costTextField" promptText="Ingredient cost per unit" />
+                  <Text fx:id="costErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid Cost" />
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </children>
