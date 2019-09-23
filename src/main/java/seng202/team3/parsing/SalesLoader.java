@@ -10,7 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
-import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 /**
  * JAXB parser for sales record
@@ -73,7 +73,7 @@ public class SalesLoader {
      */
     public SalesHandler loadSalesData(String fileName) throws Exception {
         try {
-            validateXmlFile(fileName);
+            validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
             String errorMessage = pce.getMessage();
         }

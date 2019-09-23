@@ -1,6 +1,7 @@
 package seng202.team3.parsing;
 
 import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.Menu;
 
 import javax.xml.bind.JAXBContext;
@@ -10,7 +11,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
-import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 /**
  * JAXB parser for menu xml file
@@ -74,15 +75,25 @@ public class MenuLoader {
      * @param fileName path to menu XML file
      * @return instance of Menu class
      */
-    public Menu loadMenuData(String fileName) throws IOException, SAXException, JAXBException {
+    public Menu loadMenuData(String fileName) throws JAXBException {
         try {
-            validateXmlFile(fileName);
+            validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
-            String errorMessage = pce.getMessage();
+            AddXMLController.errorMessageList.add(pce.getMessage());
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add(spe.getMessage());
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
         }
+
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
+
+        try {
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
+        } catch (FileNotFoundException fnfe) {
+            AddXMLController.errorMessageList.add(fnfe.getMessage());
+        }
         return menuLoad;
     }
 

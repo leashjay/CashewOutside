@@ -37,7 +37,7 @@
         <ingredient unit="GRAM" isVeg="YES" cost="0.5">
             <code>Onion</code>
             <name>Diced onion</name>
-            <quantity>0</quantity>
+            <quantity>12.5</quantity>
         </ingredient>
         <ingredient unit="ML" cost="1.8">
             <code>TSauce</code>

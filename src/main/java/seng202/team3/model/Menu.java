@@ -4,6 +4,7 @@ import seng202.team3.parsing.MenuItemAdapter;
 import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.MenuType;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
@@ -138,7 +139,7 @@ public class Menu {
      * @param file path to menu XML file
      * @throws Exception
      */
-    public void addMenuItemFromXML(String file) throws Exception {
+    public void addMenuItemFromXML(String file) throws JAXBException {
         MenuLoader menuLoader = new MenuLoader();
         Menu menu = menuLoader.loadMenuData(file);
         HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seng202.team3.model.Ingredient;
@@ -15,6 +16,7 @@ import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class KitchenController {
@@ -74,7 +76,7 @@ public class KitchenController {
     public void createMenuItemsArray() {
         menuItems = new ArrayList<>();
         for (Order order: orders) {
-            for (MenuItem item: order.getItemsOrdered()) {
+            for (MenuItem item: order.getOrderedItems()) {
                 if (menuItems.contains(item) == false) {
                     menuItems.add(item);
                 }
@@ -104,6 +106,7 @@ public class KitchenController {
         addMenuToGridPane();
         createOrderComboBox();
     }
+
 
     //Just for testing
     private ArrayList<Order> getOrders() {
@@ -156,7 +159,7 @@ public class KitchenController {
     }
 
     /**
-     * Removes a text area containing an order from the orderGridPane. Called when the remove button is pressed
+     * Removes a TextFlow containing an order from the orderGridPane. Called when the remove button is pressed
      */
     public void popFromOrderGrid() {
         Object checkForNull = removeOrderCombo.getValue();
@@ -178,7 +181,7 @@ public class KitchenController {
     }
 
     /**
-     * Adds a text area (containing a menu item and ingredients) to the menu item grid pane
+     * Adds a TextFlow (containing a menu item and ingredients) to the menu item grid pane
      */
     private void addMenuToGridPane() {
         menuItemGridPane.getChildren().clear();
@@ -188,18 +191,36 @@ public class KitchenController {
         int column = 0;
 
         for (MenuItem item : menuItems) {
+            TextFlow text = new TextFlow();
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
+            text.setPrefHeight(200);
+            text.setPrefWidth(150);
             ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-            String strings = "    " + item.getName() + "\n\n    Ingredients:\n";
+            Text text1 = new Text("    " + item.getName());
+            text1.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+            text1.setFill(Color.FLORALWHITE);
+            text.getChildren().add(text1);
+
+            Text text2 = new Text("\n\n          ITEM ");
+            text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+            text2.setFill(Color.FLORALWHITE);
+            text.getChildren().add(text2);
+
             HashMap<Ingredient, Float> map = item.getIngredients();
             for (Map.Entry<Ingredient, Float> entry : map.entrySet()) {
                 ingredients.add(entry.getKey());
-                strings += "\n\n    " + entry.getKey().getName() + "\n    Quantity: " + entry.getValue();
+                Text text3 = new Text();
+                if (entry.getKey().getUnit() == UnitType.GRAM) {
+                    text3 = new Text("\n\n  x" + entry.getValue() + "g   " + entry.getKey().getName());
+                } else if (entry.getKey().getUnit() == UnitType.ML) {
+                    text3 = new Text("\n\n  x" + entry.getValue() + "mL   " + entry.getKey().getName());
+                } else {
+                    text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getName());
+                }
+                text3.setFill(Color.FLORALWHITE);
+                text.getChildren().add(text3);
             }
-            TextFlow text = new TextFlow();
-            text.setPrefHeight(200);
-            text.setPrefWidth(150);
-            text.getChildren().add(new Text(strings));
             menuItemGridPane.add(text, column, row);
             if (column > numColumnsAtStart) {
                 ColumnConstraints columnConstraints = new ColumnConstraints();
@@ -211,10 +232,11 @@ public class KitchenController {
     }
 
     /**
-     * Adds a text area containing the current orders to the orders grid pane
+     * Adds a TextFlow containing the current orders to the orders grid pane
      */
     private void addOrderToGridPane() {
         orderGridPane.getChildren().clear();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
         final int numColumnsAtStart = orderGridPane.getColumnCount();
 
@@ -222,29 +244,51 @@ public class KitchenController {
         int column = 0;
 
         for (Order order : orders) {
+
             TextFlow text = new TextFlow();
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
             text.setPrefHeight(200);
-            text.setPrefWidth(120);
+            text.setPrefWidth(150);
 
-            Text string = new Text("  Order Num: " + order.getOrderId());
-            string.setStyle("-fx-font-weight: bold");
-            text.getChildren().add(string);
+            Text text1 = new Text("        Order: " + order.getOrderId());
+            text1.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+            text1.setFill(Color.FLORALWHITE);
+            text.getChildren().add(text1);
 
-            Text string2 = new Text( "\n    MenuItems:");
-            text.getChildren().add(string2);
+            Text text4 = new Text("\n               Order Taken " + order.getTime().format(dtf));
+            text4.setStyle("-fx-font: 10 arial;");
+            text4.setFill(Color.FLORALWHITE);
+            text.getChildren().add(text4);
 
-            for (MenuItem name: order.getItemsOrdered()) {
-                Text string3 = new Text("\n\n    " + name.getName());
-                text.getChildren().add(string3);
+            Text text2 = new Text("\n\n          ITEM ");
+            text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+            text2.setFill(Color.FLORALWHITE);
+            text.getChildren().add(text2);
+
+
+            HashMap<MenuItem, Float> menuItems = new HashMap<>();
+            for (MenuItem testIngredient: order.getOrderedItems()) {
+                if (menuItems.containsKey(testIngredient)) {
+                    menuItems.put(testIngredient, menuItems.get(testIngredient) + 1);
+                } else {
+                    menuItems.put(testIngredient, (float) 1);
+                }
+            }
+
+            for (Map.Entry<MenuItem, Float> entry : menuItems.entrySet()) {
+                Text text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getName());
+                text3.setFill(Color.FLORALWHITE);
+                text.getChildren().add(text3);
             }
 
             orderGridPane.add(text, column, row);
             if (column > numColumnsAtStart) {
                 ColumnConstraints columnConstraints = new ColumnConstraints();
-                columnConstraints.setPrefWidth(120);
+                columnConstraints.setPrefWidth(150);
                 orderGridPane.getColumnConstraints().add(columnConstraints);
             }
             column++;
         }
+
     }
 }

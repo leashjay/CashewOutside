@@ -1,22 +1,18 @@
 package seng202.team3.controller;
 
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import seng202.team3.model.Business;
 import seng202.team3.model.Supplier;
 import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.PhoneType;
-import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
-import java.rmi.server.LoaderHandler;
 
 public class ManuallyAddSupplierController {
 
@@ -46,6 +42,26 @@ public class ManuallyAddSupplierController {
     @FXML
     ChoiceBox<PhoneType> phoneTypeChoiceBox;
 
+    @FXML
+    Text idErrorText;
+
+    @FXML
+    Text nameErrorText;
+
+    @FXML
+    Text addressErrorText;
+
+    @FXML
+    Text emailErrorText;
+
+    @FXML
+    Text phoneErrorText;
+
+    @FXML
+    Text urlErrorText;
+
+
+
     public void initialize(){
         phoneTypeChoiceBox.getItems().add(PhoneType.HOME);
         phoneTypeChoiceBox.getItems().add(PhoneType.MOBILE);
@@ -56,6 +72,35 @@ public class ManuallyAddSupplierController {
 
     }
 
+    private boolean checkForErrors(){
+        boolean hasError = false;
+
+        if(InputValidationHelper.checkEmpty(idTextField, idErrorText)){
+            hasError = true;
+        }
+        if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
+            hasError = true;
+        }
+
+        if(InputValidationHelper.checkEmpty(addressTextField, addressErrorText)){
+            hasError = true;
+        }
+
+        if(InputValidationHelper.checkEmpty(emailTextField, emailErrorText)){
+            hasError = true;
+        }
+
+        if(InputValidationHelper.checkEmpty(phoneTextField, phoneErrorText)){
+            hasError = true;
+        }
+
+        if(InputValidationHelper.checkEmpty(urlTextField, urlErrorText)){
+            hasError = true;
+        }
+
+        return hasError;
+    }
+
     //TODO Add input validation on this form
 
     /**
@@ -63,23 +108,23 @@ public class ManuallyAddSupplierController {
      * @throws IOException
      */
     public void addSupplier() throws IOException {
-        String id = idTextField.getText();
-        String name = nameTextField.getText();
-        String address = addressTextField.getText();
-        String email = emailTextField.getText();
-        String phoneNumber = phoneTextField.getText();
-        PhoneType phoneType = phoneTypeChoiceBox.getValue();
-        String url = urlTextField.getText();
+        if(checkForErrors() == false) {
+            String id = idTextField.getText();
+            String name = nameTextField.getText();
+            String address = addressTextField.getText();
+            String email = emailTextField.getText();
+            String phoneNumber = phoneTextField.getText();
+            PhoneType phoneType = phoneTypeChoiceBox.getValue();
+            String url = urlTextField.getText();
 
-        Supplier newSupplier = new Supplier(id, name, address, phoneType, phoneNumber, email, url);
-        supplierHandler.addSupplier(newSupplier);
-        Stage stage = (Stage) addSupplierButton.getScene().getWindow();
+            Supplier newSupplier = new Supplier(id, name, address, phoneType, phoneNumber, email, url);
+            supplierHandler.addSupplier(newSupplier);
+            Stage stage = (Stage) addSupplierButton.getScene().getWindow();
 
-        SupplierTabController.getInstance().updateSupplierTable();
+            SupplierTabController.getInstance().updateSupplierTable();
 
-        stage.close();
-
-
+            stage.close();
+        }
     }
 
 

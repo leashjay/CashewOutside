@@ -3,21 +3,37 @@ package seng202.team3.controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
+import seng202.team3.model.Inventory;
 import seng202.team3.model.Supplier;
+import seng202.team3.model.SupplierHandler;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientTabController {
+
+    @FXML
+    private Button addManuallyButton;
+
+    @FXML
+    private Button addFromXMLButton;
 
     @FXML
     private TableView<Ingredient> ingredientTable;
@@ -41,6 +57,9 @@ public class IngredientTabController {
     private TableColumn<Ingredient, Button> editButtonCol;
 
     @FXML
+    private TableColumn<Ingredient, Button> deleteButtonCol;
+
+    @FXML
     private TableColumn<Ingredient, ThreeValueLogic> glutenFreeCol;
 
     @FXML
@@ -48,6 +67,25 @@ public class IngredientTabController {
 
     @FXML
     private TableColumn<Ingredient, ThreeValueLogic> veganCol;
+
+    private static IngredientTabController instance;
+
+    private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+    /**
+     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
+     */
+    public IngredientTabController(){
+        instance = this;
+    }
+
+    /**
+     * Returns an instance of the SupplierTabController so other controller classes can use its methods
+     * @return an instance of the SupplierTabController class
+     */
+    public static IngredientTabController getInstance(){
+        return instance;
+    }
 
     public void initialize() {
 
@@ -70,19 +108,52 @@ public class IngredientTabController {
             System.out.println("BUTTON CLICKED");
         }));
 
-        List<Ingredient> ingredients = createTestData(); // This would come from your real data however you access that.
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
+            inventory.removeIngredient(ingredient.getCode());
+            updateIngredientTable();
+            System.out.println("Delete BUTTON CLICKED");
+        }));
+
+        List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+        //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
+        updateIngredientTable();
 
 
     }
 
-    private List<Ingredient> createTestData() {
-        return List.of(
-                new Ingredient("1", "Beans", 500f, UnitType.GRAM, 10f),
-                new Ingredient("2", "Greens", 100f, UnitType.ML, 20f),
-                new Ingredient("3", "Tomatoes", 30f, UnitType.COUNT, 30f )
-        );
+    public void openAddIngredientScreen(){
+        System.out.println("Add Ingredient button clicked");
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Add supplier");
+            stage.setScene(new Scene(root, 350, 500));
+            stage.showAndWait();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
+
+    public void openAddIngredientXMLScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/addingredientxml.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Add supplier");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    public void updateIngredientTable(){
+        List<Ingredient> ingredients= new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+        ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
+        System.out.println("Update ingredient table called");
+    }
+
 
 
 }

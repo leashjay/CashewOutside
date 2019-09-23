@@ -15,9 +15,9 @@ public class BusinessApp extends Application {
     private static Stage primaryStage;
     private static Business business;
 
-    private static final String ingredientsXML = "./resources/data/Ingredients.xml";
-    private static final String menuXML = "./resources/data/SampleMenu.xml";
-    private static final String suppliersXML = "./resources/data/Suppliers.xml";
+    public static final String ingredientsXML = "./resources/data/Ingredients.xml";
+    public static final String menuXML = "./resources/data/SampleMenu.xml";
+    public static final String suppliersXML = "./resources/data/Suppliers.xml";
 
     static {
         try {
