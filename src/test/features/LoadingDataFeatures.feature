@@ -7,12 +7,12 @@ Feature: Loading Data Features
     And an "contact list" to suppliers details
 
   Scenario: Manually Load an ingredient
-    Given an Ingredient has a "code", "name", 2.0, "unittype" and costs $100.0
+    Given an Ingredient is known
     When the Ingredient is added
     Then the Ingredient is in the program
 
   Scenario: Manually Load a menu
-    Given an Menu has a "id", "name", "quantity", "Unit Type" costs $100.00 and has a list of ingredients:
+    Given an Menu is known
     When a menu is added
     Then the menu is in the program
 

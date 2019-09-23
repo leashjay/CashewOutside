@@ -42,10 +42,9 @@ public class LoadingDataSteps {
         supplier = new Supplier();
     }
 
-    @Given("an Ingredient has a {string}, {string}, {double}, {string} and costs ${float}")
-    public void anIngredientHasaAndCosts$(String code, String name, float quantity, String unitType, float cost) {
+    @Given("an Ingredient is known")
+    public void anIngredientIsKnown() {
         Ingredient testIngredient = new Ingredient("llc", "lettuce", 1.0f, UnitType.COUNT, 0.10f);
-        Ingredient testIngredient2 = new Ingredient(code, name, quantity, unitType, cost);
         this.testIngredient = testIngredient;
 
     }
@@ -60,18 +59,18 @@ public class LoadingDataSteps {
         assertTrue(inventory.searchStock(testIngredient));
     }
 
-    @Given("an Menu has a {string}, {string}, {string}, {string} costs ${double} and has a list of ingredients:")
-    public void anMenuHasACosts$AndHasAListOfIngredients(String string, String string2, String string3, String string4, Double double1, io.cucumber.datatable.DataTable dataTable) {
+    @Given("an Menu is known")
+    public void anMenuIsKnown() {
         // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
         throw new cucumber.api.PendingException();
     }
 
+
+    @Then("the menu is in the program")
+    public void theMenuIsInTheProgram() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
 
     @When("a menu is added")
     public void aMenuIsAdded() {
@@ -79,11 +78,6 @@ public class LoadingDataSteps {
         throw new cucumber.api.PendingException();
     }
 
-    @Then("the menu is in the program")
-    public void theMenuIsInTheProgram() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
     @Given("an supplier has a {string}, {string}, {string}, {string}, {string}, sometimes an {string} and\\/or a{string}")
     public void anSupplierHasASometimesAnAndOrA(String string, String string2, String string3, String string4, String string5, String string6, String string7) {

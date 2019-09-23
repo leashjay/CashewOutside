@@ -92,6 +92,7 @@ public class Inventory {
         ingredients.put(addedIngredient.getCode(), addedIngredient);
     }
 
+
     /**
      * Adds Ingredients from an XML file to the ingredients HashMap
      * @param file The path to the XML file that is being used
