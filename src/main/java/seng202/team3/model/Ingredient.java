@@ -48,6 +48,7 @@ public class Ingredient {
     @XmlAttribute
     private float cost;
 
+
     /**
      * No-arg constructor for JAXB
      */
@@ -70,28 +71,7 @@ public class Ingredient {
         this.cost = cost;
     }
 
-    
     /**
-     * Constructor for Ingredient class
-     *
-     * @param code    the code of the ingredient
-     * @param name    the name of the ingredient
-     * @param unit    the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
-     * @param isVeg   ThreeTypeLogic deciding if the ingredient is vegetarian
-     * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
-     * @param isGF    ThreeTypeLogic deciding if the ingredient is gluten free
-     */
-
-    /**
-     * Constructor for Ingredient class
-     *
-     * @param code    the code of the ingredient
-     * @param name    the name of the ingredient
-     * @param unit    the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
-     * @param isVeg   ThreeTypeLogic deciding if the ingredient is vegetarian
-     * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
-     * @param isGF    ThreeTypeLogic deciding if the ingredient is gluten free
-     */    /**
      * Constructor to build ingredient based on string parsed values
      * @param code
      * @param name
@@ -129,6 +109,8 @@ public class Ingredient {
         this.isGF = isGF;
         this.cost = cost;
     }
+
+
 
     /**
      * Getter for ingredient's short name
@@ -217,11 +199,7 @@ public class Ingredient {
     public void setUnit(UnitType newUnit) {
         unit = newUnit;
     }
-    
-    /**
-     * Sets the unit type of the ingredient after converting from string
-     * @param newUnit the new unit type for the ingredient in string format
-     */
+
     public UnitType convertToUnit(String unit) {
         UnitType newUnit = UnitType.UNKNOWN;
         if (unit.toUpperCase() == "GRAM") {
@@ -234,7 +212,7 @@ public class Ingredient {
 
         return newUnit;
     }
-    
+
     /**
      * Sets whether the ingredient is vegetarian
      * @param newIsVeg an enum which stores whether an ingredient is vegetarian
@@ -267,11 +245,7 @@ public class Ingredient {
         Float calcCost = newCost;
         cost = calcCost;
     }
-    
-    /**
-     * Sets the cost of the ingredient to the given float
-     * @param newCost the new cost of the ingredient
-     */
+
     public void setCost(float newCost, float oldQuantity) {
         Float calcCost = ((oldQuantity * newCost) + (getQuantity() * getCost())) / (getQuantity() + oldQuantity);
         cost = calcCost;
