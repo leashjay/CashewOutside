@@ -16,9 +16,14 @@ public class BusinessTest {
     private Menu testMenu;
     private Ingredient onion;
 
+    /**
+     * Initialising a business instance for test execution
+     *
+     * @throws JAXBException
+     */
     @Before
     public void setUpBusiness() throws JAXBException {
-        testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
     }
 
     /**

@@ -41,5 +41,13 @@
             <email>daveG@countup.co.nz</email>
             <url>countup.co.nz/high</url>
         </supplier>
+        <supplier type="MOBILE">
+            <sid>s2</sid>
+            <name>Funky Kumquat</name>
+            <address>125 Woodside Lane, Christchurch</address>
+            <phone>021352176</phone>
+            <email>maryC@fkveg.co.nz</email>
+            <url>Null</url>
+        </supplier>
     </providers>
 </suppliers>

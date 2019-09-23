@@ -54,8 +54,9 @@
                         <Insets right="20.0"/>
                     </GridPane.margin>
                 </Button>
-                <Text fx:id="feedbackMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="Please insert a proper path"
-                      GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                <Text fx:id="feedbackMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;"
+                      text="Please insert a proper path" visible="false" GridPane.halignment="RIGHT"
+                      GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets right="20.0"/>
                     </GridPane.margin>

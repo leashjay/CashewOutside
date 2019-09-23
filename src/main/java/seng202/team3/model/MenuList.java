@@ -1,10 +1,9 @@
 package seng202.team3.model;
 
-import java.util.ArrayList;
 import seng202.team3.util.MenuType;
-import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import javax.xml.bind.annotation.XmlAttribute;
+import java.util.ArrayList;
 
 public class MenuList {
 
@@ -13,6 +12,7 @@ public class MenuList {
     private ArrayList<Menu> winterMenus;
     private ArrayList<Menu> summerMenus;
     private ArrayList<Menu> festivalMenus;
+
     @XmlAttribute(name = "type")
     private MenuType type;
 

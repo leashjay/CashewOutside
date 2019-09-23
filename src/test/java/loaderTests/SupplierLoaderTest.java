@@ -57,13 +57,13 @@ public class SupplierLoaderTest {
     public void testExportDBtoXML() throws Exception {
         Supplier westfield = new Supplier("s5", "Westfield", "Somewhere riccarton road", PhoneType.WORK, "023131", "westfield@gmail.com", "");
         suppsLoaded.put("Westfield", westfield);
-        testLoader.exportSupplierData("./resources/data/testdata/testSupplier.xml", suppHandler);
+        testLoader.exportSupplierData("./resources/data/testdata/testExportSupplier.xml", suppHandler);
 
 
         suppsLoaded.clear();
         assertEquals("Reset list of suppliers", 0, suppsLoaded.size());
 
-        suppHandler = testLoader.loadSuppliersData("./resources/data/testdata/testSupplier.xml");
+        suppHandler = testLoader.loadSuppliersData("./resources/data/testdata/testExportSupplier.xml");
         suppsLoaded = suppHandler.getSuppliers();
         assertEquals("All XML ingredients record should be added", 5, suppsLoaded.size());
     }

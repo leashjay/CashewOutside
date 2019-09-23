@@ -131,7 +131,6 @@ public class SupplierTabController
     public void updateSupplierTable(){
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
-        System.out.println("Update supplier table called");
     }
 
 }

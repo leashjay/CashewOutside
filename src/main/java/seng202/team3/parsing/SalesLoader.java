@@ -2,9 +2,12 @@ package seng202.team3.parsing;
 
 
 import org.eclipse.persistence.jaxb.*;
+import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.SalesHandler;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,7 +27,7 @@ public class SalesLoader {
             "        <!ENTITY version \"V0.01 (C) CashewOutside\">\n" +
             "        <!ELEMENT sales (orders)>\n" +
             "        <!ELEMENT orders (order*)>\n" +
-            "        <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>\n" +
+            "        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, itemsOrdered*, flagsChecked)>\n" +
             "        <!ATTLIST order\n" +
             "                dateOrdered CDATA #REQUIRED\n" +
             "                timeOrdered CDATA #REQUIRED\n" +
@@ -33,6 +36,7 @@ public class SalesLoader {
             "                isVeg (YES|NO|UNKNOWN) \"UNKNOWN\"\n" +
             "                >\n" +
             "        <!ELEMENT orderId (#PCDATA)>\n" +
+            "        <!ELEMENT customerName (#PCDATA)>\n" +
             "        <!ELEMENT orderStatus (#PCDATA)>\n" +
             "        <!ELEMENT orderCost (#PCDATA)>\n" +
             "        <!ELEMENT itemsOrdered (id, name)>\n" +
@@ -48,9 +52,14 @@ public class SalesLoader {
     private final ObjectGraph salesInfo;
 
     /**
+     * Instance of sales handler to export/import data to
+     */
+    private SalesHandler salesHandler;
+
+    /**
      * Constructor for SalesLoader
      */
-    public SalesLoader() throws Exception {
+    public SalesLoader() throws JAXBException {
         context = JAXBContext.newInstance(SalesHandler.class);
 
         salesInfo = JAXBHelper.getJAXBContext(context).createObjectGraph(SalesHandler.class);
@@ -58,6 +67,7 @@ public class SalesLoader {
         Subgraph order = orders.addSubgraph("order");
         order.addAttributeNodes("dateOrdered", "timeOrdered", "isGF", "isVeg", "isVegan");
         order.addSubgraph("orderId");
+        order.addSubgraph("name");
         order.addSubgraph("orderStatus");
         order.addSubgraph("orderCost");
         order.addSubgraph("flagsChecked");
@@ -71,16 +81,25 @@ public class SalesLoader {
      * @param fileName path to sales XML file
      * @return Instance of SalesHandler
      */
-    public SalesHandler loadSalesData(String fileName) throws Exception {
+    public SalesHandler loadSalesData(String fileName) throws JAXBException{
         try {
             validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
-            String errorMessage = pce.getMessage();
+            AddXMLController.errorMessageList.add(pce.getMessage());
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add(spe.getMessage());
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
         }
         Unmarshaller unmarshaller = context.createUnmarshaller();
         unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        return (SalesHandler) unmarshaller.unmarshal(inputStream);
+        try {
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            salesHandler = (SalesHandler) unmarshaller.unmarshal(inputStream);
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
+        }
+        return salesHandler;
     }
 
 
@@ -90,7 +109,7 @@ public class SalesLoader {
      * @param fileName  path to sales XML file
      * @param salesLoad instance of SalesHandler to be loaded
      */
-    public void exportSalesData(String fileName, SalesHandler salesLoad) throws Exception {
+    public void exportSalesData(String fileName, SalesHandler salesLoad) throws JAXBException, IOException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(MarshallerProperties.OBJECT_GRAPH, salesInfo);

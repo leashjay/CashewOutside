@@ -4,12 +4,10 @@ package seng202.team3.model;
 import seng202.team3.parsing.InventoryLoader;
 
 import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
-/**
- * Joda Money information:
- * https://github.com/JodaOrg/joda-money
- */
 
 /**
  * Truck class holds truck inventory including stock and cash floats
@@ -72,6 +70,15 @@ public class Truck {
         return truckInventory;
     }
 
+    /**
+     * Getter for cash float
+     *
+     * @return cashFloat
+     */
+    public HashMap<Integer, Integer> getCashFloat() {
+        return cashFloat;
+    }
+
 
     /**
      * Parse denomination string into cashFloat
@@ -113,8 +120,31 @@ public class Truck {
             default:
                 denom = 0;
         }
-        cashFloat.put(denom, cashFloat.get(denom) + 1);
+        if (denom != 0) {
+            cashFloat.put(denom, cashFloat.get(denom) + 1);
+        }
     }
-    
+
+    /**
+     * uses a greedy algorithm to increase the Truck's cashFloat
+     * @param totalAmountOfIncrease the total amount of money in dollars.cents
+     */
+    public void increaseCashFloat(float totalAmountOfIncrease) {
+        int increaseInCents = (int) (totalAmountOfIncrease * 100);
+        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
+        Collections.sort(denoms); // sorts the denoms from smallest to largest
+        Collections.reverse(denoms);
+        // takes the biggest of each denom until it no longer can.
+        for (int denom : denoms) {
+            while (denom >= increaseInCents) {
+                cashFloat.put(denom, cashFloat.get(denom) + 1);
+                increaseInCents -= denom;
+            }
+        }
+        // always make the customer pay extra when using cash
+        if (increaseInCents > 0 && increaseInCents < 10) {
+            cashFloat.put(10, cashFloat.get(10) + 1);
+        }
+    }
 }
 

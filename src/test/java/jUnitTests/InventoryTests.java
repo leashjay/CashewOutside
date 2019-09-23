@@ -5,7 +5,6 @@ import org.junit.Test;
 import seng202.team3.model.Business;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
-import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
@@ -129,7 +128,7 @@ public class InventoryTests {
      */
     @Test
     public void testAddIngredientFromXML() throws JAXBException {
-        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        Business testBusiness = new Business("./resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
         Inventory testInventory = testBusiness.getTruck().getInventory();
         assertEquals(30, testInventory.getIngredients().size());
 
