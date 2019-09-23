@@ -4,7 +4,6 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
 import javax.xml.bind.annotation.*;
-import java.util.List;
 
 /**
  * Class to represent ingredients. Mostly a data class, but that's the breaks...
@@ -12,12 +11,11 @@ import java.util.List;
 
 
 @XmlRootElement(name = "ingredient")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Ingredient {
-    List<Supplier> suppliers;
 
     /** A short name to use in menus and elsewhere */
-    @XmlElement(name = "code")
+    @XmlElement
     private String code;
 
     /** The full name */
@@ -25,12 +23,12 @@ public class Ingredient {
     private String name;
 
     /**
-     * Ingredient measurement type
+     * Unit of measurement for ingredient
      */
     @XmlAttribute
     private UnitType unit;
 
-    /** Quantity of ingredient */
+    /** Quantity of ingredient in stock*/
     @XmlElement
     private float quantity;
 
@@ -46,6 +44,7 @@ public class Ingredient {
     @XmlAttribute(name = "isgf")
     private ThreeValueLogic isGF = ThreeValueLogic.UNKNOWN;
 
+    /** Cost of ingredient */
     @XmlAttribute
     private float cost;
 
@@ -59,10 +58,27 @@ public class Ingredient {
      *
      * @param code the code of the ingredient
      * @param name the name of the ingredient
+     * @param quantity quantity of ingredient in stock
      * @param unit the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
-     * @param isVeg ThreeTypeLogic deciding if the ingredient is vegetarian
+     * @param cost cost of ingredient
+     */
+    public Ingredient(String code, String name, float quantity, UnitType unit, float cost) {
+        this.code = code;
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.cost = cost;
+    }
+
+    /**
+     * Constructor for Ingredient class
+     *
+     * @param code    the code of the ingredient
+     * @param name    the name of the ingredient
+     * @param unit    the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
+     * @param isVeg   ThreeTypeLogic deciding if the ingredient is vegetarian
      * @param isVegan ThreeTypeLogic deciding if the ingredient is vegan
-     * @param isGF ThreeTypeLogic deciding if the ingredient is gluten free
+     * @param isGF    ThreeTypeLogic deciding if the ingredient is gluten free
      */
 
     public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
@@ -78,7 +94,6 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's short name
-     *
      * @return code
      */
     public String getCode() {
@@ -87,7 +102,6 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's long name
-     *
      * @return name
      */
     public String getName() {
@@ -96,7 +110,6 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's unit type
-     *
      * @return unit
      */
     public UnitType getUnit() {
@@ -105,7 +118,6 @@ public class Ingredient {
 
     /**
      * Getter for quantity of ingredient
-     *
      * @return quantity
      */
     public float getQuantity() {
@@ -114,16 +126,14 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's vegetarian attribute
-     *
      * @return isVeg
      */
-    public ThreeValueLogic getIsVeg() {
+    public ThreeValueLogic getIsVegetarian() {
         return isVeg;
     }
 
     /**
      * Getter for ingredient's vegan attribute
-     *
      * @return isVegan
      */
     public ThreeValueLogic getIsVegan() {
@@ -132,10 +142,9 @@ public class Ingredient {
 
     /**
      * Getter for ingredient's gluten free attribute
-     *
      * @return isGF
      */
-    public ThreeValueLogic getIsGF() {
+    public ThreeValueLogic getIsGlutenFree() {
         return isGF;
     }
 
@@ -149,7 +158,6 @@ public class Ingredient {
 
     /**
      * Sets the name of the ingredient to the String given
-     *
      * @param newName the new name of the ingredient
      */
     public void setName(String newName) {
@@ -158,7 +166,6 @@ public class Ingredient {
 
     /**
      * Sets the code for the ingredient to the String given
-     *
      * @param newCode the new code for the ingredient
      */
     public void setCode(String newCode) {
@@ -167,7 +174,6 @@ public class Ingredient {
 
     /**
      * Sets the unit type of the ingredient
-     *
      * @param newUnit the new unit type for the ingredient
      */
     public void setUnit(UnitType newUnit) {
@@ -176,7 +182,6 @@ public class Ingredient {
 
     /**
      * Sets whether the ingredient is vegetarian
-     *
      * @param newIsVeg an enum which stores whether an ingredient is vegetarian
      */
     public void setIsVeg(ThreeValueLogic newIsVeg) {
@@ -185,7 +190,6 @@ public class Ingredient {
 
     /**
      * Sets whether the ingredient is vegan
-     *
      * @param newIsVegan an enum which stores whether an ingredient is vegan
      */
     public void setIsVegan(ThreeValueLogic newIsVegan) {
@@ -194,7 +198,6 @@ public class Ingredient {
 
     /**
      * Sets whether the ingredient is gluten free
-     *
      * @param newIsGF an enum which stores whether an ingredient is gluten free
      */
     public void setIsGF(ThreeValueLogic newIsGF) {
@@ -203,7 +206,6 @@ public class Ingredient {
 
     /**
      * Sets the cost of the ingredient to the given float
-     *
      * @param newCost the new cost of the ingredient
      */
     public void setCost(float newCost) {
@@ -212,7 +214,6 @@ public class Ingredient {
 
     /**
      * Sets the quantity of the ingredient to the given float
-     *
      * @param newQuantity the new quantity of the ingredient
      */
     public void setQuantity(float newQuantity) {

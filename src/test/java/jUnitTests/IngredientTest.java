@@ -14,13 +14,14 @@ public class IngredientTest {
      */
     @Test
     public void ingredientConstructorTest() {
-        Ingredient ingredient = new Ingredient("4", "Pasta", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.NO, 10f);
+        Ingredient ingredient = new Ingredient("4", "Pasta", 12.1f, UnitType.COUNT, 10f);
         assertEquals(ingredient.getCode(), "4");
         assertEquals(ingredient.getName(), "Pasta");
         assertEquals(ingredient.getUnit(), UnitType.COUNT);
-        assertEquals(ingredient.getIsVeg(), ThreeValueLogic.YES);
-        assertEquals(ingredient.getIsVegan(), ThreeValueLogic.YES);
-        assertEquals(ingredient.getIsGF(), ThreeValueLogic.NO);
+        assertEquals(ingredient.getQuantity(), 12.1f);
+        assertEquals(ingredient.getIsVegetarian(), ThreeValueLogic.UNKNOWN);
+        assertEquals(ingredient.getIsVegan(), ThreeValueLogic.UNKNOWN);
+        assertEquals(ingredient.getIsGlutenFree(), ThreeValueLogic.UNKNOWN);
         assertEquals(ingredient.getCost(), 10f);
     }
 
@@ -29,7 +30,7 @@ public class IngredientTest {
      */
     @Test
     public void ingredientSetterTest() {
-        Ingredient ingredient = new Ingredient("4", "Pasta", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.NO, 10f);
+        Ingredient ingredient = new Ingredient("4", "Pasta", 12.1f, UnitType.COUNT, 10f);
         ingredient.setIsVegan(ThreeValueLogic.NO);
         ingredient.setCost(999);
         ingredient.setQuantity(1000);

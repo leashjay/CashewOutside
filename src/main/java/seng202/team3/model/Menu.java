@@ -1,8 +1,10 @@
 package seng202.team3.model;
 
 import seng202.team3.parsing.MenuItemAdapter;
+import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.MenuType;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
@@ -12,7 +14,7 @@ import java.util.HashMap;
  */
 
 @XmlRootElement(name = "menu")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Menu {
 
     /** Title of the menu */
@@ -71,9 +73,6 @@ public class Menu {
         isActive = true;
     }
 
-    public MenuType getType() {
-        return menuType;
-    }
 
     /**
      * sets isActive to true
@@ -124,6 +123,28 @@ public class Menu {
      * @return menuType
      */
     public MenuType getMenuType() { return menuType; }
+
+    /**
+     * Adds a menu item to the menuContent HashMap
+     *
+     * @param addedMenuItem menu item to be added to list
+     */
+    public void addMenuItem(MenuItem addedMenuItem) {
+        menuContent.put(addedMenuItem.getId(), addedMenuItem);
+    }
+
+    /**
+     * Adds menu items from XML file to the menuContent HashMap
+     *
+     * @param file path to menu XML file
+     * @throws Exception
+     */
+    public void addMenuItemFromXML(String file) throws JAXBException {
+        MenuLoader menuLoader = new MenuLoader();
+        Menu menu = menuLoader.loadMenuData(file);
+        HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
+        menuContent.putAll(newMenuItems);
+    }
 
     //    public void addToCollection(MenuItem) {}
 //

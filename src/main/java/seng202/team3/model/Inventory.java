@@ -5,6 +5,7 @@ import seng202.team3.parsing.IngredientAdapter;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
@@ -15,7 +16,7 @@ import java.util.Map;
  * Holds information about the inventory
  */
 @XmlRootElement(name = "inventory")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Inventory {
 
     /**
@@ -24,29 +25,19 @@ public class Inventory {
     @XmlElement
     private String description;
 
-    /**
-     * List of ingredients in the inventory
-     */
+    /** List of ingredients in the inventory */
     @XmlElement(name = "ingredients")
     @XmlJavaTypeAdapter(IngredientAdapter.class)
     private HashMap<String, Ingredient> ingredients;
 
-    /**
-     * A number that indicates that an ingredient with the unit type COUNT has low stock
-     */
+    /** A number that indicates that an ingredient with the unit type COUNT has low stock */
     // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
-    @XmlTransient
     private Float lowStockCount = 10f;
 
-    /**
-     * A number that indicates that an ingredient with the unit type GRAMS has low stock
-     */
-    @XmlTransient
+    /** A number that indicates that an ingredient with the unit type GRAMS has low stock */
     private Float lowStockGrams = 1000f;
 
-    /**
-     * A number that indicates that an ingredient with the unit type ML has low stock
-     */
+    /** A number that indicates that an ingredient with the unit type ML has low stock */
     @XmlTransient
     private Float lowStockML = 1000f;
 
@@ -67,9 +58,9 @@ public class Inventory {
         this.ingredients = ingredients;
     }
 
+
     /**
      * Getter for inventory description
-     *
      * @return desc
      */
     public String getDesc() {
@@ -78,7 +69,6 @@ public class Inventory {
 
     /**
      * Getter for list of ingredients
-     *
      * @return ingredients
      */
     public HashMap<String, Ingredient> getIngredients() {
@@ -87,7 +77,6 @@ public class Inventory {
 
     /**
      * Removes an ingredient from the ingredients HashMap
-     *
      * @param removedIngredient The ingredient that's to be removed from the list
      */
     public void removeIngredient(String removedIngredient) {
@@ -96,24 +85,22 @@ public class Inventory {
 
     /**
      * Adds an ingredient to the ingredients HashMap
-     *
      * @param addedIngredient The ingredient that's to be added to the list
      */
+    //TODO calculate cost price here and dont just replace current ingredient
     public void addIngredient(Ingredient addedIngredient) {
         ingredients.put(addedIngredient.getCode(), addedIngredient);
     }
 
     /**
      * Adds Ingredients from an XML file to the ingredients HashMap
-     * CY: When loadIngredientsData is called, the stock will be automatically updated to ingredients HashMap (see InventoryLoaderTest)
-     *     hence we don't need to explicitly map that
      * @param file The path to the XML file that is being used
      */
-    public void addIngredientsFromXML(String file) throws Exception {
+    public void addIngredientsFromXML(String file) throws JAXBException {
         InventoryLoader inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
-        HashMap<String, Ingredient> newIngredients = inventory.getIngredients(); //redundant
-        ingredients.putAll(newIngredients); //redundant
+        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
+        ingredients.putAll(newIngredients);
     }
 
     /**
@@ -123,6 +110,10 @@ public class Inventory {
      */
     // Identifies ingredient to be replaced by getCode(), meaning you can't modify the code. better way of doing this?
     public void modifyIngredient(Ingredient modifiedIngredient) {
+//        if (ingredients.get(modifiedIngredient).getCost() != modifiedIngredient.getCost()) {
+//            Float newCost = ((ingredients.get(modifiedIngredient).getQuantity()*ingredients.get(modifiedIngredient).getCost()) + (modifiedIngredient.getQuantity()*modifiedIngredient.getCost())) / (modifiedIngredient.getQuantity() + ingredients.get(modifiedIngredient).getQuantity());
+//            modifiedIngredient.setCost(newCost);
+//        }
         ingredients.replace(modifiedIngredient.getCode(), modifiedIngredient);
     }
 
@@ -227,5 +218,5 @@ public class Inventory {
         order.setReceivedDate(new Date());
     }
 
-}
 
+}

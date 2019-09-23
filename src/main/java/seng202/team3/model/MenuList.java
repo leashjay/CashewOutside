@@ -2,6 +2,9 @@ package seng202.team3.model;
 
 import java.util.ArrayList;
 import seng202.team3.util.MenuType;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.XmlAttribute;
 
 public class MenuList {
 
@@ -10,6 +13,8 @@ public class MenuList {
     private ArrayList<Menu> winterMenus;
     private ArrayList<Menu> summerMenus;
     private ArrayList<Menu> festivalMenus;
+    @XmlAttribute(name = "type")
+    private MenuType type;
 
     public void addMenu(Menu menu) {
         if (!menuArrayList.contains(menu)) {
@@ -39,7 +44,7 @@ public class MenuList {
     public ArrayList<Menu> getWinterMenus() {
         for (int i = 0; i < menuArrayList.size(); i++) {
             Menu current = menuArrayList.get(i);
-            if (current.getType() == MenuType.WINTER) {
+            if (current.getMenuType() == MenuType.WINTER) {
                 winterMenus.add(current);
             }
         }
@@ -49,7 +54,7 @@ public class MenuList {
     public ArrayList<Menu> getSummerMenus() {
         for (int i = 0; i < menuArrayList.size(); i++) {
             Menu current = menuArrayList.get(i);
-            if (current.getType() == MenuType.SUMMER) {
+            if (current.getMenuType() == MenuType.SUMMER) {
                 summerMenus.add(current);
             }
         }
@@ -59,7 +64,7 @@ public class MenuList {
     public ArrayList<Menu> getFestivalMenus() {
         for (int i = 0; i < menuArrayList.size(); i++) {
             Menu current = menuArrayList.get(i);
-            if (current.getType() == MenuType.FESTIVAL) {
+            if (current.getMenuType() == MenuType.FESTIVAL) {
                 festivalMenus.add(current);
             }
         }

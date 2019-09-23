@@ -1,8 +1,8 @@
 package seng202.team3.parsing;
 
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.PrintStream;
 
@@ -13,7 +13,7 @@ import java.io.PrintStream;
  * notification etc.  We implement org.xml.sax.ErrorHandler interface.
  */
 
-public class MyErrorHandler implements ErrorHandler {
+public class MyErrorHandler extends DefaultHandler {
 	/**
 	 * We might want to get clever about where the error output should
 	 * go.  Maybe it should pop up a dialog box, go down a pipe, be
@@ -21,44 +21,46 @@ public class MyErrorHandler implements ErrorHandler {
 	 */
 	private PrintStream errDest;
 
-	MyErrorHandler(PrintStream errDest) {
-		this.errDest = errDest;
+
+	MyErrorHandler() {
+		this.errDest = System.err;
 	}
 
-	/**
-	 * Format some of the available information about or current problem.
-	 */
-	private String getParseExceptionInfo(SAXParseException spe) {
-		/*
-		 * The system ID will generally be a URL
-		 */
-		String systemId = spe.getSystemId();
-		if (systemId == null) {
-			systemId = "null";
-		}
-		String parseExceptionInfo = spe.getMessage() + "\nat line "
-				+ spe.getLineNumber() + " in " + systemId;
-		return parseExceptionInfo;
+    private String getParseExceptionInfo(SAXParseException spe) {
+        /*
+         * The system ID will generally be a URL
+         */
+        String systemId = spe.getSystemId();
+        if (systemId == null) {
+            systemId = "null";
+        }
+        String parseExceptionInfo = spe.getMessage() + "\nat line "
+                + spe.getLineNumber() + " in " + systemId;
+        return parseExceptionInfo;
+    }
+
+
+    /* The warning, fatalError and error methods are from the SAX
+     * org.xml.sax.ErrorHandler interface.  We might want to take
+     * specific action (e.g. exit) or pass the exception on for
+     * someone further up the line to handle.
+     */
+    @Override
+    public void warning(SAXParseException spe) {
+        errDest.println("Warning: " + getParseExceptionInfo(spe));
+    }
+
+    @Override
+    public void error(SAXParseException spe) throws SAXException {
+        String errorMessage = "Error: " + getParseExceptionInfo(spe);
+        throw new SAXException(errorMessage);
+    }
+
+    @Override
+    public void fatalError(SAXParseException spe) throws SAXException {
+        String fatalErrorMessage = "Fatal Error: "
+                + getParseExceptionInfo(spe);
+        throw new SAXException(fatalErrorMessage);
 	}
 
-	/* The warning, fatalError and error methods are from the SAX
-	 * org.xml.sax.ErrorHandler interface.  We might want to take
-	 * specific action (e.g. exit) or pass the exception on for
-	 * someone further up the line to handle.
-	 */
-
-	public void warning(SAXParseException spe) {
-		errDest.println("Warning: " + getParseExceptionInfo(spe));
-	}
-
-	public void error(SAXParseException spe) throws SAXException {
-		String errorMessage = "Error: " + getParseExceptionInfo(spe);
-		throw new SAXException(errorMessage);
-	}
-
-	public void fatalError(SAXParseException spe) throws SAXException {
-		String fatalErrorMessage = "Fatal Error: "
-				+ getParseExceptionInfo(spe);
-		throw new SAXException(fatalErrorMessage);
-	}
 }

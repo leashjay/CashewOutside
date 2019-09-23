@@ -4,10 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.*;
 import seng202.team3.util.PhoneType;
-import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
-import java.util.Date;
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.*;
@@ -25,12 +25,9 @@ public class SupplierHandlerTest {
 
     @Before
     public void setup() {
-        beans = new Ingredient("1", "Beans", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 20);
-        brocolli = new Ingredient("2", "Brocolli", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 15);
-        carrots = new Ingredient("3", "Carrots", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 10);
+        beans = new Ingredient("1", "Beans", 2f, UnitType.GRAM, 20);
+        brocolli = new Ingredient("2", "Brocolli", 3f, UnitType.COUNT, 15);
+        carrots = new Ingredient("3", "Carrots", 4f, UnitType.COUNT, 10);
         inventory = new Inventory();
         suppliers = new HashMap<>();
 
@@ -82,13 +79,21 @@ public class SupplierHandlerTest {
         assertTrue(supplierHandler.getSuppliers().containsValue(paknsave));
         assertFalse(supplierHandler.getSuppliers().containsValue(countdown));
         assertFalse(supplierHandler.getSuppliers().containsValue(mootsMeatMarket));
-
-
-
     }
 
+    /**
+     * Tests if the method to add suppliers from an XML file is working
+     */
+    @Test
+    public void testAddSupplierFromXML() throws JAXBException {
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        SupplierHandler testSupplierHandler = testBusiness.getSupplierHandler();
+        assertEquals(4, testSupplierHandler.getSuppliers().size());
 
 
-
+        testSupplierHandler.addSupplierFromXML("./resources/data/testdata/testSupplier1.xml");
+        assertEquals(5, testSupplierHandler.getSuppliers().size());
+        assertTrue(testSupplierHandler.getSuppliers().keySet().contains("s6"));
+    }
 
 }

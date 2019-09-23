@@ -1,4 +1,4 @@
-package jUnitTests;
+package loaderTests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +8,6 @@ import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
@@ -32,15 +30,6 @@ public class InventoryLoaderTest {
         fName = "./resources/data/Ingredients.xml";
         int numExpected = 30;
         String pathName = "";
-
-        try {
-            pathName = (new File(fName)).toURI().toURL().toString();
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
-
         testLoader = new InventoryLoader();
         testInventory = testLoader.loadIngredientsData(fName);
         ingredients = testInventory.getIngredients();
@@ -66,7 +55,7 @@ public class InventoryLoaderTest {
         Ingredient i = ingredients.get(aCode);
         assertNotNull("Corresponding object in collection", i);
         assertEquals("It's a beetroot slice, isn't it?", "Beetroot slice", i.getName());
-        assertEquals("Beetroot is gluten free", ThreeValueLogic.YES, i.getIsGF());
+        assertEquals("Beetroot is gluten free", ThreeValueLogic.YES, i.getIsGlutenFree());
     }
 
     @Test
@@ -76,13 +65,13 @@ public class InventoryLoaderTest {
         Ingredient i = ingredients.get(aCode);
         assertNotNull("Corresponding object in collection", i);
         assertEquals("It's Eater plain Mayonnaise, isn't it?", "Eater plain Mayonnaise", i.getName());
-        assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGF());
+        assertEquals("No idea whether mayo is gluten free", ThreeValueLogic.UNKNOWN, i.getIsGlutenFree());
         assertEquals("How much does mayo cost?", (float) 1.1, i.getCost());
     }
 
     @Test
     public void testExportDBtoXML() throws Exception {
-        Ingredient newEntry = new Ingredient("Kimchi", "chikim", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.NO, ThreeValueLogic.UNKNOWN, (float) 1.2);
+        Ingredient newEntry = new Ingredient("Kimchi", "chikim", 3f, UnitType.GRAM, 1.2f);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
         testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml");
 
@@ -94,8 +83,6 @@ public class InventoryLoaderTest {
         ingredients = testInventory.getIngredients();
         assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }
-
-
 
 
 }

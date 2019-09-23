@@ -1,9 +1,9 @@
 package seng202.team3.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seng202.team3.parsing.SupplierAdapter;
+import seng202.team3.parsing.SuppliersLoader;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,14 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Container for Supplier class
  */
 
 @XmlRootElement(name = "suppliers")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class SupplierHandler {
 
     /**
@@ -26,10 +25,12 @@ public class SupplierHandler {
      */
     @XmlElement(name = "description")
     private String descriptionOfXMLData;
+
     /**
      * Holds the history of the businesses orders
      */
     private ArrayList orderHistory = new ArrayList<SupplierOrder>();
+
     /**
      * List of suppliers
      */
@@ -101,6 +102,19 @@ public class SupplierHandler {
     }
 
     /**
+     * Adds suppliers from an XML file to the suppliers HashMap
+     *
+     * @param file path to supplier XML file
+     * @throws Exception
+     */
+    public void addSupplierFromXML(String file) throws JAXBException {
+        SuppliersLoader suppliersLoader = new SuppliersLoader();
+        SupplierHandler supplierHandler = suppliersLoader.loadSuppliersData(file);
+        HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();
+        suppliers.putAll(newSuppliers);
+    }
+
+    /**
      * Removes a supplier currently in the list of suppliers
      *
      * @param supplierID The ID of the supplier to be removed
@@ -116,14 +130,6 @@ public class SupplierHandler {
      */
     public void orderFromSupplier(SupplierOrder order) {
         orderHistory.add(order);
-    }
-
-    public ObservableList<Supplier> getSuppliersAsObservableList(){
-        ObservableList<Supplier> listOfSuppliers = FXCollections.observableArrayList();
-        for (Map.Entry<String, Supplier> entry : suppliers.entrySet()){
-            listOfSuppliers.add(entry.getValue());
-        }
-        return listOfSuppliers;
     }
 
 

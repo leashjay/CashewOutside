@@ -4,10 +4,7 @@ import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ import java.util.Map;
  */
 
 @XmlRootElement(name = "item")
+@XmlAccessorType(XmlAccessType.NONE)
 public class MenuItem {
 
     /**
@@ -31,23 +29,24 @@ public class MenuItem {
     private String name;
 
     /** List of ingredients and their quantities needed to make the menu item */
-    @XmlElement(name = "ingredients")
+    @XmlElement
     private HashMap<Ingredient, Float> ingredients;
 
-    /** Type 0900of cuisine */
+    /**
+     * Type of cuisine
+     */
     @XmlAttribute(name = "type")
     private ItemType type;
 
-    @XmlTransient
+
     private ArrayList<ItemType> itemTypes;
 
-    @XmlTransient
+
     private UnitType foodType;
 
     /**
      * The price the business sells the item for
      */
-    @XmlTransient
     private float salePrice;
 
     /**
@@ -101,6 +100,7 @@ public class MenuItem {
     public HashMap<Ingredient, Float> getIngredients() {
         return ingredients;
     }
+
 
     /**
      * Getter for type of cuisine
@@ -158,10 +158,10 @@ public class MenuItem {
         ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGF() == ThreeValueLogic.UNKNOWN){
+            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN){
                 isGlutenFree = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsGF() == ThreeValueLogic.NO){
+            if(ingredient.getIsGlutenFree() == ThreeValueLogic.NO){
                 isGlutenFree = ThreeValueLogic.NO;
             }
 
@@ -177,10 +177,10 @@ public class MenuItem {
         ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVeg() == ThreeValueLogic.UNKNOWN){
+            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN){
                 isVegetarian = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
                 isVegetarian = ThreeValueLogic.NO;
             }
 
@@ -199,7 +199,7 @@ public class MenuItem {
             if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
                 isVegan = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVeg() == ThreeValueLogic.NO){
+            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
                 isVegan = ThreeValueLogic.NO;
             }
 
