@@ -15,13 +15,11 @@
                 <Tab fx:id="suppliersTab" text="Suppliers">
                     <fx:include source="suppliertab.fxml" />
                 </Tab>
-                <Tab fx:id="ingredientsTab" text="Ingredients">
+                <Tab fx:id="ingredientsTab" text="Stock">
                     <fx:include source="ingredienttab.fxml" />
                 </Tab>
-            <Tab fx:id="menusTab" text="Menus">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+            <Tab fx:id="menusTab" text="Menu Items">
+                <fx:include source="menuitemstab.fxml" />
             </Tab>
                 <Tab fx:id="exportTab" text="Export Data">
                     <content>
