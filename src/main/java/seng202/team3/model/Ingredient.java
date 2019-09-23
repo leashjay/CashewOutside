@@ -179,7 +179,24 @@ public class Ingredient {
     public void setUnit(UnitType newUnit) {
         unit = newUnit;
     }
+    
+    /**
+     * Sets the unit type of the ingredient after converting from string
+     * @param newUnit the new unit type for the ingredient in string format
+     */
+    public UnitType convertToUnit(String unit) {
+        UnitType newUnit = UnitType.UNKNOWN;
+        if (unit.toUpperCase() == "GRAM") {
+            newUnit = UnitType.COUNT;
+        } else if (unit.toUpperCase() == "ML") {
+            newUnit = UnitType.COUNT;
+        } else if (unit.toUpperCase() == "COUNT") {
+            newUnit = UnitType.COUNT;
+        }
 
+        return newUnit;
+    }
+    
     /**
      * Sets whether the ingredient is vegetarian
      * @param newIsVeg an enum which stores whether an ingredient is vegetarian
@@ -204,6 +221,15 @@ public class Ingredient {
         isGF = newIsGF;
     }
 
+    /**
+     * Sets the cost of the ingredient to the given float
+     * @param newCost the new cost of the ingredient
+     */
+    public void setCost(float newCost) {
+        Float calcCost = newCost;
+        cost = calcCost;
+    }
+    
     /**
      * Sets the cost of the ingredient to the given float
      * @param newCost the new cost of the ingredient
