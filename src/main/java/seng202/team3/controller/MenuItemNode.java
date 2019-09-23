@@ -1,5 +1,6 @@
 package seng202.team3.controller;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -95,7 +96,8 @@ public class MenuItemNode extends VBox {
     private void makeNameArea(String name) {
         Label itemNameLabel = new Label();
         itemNameLabel.setText(name);
-        itemNameLabel.setStyle("-fx-text-alignment: center");
+        itemNameLabel.setStyle("-fx-text-alignment: center; -fx-wrap-text: true;");
+        itemNameLabel.setAlignment(Pos.TOP_CENTER);
         itemNameLabel.setPrefWidth(200);
         itemNameLabel.setPrefHeight(40);
         this.getChildren().add(0,itemNameLabel);
