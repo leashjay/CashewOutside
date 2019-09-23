@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MenuItemTabController">
    <children>
       <VBox prefHeight="600.0" prefWidth="1000.0">
@@ -26,6 +24,15 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
              </TableView>
+             <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddMenuItemXMLScreen"
+                     text="Add from XML">
+                 <opaqueInsets>
+                     <Insets/>
+                 </opaqueInsets>
+                 <VBox.margin>
+                     <Insets left="20.0"/>
+                 </VBox.margin>
+             </Button>
          </children>
       </VBox>
    </children>

@@ -2,16 +2,20 @@ package seng202.team3.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import seng202.team3.model.Menu;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import seng202.team3.model.MenuItem;
-import seng202.team3.model.Supplier;
 import seng202.team3.util.ItemType;
 import seng202.team3.view.BusinessApp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +49,26 @@ public class MenuItemTabController {
     @FXML
     private TableColumn<MenuItem, Button> deleteButtonCol;
 
+    private static MenuItemTabController instance;
+
+    /**
+     * Holds an instance of the MenuItemTabController class so other controllers can call its methods
+     */
+
+    public MenuItemTabController() {
+        instance = this;
+    }
+
+
+    /**
+     * Returns an instance of the MenuItemTabController so other controller classes can use its methods
+     *
+     * @return an instance of the MenuItemTabController class
+     */
+    public static MenuItemTabController getInstance() {
+        return instance;
+    }
+
     public void initialize() {
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
@@ -64,11 +88,27 @@ public class MenuItemTabController {
         }));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", MenuItem -> {
-           //remove The menuitem
+            //remove The menuitem
         }));
 
         List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
+    }
+
+    public void openAddMenuItemXMLScreen() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/addmenuitemxml.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.setTitle("Add supplier");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    public void updateMenuItemTable() {
+        List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
+        menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
+        System.out.println("Update menu item table called");
     }
 }
