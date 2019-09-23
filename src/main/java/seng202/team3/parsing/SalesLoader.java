@@ -2,9 +2,12 @@ package seng202.team3.parsing;
 
 
 import org.eclipse.persistence.jaxb.*;
+import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.SalesHandler;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
@@ -50,7 +53,7 @@ public class SalesLoader {
     /**
      * Constructor for SalesLoader
      */
-    public SalesLoader() throws Exception {
+    public SalesLoader() throws JAXBException {
         context = JAXBContext.newInstance(SalesHandler.class);
 
         salesInfo = JAXBHelper.getJAXBContext(context).createObjectGraph(SalesHandler.class);
@@ -71,11 +74,15 @@ public class SalesLoader {
      * @param fileName path to sales XML file
      * @return Instance of SalesHandler
      */
-    public SalesHandler loadSalesData(String fileName) throws Exception {
+    public SalesHandler loadSalesData(String fileName) throws JAXBException, IOException {
         try {
             validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
-            String errorMessage = pce.getMessage();
+            AddXMLController.errorMessageList.add(pce.getMessage());
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add(spe.getMessage());
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
         }
         Unmarshaller unmarshaller = context.createUnmarshaller();
         unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
@@ -90,7 +97,7 @@ public class SalesLoader {
      * @param fileName  path to sales XML file
      * @param salesLoad instance of SalesHandler to be loaded
      */
-    public void exportSalesData(String fileName, SalesHandler salesLoad) throws Exception {
+    public void exportSalesData(String fileName, SalesHandler salesLoad) throws JAXBException, IOException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(MarshallerProperties.OBJECT_GRAPH, salesInfo);

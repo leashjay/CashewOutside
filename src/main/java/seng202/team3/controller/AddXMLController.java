@@ -33,25 +33,25 @@ public class AddXMLController {
 
     private String errorMessage;
 
-    Stage stage;
+    private Stage stage;
 
     @FXML
-    Button browseButton;
+    private Button browseButton;
 
     @FXML
-    TextField pathString;
+    private TextField pathString;
 
     @FXML
-    Button importSupplierXMLButton;
+    private Button importSupplierXMLButton;
 
     @FXML
-    Button importIngredientXMLButton;
+    private Button importIngredientXMLButton;
 
     @FXML
-    Button importMenuItemXMLButton;
+    private Button importMenuItemXMLButton;
 
     @FXML
-    Text feedbackMessage;
+    private Text feedbackMessage;
 
 
 
@@ -122,9 +122,11 @@ public class AddXMLController {
 
         if (errorMessage != null && errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
+            feedbackMessage.setVisible(false);
         } else {
             feedbackMessage.setText(errorMessage);
             errorMessageList.clear();
+            feedbackMessage.setVisible(true);
         }
     }
 

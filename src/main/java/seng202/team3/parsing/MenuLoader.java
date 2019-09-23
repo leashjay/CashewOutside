@@ -78,21 +78,15 @@ public class MenuLoader {
     public Menu loadMenuData(String fileName) throws JAXBException {
         try {
             validateXMLFile(fileName);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
         } catch (ParserConfigurationException pce) {
             AddXMLController.errorMessageList.add(pce.getMessage());
         } catch (SAXException spe) {
             AddXMLController.errorMessageList.add(spe.getMessage());
         } catch (IOException ioe) {
             AddXMLController.errorMessageList.add(ioe.getMessage());
-        }
-
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        try {
-            InputStream inputStream = new FileInputStream(new File(fileName));
-            menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
-        } catch (FileNotFoundException fnfe) {
-            AddXMLController.errorMessageList.add(fnfe.getMessage());
         }
         return menuLoad;
     }

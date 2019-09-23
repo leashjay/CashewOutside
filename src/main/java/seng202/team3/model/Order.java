@@ -11,10 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * @generated
+ * Order class to store details of order
  */
 
 @XmlRootElement(name = "entry")

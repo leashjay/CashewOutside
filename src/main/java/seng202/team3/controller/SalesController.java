@@ -101,7 +101,6 @@ public class SalesController {
         addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
     }
 
-
     /**
      * sets the gridPane to fill the width of the window.
      * @param gridPane

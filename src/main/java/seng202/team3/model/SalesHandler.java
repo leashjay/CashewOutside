@@ -9,6 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Holds list of orders stored
+ */
+
 @XmlRootElement(name = "sales")
 @XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {

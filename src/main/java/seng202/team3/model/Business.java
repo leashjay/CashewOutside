@@ -100,21 +100,35 @@ public class Business {
      *
      * @param file path to order history XML file
      */
-    public void exportOrdersAsXML(String file) throws Exception {
+    public void exportOrdersAsXML(String file) throws JAXBException, IOException {
         SalesLoader salesLoader = new SalesLoader();
         salesLoader.exportSalesData(file, salesManager);
     }
 
+    /**
+     * Export inventory data as XML file
+     *
+     * @param file path to inventory XML file
+     */
     public void exportInventoryAsXML(String file) throws JAXBException, IOException {
         InventoryLoader inventoryLoader = new InventoryLoader();
         inventoryLoader.exportIngredientsData(file, thisTruck.getInventory());
     }
 
-    public void exportSupplierAsXML(String file) throws Exception {
+    /**
+     * Export supplier data as XML file
+     *
+     * @param file
+     */
+    public void exportSupplierAsXML(String file) throws JAXBException, IOException{
         SuppliersLoader suppliersLoader = new SuppliersLoader();
         suppliersLoader.exportSupplierData(file, supplierManager);
     }
 
+    /**
+     * Export menu data as XML file
+     * @param file
+     */
     public void exportMenuAsXML(String file) throws JAXBException, IOException {
         MenuLoader menuLoader = new MenuLoader();
         menuLoader.exportMenuData(file, menuManager);

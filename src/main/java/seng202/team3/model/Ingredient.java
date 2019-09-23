@@ -110,8 +110,6 @@ public class Ingredient {
         this.cost = cost;
     }
 
-
-
     /**
      * Getter for ingredient's short name
      * @return code
