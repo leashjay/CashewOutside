@@ -25,6 +25,9 @@ public class Order {
     @XmlElement(name = "orderId")
     private int orderId; // should be unique across multiple orders
 
+    @XmlElement(name = "customerName")
+    private String name = "";
+
     @XmlElement(name = "orderStatus")
     public OrderStatus orderStatus;
 
@@ -46,7 +49,6 @@ public class Order {
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
-    private String name = "";
 
     /**
      * <!-- begin-user-doc -->

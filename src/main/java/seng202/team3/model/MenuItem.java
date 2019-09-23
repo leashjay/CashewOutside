@@ -38,6 +38,11 @@ public class MenuItem {
     @XmlAttribute(name = "type")
     private ItemType type;
 
+    /**
+     * Total cost of menu item without the mark up
+     */
+    private float totalCost;
+
 
     private ArrayList<ItemType> itemTypes;
 
@@ -142,14 +147,14 @@ public class MenuItem {
      * @return a float showing the price to create the given recipe
      */
     public float getCostPrice() {
-        float totalPrice = 0;
+        totalCost = 0;
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            totalPrice += ingredient.getCost() * entry.getValue();
+            totalCost += ingredient.getCost() * entry.getValue();
         }
 
-        return totalPrice;
+        return totalCost;
     }
 
 

@@ -4,7 +4,7 @@
         <!ENTITY version "V0.01 (C) CashewOutside">
         <!ELEMENT sales (orders)>
         <!ELEMENT orders (order*)>
-        <!ELEMENT order (orderId, orderStatus, orderCost, itemsOrdered, flagsChecked)>
+        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, itemsOrdered*, flagsChecked)>
         <!ATTLIST order
                 dateOrdered CDATA #REQUIRED
                 timeOrdered CDATA #REQUIRED
@@ -13,6 +13,7 @@
                 isVeg (YES|NO|UNKNOWN) "UNKNOWN"
                 >
         <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT customerName (#PCDATA)>
         <!ELEMENT orderStatus (#PCDATA)>
         <!ELEMENT orderCost (#PCDATA)>
         <!ELEMENT itemsOrdered (id, name)>
@@ -21,5 +22,21 @@
         <!ELEMENT name (#PCDATA)>
         ]>
 <sales>
-    <orders/>
+   <orders>
+      <order dateOrdered="2019-09-24" timeOrdered="10:13:33.531294600">
+         <orderId>1</orderId>
+         <customerName>katie</customerName>
+         <orderStatus>QUEUED</orderStatus>
+         <orderCost>422.0</orderCost>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>HotChoc</id>
+            <name>Hot Chocolate</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+   </orders>
 </sales>
