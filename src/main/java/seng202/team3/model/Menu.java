@@ -164,6 +164,10 @@ public class Menu {
         menuContent.put(addedMenuItem.getId(), addedMenuItem);
     }
 
+    public void removeMenuItem(String menuItemID) {
+        menuContent.remove(menuItemID);
+    }
+
     /**
      * Adds menu items from XML file to the menuContent HashMap
      *

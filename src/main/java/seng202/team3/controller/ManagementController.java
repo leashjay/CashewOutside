@@ -21,6 +21,9 @@ import seng202.team3.view.BusinessApp;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller class for the management section of the GUI
+ */
 public class ManagementController{
 
 
@@ -35,8 +38,7 @@ public class ManagementController{
 
         /**
          * sends the user back to the main screen.;
-         * Some kind of clean up / persistence should be implemented here.
-         * @throws IOException idk?
+         * @throws IOException the exception thrown.
          */
     public void returnToMainScreen() throws IOException {
         BusinessApp.loadMainPage();
