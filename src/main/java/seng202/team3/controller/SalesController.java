@@ -15,6 +15,7 @@ import seng202.team3.model.Business;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
 import seng202.team3.model.SalesHandler;
+import seng202.team3.util.ItemType;
 import seng202.team3.view.BusinessApp;
 
 import javax.lang.model.type.NullType;
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class SalesController {
 
@@ -69,15 +71,18 @@ public class SalesController {
         business = BusinessApp.getBusiness();
         curOrder = new Order();
         salesManager = business.getSalesHandler();
+        // declare what ItemTypes are assigned to which GridPane
+        Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
+        Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
 
-        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem();
-
-//        ArrayList<MenuItem> drinkMenuItems = new ArrayList<>(); //getDrinkItems();
+        // retrieve HashMaps of MenuItems to populate GridPanes
+        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        HashMap<String, MenuItem> drinkMenuItems = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
         setUpGridPane(foodItemGrid);
         setUpGridPane(drinkItemGrid);
         addMenuItemButtonsToGridPane(foodMenuItems, foodItemGrid);
         updateCostLabel();
-//        addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
+        addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
     }
 
     /**
@@ -110,6 +115,7 @@ public class SalesController {
 
         final int numChildrenAtStart = gridPane.getChildren().size();
         final int numColumnsAtStart = gridPane.getColumnCount();
+        final int numRowsAtStart = gridPane.getRowCount();
 
         int row = numChildrenAtStart / numColumnsAtStart; // Java Integer Division, so floors the result
         int column = numChildrenAtStart % numColumnsAtStart;
@@ -133,7 +139,9 @@ public class SalesController {
             if (column == numColumnsAtStart) {
                 column = 0;
                 row++;
-                setUpNewRow(row, gridPane);
+                if (row > numRowsAtStart) {
+                    setUpNewRow(row, gridPane);
+                }
             }
         }
     }

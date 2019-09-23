@@ -153,6 +153,7 @@ public class SupplierTabController
         stage.showAndWait();
     }
 
+
     /**
      * Adds the Supplier the user has inputted data for to the suppliers list and closes the table.
      */
