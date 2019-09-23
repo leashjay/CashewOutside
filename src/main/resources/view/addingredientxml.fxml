@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.AddXMLController">
+    <children>
+        <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="407.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="0.0" prefWidth="0.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="149.0" minHeight="8.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="164.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="164.0" minHeight="10.0" prefHeight="81.60000000000002" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Ingredients from XML">
+                    <font>
+                        <Font name="System Bold" size="21.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="20.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Path to XML file" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                    <GridPane.margin>
+                        <Insets left="20.0" />
+                    </GridPane.margin>
+                </Text>
+                <TextField fx:id="pathString" maxWidth="480.0" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="20.0" />
+                    </GridPane.margin>
+                </TextField>
+                <Button fx:id="closeScreen" mnemonicParsing="false" onAction="#closeAddXMLScreen" text="Back" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets left="20.0" />
+                    </GridPane.margin>
+                </Button>
+                <Button fx:id="importIngredientXMLButton" mnemonicParsing="false" onAction="#addIngredientXML" text="Import" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets right="20.0" />
+                    </GridPane.margin>
+                </Button>
+                <Text fx:id="feedbackMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="Please insert a proper path" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets right="20.0" />
+                    </GridPane.margin>
+                </Text>
+            <Button fx:id="browseButton" mnemonicParsing="false" onAction="#browseButtonPressed" text="Browse" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </Button>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>

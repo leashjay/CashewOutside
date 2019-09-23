@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suppliers [
+        <!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT suppliers (description, providers)>
+        <!ELEMENT providers ((supplier*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT supplier (sid, name, address, phone, email?, url?)>
+        <!ELEMENT sid (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT address (#PCDATA)>
+        <!ELEMENT phone (#PCDATA)>
+        <!ATTLIST supplier type (MOBILE|WORK|HOME|UNKNOWN) "UNKNOWN">
+        <!ELEMENT email (#PCDATA)>
+        <!ELEMENT url (#PCDATA)>
+        ]>
+<suppliers>
+    <description>Some sample supplier data</description>
+    <providers>
+        <supplier type="MOBILE">
+            <sid>s6</sid>
+            <name>Maccas</name>
+            <address>88 Maccas Street, Christchurch</address>
+            <phone>021342366</phone>
+            <email>maccas@cfoods.co.nz</email>
+            <url>maccas.co.nz</url>
+        </supplier>
+    </providers>
+</suppliers>
