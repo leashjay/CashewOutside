@@ -100,3 +100,7 @@ default style for buttons
     -fx-text-fill: white;
     -fx-padding: 10;
 }
+
+.delete-button {
+    -fx-background-color: RED;
+}
