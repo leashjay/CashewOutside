@@ -100,6 +100,7 @@ public class KitchenController {
      * This method is called automatically by the FXMLLoader
      */
     public void initialize() {
+        getOrders();
         menuItems = new ArrayList<>();
         addOrderToGridPane();
         createMenuItemsArray();
@@ -146,7 +147,7 @@ public class KitchenController {
 
         for (MenuItem item : menuItems) {
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
             ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -185,6 +186,40 @@ public class KitchenController {
         }
     }
 
+    private void getOrders() {
+        Ingredient rice = new Ingredient("1", "Rice", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
+                ThreeValueLogic.YES, 0.001f);
+        Ingredient carrot = new Ingredient("2", "Carrot", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
+                ThreeValueLogic.YES, 0.01f);
+        Ingredient peas = new Ingredient("3", "Peas", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
+                ThreeValueLogic.YES, 0.01f);
+        Ingredient egg = new Ingredient("4", "Rice", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.YES,
+                ThreeValueLogic.YES, 1f);
+
+        HashMap<Ingredient, Float>friedRiceIngredients = new HashMap<>();
+        friedRiceIngredients.put(rice, 200f);
+        friedRiceIngredients.put(carrot, 50f);
+        friedRiceIngredients.put(peas, 50f);
+        MenuItem friedRice = new MenuItem("1", "Fried rice", friedRiceIngredients, ItemType.MAIN);
+        MenuItem testFood = new MenuItem("2", "Test Food", friedRiceIngredients, ItemType.MAIN);
+        Order order2 = new Order();
+        order2.addToOrder(friedRice);
+        order2.addToOrder(friedRice);
+        order2.setOrderId(3);
+        Order order5 = new Order();
+        order5.addToOrder(friedRice);
+        order5.addToOrder(friedRice);
+        order5.setOrderId(7);
+        salesHandler.addOrder(order5);
+        Order order7 = new Order();
+        order7.addToOrder(friedRice);
+        order7.addToOrder(testFood);
+        order7.setOrderId(6);
+        salesHandler.addOrder(order7);
+        salesHandler.addOrder(order2);
+    }
+
+
     /**
      * Adds a TextFlow containing the current orders to the orders grid pane
      */
@@ -201,7 +236,7 @@ public class KitchenController {
         for (Order order : orders) {
 
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
 
