@@ -39,6 +39,10 @@
     -fx-pref-height: 600;
 }
 
+#errorText {
+    -fx-text-fill: red;
+}
+
 /*
 the style taken from tabStyle.css, will be used for the tab classes across the different screens
  */

@@ -45,7 +45,8 @@ public class Order {
 
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
-    private String name;
+
+    private String name = "";
 
     /**
      * <!-- begin-user-doc -->
@@ -55,10 +56,15 @@ public class Order {
      */
     public Order() {
         // TODO change timeOrdered to be set when order is ordered.
-        super();
-        this.orderId = BusinessApp.getBusiness().makeNextOrderID();
+//        super();
+        this.orderStatus = OrderStatus.QUEUED;
+        // TODO remove these two following lines, while not breaking functionality ;)
         setTime(LocalTime.now());
         dateOrdered = LocalDate.now();
+    }
+
+    public void setToNextID() {
+        this.orderId = BusinessApp.getBusiness().makeNextOrderID();
     }
 
     public LocalTime getTime() {
@@ -219,6 +225,7 @@ public class Order {
     public ArrayList<MenuItem> getOrderedItems() {
         return this.itemsOrdered;
     }
+
     public OrderStatus getStatus() {
         return this.orderStatus;
     }
@@ -226,5 +233,13 @@ public class Order {
     public void setName(String name) { this.name = name; }
 
     public String getName() { return this.name; }
+
+    public LocalDate getDate() { return this.dateOrdered; }
+
+    public int getNumItems() {
+        return this.itemsOrdered.size();
+    }
+
+    public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
 }
 

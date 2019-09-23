@@ -13,4 +13,11 @@ public final class StringChecking {
     public static boolean isAlphaNumeric(String stringToCheck) {
         return !stringToCheck.matches("^.*[^a-zA-Z0-9 ].*$");
     }
+
+    /**
+     * method to check if the string is a valid positive float
+     */
+    public static boolean isFloat(String stringToCheck) {
+        return stringToCheck.matches("[+]?([0-9]*[.])?[0-9]+");
+    }
 }

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -78,14 +80,31 @@
                         <Label fx:id="priceValueLabel" layoutX="473.0" layoutY="237.0" text="Label" />
                         <Button id="confirmButton" layoutX="588.0" layoutY="401.0" mnemonicParsing="false" onAction="#confirmCurrentOrder" stylesheets="@../gui/styles.css" text="Confirm" />
                         <Button id="deleteButton" layoutX="272.0" layoutY="401.0" mnemonicParsing="false" onAction="#deleteCurrentOrder" stylesheets="@../gui/styles.css" text="Delete" />
-                        <Label id="errorText" fx:id="nameErrorLabel" layoutX="243.0" layoutY="276.0" stylesheets="@../gui/styles.css" text="Name must not be blank and can only contain numbers, letters, and spaces" />
-                        <Label id="errorText" fx:id="numItemsErrorLabel" layoutX="576.0" layoutY="209.0" stylesheets="@../gui/styles.css" text="An Order must contain items" />
+                        <Label id="errorText" fx:id="nameErrorLabel" layoutX="588.0" layoutY="159.0" prefHeight="53.0" prefWidth="293.0" stylesheets="@../gui/styles.css" text="Name must not be blank and can only contain numbers, letters, and spaces" textFill="RED" wrapText="true" />
+                        <Label id="errorText" fx:id="numItemsErrorLabel" layoutX="588.0" layoutY="209.0" stylesheets="@../gui/styles.css" text="An Order must contain items" textFill="RED" />
+                        <Label layoutX="351.0" layoutY="264.0" text="Customer Pays:" />
+                        <TextField fx:id="payTextField" layoutX="460.0" layoutY="259.0" prefHeight="26.0" prefWidth="117.0" />
+                        <Label id="errorText" fx:id="payErrorLabel" layoutX="588.0" layoutY="264.0" stylesheets="@../gui/styles.css" text="Please enter a valid number" />
                      </children></AnchorPane>
                     </content>
                 </Tab>
                 <Tab text="Orders">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="orderTable" prefHeight="600.0" prefWidth="941.0" stylesheets="@../gui/styles.css">
+                          <columns>
+                            <TableColumn fx:id="idCol" prefWidth="79.0" text="ID" />
+                            <TableColumn fx:id="nameCol" prefWidth="204.0" text="Name" />
+                              <TableColumn fx:id="priceCol" prefWidth="70.0" text="Price" />
+                              <TableColumn fx:id="dateCol" prefWidth="88.0" text="Date" />
+                              <TableColumn fx:id="timeCol" prefWidth="139.0" text="Time" />
+                              <TableColumn fx:id="numItemsCol" prefWidth="97.0" text="NumItems" />
+                              <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="110.0" text="Status" />
+                              <TableColumn fx:id="viewCol" prefWidth="152.0" sortable="false" text="View" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>

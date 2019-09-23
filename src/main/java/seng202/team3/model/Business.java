@@ -41,7 +41,7 @@ public class Business {
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         createSalesManager(salesXML);
-        lastOrderID = 0; // TODO save and load this value so no duplicate orderIDs are created.
+//        lastOrderID = 0;
         lastOrderID = calculateLastOrderID();
     }
 
