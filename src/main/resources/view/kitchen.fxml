@@ -24,6 +24,7 @@
                                         <Font size="22.0" />
                                     </font>
                                 </Label>
+                                <Button fx:id="backButton" layoutX="886.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Back" />
                             </children>
                         </AnchorPane>
                         <ScrollPane pannable="true" prefHeight="151.0" prefWidth="1000.0">
@@ -54,7 +55,6 @@
                         </ScrollPane>
                         <AnchorPane prefHeight="86.0" prefWidth="1000.0">
                             <children>
-                                <Button fx:id="backButton" layoutX="873.0" layoutY="40.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Back" />
                                 <ComboBox fx:id="removeOrderCombo" layoutX="135.0" layoutY="40.0" prefWidth="150.0" />
                                 <Button fx:id="removeButton" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#popFromOrderGrid" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Remove" />
                             </children>

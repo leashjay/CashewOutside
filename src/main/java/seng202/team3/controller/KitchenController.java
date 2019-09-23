@@ -10,6 +10,7 @@ import javafx.scene.text.TextFlow;
 import seng202.team3.model.*;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.OrderStatus;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
@@ -121,6 +122,7 @@ public class KitchenController {
                     removed.add(ordered);
                     int index = orders.indexOf(ordered);
                     removeOrderCombo.getItems().remove(index);
+                    salesHandler.orders.get(ordered).orderStatus = OrderStatus.COMPLETE;
                 }
             }
             for (Order order: removed) {
