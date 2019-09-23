@@ -38,7 +38,7 @@ public class ManagementController{
          * Some kind of clean up / persistence should be implemented here.
          * @throws IOException idk?
          */
-    public void backButtonPressed() throws IOException {
+    public void returnToMainScreen() throws IOException {
         System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
     }

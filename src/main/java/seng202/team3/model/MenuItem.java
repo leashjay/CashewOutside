@@ -111,9 +111,13 @@ public class MenuItem {
         return type;
     }
 
-    //public void addIngredient(Ingredient ingredient, Float quantity) {
-   //     ingredients.add(it);
-    //}
+    /**
+     * Returns cost which the business sells the item for
+     * @return a float showing the cost the business sells the item for
+     */
+   public float getSalePrice(){return salePrice;}
+
+   public int getServings(){return numServings;}
 
     /**
      * Adds the given ingredient to the recipe
@@ -210,14 +214,3 @@ public class MenuItem {
 
 
 }
-
-
-//    public String ingredients() {
-//        String recipeText;
-//        recipeText = "[" + id + "(" + name + "):";
-//        for(String s:ingredients) {
-//            recipeText += " " + s;
-//        }
-//        recipeText += "]";
-//        return recipeText;
-//    }

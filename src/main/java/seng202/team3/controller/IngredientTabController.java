@@ -54,9 +54,6 @@ public class IngredientTabController {
     private TableColumn<Ingredient, String> costPerUnitCol;
 
     @FXML
-    private TableColumn<Ingredient, Button> editButtonCol;
-
-    @FXML
     private TableColumn<Ingredient, Button> deleteButtonCol;
 
     @FXML
@@ -99,15 +96,6 @@ public class IngredientTabController {
         unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-
-        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {
-            // You can put whatever logic in here, or even open a new window.
-            // For example here we'll just toggle the isGf
-            //foodItem.setGlutenFree(!foodItem.isGlutenFree());
-            //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
-            System.out.println("BUTTON CLICKED");
-        }));
-
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
             inventory.removeIngredient(ingredient.getCode());
             updateIngredientTable();
@@ -117,9 +105,6 @@ public class IngredientTabController {
         List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
-        updateIngredientTable();
-
-
     }
 
     public void openAddIngredientScreen(){
