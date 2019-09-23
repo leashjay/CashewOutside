@@ -79,8 +79,6 @@ public class SupplierTabController
     private TableColumn<Supplier, Button> deleteButtonCol;
 
     public void initialize() {
-        System.out.println(supplierHandler);
-
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
         idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
@@ -142,7 +140,6 @@ public class SupplierTabController
     public void updateSupplierTable(){
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
-        System.out.println("Update supplier table called");
     }
 
 }

@@ -8,7 +8,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import seng202.team3.model.Business;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
@@ -106,7 +109,6 @@ public class SalesController {
      * @throws IOException idk?
      */
     public void backButtonPressed() throws IOException {
-        System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
     }
 

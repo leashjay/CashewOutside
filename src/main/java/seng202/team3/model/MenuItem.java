@@ -28,35 +28,48 @@ public class MenuItem {
     @XmlElement(name = "name")
     private String name;
 
+    /**
+     * Total cost of menu item without the mark up
+     */
+    @XmlElement(name = "cost")
+    private float totalCost;
+
     /** List of ingredients and their quantities needed to make the menu item */
     @XmlElement
     private HashMap<Ingredient, Float> ingredients;
 
-    /**
-     * Type of cuisine
-     */
+    /** Type of cuisine */
     @XmlAttribute(name = "type")
     private ItemType type;
 
-    /**
-     * Total cost of menu item without the mark up
-     */
-    private float totalCost;
 
+    /**
+     * isVegan flag for menu item
+     */
+    @XmlAttribute(name = "isVegan")
+    private ThreeValueLogic isVegan;
+
+
+    /**
+     * isVegetarian flag for menu item
+     */
+    @XmlAttribute(name = "isVeg")
+    private ThreeValueLogic isVegetarian;
+
+    /**
+     * isGlutenFree flag for menu item
+     */
+    @XmlAttribute(name = "isGF")
+    private ThreeValueLogic isGlutenFree;
 
     private ArrayList<ItemType> itemTypes;
 
-
     private UnitType foodType;
 
-    /**
-     * The price the business sells the item for
-     */
+    /** The price the business sells the item for */
     private float salePrice;
 
-    /**
-     * The number of servings the menu item has
-     */
+    /** The number of servings the menu item has */
     @XmlAttribute(name = "serves")
     private int numServings;
 
@@ -120,7 +133,7 @@ public class MenuItem {
      * Returns cost which the business sells the item for
      * @return a float showing the cost the business sells the item for
      */
-   public float getSalePrice(){return salePrice;}
+    public float getSalePrice(){return (float) (totalCost * 0.10) ;}
 
    public int getServings(){return numServings;}
 
@@ -131,7 +144,6 @@ public class MenuItem {
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
         ingredients.put(ingredient, quantity);
-        //IF ingredient is not glueten free
     }
 
     /**
@@ -160,11 +172,11 @@ public class MenuItem {
 
     //TODO Possibly change this into a singular method with parameters
     /**
-     * Method to check if an ingredient is gluten free
+     * Method to check if a menu item is gluten free
      * @return Three value logic showing if the menu item is gluten free
      */
     public ThreeValueLogic isGlutenFree(){
-        ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
+        isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN){
@@ -179,11 +191,11 @@ public class MenuItem {
     }
 
     /**
-     * Method to check if an ingredient is vegetarian
+     * Method to check if a menu item is vegetarian
      * @return Three value logic showing if the menu item is vegetarian
      */
     public ThreeValueLogic isVegetarian(){
-        ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
+        isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN){
@@ -202,7 +214,7 @@ public class MenuItem {
      * @return
      */
     public ThreeValueLogic isVegan(){
-        ThreeValueLogic isVegan = ThreeValueLogic.YES;
+        isVegan = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
