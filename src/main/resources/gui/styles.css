@@ -1,6 +1,7 @@
 #backButton {
-    -fx-background-color: SteelBlue;
+    -fx-background-color: #1976D2;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 18;
 }
 
 #foodButton {
@@ -12,8 +13,13 @@
 }
 
 #removeButton {
-    -fx-background-color: SteelBlue;
+    -fx-background-color: #FF4081;
     -fx-text-fill: #ffffff;
+}
+
+#removeTableButton{
+     -fx-background-color: #2196F3;
+     -fx-text-fill: #ffffff;
 }
 
 #menuItemGrid {
@@ -36,16 +42,21 @@ the style taken from tabStyle.css, will be used for the tab classes across the d
     -fx-tab-max-width: 120px;
     -fx-tab-min-height: 50px;
     -fx-tab-max-height: 50px;
+    -fx-text-fill: #ffffff;
 }
 
 .tab {
     -fx-font-family: Helvetica;
     -fx-font-size: 18;
-    -fx-background-color: #00e8ff;
+    -fx-background-color: #1976D2;
+}
+
+.tab-label {
+    -fx-text-fill: white ;
 }
 
 .tab:selected {
-    -fx-background-color: #8ec9ff;
+    -fx-background-color: #2196F3;
 }
 
 /*
