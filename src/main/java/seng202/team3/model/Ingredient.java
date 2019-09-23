@@ -69,24 +69,7 @@ public class Ingredient {
         this.unit = unit;
         this.cost = cost;
     }
-    
-        /**
-     * Constructor to build ingredient based on string parsed values
-     * @param code
-     * @param name
-     * @param quantity
-     * @param unit
-     * @param cost
-     */
-    public Ingredient(String code, String name, float quantity, String unit, float cost) {
-        Ingredient testIngredient = new Ingredient();
-        this.code = code;
-        this.name = name;
-        this.quantity = quantity;
-        UnitType convertedUnit = testIngredient.convertToUnit(unit);
-        this.unit = convertedUnit;
-        this.cost = cost;
-    }
+
     
     /**
      * Constructor for Ingredient class
