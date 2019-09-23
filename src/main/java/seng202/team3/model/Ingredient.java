@@ -48,6 +48,7 @@ public class Ingredient {
     @XmlAttribute
     private float cost;
 
+
     /**
      * No-arg constructor for JAXB
      */
@@ -70,6 +71,23 @@ public class Ingredient {
         this.cost = cost;
     }
 
+    /**
+     * Constructor to build ingredient based on string parsed values
+     * @param code
+     * @param name
+     * @param quantity
+     * @param unit
+     * @param cost
+     */
+    public Ingredient(String code, String name, float quantity, String unit, float cost) {
+        Ingredient testIngredient = new Ingredient();
+        this.code = code;
+        this.name = name;
+        this.quantity = quantity;
+        UnitType convertedUnit = testIngredient.convertToUnit(unit);
+        this.unit = convertedUnit;
+        this.cost = cost;
+    }
     /**
      * Constructor for Ingredient class
      *
@@ -180,6 +198,19 @@ public class Ingredient {
         unit = newUnit;
     }
 
+    public UnitType convertToUnit(String unit) {
+        UnitType newUnit = UnitType.UNKNOWN;
+        if (unit.toUpperCase() == "GRAM") {
+            newUnit = UnitType.COUNT;
+        } else if (unit.toUpperCase() == "ML") {
+            newUnit = UnitType.COUNT;
+        } else if (unit.toUpperCase() == "COUNT") {
+            newUnit = UnitType.COUNT;
+        }
+
+        return newUnit;
+    }
+
     /**
      * Sets whether the ingredient is vegetarian
      * @param newIsVeg an enum which stores whether an ingredient is vegetarian
@@ -208,6 +239,11 @@ public class Ingredient {
      * Sets the cost of the ingredient to the given float
      * @param newCost the new cost of the ingredient
      */
+    public void setCost(float newCost) {
+        Float calcCost = newCost;
+        cost = calcCost;
+    }
+
     public void setCost(float newCost, float oldQuantity) {
         Float calcCost = ((oldQuantity * newCost) + (getQuantity() * getCost())) / (getQuantity() + oldQuantity);
         cost = calcCost;

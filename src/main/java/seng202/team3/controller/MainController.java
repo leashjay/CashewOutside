@@ -1,24 +1,33 @@
 package seng202.team3.controller;
 
-import seng202.team3.model.Business;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
 
+/**
+ * Main controller for business landing page
+ */
+
 public class MainController {
 
+    /**
+     * Navigate to sales page
+     */
     public void salesButtonPressed() throws IOException {
-        System.out.println("Sales button pressed");
         BusinessApp.loadSalesPage();
     }
 
+    /**
+     * Navigate to management page
+     */
     public void managementButtonPressed() throws IOException {
-        System.out.println("ManagementController button pressed");
         BusinessApp.loadManagementPage();
     }
 
+    /**
+     * Navigate to kitchen page
+     */
     public void kitchenButtonPressed() throws IOException {
-        System.out.println("Kitchen button pressed");
         BusinessApp.loadKitchenPage();
     }
 

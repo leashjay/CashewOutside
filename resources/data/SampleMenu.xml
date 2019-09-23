@@ -24,7 +24,7 @@
                 isVeg (YES|NO|UNKNOWN) "NO"
                 isVegan (YES|NO|UNKNOWN) "NO"
                 isgf (YES|NO|UNKNOWN) "UNKNOWN"
-                cost CDATA "0"
+                cost CDATA "1"
                 >
         <!ELEMENT code (#PCDATA)>
         <!ELEMENT value (#PCDATA)>

@@ -6,58 +6,42 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
 
     <children>
-      <VBox prefHeight="1000.0" prefWidth="1000.0">
-         <children>
-            <HBox prefHeight="1008.0">
-               <children>
-                    <TabPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/combinedStyle.css" tabClosingPolicy="UNAVAILABLE">
-                        <tabs>
-                            <Tab fx:id="suppliersTab" text="Suppliers">
-                                <fx:include source="suppliertab.fxml" />
-                            </Tab>
-                            <Tab fx:id="ingredientsTab" text="Ingredients">
-                                <fx:include source="ingredienttab.fxml" />
-                            </Tab>
-                        <Tab fx:id="menusTab" text="Menus">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                            <Tab fx:id="exportTab" text="Export Data">
-                                <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                        <children>
-                                            <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)" />
-                                        </children>
-                                    </AnchorPane>
-                                </content>
-                            </Tab>
-                            <Tab fx:id="analysisTab" text="Analysis">
-                                <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                        <children>
-                                            <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations" />
-                                        </children>
-                                    </AnchorPane>
-                                </content>
-                            </Tab>
-                            <Tab fx:id="backTab" text="Back" />
-                        </tabs>
-                    </TabPane>
-               </children>
-            </HBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <Button mnemonicParsing="false" text="Back" />
+        <TabPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/styles.css" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="suppliersTab" text="Suppliers">
+                    <fx:include source="suppliertab.fxml" />
+                </Tab>
+                <Tab fx:id="ingredientsTab" text="Stock">
+                    <fx:include source="ingredienttab.fxml" />
+                </Tab>
+            <Tab fx:id="menusTab" text="Menu Items">
+                <fx:include source="menuitemstab.fxml" />
+            </Tab>
+                <Tab fx:id="exportTab" text="Export Data">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea layoutX="59.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;- daily txt file export &#10;to allow analysis&#10;&#10;- ability to clean directory&#10;of daily text files (date&#10;range)" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="analysisTab" text="Analysis">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea layoutX="84.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" text="D3 Feature&#10;&#10;-use of daily txt files for&#10;calculations" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+      <Button fx:id="backButton" layoutX="887.0" layoutY="6.0" mnemonicParsing="false" onAction="#returnToMainScreen" prefHeight="52.0" prefWidth="108.0" stylesheets="@../gui/styles.css" text="Back" />
 
     </children>
    <opaqueInsets>

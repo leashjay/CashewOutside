@@ -4,10 +4,12 @@ import org.xml.sax.SAXException;
 import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.SupplierHandler;
 
-import javax.xml.bind.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
-import java.util.ArrayList;
 
 import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
@@ -57,21 +59,15 @@ public class SuppliersLoader {
     public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
         try {
             validateXMLFile(fileName);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
         } catch (ParserConfigurationException pce) {
             AddXMLController.errorMessageList.add(pce.getMessage());
         } catch (SAXException spe) {
             AddXMLController.errorMessageList.add(spe.getMessage());
         } catch (IOException ioe) {
             AddXMLController.errorMessageList.add(ioe.getMessage());
-        }
-
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        try {
-            InputStream inputStream = new FileInputStream(new File(fileName));
-            suppliersLoad = (SupplierHandler) unmarshaller.unmarshal(inputStream);
-        } catch (FileNotFoundException fnfe) {
-            AddXMLController.errorMessageList.add(fnfe.getMessage());
         }
         return suppliersLoad;
     }
@@ -81,7 +77,7 @@ public class SuppliersLoader {
      * Export suppliers data to suppliers XML file
      * @param fileName path to suppliers XML file
      */
-    public void exportSupplierData(String fileName) throws Exception {
+    public void exportSupplierData(String fileName, SupplierHandler suppliersLoad) throws JAXBException, IOException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

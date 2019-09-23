@@ -9,8 +9,16 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+/**
+ * A helper class to validate XML against DTD using DOM parser
+ */
 public class XMLValidation {
 
+    /**
+     * A static function used to validate XML file against DTD whenever loadData method is called from loader classes
+     *
+     * @param fileName path to XML file
+     */
     public static void validateXMLFile(String fileName) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
         domFactory.setValidating(true);

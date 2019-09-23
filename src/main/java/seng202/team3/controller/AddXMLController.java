@@ -33,25 +33,27 @@ public class AddXMLController {
 
     private String errorMessage;
 
-    Stage stage;
+    private Stage stage;
 
     @FXML
-    Button browseButton;
+    private Button browseButton;
 
     @FXML
-    TextField pathString;
+    private TextField pathString;
 
     @FXML
-    Button importSupplierXMLButton;
+    private Button importSupplierXMLButton;
 
     @FXML
-    Button importIngredientXMLButton;
+    private Button importIngredientXMLButton;
 
     @FXML
-    Text feedbackMessage;
+    private Button importMenuItemXMLButton;
 
     @FXML
-    Button closeScreen;
+    private Text feedbackMessage;
+
+
 
 
 
@@ -100,8 +102,8 @@ public class AddXMLController {
         showErrorMessage(fileString);
 
         //TODO: link menu item tab with menuitemxml screen
-        //stage = (Stage) importIngredientXMLButton.getScene().getWindow();
-        //IngredientTabController.getInstance().updateIngredientTable();
+        stage = (Stage) importMenuItemXMLButton.getScene().getWindow();
+        MenuItemTabController.getInstance().updateMenuItemTable();
     }
 
 
@@ -120,9 +122,11 @@ public class AddXMLController {
 
         if (errorMessage != null && errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
+            feedbackMessage.setVisible(false);
         } else {
             feedbackMessage.setText(errorMessage);
             errorMessageList.clear();
+            feedbackMessage.setVisible(true);
         }
     }
 
@@ -141,15 +145,6 @@ public class AddXMLController {
 
         fileString = selectedFile.getPath();
     }
-
-
-    /**
-     * Go back to Suppliers tab in Management screen
-     */
-    public void closeAddXMLScreen() {
-        stage.close();
-    }
-
 
 
 }

@@ -10,10 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * @generated
+ * Order class to store details of order
  */
 
 @XmlRootElement(name = "entry")
@@ -28,7 +25,7 @@ public class Order {
     private int orderId; // should be unique across multiple orders
 
     @XmlElement(name = "orderStatus")
-    private OrderStatus orderStatus;
+    public OrderStatus orderStatus;
 
     @XmlElement(name = "orderCost")
     private float orderCost;
@@ -216,6 +213,10 @@ public class Order {
     }
     public OrderStatus getStatus() {
         return this.orderStatus;
+    }
+
+    public ArrayList<MenuItem> getItemsOrdered() {
+        return this.itemsOrdered;
     }
 }
 

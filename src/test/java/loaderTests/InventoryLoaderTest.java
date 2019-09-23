@@ -73,7 +73,7 @@ public class InventoryLoaderTest {
     public void testExportDBtoXML() throws Exception {
         Ingredient newEntry = new Ingredient("Kimchi", "chikim", 3f, UnitType.GRAM, 1.2f);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
-        testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml");
+        testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml", testInventory);
 
 
         ingredients.clear();

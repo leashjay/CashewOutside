@@ -1,6 +1,5 @@
 package seng202.team3.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +13,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
-import seng202.team3.model.Supplier;
-import seng202.team3.model.SupplierHandler;
-import seng202.team3.util.ItemType;
-import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +48,6 @@ public class IngredientTabController {
     private TableColumn<Ingredient, String> costPerUnitCol;
 
     @FXML
-    private TableColumn<Ingredient, Button> editButtonCol;
-
-    @FXML
     private TableColumn<Ingredient, Button> deleteButtonCol;
 
     @FXML
@@ -73,15 +64,15 @@ public class IngredientTabController {
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
 
     /**
-     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
+     * Holds an instance of the IngredientTabController class so other controllers can call it's methods
      */
     public IngredientTabController(){
         instance = this;
     }
 
     /**
-     * Returns an instance of the SupplierTabController so other controller classes can use its methods
-     * @return an instance of the SupplierTabController class
+     * Returns an instance of the IngredientTabController so other controller classes can use its methods
+     * @return an instance of the IngredientTabController class
      */
     public static IngredientTabController getInstance(){
         return instance;
@@ -99,31 +90,17 @@ public class IngredientTabController {
         unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-
-        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {
-            // You can put whatever logic in here, or even open a new window.
-            // For example here we'll just toggle the isGf
-            //foodItem.setGlutenFree(!foodItem.isGlutenFree());
-            //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
-            System.out.println("BUTTON CLICKED");
-        }));
-
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient -> {
             inventory.removeIngredient(ingredient.getCode());
             updateIngredientTable();
-            System.out.println("Delete BUTTON CLICKED");
         }));
 
         List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
-        updateIngredientTable();
-
-
     }
 
     public void openAddIngredientScreen(){
-        System.out.println("Add Ingredient button clicked");
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
             Stage stage = new Stage();
@@ -151,7 +128,6 @@ public class IngredientTabController {
     public void updateIngredientTable(){
         List<Ingredient> ingredients= new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
-        System.out.println("Update ingredient table called");
     }
 
 

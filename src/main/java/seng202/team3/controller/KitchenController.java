@@ -1,7 +1,8 @@
 package seng202.team3.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -10,16 +11,23 @@ import javafx.scene.text.TextFlow;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
-import seng202.team3.util.ItemType;
-import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.model.SalesHandler;
+import seng202.team3.util.OrderStatus;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class KitchenController {
+
+    private SalesHandler salesHandler = BusinessApp.getBusiness().getSalesHandler();
+    private static KitchenController instance;
+
 
     /**
      * A button to return to the main screen
@@ -57,11 +65,6 @@ public class KitchenController {
     public ArrayList<MenuItem> menuItems = new ArrayList<>();
 
     /**
-     * An ArrayList to store the current orders
-     */
-    public ArrayList<Order> orders = new ArrayList<>();
-
-    /**
      * sends the user back to the main screen.;
      * Some kind of clean up / persistence should be implemented here.
      * @throws IOException idk?
@@ -74,6 +77,7 @@ public class KitchenController {
      * Populates the menuItems ArrayList with the menu items used in the current orders
      */
     public void createMenuItemsArray() {
+        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
         menuItems = new ArrayList<>();
         for (Order order: orders) {
             for (MenuItem item: order.getOrderedItems()) {
@@ -88,6 +92,7 @@ public class KitchenController {
      * Puts the order numbers into the combo box
      */
     public void createOrderComboBox() {
+        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
         for (Order order: orders) {
             removeOrderCombo.getItems().add(order.getOrderId());
         }
@@ -99,7 +104,6 @@ public class KitchenController {
      * This method is called automatically by the FXMLLoader
      */
     public void initialize() {
-        orders.addAll(getOrders());
         menuItems = new ArrayList<>();
         addOrderToGridPane();
         createMenuItemsArray();
@@ -108,72 +112,26 @@ public class KitchenController {
     }
 
 
-    //Just for testing
-    private ArrayList<Order> getOrders() {
-        Ingredient rice = new Ingredient("1", "Rice", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.001f);
-        Ingredient carrot = new Ingredient("2", "Carrot", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        Ingredient peas = new Ingredient("3", "Peas", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        Ingredient egg = new Ingredient("4", "Rice", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 1f);
-
-        HashMap<Ingredient, Float>friedRiceIngredients = new HashMap<>();
-        friedRiceIngredients.put(rice, 200f);
-        friedRiceIngredients.put(carrot, 50f);
-        friedRiceIngredients.put(peas, 50f);
-        MenuItem friedRice = new MenuItem("1", "Fried rice", friedRiceIngredients, ItemType.MAIN);
-        MenuItem testFood = new MenuItem("2", "Test Food", friedRiceIngredients, ItemType.MAIN);
-        ArrayList<Order> orders = new ArrayList<>();
-        Order order1 = new Order();
-        order1.addToOrder(friedRice);
-        order1.setOrderId(2);
-        Order order2 = new Order();
-        order2.addToOrder(friedRice);
-        order2.addToOrder(friedRice);
-        order2.setOrderId(3);
-        orders.add(order1);
-        Order order3 = new Order();
-        order3.addToOrder(friedRice);
-        order3.addToOrder(friedRice);
-        order3.setOrderId(4);
-        orders.add(order3);
-        Order order4 = new Order();
-        order4.addToOrder(friedRice);
-        order4.addToOrder(friedRice);
-        order4.setOrderId(5);
-        orders.add(order4);
-        Order order5 = new Order();
-        order5.addToOrder(friedRice);
-        order5.addToOrder(friedRice);
-        order5.setOrderId(7);
-        orders.add(order5);
-        Order order7 = new Order();
-        order7.addToOrder(friedRice);
-        order7.addToOrder(testFood);
-        order7.setOrderId(6);
-        orders.add(order7);
-        orders.add(order2);
-        return orders;
-    }
-
     /**
      * Removes a TextFlow containing an order from the orderGridPane. Called when the remove button is pressed
      */
     public void popFromOrderGrid() {
+        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
         Object checkForNull = removeOrderCombo.getValue();
         if (checkForNull != null) {
             int orderNum = (Integer) removeOrderCombo.getSelectionModel().getSelectedItem();
             List<Order> removed = new ArrayList<>();
-            for (Order ordered : orders) {
+            for (Order ordered: orders) {
                 if (ordered.getOrderId() == orderNum) {
                     removed.add(ordered);
                     int index = orders.indexOf(ordered);
                     removeOrderCombo.getItems().remove(index);
+                    salesHandler.orders.get(ordered).orderStatus = OrderStatus.COMPLETE;
                 }
             }
-            orders.removeAll(removed);
+            for (Order order: removed) {
+                salesHandler.removeOrder(order.getOrderId());
+            }
             addOrderToGridPane();
             createMenuItemsArray();
             addMenuToGridPane();
@@ -235,6 +193,7 @@ public class KitchenController {
      * Adds a TextFlow containing the current orders to the orders grid pane
      */
     private void addOrderToGridPane() {
+        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
         orderGridPane.getChildren().clear();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 

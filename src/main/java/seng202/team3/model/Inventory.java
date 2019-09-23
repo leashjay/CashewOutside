@@ -31,7 +31,6 @@ public class Inventory {
     private HashMap<String, Ingredient> ingredients;
 
     /** A number that indicates that an ingredient with the unit type COUNT has low stock */
-    // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
     private Float lowStockCount = 10f;
 
     /** A number that indicates that an ingredient with the unit type GRAMS has low stock */
@@ -41,6 +40,10 @@ public class Inventory {
     @XmlTransient
     private Float lowStockML = 1000f;
 
+    /**
+     * Inventory Loader object to call import and export method
+     */
+    private InventoryLoader inventoryLoader;
 
     /**
      * No-arg constructor for JAXB
@@ -58,14 +61,6 @@ public class Inventory {
         this.ingredients = ingredients;
     }
 
-
-    /**
-     * Getter for inventory description
-     * @return desc
-     */
-    public String getDesc() {
-        return description;
-    }
 
     /**
      * Getter for list of ingredients
@@ -97,10 +92,12 @@ public class Inventory {
      * @param file The path to the XML file that is being used
      */
     public void addIngredientsFromXML(String file) throws JAXBException {
-        InventoryLoader inventoryLoader = new InventoryLoader();
+        inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
-        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
-        ingredients.putAll(newIngredients);
+        if (inventory != null) {
+            HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
+            ingredients.putAll(newIngredients);
+        }
     }
 
     /**

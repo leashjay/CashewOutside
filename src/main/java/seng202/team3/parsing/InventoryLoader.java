@@ -63,21 +63,15 @@ public class InventoryLoader {
     public Inventory loadIngredientsData(String fileName) throws JAXBException{
         try {
             validateXMLFile(fileName);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
         } catch (ParserConfigurationException pce) {
             AddXMLController.errorMessageList.add(pce.getMessage());
         } catch (SAXException spe) {
             AddXMLController.errorMessageList.add(spe.getMessage());
         } catch (IOException ioe) {
             AddXMLController.errorMessageList.add(ioe.getMessage());
-        }
-
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        try {
-            InputStream inputStream = new FileInputStream(new File(fileName));
-            inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
-        } catch (FileNotFoundException fnfe) {
-            AddXMLController.errorMessageList.add(fnfe.getMessage());
         }
         return inventoryLoad;
     }
@@ -86,7 +80,7 @@ public class InventoryLoader {
      * Export ingredients to ingredient XML file
      * @param fileName path to ingredient XML filese.printStackTrace();
      */
-    public void exportIngredientsData(String fileName) throws IOException, JAXBException {
+    public void exportIngredientsData(String fileName, Inventory inventoryLoad) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

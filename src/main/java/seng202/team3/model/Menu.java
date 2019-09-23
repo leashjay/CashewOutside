@@ -2,12 +2,14 @@ package seng202.team3.model;
 
 import seng202.team3.parsing.MenuItemAdapter;
 import seng202.team3.parsing.MenuLoader;
+import seng202.team3.util.ItemType;
 import seng202.team3.util.MenuType;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Collection of menu item
@@ -38,6 +40,11 @@ public class Menu {
     private HashMap<String, MenuItem> menuContent;
 
     /**
+     * MenuLoader object to call import or export method
+     */
+    private MenuLoader menuLoader;
+
+    /**
      * No-arg constructor for JAXB
      */
     public Menu() {    }
@@ -64,6 +71,14 @@ public class Menu {
     public Boolean getActive() {
         return isActive;
     }
+
+    /**
+     * Getter for Menu Loader
+     *
+     * @return menu loader
+     */
+    public MenuLoader getMenuLoader() {
+        return menuLoader;}
 
     /**
      * sets isActive to true
@@ -100,6 +115,22 @@ public class Menu {
      */
     public HashMap<String, MenuItem> getMenuItem() {
         return menuContent;
+    }
+
+    /**
+     * Getter for list of menu items with a given filter set
+     * @param filterSet only return items with this given
+     * @return filteredMenu the MenuItems that have an ItemType in the given filterSet
+     */
+    public HashMap<String, MenuItem> getMenuItem(Set<ItemType> filterSet) {
+        // The current way this is implemented is slow and should be implemented better.
+        HashMap<String, MenuItem> filteredMenuItems = new HashMap<>();
+        for (MenuItem menuItem: this.menuContent.values()) {
+            if (filterSet.contains(menuItem.getType())) {
+                filteredMenuItems.put(menuItem.getId(), menuItem);
+            }
+        }
+        return filteredMenuItems;
     }
 
     /**
@@ -140,17 +171,14 @@ public class Menu {
      * @throws Exception
      */
     public void addMenuItemFromXML(String file) throws JAXBException {
-        MenuLoader menuLoader = new MenuLoader();
+        menuLoader = new MenuLoader();
         Menu menu = menuLoader.loadMenuData(file);
-        HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
-        menuContent.putAll(newMenuItems);
+        if (menu != null) {
+            HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
+            menuContent.putAll(newMenuItems);
+        }
     }
 
-    //    public void addToCollection(MenuItem) {}
-//
-//    public void removeFromCollection(MenuItem) {}
-//
-//    public List<MenuItem> filterByDietaryReq() {}
 
 }
 

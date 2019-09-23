@@ -17,10 +17,12 @@ public class ActionButtonTableCell<S> extends TableCell<S, Button> {
 
     private final Button actionButton;
 
-    private ActionButtonTableCell(String label, Consumer<S> function) {
+    private ActionButtonTableCell(String label, String cssClass, Consumer<S> function) {
         getStyleClass().add("action-button-table-cell");
 
+
         actionButton = new Button(label);
+        actionButton.getStyleClass().add(cssClass);
         actionButton.setOnAction((ActionEvent e) -> function.accept(getCurrentItem()));
         actionButton.setMaxWidth(Double.MAX_VALUE);
     }
@@ -32,8 +34,8 @@ public class ActionButtonTableCell<S> extends TableCell<S, Button> {
      * @param <S> The object type in the TableView
      * @return A Callback that can be used as a CellFactory in a TableColumn
      */
-    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn(String label, Consumer<S> function) {
-        return ignored -> new ActionButtonTableCell<>(label, function);
+    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn(String label, String cssClass, Consumer<S> function) {
+        return ignored -> new ActionButtonTableCell<>(label, cssClass, function);
     }
 
     private S getCurrentItem() {
