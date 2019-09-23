@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -140,7 +139,7 @@ public class SalesHandler {
      *
      * @param file
      */
-    public void addOrdersFromXML(String file) throws JAXBException, IOException {
+    public void addOrdersFromXML(String file) throws JAXBException {
         salesLoader = new SalesLoader();
         SalesHandler salesHandler = salesLoader.loadSalesData(file);
         if (orders != null) {
