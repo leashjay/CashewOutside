@@ -8,6 +8,7 @@ import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.MenuType;
+import seng202.team3.util.UnitType;
 
 import java.util.HashMap;
 
@@ -18,13 +19,13 @@ public class LoadingDataSteps {
     private HashMap<String, MenuItem> menuContents;
     private MenuItem testMenuItem;
     private Menu testMenu;
+    private Ingredient testIngredient;
 
 
     @Given("an {string} to hold ingredients")
     public void anToHoldIngredients(String string) {
         inventoryHashMap = new HashMap<>();
         inventory = new Inventory("Ingredients Inventory", inventoryHashMap);
-
     }
 
     @Given("an {string} to collect menu items")
@@ -40,16 +41,21 @@ public class LoadingDataSteps {
         throw new cucumber.api.PendingException();
     }
 
-    @Given("an Ingredient has a {string} {string} a {string} a {string} and costs ${double}")
-    public void anIngredientHasaAndCosts$(String string, String string2, String string3, String string4, Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("an Ingredient has a {string}, {string}, {double}, {string} and costs ${double}")
+    public void anIngredientHasaAndCosts$(String string, String string2, float float1, String string3, float float2) {
+        Ingredient testIngredient = new Ingredient();
+        testIngredient.setCode(string);
+        testIngredient.setName(string2);
+        testIngredient.setQuantity(float1);
+        UnitType convertedUnit = testIngredient.convertToUnit(string3);
+        testIngredient.setUnit(convertedUnit);
+        testIngredient.setCost(float2);
+        this.testIngredient = testIngredient;
     }
 
     @When("the Ingredient is added")
     public void theIngredientIsAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        inventory.addIngredient(testIngredient);
     }
 
     @Then("the Ingredient is in the program")
@@ -58,6 +64,7 @@ public class LoadingDataSteps {
         throw new cucumber.api.PendingException();
     }
 
+    @Given("an Menu has a {string}, {string}, {string}, {string} costs ${double} and has a list of ingredients:")
     public void anMenuHasACosts$AndHasAListOfIngredients(String string, String string2, String string3, String string4, Double double1, io.cucumber.datatable.DataTable dataTable) {
         // Write code here that turns the phrase above into concrete actions
         // For automatic transformation, change DataTable to one of
@@ -68,6 +75,7 @@ public class LoadingDataSteps {
         // For other transformations you can register a DataTableType.
         throw new cucumber.api.PendingException();
     }
+
 
     @When("a menu is added")
     public void aMenuIsAdded() {
