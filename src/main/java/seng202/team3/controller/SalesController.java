@@ -254,7 +254,11 @@ public class SalesController {
     }
 
 
+    /**
+     * onAction for delete button in Make Sale tab
+     */
     public void deleteCurrentOrder() {
+        // TODO have a confirmation box appear
         newCurrentOrder();
     }
 
