@@ -122,7 +122,7 @@ public class SalesController {
 
         for (MenuItem menuItem : menuItems.values()) {
             Button newButton = new Button();
-            // TODO Find out how to set this button's style to combinedStyle.css #foodButton
+            // TODO Find out how to set this button's style to styles.css #foodButton
             // TODO Have the buttons display their flags (gf, veg, vegan)
             // TODO Format GridPane properly.
 

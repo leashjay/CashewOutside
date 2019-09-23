@@ -80,6 +80,7 @@ public class SupplierTabController
 
     public void initialize() {
 
+
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
         idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
