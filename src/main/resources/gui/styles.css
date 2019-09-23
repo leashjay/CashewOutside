@@ -1,3 +1,13 @@
+#addManuallyButton {
+    -fx-background-color: #8BC34A;
+    -fx-font-size: 18;
+}
+
+#addFromXMLButton{
+    -fx-background-color: #8BC34A;
+    -fx-font-size: 18;
+}
+
 #backButton {
     -fx-background-color: #1976D2;
     -fx-text-fill: #ffffff;
@@ -17,7 +27,7 @@
     -fx-text-fill: #ffffff;
 }
 
-#removeTableButton{
+#delete{
      -fx-background-color: #2196F3;
      -fx-text-fill: #ffffff;
 }
@@ -86,7 +96,7 @@ default style for buttons
     -fx-background-radius: 10;
     -fx-border-color: #273746;
     -fx-border-radius: 10;
-    -fx-max-width: 100;
-    -fx-max-height: 100;
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
     -fx-padding: 10;
 }
