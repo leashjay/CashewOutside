@@ -55,7 +55,7 @@ public class MenuItemTabController {
         costPriceCol.setCellValueFactory(new PropertyValueFactory<>("SalePrice"));
         salePriceCol.setCellValueFactory(new PropertyValueFactory<>("CostPrice"));
 
-        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ˅", MenuItem -> {
+        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", MenuItem -> {
             // You can put whatever logic in here, or even open a new window.
             // For example here we'll just toggle the isGf
             //foodItem.setGlutenFree(!foodItem.isGlutenFree());
@@ -70,8 +70,5 @@ public class MenuItemTabController {
         List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
-        //updateSupplierTable();
-
-
     }
 }

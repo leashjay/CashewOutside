@@ -99,11 +99,6 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="closeButton" mnemonicParsing="false" text="Close" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </Button>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                <children>
                   <TextField fx:id="idTextField" prefHeight="25.0" prefWidth="239.0" promptText="Ingredient ID" />

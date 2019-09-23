@@ -75,12 +75,6 @@ public class SupplierTabController
     @FXML
     private TableColumn<Supplier, String> urlCol;
 
-    /**
-     * Note here that the second arg is Button rather than String
-     */
-    @FXML
-    private TableColumn<Supplier, Button> editButtonCol;
-
     @FXML
     private TableColumn<Supplier, Button> deleteButtonCol;
 
@@ -95,15 +89,6 @@ public class SupplierTabController
         urlCol.setCellValueFactory(new PropertyValueFactory<>("Url"));
         phoneTypeCol.setCellValueFactory(new PropertyValueFactory<>("phoneType"));
 
-
-        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", Ingredient -> {
-            // You can put whatever logic in here, or even open a new window.
-            // For example here we'll just toggle the isGf
-            //foodItem.setGlutenFree(!foodItem.isGlutenFree());
-            //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
-            System.out.println("BUTTON CLICKED");
-        }));
-
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", supplier -> {
             supplierHandler.removeSupplier(supplier.getSid());
             updateSupplierTable();
@@ -113,9 +98,6 @@ public class SupplierTabController
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
-        updateSupplierTable();
-
-
     }
 
     private List<Supplier> createTestData() {

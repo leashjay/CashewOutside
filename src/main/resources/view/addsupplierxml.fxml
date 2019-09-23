@@ -55,11 +55,6 @@
                   <Insets right="20.0" />
                </GridPane.margin>
                 </Button>
-                <Button fx:id="closeScreen" mnemonicParsing="false" onAction="#closeAddXMLScreen" text="Back" GridPane.rowIndex="4">
-                    <GridPane.margin>
-                        <Insets left="20.0" />
-                    </GridPane.margin>
-                </Button>
             <Button fx:id="browseButton" mnemonicParsing="false" onAction="#browseButtonPressed" text="Browse" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
