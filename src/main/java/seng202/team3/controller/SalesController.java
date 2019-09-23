@@ -1,16 +1,16 @@
 package seng202.team3.controller;
 
 import javafx.collections.ObservableList;
-import javafx.css.CssParser;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import seng202.team3.model.Business;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
@@ -18,12 +18,8 @@ import seng202.team3.model.SalesHandler;
 import seng202.team3.util.ItemType;
 import seng202.team3.view.BusinessApp;
 
-import javax.lang.model.type.NullType;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class SalesController {

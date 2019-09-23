@@ -173,16 +173,12 @@ public class Menu {
     public void addMenuItemFromXML(String file) throws JAXBException {
         menuLoader = new MenuLoader();
         Menu menu = menuLoader.loadMenuData(file);
-        HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
-        menuContent.putAll(newMenuItems);
+        if (menu != null) {
+            HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
+            menuContent.putAll(newMenuItems);
+        }
     }
 
-
-    //    public void addToCollection(MenuItem) {}
-//
-//    public void removeFromCollection(MenuItem) {}
-//
-//    public List<MenuItem> filterByDietaryReq() {}
 
 }
 

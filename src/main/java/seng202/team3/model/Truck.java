@@ -6,10 +6,6 @@ import seng202.team3.parsing.InventoryLoader;
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
-/**
- * Joda Money information:
- * https://github.com/JodaOrg/joda-money
- */
 
 /**
  * Truck class holds truck inventory including stock and cash floats
@@ -72,6 +68,15 @@ public class Truck {
         return truckInventory;
     }
 
+    /**
+     * Getter for cash float
+     *
+     * @return cashFloat
+     */
+    public HashMap<Integer, Integer> getCashFloat() {
+        return cashFloat;
+    }
+
 
     /**
      * Parse denomination string into cashFloat
@@ -113,7 +118,9 @@ public class Truck {
             default:
                 denom = 0;
         }
-        cashFloat.put(denom, cashFloat.get(denom) + 1);
+        if (denom != 0) {
+            cashFloat.put(denom, cashFloat.get(denom) + 1);
+        }
     }
     
 }
