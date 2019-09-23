@@ -86,7 +86,7 @@ public class SupplierHandlerTest {
      */
     @Test
     public void testAddSupplierFromXML() throws JAXBException {
-        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
         SupplierHandler testSupplierHandler = testBusiness.getSupplierHandler();
         assertEquals(4, testSupplierHandler.getSuppliers().size());
 

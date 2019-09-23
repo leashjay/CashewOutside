@@ -35,11 +35,11 @@ public class Business {
      * @param menuXML        path to menuXML
      * @param suppliersXML   path to suppliersXML
      */
-    public Business(String ingredientsXML, String menuXML, String suppliersXML) throws JAXBException {
+    public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML) throws JAXBException {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
-        salesManager = new SalesHandler();
+        createSalesManager(salesXML);
         lastOrderID = 0; // TODO save and load this value so no duplicate orderIDs are created.
     }
 
@@ -93,6 +93,11 @@ public class Business {
     public void createMenuManager(String fileName) throws JAXBException {
         MenuLoader menuLoad = new MenuLoader();
         menuManager = menuLoad.loadMenuData(fileName);
+    }
+
+    public void createSalesManager(String filename) throws JAXBException {
+        SalesLoader salesLoader = new SalesLoader();
+        salesManager = salesLoader.loadSalesData(filename);
     }
 
     /**

@@ -16,10 +16,18 @@ public class BusinessApp extends Application {
      * Source ingredients XML file to load data from
      */
     public static final String ingredientsXML = "./resources/data/Ingredients.xml";
+
     /** Source menu XML file to load data from */
     public static final String menuXML = "./resources/data/SampleMenu.xml";
+
     /** Source supplier XML file to load data from */
     public static final String suppliersXML = "./resources/data/Suppliers.xml";
+
+    /**
+     * Source sales XML file to load data from
+     */
+    public static final String salesXML = "./resources/data/Sales.xml";
+
     /**
      * Primary stage for CashewOutside application
      */
@@ -34,7 +42,7 @@ public class BusinessApp extends Application {
      */
     static {
         try {
-            business = new Business(ingredientsXML, menuXML, suppliersXML);
+            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML);
         } catch (Exception e) {
             e.printStackTrace();
         }

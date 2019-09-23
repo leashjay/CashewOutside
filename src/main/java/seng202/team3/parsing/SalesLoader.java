@@ -51,6 +51,11 @@ public class SalesLoader {
     private final ObjectGraph salesInfo;
 
     /**
+     * Instance of sales handler to export/import data to
+     */
+    private SalesHandler salesHandler;
+
+    /**
      * Constructor for SalesLoader
      */
     public SalesLoader() throws JAXBException {
@@ -74,9 +79,13 @@ public class SalesLoader {
      * @param fileName path to sales XML file
      * @return Instance of SalesHandler
      */
-    public SalesHandler loadSalesData(String fileName) throws JAXBException, IOException {
+    public SalesHandler loadSalesData(String fileName) throws JAXBException{
         try {
             validateXMLFile(fileName);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            salesHandler = (SalesHandler) unmarshaller.unmarshal(inputStream);
         } catch (ParserConfigurationException pce) {
             AddXMLController.errorMessageList.add(pce.getMessage());
         } catch (SAXException spe) {
@@ -84,10 +93,7 @@ public class SalesLoader {
         } catch (IOException ioe) {
             AddXMLController.errorMessageList.add(ioe.getMessage());
         }
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshaller.setProperty(UnmarshallerProperties.OBJECT_GRAPH, salesInfo);
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        return (SalesHandler) unmarshaller.unmarshal(inputStream);
+        return salesHandler;
     }
 
 
