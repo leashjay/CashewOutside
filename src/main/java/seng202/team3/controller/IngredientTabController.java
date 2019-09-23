@@ -90,7 +90,7 @@ public class IngredientTabController {
         unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient -> {
             inventory.removeIngredient(ingredient.getCode());
             updateIngredientTable();
         }));

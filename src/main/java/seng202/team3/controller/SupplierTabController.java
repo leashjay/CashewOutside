@@ -91,7 +91,7 @@ public class SupplierTabController
         urlCol.setCellValueFactory(new PropertyValueFactory<>("Url"));
         phoneTypeCol.setCellValueFactory(new PropertyValueFactory<>("phoneType"));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", supplier -> {
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", supplier -> {
             supplierHandler.removeSupplier(supplier.getSid());
             updateSupplierTable();
         }));

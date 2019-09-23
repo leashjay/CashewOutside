@@ -79,7 +79,7 @@ public class MenuItemTabController {
         costPriceCol.setCellValueFactory(new PropertyValueFactory<>("SalePrice"));
         salePriceCol.setCellValueFactory(new PropertyValueFactory<>("CostPrice"));
 
-        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", MenuItem -> {
+        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
             // You can put whatever logic in here, or even open a new window.
             // For example here we'll just toggle the isGf
             //foodItem.setGlutenFree(!foodItem.isGlutenFree());
@@ -87,7 +87,7 @@ public class MenuItemTabController {
 
         }));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", MenuItem -> {
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", MenuItem -> {
             //remove The menuitem
         }));
 

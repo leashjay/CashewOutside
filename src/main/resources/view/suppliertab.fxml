@@ -32,8 +32,6 @@
                       <TableColumn fx:id="phoneTypeCol" prefWidth="89.33331298828125" text="Phone Type" />
                       <TableColumn fx:id="urlCol" prefWidth="152.66668701171875" text="URL" />
                       <TableColumn fx:id="deleteButtonCol" prefWidth="118.0" text="Delete" />
-      
-      
                   </columns>
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" top="10.0" />
