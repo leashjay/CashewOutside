@@ -7,6 +7,7 @@ import seng202.team3.parsing.SuppliersLoader;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Business class holds the instances of handler classes, and acts as a major access point to database in memory
@@ -40,9 +41,23 @@ public class Business {
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         salesManager = new SalesHandler();
-        lastOrderID = 0; // TODO save and load this value so no duplicate orderIDs are created.
+        lastOrderID = calculateLastOrderID();
     }
 
+
+    private int calculateLastOrderID() {
+        Set<Integer> orderIDs = this.salesManager.getOrdersHashMap().keySet();
+        if (orderIDs.size() <= 0) {
+            return 0; // default value
+        }
+        int maxOrderID = (int) orderIDs.toArray()[0];
+        for (Integer orderID : orderIDs) {
+            if (orderID > maxOrderID) {
+                maxOrderID = orderID;
+            }
+        }
+        return maxOrderID;
+    }
     /**
      * Getter for truck instance
      * @return instance of truck
