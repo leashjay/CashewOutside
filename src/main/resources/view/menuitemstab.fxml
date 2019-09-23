@@ -5,36 +5,34 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MenuItemTabController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MenuItemTabController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="1000.0">
+      <VBox prefHeight="800.0" prefWidth="1000.0">
          <children>
-             <TableView fx:id="menuItemsTable">
+             <TableView fx:id="menuItemsTable" prefHeight="650.0">
                  <columns>
                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
-                     <TableColumn fx:id="typeCol" prefWidth="158.6666717529297" text="Type" />
-                     <TableColumn fx:id="costPriceCol" prefWidth="141.33331298828125" text="Cost Price" />
-                     <TableColumn fx:id="salePriceCol" prefWidth="141.33331298828125" text="Sale Price" />
-                     <TableColumn fx:id="servingsCol" prefWidth="100.0" text="Number Servings" />
-                     <TableColumn fx:id="ingredientsCol" prefWidth="100.0" text=" Ingredients" />
-                     <TableColumn fx:id="deleteButtonCol" prefWidth="50.0" text="Delete" />
+                     <TableColumn fx:id="typeCol" prefWidth="123.0" text="Type" />
+                     <TableColumn fx:id="costPriceCol" prefWidth="137.0" text="Cost Price" />
+                     <TableColumn fx:id="salePriceCol" prefWidth="134.0" text="Sale Price" />
+                     <TableColumn fx:id="servingsCol" prefWidth="146.0" text="Number Servings" />
+                     <TableColumn fx:id="ingredientsCol" prefWidth="151.0" text=" Ingredients" />
+                     <TableColumn fx:id="deleteButtonCol" prefWidth="148.0" text="Delete" />
 
                  </columns>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
              </TableView>
-             <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddMenuItemXMLScreen"
-                     text="Add from XML">
+             <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddMenuItemXMLScreen" text="Add from XML">
                  <opaqueInsets>
-                     <Insets/>
+                     <Insets />
                  </opaqueInsets>
                  <VBox.margin>
-                     <Insets left="20.0"/>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                  </VBox.margin>
              </Button>
          </children>
