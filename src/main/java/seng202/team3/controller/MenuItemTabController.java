@@ -84,7 +84,7 @@ public class MenuItemTabController {
             // For example here we'll just toggle the isGf
             //foodItem.setGlutenFree(!foodItem.isGlutenFree());
             //foodItemsTable.refresh(); // Have to trigger a table refresh to make it show up in the table
-            System.out.println("BUTTON CLICKED");
+
         }));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", MenuItem -> {
@@ -109,6 +109,5 @@ public class MenuItemTabController {
     public void updateMenuItemTable() {
         List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
-        System.out.println("Update menu item table called");
     }
 }

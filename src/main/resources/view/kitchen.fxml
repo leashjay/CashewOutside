@@ -24,7 +24,7 @@
                                         <Font size="22.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="backButton" layoutX="886.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/combinedStyle.css" text="Back" />
+                                <Button fx:id="backButton" layoutX="886.0" layoutY="5.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/styles.css" text="Back" />
                             </children>
                         </AnchorPane>
                         <ScrollPane pannable="true" prefHeight="151.0" prefWidth="1000.0">

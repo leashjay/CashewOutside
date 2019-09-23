@@ -39,7 +39,6 @@ public class ManagementController{
          * @throws IOException idk?
          */
     public void returnToMainScreen() throws IOException {
-        System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
     }
 

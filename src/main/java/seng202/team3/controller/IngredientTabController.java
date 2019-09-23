@@ -93,7 +93,6 @@ public class IngredientTabController {
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", ingredient -> {
             inventory.removeIngredient(ingredient.getCode());
             updateIngredientTable();
-            System.out.println("Delete BUTTON CLICKED");
         }));
 
         List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
@@ -102,7 +101,6 @@ public class IngredientTabController {
     }
 
     public void openAddIngredientScreen(){
-        System.out.println("Add Ingredient button clicked");
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
             Stage stage = new Stage();
@@ -130,7 +128,6 @@ public class IngredientTabController {
     public void updateIngredientTable(){
         List<Ingredient> ingredients= new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
-        System.out.println("Update ingredient table called");
     }
 
 

@@ -94,7 +94,6 @@ public class SupplierTabController
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", supplier -> {
             supplierHandler.removeSupplier(supplier.getSid());
             updateSupplierTable();
-            System.out.println("Delete BUTTON CLICKED");
         }));
 
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
@@ -112,7 +111,6 @@ public class SupplierTabController
     }
 
     public void openAddSupplierScreen(){
-        System.out.println("Add supplier button clicked");
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/view/addsupplier.fxml"));
             Stage stage = new Stage();
