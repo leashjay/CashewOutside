@@ -23,7 +23,7 @@ public class SalesHandler {
      */
     private SalesLoader salesLoader;
 
-    private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
+    public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
     /**
      * Used for JAXB custom serialization
