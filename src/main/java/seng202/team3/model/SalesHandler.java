@@ -13,7 +13,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {
 
-    private HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
+    public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
     /**
      * Used for JAXB custom serialization

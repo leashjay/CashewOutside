@@ -1,6 +1,5 @@
 package seng202.team3.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +13,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
-import seng202.team3.model.Supplier;
-import seng202.team3.model.SupplierHandler;
-import seng202.team3.util.ItemType;
-import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,15 +64,15 @@ public class IngredientTabController {
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
 
     /**
-     * Holds an instance of the SupplierTabController class so other controllers can call it's methods
+     * Holds an instance of the IngredientTabController class so other controllers can call it's methods
      */
     public IngredientTabController(){
         instance = this;
     }
 
     /**
-     * Returns an instance of the SupplierTabController so other controller classes can use its methods
-     * @return an instance of the SupplierTabController class
+     * Returns an instance of the IngredientTabController so other controller classes can use its methods
+     * @return an instance of the IngredientTabController class
      */
     public static IngredientTabController getInstance(){
         return instance;

@@ -34,6 +34,7 @@ public class Business {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
+        salesManager = new SalesHandler();
     }
 
     /**

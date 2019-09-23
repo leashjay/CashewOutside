@@ -79,6 +79,7 @@ public class SupplierTabController
     private TableColumn<Supplier, Button> deleteButtonCol;
 
     public void initialize() {
+        System.out.println(supplierHandler);
 
 
         // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.

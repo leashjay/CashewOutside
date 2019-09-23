@@ -48,10 +48,12 @@ public class AddXMLController {
     Button importIngredientXMLButton;
 
     @FXML
-    Text feedbackMessage;
+    Button importMenuItemXMLButton;
 
     @FXML
-    Button closeScreen;
+    Text feedbackMessage;
+
+
 
 
 
@@ -100,8 +102,8 @@ public class AddXMLController {
         showErrorMessage(fileString);
 
         //TODO: link menu item tab with menuitemxml screen
-        //stage = (Stage) importIngredientXMLButton.getScene().getWindow();
-        //IngredientTabController.getInstance().updateIngredientTable();
+        stage = (Stage) importMenuItemXMLButton.getScene().getWindow();
+        MenuItemTabController.getInstance().updateMenuItemTable();
     }
 
 
@@ -141,15 +143,6 @@ public class AddXMLController {
 
         fileString = selectedFile.getPath();
     }
-
-
-    /**
-     * Go back to Suppliers tab in Management screen
-     */
-    public void closeAddXMLScreen() {
-        stage.close();
-    }
-
 
 
 }
