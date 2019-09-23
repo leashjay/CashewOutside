@@ -26,6 +26,8 @@ public class Business {
     /** List of order in the database */
     private SalesHandler salesManager;
 
+    private int lastOrderID;
+
     /**
      * Constructor of Business class
      *
@@ -38,6 +40,7 @@ public class Business {
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         salesManager = new SalesHandler();
+        lastOrderID = 0; // TODO save and load this value so no duplicate orderIDs are created.
     }
 
     /**
@@ -117,5 +120,21 @@ public class Business {
         menuLoader.exportMenuData(file, menuManager);
     }
 
+    /**
+     * gets the lastOrderID
+     * @return the lastOrderID
+     */
+    public int getLastOrderID() {
+        return this.lastOrderID;
+    }
+
+    /**
+     * increases the last OrderID
+     * @return the new OrderID;
+     */
+    public int makeNextOrderID() {
+        this.lastOrderID++;
+        return this.lastOrderID;
+    }
 
 }

@@ -3,6 +3,7 @@ package seng202.team3.model;
 
 import seng202.team3.util.OrderStatus;
 import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
@@ -47,6 +48,7 @@ public class Order {
 
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
+    private String name;
 
     /**
      * <!-- begin-user-doc -->
@@ -57,6 +59,7 @@ public class Order {
     public Order() {
         // TODO change timeOrdered to be set when order is ordered.
         super();
+        this.orderId = BusinessApp.getBusiness().makeNextOrderID();
         setTime(LocalTime.now());
         dateOrdered = LocalDate.now();
     }
@@ -204,6 +207,11 @@ public class Order {
         this.orderStatus = newStatus;
     }
 
+    /**
+     * calculates the cost of an order from a given list of MenuItems
+     * @param itemsToCalculate the MenuItems
+     * @return the total cost
+     */
     public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
         float cost = 0;
         for (MenuItem item : itemsToCalculate) {
@@ -218,8 +226,8 @@ public class Order {
         return this.orderStatus;
     }
 
-    public ArrayList<MenuItem> getItemsOrdered() {
-        return this.itemsOrdered;
-    }
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
 }
 

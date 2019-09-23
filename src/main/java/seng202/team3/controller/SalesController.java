@@ -1,29 +1,24 @@
 package seng202.team3.controller;
 
 import javafx.collections.ObservableList;
-import javafx.css.CssParser;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import seng202.team3.model.Business;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
 import seng202.team3.model.SalesHandler;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.StringChecking;
 import seng202.team3.view.BusinessApp;
 
-import javax.lang.model.type.NullType;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class SalesController {
@@ -42,6 +37,27 @@ public class SalesController {
 
     @FXML
     private Label costLabel;
+
+    @FXML
+    private TextField currentOrderNameTextField;
+
+    @FXML
+    private Label orderIDValueLabel;
+
+    @FXML
+    private Label numOfItemsValueLabel;
+
+    @FXML
+    private Label priceValueLabel;
+
+    @FXML
+    private Label nameErrorLabel;
+
+    @FXML
+    private Label numItemsErrorLabel;
+
+    @FXML
+    private Label bigBoy;
 
     private final Insets gridPadding = new Insets(50, 50, 50, 50);
     private SalesHandler salesManager;
@@ -81,9 +97,10 @@ public class SalesController {
         setUpGridPane(foodItemGrid);
         setUpGridPane(drinkItemGrid);
         addMenuItemButtonsToGridPane(foodMenuItems, foodItemGrid);
-        updateCostLabel();
+        updateLabels();
         addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
     }
+
 
     /**
      * sets the gridPane to fill the width of the window.
@@ -199,7 +216,57 @@ public class SalesController {
         this.currentOrderHBoxMenuItems.remove(menuItem);
     }
 
-    public void updateCostLabel() {
-        this.costLabel.setText("$" + this.curOrder.getTotalCost());
+    public void updateLabels() {
+        float currentCost = this.curOrder.getTotalCost();
+        this.costLabel.setText("$" + currentCost);
+        this.numOfItemsValueLabel.setText("" + this.curOrder.getOrderedItems().size());
+        this.orderIDValueLabel.setText("" + this.curOrder.getOrderId());
+        this.priceValueLabel.setText("$" + currentCost);
+        this.nameErrorLabel.setVisible(false);
+        this.numItemsErrorLabel.setVisible(false);
+    }
+
+    public void confirmCurrentOrder() {
+        updateLabels(); // ensures info is up to date for the user
+        String curOrderName = this.currentOrderNameTextField.getText();
+        boolean successfulOrder = true; // true if the Order is valid;
+
+        // checking the order has items
+        if (this.curOrder.getOrderedItems().size() <= 0) {
+            successfulOrder = false;
+            this.numItemsErrorLabel.setVisible(true);
+        }
+
+        // checking the name is valid
+        if ((!curOrderName.equals("")) && StringChecking.isAlphaNumeric(curOrderName)) {
+            nameErrorLabel.setVisible(false);
+        } else {
+            successfulOrder = false;
+            nameErrorLabel.setVisible(true);
+        }
+
+        // must be at end of method
+        if (successfulOrder) {
+            curOrder.setName(curOrderName);
+            this.salesManager.addOrder(curOrder);
+            newCurrentOrder();
+        }
+
+    }
+
+
+    public void deleteCurrentOrder() {
+        newCurrentOrder();
+    }
+
+    /**
+     * overwrites the old current order with a new current order and updates visual elements
+     */
+    private void newCurrentOrder() {
+
+        this.currentOrderHBoxMenuItems.clear();
+        this.currentOrderHBox.getChildren().removeAll(this.currentOrderHBox.getChildren());
+        this.curOrder = new Order();
+        updateLabels();
     }
 }
