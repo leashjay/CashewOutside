@@ -2,11 +2,14 @@ package jUnitTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import seng202.team3.model.Business;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +31,7 @@ public class InventoryTests {
 
         BBun = new Ingredient("BBun", "Hamburger bun", 0f, UnitType.COUNT, 10);
         Cheese = new Ingredient("Cheese", "Cheddar cheese slice", 0f, UnitType.COUNT, 10);
-        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", 0f, UnitType.ML, 10);
+        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", 9f, UnitType.ML, 10);
 
     }
 
@@ -53,12 +56,13 @@ public class InventoryTests {
      */
     @Test
     public void modifyStockTest() {
-        TrimMilk.setIsVegan(ThreeValueLogic.YES);
+        inventory.addIngredient(TrimMilk);
+        TrimMilk.setCost(20, TrimMilk.getQuantity());
         inventory.modifyIngredient(TrimMilk);
 
         for (Map.Entry<String, Ingredient> entry : inventoryHashMap.entrySet()) {
             if (entry.getValue() == TrimMilk) {
-                assertEquals(ThreeValueLogic.YES, entry.getValue().getIsVegan());
+                assertEquals(15f, entry.getValue().getCost());
             }
         }
     }
@@ -91,7 +95,7 @@ public class InventoryTests {
         HashMap<Ingredient, Float> testStock = new HashMap<>();
         testStock.put(BBun, 10f);
         testStock.put(Cheese, 20f);
-        testStock.put(TrimMilk, 0f);
+        testStock.put(TrimMilk, 9f);
 
         inventory.addStock(BBun, 10f);
         inventory.addStock(Cheese, 20f);
@@ -109,7 +113,7 @@ public class InventoryTests {
     public void lowStockReportTest() {
         HashMap<Ingredient, Float> testStock = new HashMap<>();
         testStock.put(BBun, 10f);
-        testStock.put(TrimMilk, 0f);
+        testStock.put(TrimMilk, 9f);
 
         inventory.addStock(BBun, 10f);
         inventory.addStock(Cheese, 20f);
@@ -124,11 +128,15 @@ public class InventoryTests {
      * Tests if the method to add ingredients from an XML file is working
      */
     @Test
-    public void testAddIngredientFromXML() throws Exception {
-        assertEquals(0, inventory.getIngredients().size());
-        inventory.addIngredientsFromXML("./resources/data/Ingredients.xml");
-        assertEquals(30, inventory.getIngredients().size());
-        assertTrue(inventory.getIngredients().keySet().contains("BBun"));
+    public void testAddIngredientFromXML() throws JAXBException {
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        Inventory testInventory = testBusiness.getTruck().getInventory();
+        assertEquals(30, testInventory.getIngredients().size());
+
+
+        testInventory.addIngredientsFromXML("./resources/data/testdata/testIngredients1.xml");
+        assertEquals(31, testInventory.getIngredients().size());
+        assertTrue(testInventory.getIngredients().keySet().contains("OSauce"));
     }
 }
 

@@ -41,11 +41,13 @@
          <email>daveG@countup.co.nz</email>
          <url>countup.co.nz/high</url>
       </supplier>
-      <supplier type="UNKNOWN">
+      <supplier type="WORK">
+         <sid>s5</sid>
          <name>Westfield</name>
          <address>Somewhere riccarton road</address>
-         <email>Null</email>
-         <url>Null</url>
+         <phone>023131</phone>
+         <email>westfield@gmail.com</email>
+         <url></url>
       </supplier>
       <supplier type="MOBILE">
          <sid>s2</sid>

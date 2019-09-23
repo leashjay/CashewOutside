@@ -135,7 +135,7 @@ public class SupplierTabController
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle("Add supplier");
-            stage.setScene(new Scene(root, 350, 500));
+            stage.setScene(new Scene(root, 350, 600));
             stage.showAndWait();
         } catch (IOException e){
             e.printStackTrace();

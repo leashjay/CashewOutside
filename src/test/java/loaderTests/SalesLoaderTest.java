@@ -1,4 +1,4 @@
-package jUnitTests;
+package loaderTests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,24 +26,30 @@ public class SalesLoaderTest {
     @Before
     public void populateDBSales() {
         testSales = new SalesHandler();
+
         testOrder = new Order();
         testOrder.setOrderId(1);
         testOrder.changeStatus(OrderStatus.COMPLETE);
         testOrder.updateFlags();
+
         HashMap<Ingredient, Float> testIngredients = new HashMap<Ingredient, Float>();
+
         Ingredient Kimchi = new Ingredient();
         Kimchi.setCode("Kimchi");
         Kimchi.setUnit(UnitType.GRAM);
-        Kimchi.setCost((float) 3.2);
+        Kimchi.setCost((float) 3.2, Kimchi.getQuantity());
+
         testIngredients.put(Kimchi, (float) 100);
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
         testOrder.addToOrder(newEntry);
         testSales.addOrder(testOrder);
+
         testOrder2 = new Order();
         testOrder2.setOrderId(2);
         testOrder2.changeStatus(OrderStatus.COOKING);
         testOrder2.updateFlags();
         testOrder2.addToOrder(newEntry);
+
         testSales.addOrder(testOrder2);
     }
 

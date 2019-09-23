@@ -3,6 +3,7 @@ package seng202.team3.model;
 
 import seng202.team3.parsing.InventoryLoader;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 /**
@@ -30,7 +31,7 @@ public class Truck {
      * @param ingredientsXML path to ingredientsXML
      * @throws Exception
      */
-    public Truck(String ingredientsXML) throws Exception {
+    public Truck(String ingredientsXML) throws JAXBException {
         createTruckInventory(ingredientsXML);
         cashFloat = new HashMap<Integer, Integer>();
 
@@ -53,7 +54,7 @@ public class Truck {
      * @param fileName path to ingredientsXML
      * @throws Exception
      */
-    public void createTruckInventory(String fileName) throws Exception {
+    public void createTruckInventory(String fileName) throws JAXBException {
         InventoryLoader inventoryLoad = new InventoryLoader();
         truckInventory = inventoryLoad.loadIngredientsData(fileName);
     }

@@ -3,6 +3,7 @@ package seng202.team3.model;
 import seng202.team3.parsing.SupplierAdapter;
 import seng202.team3.parsing.SuppliersLoader;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -106,7 +107,7 @@ public class SupplierHandler {
      * @param file path to supplier XML file
      * @throws Exception
      */
-    public void addSupplierFromXML(String file) throws Exception {
+    public void addSupplierFromXML(String file) throws JAXBException {
         SuppliersLoader suppliersLoader = new SuppliersLoader();
         SupplierHandler supplierHandler = suppliersLoader.loadSuppliersData(file);
         HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();

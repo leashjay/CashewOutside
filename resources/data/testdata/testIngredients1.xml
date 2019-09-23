@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE inventory [
+        <!ENTITY version "V0.01 (C) Neville Churcher 2019">
+        <!ELEMENT inventory (description, ingredients)>
+        <!ELEMENT ingredients ((ingredient*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT ingredient (code, name, quantity)>
+        <!ATTLIST ingredient
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA #REQUIRED
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+        ]>
+<inventory>
+    <description>Our ingredients in no particular order (incomplete).</description>
+    <ingredients>
+        <ingredient unit="ML" cost="0.34">
+            <code>OSauce</code>
+            <name>Oyster Sauce</name>
+            <quantity>500</quantity>
+        </ingredient>
+    </ingredients>
+</inventory>

@@ -1,6 +1,7 @@
 package seng202.team3.parsing;
 
 import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.Inventory;
 
 import javax.xml.bind.JAXBContext;
@@ -10,7 +11,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 
-import static seng202.team3.parsing.XMLValidation.validateXmlFile;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 /**
  * JAXB parser for inventory XML file
@@ -46,14 +47,12 @@ public class InventoryLoader {
     /** Inventory to be mapped */
     private Inventory inventoryLoad;
 
-    private MyErrorHandler errorHandler;
 
     /**
      * Constructor for InventoryLoader
      */
-    public InventoryLoader() throws Exception {
+    public InventoryLoader() throws JAXBException {
         context = JAXBContext.newInstance(Inventory.class);
-        errorHandler = new MyErrorHandler();
     }
 
     /**
@@ -61,18 +60,25 @@ public class InventoryLoader {
      * @param fileName path to ingredient XML file
      * @return instance of Inventory class
      */
-    public Inventory loadIngredientsData(String fileName) throws IOException, SAXException, JAXBException {
+    public Inventory loadIngredientsData(String fileName) throws JAXBException{
         try {
-            validateXmlFile(fileName);
+            validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
-            String errorMessage = pce.getMessage();
+            AddXMLController.errorMessageList.add(pce.getMessage());
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add(spe.getMessage());
+        } catch (IOException ioe) {
+            AddXMLController.errorMessageList.add(ioe.getMessage());
         }
 
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshaller.setEventHandler(validationEvent -> false);
 
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
+        try {
+            InputStream inputStream = new FileInputStream(new File(fileName));
+            inventoryLoad = (Inventory) unmarshaller.unmarshal(inputStream);
+        } catch (FileNotFoundException fnfe) {
+            AddXMLController.errorMessageList.add(fnfe.getMessage());
+        }
         return inventoryLoad;
     }
 

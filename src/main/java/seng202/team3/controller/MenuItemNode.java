@@ -18,13 +18,16 @@ public class MenuItemNode extends VBox {
     private int quantity;
     private Label quantityLabel;
     private Label costValue;
+    private SalesController parent;
 
-    public MenuItemNode(MenuItem menuItem) {
+    public MenuItemNode(MenuItem menuItem, SalesController parent) {
         super();
+        this.parent = parent;
         this.quantity = 1;
         this.menuItem = menuItem;
+        this.parent.increaseCurOrderByOne(this.menuItem); // defaulting the quantity to one
         this.setPrefHeight(200);
-        this.setPrefWidth(200);
+        this.setPrefWidth(100);
         makeNameArea(menuItem.getName());
         makeFlags();
         setupCost();
@@ -39,13 +42,16 @@ public class MenuItemNode extends VBox {
     private void updateLabels() {
         this.quantityLabel.setText(String.valueOf(quantity));
         this.costValue.setText("$" + (menuItem.getCostPrice() * quantity));
+        this.parent.updateCostLabel();
     }
 
     private void setUpButtons() {
         HBox buttonHBox = new HBox();
         Button decrButton = new Button("-");
+        decrButton.setOnAction(e -> decreaseCountByOne());
         quantityLabel = new Label();
         Button incrButton = new Button("+");
+        incrButton.setOnAction(e -> increaseCountByOne());
         buttonHBox.setPrefHeight(60);
         buttonHBox.getChildren().addAll(decrButton, quantityLabel, incrButton);
         this.getChildren().add(3, buttonHBox);
@@ -55,7 +61,7 @@ public class MenuItemNode extends VBox {
         HBox costHBox = new HBox();
         Label costLabel = new Label("Cost:");
         costValue = new Label();
-        costLabel.setPrefHeight(40);
+//        costLabel.setPrefHeight(40);
         costHBox.setPrefHeight(40);
         costHBox.getChildren().addAll(costLabel, costValue);
         this.getChildren().add(2, costHBox);
@@ -67,7 +73,7 @@ public class MenuItemNode extends VBox {
     private void makeFlags() {
         Label flagLabel = new Label();
         flagLabel.setPrefHeight(60);
-        flagLabel.setPrefWidth(200);
+        flagLabel.setPrefWidth(100);
         String flagText = "";
         if (menuItem.isGlutenFree() == ThreeValueLogic.YES) {
             flagText += "GF\n";
@@ -78,7 +84,6 @@ public class MenuItemNode extends VBox {
         if (menuItem.isVegan() == ThreeValueLogic.YES) {
             flagText += "Vegan\n";
         }
-        System.out.println("Flags: " + flagText);
         flagLabel.setText(flagText);
         this.getChildren().add(1, flagLabel);
     }
@@ -96,7 +101,25 @@ public class MenuItemNode extends VBox {
         this.getChildren().add(0,itemNameLabel);
     }
 
+    /**
+     * Adds one more occurrence of the MenuItemNode's MenuItem to the curOrder's items
+     */
     public void increaseCountByOne() {
-
+        this.quantity++;
+        this.parent.increaseCurOrderByOne(this.menuItem);
+        updateLabels();
     }
+
+    /**
+     *  Removes one occurrence of the MenuItemNode's MenuItem from the curOrder's items
+     */
+    public void decreaseCountByOne() {
+        this.quantity--;
+        this.parent.decreaseCurOrderByOne(this.menuItem);
+        if (this.quantity <= 0) {
+            this.parent.removeMenuItemNode(this.menuItem);
+        }
+        updateLabels();
+    }
+
 }

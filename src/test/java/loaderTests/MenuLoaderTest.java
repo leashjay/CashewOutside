@@ -1,8 +1,9 @@
-package jUnitTests;
+package loaderTests;
 
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
+import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
@@ -35,16 +36,6 @@ public class MenuLoaderTest {
     public void testLoadMenuFile() throws Exception {
         String fName = "./resources/data/SampleMenu.xml";
         int numExpected = 6;
-        String pathName = "";
-
-        try {
-            pathName = (new File(fName)).toURI().toURL().toString();
-        } catch (IOException ioe) {
-            System.err.println("Problem reading file: <" + fName + ">  Check for typos");
-            System.err.println(ioe);
-            System.exit(666);// a bit brutal!
-        }
-
         testLoader = new MenuLoader();
         testMenu = testLoader.loadMenuData(fName);
         menuContent = testMenu.getMenuItem();
@@ -71,7 +62,6 @@ public class MenuLoaderTest {
         assertTrue("Made with cream", ingredientNames.contains("Cream"));
         assertEquals("Made from three things", 3, item.getIngredients().size());
         assertFalse("Not made with Beetroot", ingredientNames.contains("BeetRoot"));
-
         assertEquals("All ingredients in BabyFace are of size 30ml", 1, ingredientQuantities.size());
     }
 

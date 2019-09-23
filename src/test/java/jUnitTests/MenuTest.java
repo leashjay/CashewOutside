@@ -2,16 +2,20 @@ package jUnitTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import seng202.team3.model.Business;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.MenuType;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class MenuTest {
     private Ingredient rice;
@@ -57,6 +61,21 @@ public class MenuTest {
         notOnlyRice.addMenuItem(justWings);
         menuContents.put(justWings.getId(), justWings);
         assertEquals(notOnlyRice.getMenuItem(), menuContents);
+    }
+
+    /**
+     * Tests if the method to add menu item from an XML file is working
+     */
+    @Test
+    public void testAddMenuItemFromXML() throws JAXBException {
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        Menu testMenu = testBusiness.getMenuManager();
+        assertEquals(6, testMenu.getMenuItem().size());
+
+
+        testMenu.addMenuItemFromXML("./resources/data/testdata/testMenu1.xml");
+        assertEquals(7, testMenu.getMenuItem().size());
+        assertTrue(testMenu.getMenuItem().keySet().contains("KS1"));
     }
 
 }

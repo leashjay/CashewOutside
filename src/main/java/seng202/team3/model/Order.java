@@ -57,8 +57,16 @@ public class Order {
     public Order() {
         // TODO change timeOrdered to be set when order is ordered.
         super();
-        timeOrdered = LocalTime.now();
+        setTime(LocalTime.now());
         dateOrdered = LocalDate.now();
+    }
+
+    public LocalTime getTime() {
+        return this.timeOrdered;
+    }
+
+    public void setTime(LocalTime time) {
+        this.timeOrdered = time;
     }
 
     /**
@@ -203,7 +211,9 @@ public class Order {
         }
         return cost;
     }
-
+    public ArrayList<MenuItem> getOrderedItems() {
+        return this.itemsOrdered;
+    }
     public OrderStatus getStatus() {
         return this.orderStatus;
     }

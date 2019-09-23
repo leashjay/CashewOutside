@@ -5,7 +5,9 @@ import org.junit.Test;
 import seng202.team3.model.*;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.*;
@@ -77,13 +79,21 @@ public class SupplierHandlerTest {
         assertTrue(supplierHandler.getSuppliers().containsValue(paknsave));
         assertFalse(supplierHandler.getSuppliers().containsValue(countdown));
         assertFalse(supplierHandler.getSuppliers().containsValue(mootsMeatMarket));
-
-
-
     }
 
+    /**
+     * Tests if the method to add suppliers from an XML file is working
+     */
+    @Test
+    public void testAddSupplierFromXML() throws JAXBException {
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        SupplierHandler testSupplierHandler = testBusiness.getSupplierHandler();
+        assertEquals(4, testSupplierHandler.getSuppliers().size());
 
 
-
+        testSupplierHandler.addSupplierFromXML("./resources/data/testdata/testSupplier1.xml");
+        assertEquals(5, testSupplierHandler.getSuppliers().size());
+        assertTrue(testSupplierHandler.getSuppliers().keySet().contains("s6"));
+    }
 
 }
