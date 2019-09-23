@@ -31,7 +31,7 @@ public class InventoryTests {
 
         BBun = new Ingredient("BBun", "Hamburger bun", 0f, UnitType.COUNT, 10);
         Cheese = new Ingredient("Cheese", "Cheddar cheese slice", 0f, UnitType.COUNT, 10);
-        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", 0f, UnitType.ML, 10);
+        TrimMilk = new Ingredient("TrimMilk", "Trim Milk", 9f, UnitType.ML, 10);
 
     }
 
@@ -56,13 +56,13 @@ public class InventoryTests {
      */
     @Test
     public void modifyStockTest() {
-        TrimMilk.setIsVegan(ThreeValueLogic.YES);
+        inventory.addIngredient(TrimMilk);
+        TrimMilk.setCost(20, TrimMilk.getQuantity());
         inventory.modifyIngredient(TrimMilk);
 
         for (Map.Entry<String, Ingredient> entry : inventoryHashMap.entrySet()) {
             if (entry.getValue() == TrimMilk) {
-                System.out.println(entry.getValue().getIsVegan());
-                assertEquals(ThreeValueLogic.YES, entry.getValue().getIsVegan());
+                assertEquals(15f, entry.getValue().getCost());
             }
         }
     }
@@ -95,7 +95,7 @@ public class InventoryTests {
         HashMap<Ingredient, Float> testStock = new HashMap<>();
         testStock.put(BBun, 10f);
         testStock.put(Cheese, 20f);
-        testStock.put(TrimMilk, 0f);
+        testStock.put(TrimMilk, 9f);
 
         inventory.addStock(BBun, 10f);
         inventory.addStock(Cheese, 20f);
@@ -113,7 +113,7 @@ public class InventoryTests {
     public void lowStockReportTest() {
         HashMap<Ingredient, Float> testStock = new HashMap<>();
         testStock.put(BBun, 10f);
-        testStock.put(TrimMilk, 0f);
+        testStock.put(TrimMilk, 9f);
 
         inventory.addStock(BBun, 10f);
         inventory.addStock(Cheese, 20f);
