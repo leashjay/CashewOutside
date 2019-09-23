@@ -3,14 +3,13 @@ package jUnitTests.step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import seng202.team3.model.Ingredient;
-import seng202.team3.model.Inventory;
-import seng202.team3.model.Menu;
-import seng202.team3.model.MenuItem;
+import seng202.team3.model.*;
 import seng202.team3.util.MenuType;
 import seng202.team3.util.UnitType;
 
 import java.util.HashMap;
+
+import static junit.framework.TestCase.assertTrue;
 
 public class LoadingDataSteps {
     private HashMap<String, Ingredient> inventoryHashMap;
@@ -20,6 +19,8 @@ public class LoadingDataSteps {
     private MenuItem testMenuItem;
     private Menu testMenu;
     private Ingredient testIngredient;
+    private Supplier supplier;
+    private Inventory sInventory;
 
 
     @Given("an {string} to hold ingredients")
@@ -37,20 +38,16 @@ public class LoadingDataSteps {
 
     @Given("an {string} to suppliers details")
     public void anToSuppliersDetails(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        sInventory = new Inventory();
+        supplier = new Supplier();
     }
 
-    @Given("an Ingredient has a {string}, {string}, {double}, {string} and costs ${double}")
-    public void anIngredientHasaAndCosts$(String string, String string2, float float1, String string3, float float2) {
-        Ingredient testIngredient = new Ingredient();
-        testIngredient.setCode(string);
-        testIngredient.setName(string2);
-        testIngredient.setQuantity(float1);
-        UnitType convertedUnit = testIngredient.convertToUnit(string3);
-        testIngredient.setUnit(convertedUnit);
-        testIngredient.setCost(float2);
+    @Given("an Ingredient has a {string}, {string}, {double}, {string} and costs ${float}")
+    public void anIngredientHasaAndCosts$(String code, String name, float quantity, String unitType, float cost) {
+        Ingredient testIngredient = new Ingredient("llc", "lettuce", 1.0f, UnitType.COUNT, 0.10f);
+        Ingredient testIngredient2 = new Ingredient(code, name, quantity, unitType, cost);
         this.testIngredient = testIngredient;
+
     }
 
     @When("the Ingredient is added")
@@ -60,8 +57,7 @@ public class LoadingDataSteps {
 
     @Then("the Ingredient is in the program")
     public void theIngredientIsInTheProgram() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertTrue(inventory.searchStock(testIngredient));
     }
 
     @Given("an Menu has a {string}, {string}, {string}, {string} costs ${double} and has a list of ingredients:")
