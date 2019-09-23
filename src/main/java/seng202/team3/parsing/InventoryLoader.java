@@ -86,7 +86,7 @@ public class InventoryLoader {
      * Export ingredients to ingredient XML file
      * @param fileName path to ingredient XML filese.printStackTrace();
      */
-    public void exportIngredientsData(String fileName) throws IOException, JAXBException {
+    public void exportIngredientsData(String fileName, Inventory inventoryLoad) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

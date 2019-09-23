@@ -27,12 +27,38 @@ public class BusinessApp extends Application {
         }
     }
 
+    /**
+     * Export all data as XML file when application is closed
+     */
+//    static {
+//        primaryStage.setOnCloseRequest(ev -> {
+//            try{
+//                business.exportOrdersAsXML(orderXML);
+//                business.getMenuManager().getMenuLoader().exportMenuData(menuXML);
+//                business.getTruck().getInventory().getInventoryLoader().exportIngredientsData(ingredientsXML);
+//                business.getSupplierHandler().getSuppliersLoader().exportSupplierData(suppliersXML);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
+//    }
     @Override
     public void start(Stage pStage) throws IOException {
         primaryStage = pStage;
+        primaryStage.setOnCloseRequest(ev -> {
+            try {
+                business.exportOrdersAsXML("./resources/data/testdata/exportOrders.xml");
+                business.exportMenuAsXML("./resources/data/testdata/exportSampleMenu.xml");
+                business.exportInventoryAsXML("./resources/data/testdata/exportIngredients.xml");
+                business.exportSupplierAsXML("./resources/data/testdata/exportSuppliers.xml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         loadMainPage();
         primaryStage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);

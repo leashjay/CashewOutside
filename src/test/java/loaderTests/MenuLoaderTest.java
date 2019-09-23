@@ -3,14 +3,11 @@ package loaderTests;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
-import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.UnitType;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -74,7 +71,7 @@ public class MenuLoaderTest {
         testIngredients.put(Kimchi, (float) 100);
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
         menuContent.put("KimchiStew", newEntry);
-        testLoader.exportMenuData("./resources/data/testdata/testMenu.xml");
+        testLoader.exportMenuData("./resources/data/testdata/testMenu.xml", testMenu);
 
 
         menuContent.clear();

@@ -1,9 +1,12 @@
 package seng202.team3.model;
 
+import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.parsing.MenuLoader;
+import seng202.team3.parsing.SalesLoader;
 import seng202.team3.parsing.SuppliersLoader;
 
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 
 /**
  * Business class holds the instances of handler classes, and acts as a major access point to database in memory
@@ -87,6 +90,31 @@ public class Business {
     public void createMenuManager(String fileName) throws JAXBException {
         MenuLoader menuLoad = new MenuLoader();
         menuManager = menuLoad.loadMenuData(fileName);
+    }
+
+    /**
+     * Export order history as XML file
+     *
+     * @param file path to order history XML file
+     */
+    public void exportOrdersAsXML(String file) throws Exception {
+        SalesLoader salesLoader = new SalesLoader();
+        salesLoader.exportSalesData(file, salesManager);
+    }
+
+    public void exportInventoryAsXML(String file) throws JAXBException, IOException {
+        InventoryLoader inventoryLoader = new InventoryLoader();
+        inventoryLoader.exportIngredientsData(file, thisTruck.getInventory());
+    }
+
+    public void exportSupplierAsXML(String file) throws Exception {
+        SuppliersLoader suppliersLoader = new SuppliersLoader();
+        suppliersLoader.exportSupplierData(file, supplierManager);
+    }
+
+    public void exportMenuAsXML(String file) throws JAXBException, IOException {
+        MenuLoader menuLoader = new MenuLoader();
+        menuLoader.exportMenuData(file, menuManager);
     }
 
 

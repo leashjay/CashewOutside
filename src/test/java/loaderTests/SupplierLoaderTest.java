@@ -9,8 +9,6 @@ import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.PhoneType;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -59,7 +57,7 @@ public class SupplierLoaderTest {
     public void testExportDBtoXML() throws Exception {
         Supplier westfield = new Supplier("s5", "Westfield", "Somewhere riccarton road", PhoneType.WORK, "023131", "westfield@gmail.com", "");
         suppsLoaded.put("Westfield", westfield);
-        testLoader.exportSupplierData("./resources/data/testdata/testSupplier.xml");
+        testLoader.exportSupplierData("./resources/data/testdata/testSupplier.xml", suppHandler);
 
 
         suppsLoaded.clear();
