@@ -32,10 +32,10 @@ public class IngredientTest {
     public void ingredientSetterTest() {
         Ingredient ingredient = new Ingredient("4", "Pasta", 12.1f, UnitType.COUNT, 10f);
         ingredient.setIsVegan(ThreeValueLogic.NO);
-        ingredient.setCost(999);
+        ingredient.setCost(999, ingredient.getQuantity());
         ingredient.setQuantity(1000);
         assertEquals(ingredient.getIsVegan(), ThreeValueLogic.NO);
-        assertEquals(ingredient.getCost(), 999f);
+        assertEquals(ingredient.getCost(), 504.5f);
         assertEquals(ingredient.getQuantity(), 1000f);
     }
 }

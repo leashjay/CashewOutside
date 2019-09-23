@@ -208,8 +208,9 @@ public class Ingredient {
      * Sets the cost of the ingredient to the given float
      * @param newCost the new cost of the ingredient
      */
-    public void setCost(float newCost) {
-        cost = newCost;
+    public void setCost(float newCost, float oldQuantity) {
+        Float calcCost = ((oldQuantity * newCost) + (getQuantity() * getCost())) / (getQuantity() + oldQuantity);
+        cost = calcCost;
     }
 
     /**

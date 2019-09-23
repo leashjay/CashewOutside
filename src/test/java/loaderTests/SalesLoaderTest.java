@@ -37,7 +37,7 @@ public class SalesLoaderTest {
         Ingredient Kimchi = new Ingredient();
         Kimchi.setCode("Kimchi");
         Kimchi.setUnit(UnitType.GRAM);
-        Kimchi.setCost((float) 3.2);
+        Kimchi.setCost((float) 3.2, Kimchi.getQuantity());
 
         testIngredients.put(Kimchi, (float) 100);
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
