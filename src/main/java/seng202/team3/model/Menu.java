@@ -40,6 +40,11 @@ public class Menu {
     private HashMap<String, MenuItem> menuContent;
 
     /**
+     * MenuLoader object to call import or export method
+     */
+    private MenuLoader menuLoader;
+
+    /**
      * No-arg constructor for JAXB
      */
     public Menu() {    }
@@ -66,6 +71,14 @@ public class Menu {
     public Boolean getActive() {
         return isActive;
     }
+
+    /**
+     * Getter for Menu Loader
+     *
+     * @return menu loader
+     */
+    public MenuLoader getMenuLoader() {
+        return menuLoader;}
 
     /**
      * sets isActive to true
@@ -158,11 +171,12 @@ public class Menu {
      * @throws Exception
      */
     public void addMenuItemFromXML(String file) throws JAXBException {
-        MenuLoader menuLoader = new MenuLoader();
+        menuLoader = new MenuLoader();
         Menu menu = menuLoader.loadMenuData(file);
         HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
         menuContent.putAll(newMenuItems);
     }
+
 
     //    public void addToCollection(MenuItem) {}
 //

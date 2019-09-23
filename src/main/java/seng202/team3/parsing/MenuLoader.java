@@ -102,7 +102,7 @@ public class MenuLoader {
      *
      * @param fileName path to menu XML file
      */
-    public void exportMenuData(String fileName) throws IOException, JAXBException {
+    public void exportMenuData(String fileName, Menu menuLoad) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();
         OutputStream outputStream = new FileOutputStream(new File(fileName));
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

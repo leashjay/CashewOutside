@@ -41,6 +41,10 @@ public class Inventory {
     @XmlTransient
     private Float lowStockML = 1000f;
 
+    /**
+     * Inventory Loader object to call import and export method
+     */
+    private InventoryLoader inventoryLoader;
 
     /**
      * No-arg constructor for JAXB
@@ -76,6 +80,15 @@ public class Inventory {
     }
 
     /**
+     * Getter for Inventory Loader
+     *
+     * @return inventoryLoader
+     */
+    public InventoryLoader getInventoryLoader() {
+        return inventoryLoader; }
+
+
+    /**
      * Removes an ingredient from the ingredients HashMap
      * @param removedIngredient The ingredient that's to be removed from the list
      */
@@ -97,7 +110,7 @@ public class Inventory {
      * @param file The path to the XML file that is being used
      */
     public void addIngredientsFromXML(String file) throws JAXBException {
-        InventoryLoader inventoryLoader = new InventoryLoader();
+        inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
         HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
         ingredients.putAll(newIngredients);

@@ -38,6 +38,11 @@ public class SupplierHandler {
     @XmlJavaTypeAdapter(SupplierAdapter.class)
     private HashMap<String, Supplier> suppliers;
 
+    /**
+     * SuppliersLoader object to call import and export method
+     */
+    private SuppliersLoader suppliersLoader;
+
 
     /**
      * No arg constructor for JAXB
@@ -75,6 +80,14 @@ public class SupplierHandler {
     }
 
     /**
+     * Getter for SuppliersLoader instance
+     *
+     * @return suppliersLoader
+     */
+    public SuppliersLoader getSuppliersLoader() {
+        return suppliersLoader; }
+
+    /**
      * Getter for list of suppliers
      *
      * @return suppliers the list of suppliers the business has
@@ -108,7 +121,7 @@ public class SupplierHandler {
      * @throws Exception
      */
     public void addSupplierFromXML(String file) throws JAXBException {
-        SuppliersLoader suppliersLoader = new SuppliersLoader();
+        suppliersLoader = new SuppliersLoader();
         SupplierHandler supplierHandler = suppliersLoader.loadSuppliersData(file);
         HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();
         suppliers.putAll(newSuppliers);
