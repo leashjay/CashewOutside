@@ -40,25 +40,25 @@ public class BusinessApp extends Application {
 
     public static void loadMainPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/main.fxml"));
-        primaryStage.setTitle("Main Business Landing Page");
+        primaryStage.setTitle("Cashew Outside");
         primaryStage.setScene(new Scene(root, 800, 300));
     }
 
     public static void loadSalesPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/sales.fxml"));
-        primaryStage.setTitle("Sales Page");
+        primaryStage.setTitle("Sales");
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
     public static void loadManagementPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/management.fxml"));
-        primaryStage.setTitle("ManagementController Page");
+        primaryStage.setTitle("Management");
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
     public static void loadKitchenPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/kitchen.fxml"));
-        primaryStage.setTitle("ManagementController Page");
+        primaryStage.setTitle("Kitchen");
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 

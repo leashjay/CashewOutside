@@ -25,14 +25,13 @@
               <TableView fx:id="supplierTable">
                   <columns>
                       <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
-                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
-                      <TableColumn fx:id="addressCol" prefWidth="158.6666717529297" text="Address" />
-                      <TableColumn fx:id="emailCol" prefWidth="141.33331298828125" text="Email" />
-                      <TableColumn fx:id="phoneNumberCol" prefWidth="100.0" text="Phone Number" />
-                      <TableColumn fx:id="phoneTypeCol" prefWidth="100.0" text="Phone Type" />
-                      <TableColumn fx:id="urlCol" prefWidth="150.0" text="URL" />
-                      <TableColumn fx:id="editButtonCol" prefWidth="50.0" text="Edit" />
-                      <TableColumn fx:id="deleteButtonCol" prefWidth="50.0" text="Delete" />
+                      <TableColumn fx:id="nameCol" prefWidth="143.3333511352539" text="Name" />
+                      <TableColumn fx:id="addressCol" prefWidth="155.33328247070312" text="Address" />
+                      <TableColumn fx:id="emailCol" prefWidth="171.3333740234375" text="Email" />
+                      <TableColumn fx:id="phoneNumberCol" prefWidth="104.66668701171875" text="Phone Number" />
+                      <TableColumn fx:id="phoneTypeCol" prefWidth="89.33331298828125" text="Phone Type" />
+                      <TableColumn fx:id="urlCol" prefWidth="152.66668701171875" text="URL" />
+                      <TableColumn fx:id="deleteButtonCol" prefWidth="118.0" text="Delete" />
       
       
                   </columns>
