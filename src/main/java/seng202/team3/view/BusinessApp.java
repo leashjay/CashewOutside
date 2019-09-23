@@ -58,7 +58,7 @@ public class BusinessApp extends Application {
 
     public static void loadKitchenPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/kitchen.fxml"));
-        primaryStage.setTitle("ManagementController Page");
+        primaryStage.setTitle("Kitchen Page");
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
