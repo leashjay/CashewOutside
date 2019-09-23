@@ -106,7 +106,7 @@ public class Ingredient {
      */
     public String getName() {
         return name;
-    }partial stage commit for CYK to reference for functional test documentation
+    }
 
     /**
      * Getter for ingredient's unit type
@@ -143,7 +143,7 @@ public class Ingredient {
     /**
      * Getter for ingredient's gluten free attribute
      * @return isGF
-     */partial stage commit for CYK to reference for functional test documentation
+     */
     public ThreeValueLogic getIsGlutenFree() {
         return isGF;
     }
