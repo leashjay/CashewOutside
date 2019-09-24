@@ -133,7 +133,7 @@ public class MenuItem {
      * Returns cost which the business sells the item for
      * @return a float showing the cost the business sells the item for
      */
-    public float getSalePrice(){return (float) (totalCost * 0.10) ;}
+    public float getSalePrice(){return totalCost;}
 
    public int getServings(){return numServings;}
 
@@ -169,6 +169,9 @@ public class MenuItem {
         return totalCost;
     }
 
+    public void setSalePrice(float newPrice) {
+        this.totalCost = newPrice;
+    }
 
     //TODO Possibly change this into a singular method with parameters
     /**

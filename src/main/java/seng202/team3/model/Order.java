@@ -132,7 +132,7 @@ public class Order {
         this.isVegFlag = getFlagAdding(this.isVegFlag, itemToAdd.isVegetarian());
         this.isVeganFlag = getFlagAdding(this.isVeganFlag, itemToAdd.isVegan());
         this.itemsOrdered.add(itemToAdd);
-        this.orderCost += itemToAdd.getCostPrice();
+        this.orderCost += itemToAdd.getSalePrice();
     }
 
     /**
@@ -178,7 +178,7 @@ public class Order {
             if (!flagsChecked) {
                 updateFlags();
             }
-            this.orderCost -= itemToRemove.getCostPrice();
+            this.orderCost -= itemToRemove.getSalePrice();
         }
     }
 
@@ -220,7 +220,7 @@ public class Order {
     public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
         float cost = 0;
         for (MenuItem item : itemsToCalculate) {
-            cost += item.getCostPrice();
+            cost += item.getSalePrice();
         }
         return cost;
     }

@@ -40,7 +40,7 @@ public class MenuItemNode extends VBox {
      */
     private void updateLabels() {
         this.quantityLabel.setText(String.valueOf(quantity));
-        this.costValue.setText("$" + (menuItem.getCostPrice() * quantity));
+        this.costValue.setText("$" + (menuItem.getSalePrice() * quantity));
         this.parent.updateLabels();
     }
 
