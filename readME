@@ -10,3 +10,11 @@ Created by Alyssa Josephs, Andrew Sturman, Cheng Yi Kok, Hunter Craig, Jack Wals
 2. In the terminal, with the CD set to the directory of the file call:
 3. java -jar cashewOutside.jar
 
+# The source code:
+
+1. Can be found at UCGitLab repository on request: https://eng-git.canterbury.ac.nz/ajo110/cashewOutside
+2. Coding of this project was undertaken in Java using IntelliJ IDE.
+3. To view/alter code will require use of a machine with Java and a suitable IDE installed.
+4. If using IntelliJ, open the program and ensure that the JavaFX window application is installed for the GUI component of the project.
+5. JUnit will also be required for any testing undertaken.
+6. Open project from file system and navigate to the folder containing the project files.
