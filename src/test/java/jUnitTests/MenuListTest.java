@@ -33,7 +33,12 @@ public class MenuListTest {
     private ArrayList<Menu> winterMenus;
     private MenuList menus;
 
-    //Menu(String title, String desc, MenuType menuType, HashMap<String, MenuItem> menuContent)
+    /**
+     * sets up and initialises all values needed for testing by making the ArrayLists of Menus and puting them in the
+     * MenuList constructor and then also consequently adding and removing from these ArrayLists to compare against the
+     * MenuList class's one
+     * NOTE: this is a large method due to 'nested typing'
+     */
     @Before
     public void setup() {
         rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
@@ -61,6 +66,9 @@ public class MenuListTest {
         menus = new MenuList(menuArrayList);
     }
 
+    /**
+     * Tests the construction and getters of the MenuList class
+     */
     @Test
     public void gettersAndInitTest() {
         assertEquals(menus.getMenus(), menuArrayList);
@@ -69,6 +77,9 @@ public class MenuListTest {
         assertEquals(menus.getWinterMenus(), winterMenus);
     }
 
+    /**
+     * Tests the adding and removal of items into the MenuList class
+     */
     @Test
     public void addersAndRemoversTest() {
         menus.addMenu(festival2);
