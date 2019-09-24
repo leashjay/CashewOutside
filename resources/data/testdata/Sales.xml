@@ -23,46 +23,5 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-09-24" timeOrdered="10:53:03.692070200">
-         <orderId>1</orderId>
-         <customerName>katie</customerName>
-         <orderStatus>QUEUED</orderStatus>
-         <orderCost>422.0</orderCost>
-         <itemsOrdered>
-            <id>CF</id>
-            <name>Chicken fried rice</name>
-         </itemsOrdered>
-         <itemsOrdered>
-            <id>HotChoc</id>
-            <name>Hot Chocolate</name>
-         </itemsOrdered>
-           <flagsChecked>true</flagsChecked>
-       </order>
-       <order dateOrdered="2019-09-24" timeOrdered="10:53:03.693070800">
-           <orderId>2</orderId>
-           <customerName>katie</customerName>
-           <orderStatus>QUEUED</orderStatus>
-           <orderCost>79.0</orderCost>
-           <itemsOrdered>
-               <id>BB1</id>
-               <name>Beefburger</name>
-           </itemsOrdered>
-           <itemsOrdered>
-               <id>Lem</id>
-               <name>LemCan</name>
-           </itemsOrdered>
-           <flagsChecked>true</flagsChecked>
-       </order>
-       <order dateOrdered="2019-09-24" timeOrdered="10:53:17.775475500">
-           <orderId>3</orderId>
-           <customerName>katie</customerName>
-           <orderStatus>QUEUED</orderStatus>
-           <orderCost>78.0</orderCost>
-           <itemsOrdered>
-               <id>BB1</id>
-               <name>Beefburger</name>
-           </itemsOrdered>
-           <flagsChecked>true</flagsChecked>
-       </order>
    </orders>
 </sales>

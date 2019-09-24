@@ -11,10 +11,10 @@ public class MenuList {
     private ArrayList<Menu> menuArrayList;
 
     /** ArrayLists handling different types of Menus */
-    private ArrayList<Menu> activeMenus;
-    private ArrayList<Menu> winterMenus;
-    private ArrayList<Menu> summerMenus;
-    private ArrayList<Menu> festivalMenus;
+    private ArrayList<Menu> activeMenus = new ArrayList<>();
+    private ArrayList<Menu> winterMenus = new ArrayList<>();
+    private ArrayList<Menu> summerMenus = new ArrayList<>();
+    private ArrayList<Menu> festivalMenus = new ArrayList<>();
 
     @XmlAttribute(name = "type")
     private MenuType type;
