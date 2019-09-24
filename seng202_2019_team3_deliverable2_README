@@ -17,7 +17,7 @@ To view/alter code will require use of a machine with Java and a suitable IDE in
 If using IntelliJ, open the program and ensure that the JavaFX window application is installed for the GUI component of the project.
 JUnit will also be required for any testing undertaken.
 
-How to Import  project in intellij from gitlab download
+How to Import project in intellij from gitlab download
 1. Open Intellij
 2. Close any previously open projects
 3. Select check out from version control
@@ -25,7 +25,7 @@ How to Import  project in intellij from gitlab download
 5. Paste in the link https://eng-git.canterbury.ac.nz/ajo110/cashewOutside.git in the url box and choose your desired directory
 6. Open the project in intellij
 
-How to Import  project in intellij from folder
+How to Import project in intellij from folder
 1. Open Intellij
 2. Click import project
 3. Navigate to the directory where you have downloaded the cashewOutside main folder
