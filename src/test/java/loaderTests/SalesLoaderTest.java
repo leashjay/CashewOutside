@@ -55,11 +55,11 @@ public class SalesLoaderTest {
 
     @Test
     public void testExportSalesXML() throws Exception {
-        fName = "./resources/data/testdata/testSale.xml";
+        fName = "./resources/data/testdata/testExportSale.xml";
         testLoader = new SalesLoader();
         testLoader.exportSalesData(fName, testSales);
 
-        SalesHandler handler = testLoader.loadSalesData("./resources/data/testdata/testSale.xml");
+        SalesHandler handler = testLoader.loadSalesData("./resources/data/testdata/testExportSale.xml");
 
         assertEquals(handler.getOrder(1).getStatus(), testOrder.getStatus());
         assertEquals(handler.getOrder(2).getStatus(), testOrder2.getStatus());

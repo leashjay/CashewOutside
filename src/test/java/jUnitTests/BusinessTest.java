@@ -23,7 +23,7 @@ public class BusinessTest {
      */
     @Before
     public void setUpBusiness() throws JAXBException {
-        testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML);
+        testBusiness = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
     }
 
     /**

@@ -1,12 +1,13 @@
 package seng202.team3.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -16,9 +17,14 @@ import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
 import seng202.team3.model.SalesHandler;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.OrderStatus;
+import seng202.team3.util.StringChecking;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -39,10 +45,60 @@ public class SalesController {
     @FXML
     private Label costLabel;
 
+    @FXML
+    private TextField currentOrderNameTextField;
+
+    @FXML
+    private Label orderIDValueLabel;
+
+    @FXML
+    private Label numOfItemsValueLabel;
+
+    @FXML
+    private Label priceValueLabel;
+
+    @FXML
+    private Label nameErrorLabel;
+
+    @FXML
+    private Label numItemsErrorLabel;
+
+    @FXML
+    private Label payErrorLabel;
+
+    @FXML
+    private TextField payTextField;
+
+    @FXML
+    private TableView<Order> orderTable;
+
+    @FXML
+    private TableColumn<Order, Integer> idCol;
+
+    @FXML
+    private TableColumn<Order, String> nameCol;
+
+    @FXML
+    private TableColumn<Order, Float> priceCol;
+
+    @FXML
+    private TableColumn<Order, LocalDate> dateCol;
+
+    @FXML
+    private TableColumn<Order, LocalTime> timeCol;
+
+    @FXML
+    private TableColumn<Order, Integer> numItemsCol;
+
+    @FXML
+    private TableColumn<Order, OrderStatus> statusCol;
+
+    @FXML
+    private TableColumn<Order, Button> viewCol;
+
     private final Insets gridPadding = new Insets(50, 50, 50, 50);
     private SalesHandler salesManager;
     private Order curOrder;
-    private Business business;
     private final float rowHeight = 150;
     private HashMap<MenuItem, MenuItemNode> currentOrderHBoxMenuItems = new HashMap<>();
 
@@ -53,7 +109,6 @@ public class SalesController {
      * @throws IOException idk?
      */
     public void backButtonPressed() throws IOException {
-        System.out.println("Back button pressed");
         BusinessApp.loadMainPage();
     }
 
@@ -64,8 +119,9 @@ public class SalesController {
      */
     public void initialize() {
 
-        business = BusinessApp.getBusiness();
+        Business business = BusinessApp.getBusiness();
         curOrder = new Order();
+        curOrder.setToNextID();
         salesManager = business.getSalesHandler();
         // declare what ItemTypes are assigned to which GridPane
         Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
@@ -74,13 +130,50 @@ public class SalesController {
         // retrieve HashMaps of MenuItems to populate GridPanes
         HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
         HashMap<String, MenuItem> drinkMenuItems = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
+
         setUpGridPane(foodItemGrid);
         setUpGridPane(drinkItemGrid);
+        setUpOrderTableView();
         addMenuItemButtonsToGridPane(foodMenuItems, foodItemGrid);
-        updateCostLabel();
         addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
+        updateLabels();
+        updateOrderTable();
+
     }
 
+    /**
+     * loads the order Table with all of the orders
+     * very similar to IngredientTabController.updateIngredientTable
+     */
+    private void updateOrderTable() {
+        ArrayList<Order> orders = new ArrayList<>(BusinessApp.getBusiness().getSalesHandler().getOrdersHashMap().values());
+        orderTable.setItems(FXCollections.observableArrayList(orders));
+    }
+
+    /**
+     * sets up the Order Table to work as intended...
+     */
+    private void setUpOrderTableView() {
+        idCol.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        priceCol.setCellValueFactory(new PropertyValueFactory<>("TotalCost"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        numItemsCol.setCellValueFactory(new PropertyValueFactory<>("NumItems"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("Status"));
+
+        viewCol.setCellFactory(ActionButtonTableCell.forTableColumn("View", "view-button", order -> this.viewButtonOnAction(order) ));
+    }
+
+
+    /**
+     * the action to be performed when a view button (table) is pressed.
+     * @param associatedOrder the order associated with the pressed button
+     */
+    private void viewButtonOnAction(Order associatedOrder) {
+        ViewOrderPopUp.display(associatedOrder);
+        updateOrderTable();
+    }
     /**
      * sets the gridPane to fill the width of the window.
      * @param gridPane
@@ -195,7 +288,87 @@ public class SalesController {
         this.currentOrderHBoxMenuItems.remove(menuItem);
     }
 
-    public void updateCostLabel() {
-        this.costLabel.setText("$" + this.curOrder.getTotalCost());
+    public void updateLabels() {
+        float currentCost = this.curOrder.getTotalCost();
+        this.costLabel.setText("$" + currentCost);
+        this.numOfItemsValueLabel.setText("" + this.curOrder.getOrderedItems().size());
+        this.orderIDValueLabel.setText("" + this.curOrder.getOrderId());
+        this.priceValueLabel.setText("$" + currentCost);
+        this.nameErrorLabel.setVisible(false);
+        this.numItemsErrorLabel.setVisible(false);
+        this.payErrorLabel.setVisible(false);
+    }
+
+    /**
+     * checks that fields are valid then adds the order to the Sales Handler (Business.SalesManager)
+     */
+    public void confirmCurrentOrder() {
+        updateLabels(); // ensures info is up to date for the user
+        String curOrderName = this.currentOrderNameTextField.getText();
+        String curOrderPayment = this.payTextField.getText();
+        boolean successfulOrder = true; // true if the Order is valid;
+
+        // checking the order has items
+        if (this.curOrder.getOrderedItems().size() <= 0) {
+            successfulOrder = false;
+            this.numItemsErrorLabel.setVisible(true);
+        }
+
+        // checking the name is valid
+        if ((!curOrderName.equals("")) && StringChecking.isAlphaNumeric(curOrderName)) {
+            nameErrorLabel.setVisible(false);
+        } else {
+            successfulOrder = false;
+            nameErrorLabel.setVisible(true);
+        }
+
+        // checking the amount the customer pays is valid
+        if (!curOrderPayment.equals("") && StringChecking.isFloat(curOrderPayment)) {
+            float change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
+            if (change >= 0) {
+                // create new change alert
+                CustomerChangeAlert.display(change);
+            } else {
+                successfulOrder = false;
+                this.payErrorLabel.setVisible(true);
+            }
+        } else {
+            successfulOrder = false;
+            this.payErrorLabel.setVisible(true);
+        }
+
+        // must be at end of method
+        if (successfulOrder) {
+            curOrder.setName(curOrderName);
+            curOrder.setTime(LocalTime.now());
+            curOrder.setDate(LocalDate.now());
+            this.salesManager.addOrder(curOrder);
+            this.currentOrderNameTextField.setText("");
+            this.payTextField.setText("");
+            newCurrentOrder();
+        }
+
+    }
+
+
+    /**
+     * onAction for delete button in Make Sale tab
+     */
+    public void deleteCurrentOrder() {
+        // TODO have a confirmation box appear
+        newCurrentOrder();
+    }
+
+    /**
+     * overwrites the old current order with a new current order and updates visual elements
+     */
+    private void newCurrentOrder() {
+
+        updateOrderTable();
+        this.currentOrderHBoxMenuItems.clear();
+        this.currentOrderHBox.getChildren().removeAll(this.currentOrderHBox.getChildren());
+        this.curOrder = new Order();
+        curOrder.setToNextID();
+        updateLabels();
     }
 }

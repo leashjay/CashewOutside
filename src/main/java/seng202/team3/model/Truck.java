@@ -4,6 +4,8 @@ package seng202.team3.model;
 import seng202.team3.parsing.InventoryLoader;
 
 import javax.xml.bind.JAXBException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -122,6 +124,27 @@ public class Truck {
             cashFloat.put(denom, cashFloat.get(denom) + 1);
         }
     }
-    
+
+    /**
+     * uses a greedy algorithm to increase the Truck's cashFloat
+     * @param totalAmountOfIncrease the total amount of money in dollars.cents
+     */
+    public void increaseCashFloat(float totalAmountOfIncrease) {
+        int increaseInCents = (int) (totalAmountOfIncrease * 100);
+        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
+        Collections.sort(denoms); // sorts the denoms from smallest to largest
+        Collections.reverse(denoms);
+        // takes the biggest of each denom until it no longer can.
+        for (int denom : denoms) {
+            while (denom >= increaseInCents) {
+                cashFloat.put(denom, cashFloat.get(denom) + 1);
+                increaseInCents -= denom;
+            }
+        }
+        // always make the customer pay extra when using cash
+        if (increaseInCents > 0 && increaseInCents < 10) {
+            cashFloat.put(10, cashFloat.get(10) + 1);
+        }
+    }
 }
 

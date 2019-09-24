@@ -29,7 +29,7 @@
                         </AnchorPane>
                         <ScrollPane pannable="true" prefHeight="151.0" prefWidth="1000.0">
                             <content>
-                                <GridPane fx:id="orderGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0">
+                                <GridPane fx:id="orderGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0">
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
@@ -46,7 +46,7 @@
                             </children></AnchorPane>
                         <ScrollPane prefHeight="222.0" prefWidth="1000.0">
                             <content>
-                                <GridPane fx:id="menuItemGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0">
+                                <GridPane fx:id="menuItemGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0">
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>

@@ -29,10 +29,7 @@ public class Menu {
 
     /** Type of Menu {SUMMER, WINTER, FESTIVAL} */
     @XmlAttribute(name = "type")
-    //@XmlJavaTypeAdapter()
     private MenuType menuType;
-
-    private Boolean isActive;
 
     /** List of available menu item in the menu */
     @XmlElement(name = "items")
@@ -43,6 +40,8 @@ public class Menu {
      * MenuLoader object to call import or export method
      */
     private MenuLoader menuLoader;
+
+    private Boolean isActive;
 
     /**
      * No-arg constructor for JAXB
@@ -71,14 +70,6 @@ public class Menu {
     public Boolean getActive() {
         return isActive;
     }
-
-    /**
-     * Getter for Menu Loader
-     *
-     * @return menu loader
-     */
-    public MenuLoader getMenuLoader() {
-        return menuLoader;}
 
     /**
      * sets isActive to true

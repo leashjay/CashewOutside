@@ -73,13 +73,13 @@ public class InventoryLoaderTest {
     public void testExportDBtoXML() throws Exception {
         Ingredient newEntry = new Ingredient("Kimchi", "chikim", 3f, UnitType.GRAM, 1.2f);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
-        testLoader.exportIngredientsData("./resources/data/testdata/testIngredients.xml", testInventory);
+        testLoader.exportIngredientsData("./resources/data/testdata/testExportIngredients.xml", testInventory);
 
 
         ingredients.clear();
         assertEquals("Reset list of ingredients", 0, ingredients.size());
 
-        testInventory = testLoader.loadIngredientsData("./resources/data/testdata/testIngredients.xml");
+        testInventory = testLoader.loadIngredientsData("./resources/data/testdata/testExportIngredients.xml");
         ingredients = testInventory.getIngredients();
         assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }

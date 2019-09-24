@@ -15,11 +15,19 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static final String ingredientsXML = "./resources/data/Ingredients.xml";
+    public static final String ingredientsXML = "./resources/data/testdata/Ingredients.xml";
+
     /** Source menu XML file to load data from */
-    public static final String menuXML = "./resources/data/SampleMenu.xml";
+    public static final String menuXML = "./resources/data/testdata/SampleMenu.xml";
+
     /** Source supplier XML file to load data from */
-    public static final String suppliersXML = "./resources/data/Suppliers.xml";
+    public static final String suppliersXML = "./resources/data/testdata/Suppliers.xml";
+
+    /**
+     * Source sales XML file to load data from
+     */
+    public static final String salesXML = "./resources/data/testdata/Sales.xml";
+
     /**
      * Primary stage for CashewOutside application
      */
@@ -34,7 +42,7 @@ public class BusinessApp extends Application {
      */
     static {
         try {
-            business = new Business(ingredientsXML, menuXML, suppliersXML);
+            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,10 +100,10 @@ public class BusinessApp extends Application {
         primaryStage = pStage;
         primaryStage.setOnCloseRequest(ev -> {
             try {
-                business.exportOrdersAsXML("./resources/data/testdata/exportOrders.xml");
-                business.exportMenuAsXML("./resources/data/testdata/exportSampleMenu.xml");
-                business.exportInventoryAsXML("./resources/data/testdata/exportIngredients.xml");
-                business.exportSupplierAsXML("./resources/data/testdata/exportSuppliers.xml");
+                business.exportOrdersAsXML(salesXML);
+                business.exportMenuAsXML(menuXML);
+                business.exportInventoryAsXML(ingredientsXML);
+                business.exportSupplierAsXML(suppliersXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -29,18 +29,21 @@ public class MenuLoader {
             "                >\n" +
             "        <!ELEMENT title (#PCDATA)>\n" +
             "        <!ELEMENT description (#PCDATA)>\n" +
-            "        <!ELEMENT item (id, name, ingredients)>\n" +
+            "        <!ELEMENT item (id, name, cost, ingredients)>\n" +
             "        <!ATTLIST item\n" +
             "                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED\n" +
             "                serves CDATA \"1\"\n" +
+            "                isVeg (YES|NO|UNKNOWN) \"NO\"\n" +
+            "                isVegan (YES|NO|UNKNOWN) \"NO\"\n" +
+            "                isGF (YES|NO|UNKNOWN) \"UNKNOWN\"\n" +
             "                >\n" +
             "        <!ELEMENT id (#PCDATA)>\n" +
             "        <!ELEMENT name (#PCDATA)>\n" +
+            "        <!ELEMENT cost (#PCDATA)>\n" +
             "        <!ELEMENT ingredients (entry*)>\n" +
             "        <!ELEMENT entry (key, value)>\n" +
             "        <!ELEMENT key (code, quantity)>\n" +
             "        <!ATTLIST key\n" +
-            "                unit (ML|GRAM|COUNT) #REQUIRED\n" +
             "                unit (ML|GRAM|COUNT) #REQUIRED\n" +
             "                isVeg (YES|NO|UNKNOWN) \"NO\"\n" +
             "                isVegan (YES|NO|UNKNOWN) \"NO\"\n" +

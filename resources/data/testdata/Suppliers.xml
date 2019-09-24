@@ -34,14 +34,6 @@
             <url></url>
         </supplier>
         <supplier type="WORK">
-            <sid>s5</sid>
-            <name>Westfield</name>
-            <address>Somewhere riccarton road</address>
-            <phone>023131</phone>
-            <email>westfield@gmail.com</email>
-            <url></url>
-        </supplier>
-        <supplier type="WORK">
             <sid>s1</sid>
             <name>Countup</name>
             <address>12 High Street, Christchurch</address>
