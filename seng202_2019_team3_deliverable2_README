@@ -6,7 +6,8 @@ Created by Alyssa Josephs, Andrew Sturman, Cheng Yi Kok, Hunter Craig, Jack Wals
 
 # To run this application:
 
-1. Ensure that the machine has Java v11 or newer installed.
+1. Ensure that the machine has Java v11 or newer installed
+2. Ensure the resources folder with the source XML files are relocated/located in the directory where the jar is.
 2. In the terminal, with the CD set to the directory of the file call:
 3. java -jar cashewOutside.jar
 
