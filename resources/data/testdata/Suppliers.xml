@@ -33,6 +33,14 @@
          <email>daved@davesdrinks.co.nz</email>
          <url></url>
       </supplier>
+       <supplier type="UNKNOWN">
+           <sid>sgf</sid>
+           <name>gs</name>
+           <address>gf</address>
+           <phone>45224354</phone>
+           <email>sgf</email>
+           <url>gfsgsfd</url>
+       </supplier>
       <supplier type="WORK">
          <sid>s1</sid>
          <name>Countup</name>

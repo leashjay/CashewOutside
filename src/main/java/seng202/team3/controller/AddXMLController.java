@@ -139,11 +139,11 @@ public class AddXMLController {
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
+            fileString = selectedFile.getPath();
         } else {
             pathString.setText("File selection cancelled.");
         }
 
-        fileString = selectedFile.getPath();
     }
 
 

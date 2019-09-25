@@ -23,7 +23,7 @@
         ]>
 <sales>
    <orders>
-      <order dateOrdered="2019-09-24" timeOrdered="13:24:16.459099">
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.887702">
          <orderId>1</orderId>
          <customerName>Woot Woot</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -34,7 +34,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-      <order dateOrdered="2019-09-24" timeOrdered="13:24:16.467250">
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.891816900">
          <orderId>2</orderId>
          <customerName>Hunter</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -57,7 +57,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-      <order dateOrdered="2019-09-24" timeOrdered="13:24:16.469099">
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.894397800">
          <orderId>3</orderId>
          <customerName>Ooo a</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -84,7 +84,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-      <order dateOrdered="2019-09-24" timeOrdered="13:25:14.433290">
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.896398900">
          <orderId>4</orderId>
          <customerName>This is IT</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -108,6 +108,52 @@
          <itemsOrdered>
             <id>CAV</id>
             <name>Coq au van</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.899882100">
+         <orderId>5</orderId>
+         <customerName>JErome</customerName>
+         <orderStatus>QUEUED</orderStatus>
+         <orderCost>6245.0</orderCost>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>Lem</id>
+            <name>LemCan</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-09-25" timeOrdered="13:47:25.900879100">
+         <orderId>6</orderId>
+         <customerName>Marsya</customerName>
+         <orderStatus>QUEUED</orderStatus>
+         <orderCost>79.0</orderCost>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>Lem</id>
+            <name>LemCan</name>
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
