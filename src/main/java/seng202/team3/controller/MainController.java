@@ -21,7 +21,7 @@ public class MainController {
      * Navigate to management page
      */
     public void managementButtonPressed() throws IOException {
-        BusinessApp.loadManagementPage();
+        BusinessApp.loadLoginPage();
     }
 
     /**
