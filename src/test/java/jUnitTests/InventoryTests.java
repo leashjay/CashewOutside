@@ -128,14 +128,29 @@ public class InventoryTests {
      */
     @Test
     public void testAddIngredientFromXML() throws JAXBException {
-        Business testBusiness = new Business("./resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
+        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
         Inventory testInventory = testBusiness.getTruck().getInventory();
         assertEquals(30, testInventory.getIngredients().size());
 
 
-        testInventory.addIngredientsFromXML("./resources/data/testdata/testIngredients1.xml");
+        testInventory.addIngredientsFromXML("./src/main/resources/data/testdata/testIngredients1.xml");
         assertEquals(31, testInventory.getIngredients().size());
         assertTrue(testInventory.getIngredients().keySet().contains("OSauce"));
+    }
+
+    /**
+     * Tests if compareAndAdd function is updating HashMap of ingredients accordingly
+     */
+    @Test
+    public void testCompareAndAdd() throws JAXBException {
+        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
+        Inventory testInventory = testBusiness.getTruck().getInventory();
+        Float saltQuantity = testInventory.getIngredients().get("Salt").getQuantity();
+        assertEquals(500f, saltQuantity);
+
+        testInventory.addIngredientsFromXML("./src/main/resources/data/Ingredients.xml");
+        Float newSaltQuantity = testInventory.getIngredients().get("Salt").getQuantity();
+        assertEquals((float) saltQuantity + 500, newSaltQuantity);
     }
 }
 

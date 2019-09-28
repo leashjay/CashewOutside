@@ -31,7 +31,7 @@ public class MenuLoaderTest {
      */
     @Before
     public void testLoadMenuFile() throws Exception {
-        String fName = "./resources/data/SampleMenu.xml";
+        String fName = "./src/main/resources/data/SampleMenu.xml";
         int numExpected = 6;
         testLoader = new MenuLoader();
         testMenu = testLoader.loadMenuData(fName);
@@ -71,13 +71,13 @@ public class MenuLoaderTest {
         testIngredients.put(Kimchi, (float) 100);
         MenuItem newEntry = new MenuItem("KimchiStew", "A korean cuisine", testIngredients, ASIAN);
         menuContent.put("KimchiStew", newEntry);
-        testLoader.exportMenuData("./resources/data/testdata/testExportMenu.xml", testMenu);
+        testLoader.exportMenuData("./src/main/resources/data/testdata/testExportMenu.xml", testMenu);
 
 
         menuContent.clear();
         assertEquals("Reset list of menu items", 0, menuContent.size());
 
-        testMenu = testLoader.loadMenuData("./resources/data/testdata/testExportMenu.xml");
+        testMenu = testLoader.loadMenuData("./src/main/resources/data/testdata/testExportMenu.xml");
         menuContent = testMenu.getMenuItem();
         assertEquals("All XML ingredients record should be added", 7, menuContent.size());
     }
