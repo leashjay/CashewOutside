@@ -41,7 +41,6 @@ public class Business {
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         createSalesManager(salesXML);
-//        lastOrderID = 0;
         lastOrderID = calculateLastOrderID();
     }
 
