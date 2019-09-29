@@ -1,11 +1,26 @@
 package seng202.team3.model;
 
+import seng202.team3.util.PasswordUtils;
+
+import java.util.Optional;
+
 /**
  * Class holding data about a single employee of the foodtruck
  */
 public class Employee {
 
+    private String userName;
+    private Optional<String> password;
+    private Optional<String> salt;
+    private boolean hasAdminRights;
 
+    /**
+     * Gets the salt used to generate the users password
+     * @return the salt used to generate the users password
+     */
+    public Optional<String> getSalt(){
+        return salt;
+    }
 
     /**
      * Gets the username of the employee
@@ -27,7 +42,7 @@ public class Employee {
      * Gets the password of the employee
      * @return the password of the employee
      */
-    public String getPassword() {
+    public Optional<String> getPassword() {
         return password;
     }
 
@@ -35,7 +50,7 @@ public class Employee {
      * Sets the password of the employee
      * @param password the new password of the employee
      */
-    public void setPassword(String password) {
+    public void setPassword(Optional<String> password) {
         this.password = password;
     }
 
@@ -55,10 +70,6 @@ public class Employee {
         this.hasAdminRights = hasAdminRights;
     }
 
-    private String userName;
-    private String password;
-    private boolean hasAdminRights;
-
     /**
      * Constructor for an instance of an employee
      * @param userName The employees username
@@ -68,7 +79,8 @@ public class Employee {
     public Employee(String userName, String password, boolean hasAdminRights){
         this.userName = userName;
         this.hasAdminRights = hasAdminRights;
-        this.password = password;
+        this.salt = PasswordUtils.generateSalt(512);
+        this.password = PasswordUtils.hashPassword(password, this.salt.toString());
     }
 
 

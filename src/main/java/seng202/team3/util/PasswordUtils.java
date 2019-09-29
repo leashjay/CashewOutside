@@ -1,15 +1,14 @@
 package seng202.team3.util;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
-import static sun.security.x509.CertificateAlgorithmId.ALGORITHM;
 
 /*Utility class to help with encrypting and checking passwords*/
 public class PasswordUtils {
@@ -20,9 +19,16 @@ public class PasswordUtils {
     //The length of the resulting cryptographic key (in bits)
     private static final int KEY_LENGTH = 512;
 
+    //The algorithm we are using to hash strings
+    private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
+
     private static final SecureRandom RAND = new SecureRandom();
 
-    /*Generates a random string (salt) for the given password to prevent dictionary attacks*/
+    /**
+     * Generates a random string (salt) for the given password to prevent dictionary attacks
+     * @param length the length of the salt
+     * @return the salt string.
+     */
     public static Optional<String> generateSalt (final int length) {
 
         if (length < 1) {
@@ -66,5 +72,17 @@ public class PasswordUtils {
         } finally {
             spec.clearPassword();
         }
+    }
+
+    /**
+     * Determines whether a plaintext password generates the hashed passwoed
+     * @param password the plaintext password
+     * @param key the previously generated hashed password
+     * @param salt the random text generated to prevent dictionary attacks.
+     * @return true if the password matches the salted password.
+     */
+    public static boolean verifyPassword (String password, String key, String salt) {
+        Optional<String> optEncrypted = hashPassword(password, salt);
+        return optEncrypted.map(s -> s.equals(key)).orElse(false);
     }
 }

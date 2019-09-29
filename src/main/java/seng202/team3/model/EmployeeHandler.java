@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Class to hold information about all the employees in the food truck
  */
 public class EmployeeHandler {
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees = new ArrayList<>();
 
     public EmployeeHandler(){
         createTestEmployee();
