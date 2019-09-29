@@ -83,6 +83,12 @@ public class BusinessApp extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
+    public static void loadLoginPage() throws IOException {
+        Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/login.fxml"));
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root, 1000, 800));
+    }
+
     /**
      * Load kitchen page
      */

@@ -23,7 +23,7 @@
 }
 
 #removeButton {
-    -fx-background-color: #FF4081;
+    -fx-background-color: RED;
     -fx-text-fill: #ffffff;
 }
 

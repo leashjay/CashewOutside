@@ -27,6 +27,9 @@ public class Business {
     /** List of order in the database */
     private SalesHandler salesManager;
 
+    /**List of employees in the database*/
+    private EmployeeHandler employeeManager;
+
     private int lastOrderID;
 
     /**
@@ -41,7 +44,10 @@ public class Business {
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         createSalesManager(salesXML);
+        //TODO Make this load from XML
+        createEmployeeManager("filename");
         lastOrderID = calculateLastOrderID();
+
     }
 
 
@@ -73,6 +79,12 @@ public class Business {
     public SupplierHandler getSupplierHandler() {
         return supplierManager;
     }
+
+    /**
+     * Getter for employee handler instance
+     * @return instance of employee handler
+     */
+    public EmployeeHandler getEmployeeHandler() {return employeeManager; }
 
     /**
      * Getter for menu instance
@@ -113,6 +125,10 @@ public class Business {
     public void createSalesManager(String filename) throws JAXBException {
         SalesLoader salesLoader = new SalesLoader();
         salesManager = salesLoader.loadSalesData(filename);
+    }
+
+    private void createEmployeeManager(String filename){
+        employeeManager = new EmployeeHandler();
     }
 
     /**
