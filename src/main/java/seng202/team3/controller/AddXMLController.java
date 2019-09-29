@@ -13,6 +13,7 @@ import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddXMLController {
@@ -60,9 +61,10 @@ public class AddXMLController {
     /**
      * Called by importSuppplierXMLButton to load SupplierXML into database
      */
-    public void addSupplierXML(){
+    public void addSupplierXML() throws IOException {
         try {
             supplierHandler.addSupplierFromXML(fileString);
+            BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }
@@ -76,9 +78,10 @@ public class AddXMLController {
     /**
      * Called by importIngredientXMLButton to load Ingredient XML into database
      */
-    public void addIngredientXML() {
+    public void addIngredientXML() throws IOException {
         try {
             inventory.addIngredientsFromXML(fileString);
+            BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }
@@ -92,9 +95,10 @@ public class AddXMLController {
     /**
      * Called by importMenuItemXMLButton to load menu items into database
      */
-    public void addMenuItemXML() {
+    public void addMenuItemXML() throws IOException {
         try {
             menu.addMenuItemFromXML(fileString);
+            BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }

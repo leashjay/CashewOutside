@@ -14,6 +14,7 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 /**
@@ -95,7 +96,7 @@ public class ManuallyAddIngredientController {
     /**
      * Method that adds a supplier using the data that the user has given
      */
-    public void addIngredient() {
+    public void addIngredient() throws JAXBException, IOException {
         if(!checkForErrors()) {
             String id = idTextField.getText();
             String name = nameTextField.getText();
@@ -133,6 +134,8 @@ public class ManuallyAddIngredientController {
             IngredientTabController.getInstance().updateIngredientTable();
 
             stage.close();
+
+            BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
         }
 
     }

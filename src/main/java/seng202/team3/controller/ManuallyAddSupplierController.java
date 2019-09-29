@@ -13,6 +13,7 @@ import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.PhoneType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 public class ManuallyAddSupplierController {
@@ -111,7 +112,7 @@ public class ManuallyAddSupplierController {
     /**
      * Method that adds a supplier using the data that the user has given
      */
-    public void addSupplier(){
+    public void addSupplier() throws JAXBException, IOException {
         if(checkForErrors() == false) {
             String id = idTextField.getText();
             String name = nameTextField.getText();
@@ -128,6 +129,7 @@ public class ManuallyAddSupplierController {
             SupplierTabController.getInstance().updateSupplierTable();
 
             stage.close();
+            BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         }
     }
 

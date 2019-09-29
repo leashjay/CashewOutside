@@ -69,7 +69,7 @@
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
          <code>Salt</code>
          <name>Table salt</name>
-         <quantity>0.0</quantity>
+          <quantity>1000.0</quantity>
       </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
          <code>Lettuce</code>
@@ -109,7 +109,7 @@
       <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
          <code>Onion</code>
          <name>Diced onion</name>
-         <quantity>12.5</quantity>
+          <quantity>37.5</quantity>
       </ingredient>
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="15.9">
          <code>Brandy</code>

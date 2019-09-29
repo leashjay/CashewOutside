@@ -22,6 +22,7 @@ import seng202.team3.util.OrderStatus;
 import seng202.team3.util.StringChecking;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -310,7 +311,7 @@ public class SalesController {
     /**
      * checks that fields are valid then adds the order to the Sales Handler (Business.SalesManager)
      */
-    public void confirmCurrentOrder() {
+    public void confirmCurrentOrder() throws JAXBException, IOException {
         updateLabels(); // ensures info is up to date for the user
         String curOrderName = this.currentOrderNameTextField.getText();
         String curOrderPayment = this.payTextField.getText();
@@ -359,7 +360,8 @@ public class SalesController {
                 System.out.println("Not enough stock");
             }
         }
-
+        BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
+        BusinessApp.getBusiness().exportOrdersAsXML(BusinessApp.salesXML);
     }
 
 
