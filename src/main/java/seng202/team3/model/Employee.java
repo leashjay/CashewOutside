@@ -10,15 +10,15 @@ import java.util.Optional;
 public class Employee {
 
     private String userName;
-    private Optional<String> password;
-    private Optional<String> salt;
+    private String password;
+    private String salt;
     private boolean hasAdminRights;
 
     /**
      * Gets the salt used to generate the users password
      * @return the salt used to generate the users password
      */
-    public Optional<String> getSalt(){
+    public String getSalt(){
         return salt;
     }
 
@@ -42,7 +42,7 @@ public class Employee {
      * Gets the password of the employee
      * @return the password of the employee
      */
-    public Optional<String> getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -50,7 +50,7 @@ public class Employee {
      * Sets the password of the employee
      * @param password the new password of the employee
      */
-    public void setPassword(Optional<String> password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -79,10 +79,9 @@ public class Employee {
     public Employee(String userName, String password, boolean hasAdminRights){
         this.userName = userName;
         this.hasAdminRights = hasAdminRights;
-        this.salt = PasswordUtils.generateSalt(512);
-        this.password = PasswordUtils.hashPassword(password, this.salt.toString());
+        this.salt = PasswordUtils.generateSalt(512).get();
+        this.password = PasswordUtils.hashPassword(password, this.salt).get();
     }
-
 
 
 }
