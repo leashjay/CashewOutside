@@ -1,5 +1,8 @@
 package seng202.team3.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -28,7 +31,6 @@ public class ViewCashFloat {
         window.setTitle("Cash Float");
         window.setMinWidth(200);
 
-        Label itemsOrderedLabel = new Label("Cash Float:");
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setMinViewportHeight(200);
         scrollPane.setMinViewportWidth(200);
@@ -44,7 +46,7 @@ public class ViewCashFloat {
         closeButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
-        layout.getChildren().setAll(itemsOrderedLabel, scrollPane, closeButton);
+        layout.getChildren().setAll(scrollPane, closeButton);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
@@ -62,23 +64,26 @@ public class ViewCashFloat {
         vBox.getChildren().add(makeTableView(cash));
     }
 
-    private static TableView<Map.Entry<String, String>> makeTableView(HashMap<Integer, Integer> cash) {
+    private static TableView<Map.Entry<Double, Integer>> makeTableView(HashMap<Integer, Integer> cash) {
 
-        HashMap<String, String> stringCash = new HashMap<>();
+        HashMap<Double, Integer> newCash = new HashMap<>();
         for (Map.Entry<Integer, Integer> entry : cash.entrySet()) {
-            stringCash.put("$" + (entry.getKey()*0.01), Integer.toString(entry.getValue()));
+            newCash.put(entry.getKey()*0.01, entry.getValue());
         }
 
-        TableColumn<Map.Entry<String, String>, String> column1 = new TableColumn<>("Value");
-        column1.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getKey()));
+        TableColumn<Map.Entry<Double, Integer>, Double> column1 = new TableColumn<>("Value (NZD)");
+        column1.setCellValueFactory(value -> new SimpleDoubleProperty(value.getValue().getKey()).asObject());
 
-        TableColumn<Map.Entry<String, String>, String> column2 = new TableColumn<>("Amount");
-        column2.setCellValueFactory(value -> new SimpleStringProperty(value.getValue().getValue()));
+        TableColumn<Map.Entry<Double, Integer>, Integer> column2 = new TableColumn<>("Amount");
+        column2.setCellValueFactory(value -> new SimpleIntegerProperty(value.getValue().getValue()).asObject());
 
-        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(stringCash.entrySet());
-        final TableView<Map.Entry<String,String>> table = new TableView<>(items);
+        ObservableList<Map.Entry<Double, Integer>> items = FXCollections.observableArrayList(newCash.entrySet());
+        final TableView<Map.Entry<Double,Integer>> table = new TableView<>(items);
 
         table.getColumns().setAll(column1, column2);
+        table.setColumnResizePolicy(table.CONSTRAINED_RESIZE_POLICY);
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
         return table;
     }
 }
