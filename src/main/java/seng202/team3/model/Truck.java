@@ -57,10 +57,6 @@ public class Truck {
         truckInventory = inventoryLoad.loadIngredientsData(fileName);
     }
 
-    public Inventory getTruckInventory(){
-        return truckInventory;
-    }
-
     /**
      * Getter for truck inventory
      *

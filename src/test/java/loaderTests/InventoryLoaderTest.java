@@ -27,7 +27,7 @@ public class InventoryLoaderTest {
 
     @Before
     public void testLoadIngredientsXML() throws Exception {
-        fName = "./resources/data/Ingredients.xml";
+        fName = "./src/main/resources/data/Ingredients.xml";
         int numExpected = 30;
         String pathName = "";
         testLoader = new InventoryLoader();
@@ -73,13 +73,13 @@ public class InventoryLoaderTest {
     public void testExportDBtoXML() throws Exception {
         Ingredient newEntry = new Ingredient("Kimchi", "chikim", 3f, UnitType.GRAM, 1.2f);
         testInventory.getIngredients().put(newEntry.getCode(), newEntry);
-        testLoader.exportIngredientsData("./resources/data/testdata/testExportIngredients.xml", testInventory);
+        testLoader.exportIngredientsData("./src/main/resources/data/testdata/testExportIngredients.xml", testInventory);
 
 
         ingredients.clear();
         assertEquals("Reset list of ingredients", 0, ingredients.size());
 
-        testInventory = testLoader.loadIngredientsData("./resources/data/testdata/testExportIngredients.xml");
+        testInventory = testLoader.loadIngredientsData("./src/main/resources/data/testdata/testExportIngredients.xml");
         ingredients = testInventory.getIngredients();
         assertEquals("All XML ingredients record should be added", 31, ingredients.size());
     }

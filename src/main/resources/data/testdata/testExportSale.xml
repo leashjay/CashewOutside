@@ -22,5 +22,28 @@
         <!ELEMENT name (#PCDATA)>
         ]>
 <sales>
-   <orders/>
+   <orders>
+       <order dateOrdered="2019-09-28" timeOrdered="23:26:28.660454900">
+         <orderId>1</orderId>
+           <customerName></customerName>
+         <orderStatus>COMPLETE</orderStatus>
+           <orderCost>0.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+       <order dateOrdered="2019-09-28" timeOrdered="23:26:28.663446200">
+         <orderId>2</orderId>
+           <customerName></customerName>
+         <orderStatus>COOKING</orderStatus>
+           <orderCost>0.0</orderCost>
+         <itemsOrdered>
+            <id>KimchiStew</id>
+            <name>A korean cuisine</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+   </orders>
 </sales>

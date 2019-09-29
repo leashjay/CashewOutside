@@ -14,7 +14,7 @@ public class TruckTest {
 
     @Before
     public void initialize() throws JAXBException {
-        truck = new Truck("./resources/data/Ingredients.xml");
+        truck = new Truck("./src/main/resources/data/Ingredients.xml");
     }
 
     /**

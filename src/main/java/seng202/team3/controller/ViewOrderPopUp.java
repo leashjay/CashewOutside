@@ -59,7 +59,7 @@ public class ViewOrderPopUp {
             MenuItem menuItemToUse = entry.getKey();
             Integer quantity = entry.getValue();
             Label newMenuItemLabel = new Label();
-            newMenuItemLabel.setText(menuItemToUse.getName() + ": " + quantity + ", $" + quantity * menuItemToUse.getSalePrice());
+            newMenuItemLabel.setText(String.format("%s: %d, $%.2f", menuItemToUse.getName(), quantity, + quantity * menuItemToUse.getSalePrice()));
             vBox.getChildren().add(newMenuItemLabel);
         }
     }

@@ -22,7 +22,7 @@
         <ingredient unit="ML" cost="0.2">
             <code>Salt</code>
             <name>Table salt</name>
-            <quantity>0</quantity>
+            <quantity>500</quantity>
         </ingredient>
         <ingredient unit="COUNT" isgf="NO" cost="1.0">
             <code>BBun</code>
