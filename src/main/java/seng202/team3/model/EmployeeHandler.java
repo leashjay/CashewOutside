@@ -39,5 +39,5 @@ public class EmployeeHandler {
         Employee newEmployee = new Employee(userName, password, hasAdminAccess);
         addEmployee(newEmployee);
     }
-    
+
 }

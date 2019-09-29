@@ -5,6 +5,8 @@ package seng202.team3.model;
  */
 public class Employee {
 
+
+
     /**
      * Gets the username of the employee
      * @return the username of the employee
@@ -65,8 +67,8 @@ public class Employee {
      */
     public Employee(String userName, String password, boolean hasAdminRights){
         this.userName = userName;
-        this.password = password;
         this.hasAdminRights = hasAdminRights;
+        this.password = password;
     }
 
 
