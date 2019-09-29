@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class EmployeeHandler {
     private ArrayList<Employee> employees;
 
+    public EmployeeHandler(){
+        createTestEmployee();
+    }
+
     /**
      * Adds an employee to the list of employees
      * @param employee the new employee to be added
@@ -35,4 +39,5 @@ public class EmployeeHandler {
         Employee newEmployee = new Employee(userName, password, hasAdminAccess);
         addEmployee(newEmployee);
     }
+    
 }
