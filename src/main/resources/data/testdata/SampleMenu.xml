@@ -44,18 +44,18 @@
          <cost>78.0</cost>
          <ingredients>
             <entry>
+               <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>BBun</code>
+                  <quantity>0.0</quantity>
+               </key>
+               <value>1.0</value>
+            </entry>
+            <entry>
                <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
                   <code>TSauce</code>
                   <quantity>0.0</quantity>
                </key>
                <value>5.0</value>
-            </entry>
-            <entry>
-               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Lettuce</code>
-                  <quantity>0.0</quantity>
-               </key>
-               <value>15.0</value>
             </entry>
             <entry>
                <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -72,11 +72,11 @@
                <value>5.0</value>
             </entry>
             <entry>
-               <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>BBun</code>
+               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Lettuce</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>1.0</value>
+               <value>15.0</value>
             </entry>
             <entry>
                <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -114,13 +114,6 @@
                <value>50.0</value>
             </entry>
             <entry>
-               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Chicken</code>
-                  <quantity>0.0</quantity>
-               </key>
-               <value>100.0</value>
-            </entry>
-            <entry>
                <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
                   <code>Soy</code>
                   <quantity>0.0</quantity>
@@ -133,6 +126,13 @@
                   <quantity>0.0</quantity>
                </key>
                <value>50.0</value>
+            </entry>
+            <entry>
+               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Chicken</code>
+                  <quantity>0.0</quantity>
+               </key>
+               <value>100.0</value>
             </entry>
          </ingredients>
       </item>
@@ -184,11 +184,18 @@
          <cost>2863.0</cost>
          <ingredients>
             <entry>
-               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Shrooms</code>
+               <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Bay</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>250.0</value>
+               <value>2.0</value>
+            </entry>
+            <entry>
+               <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Brandy</code>
+                  <quantity>0.0</quantity>
+               </key>
+               <value>30.0</value>
             </entry>
             <entry>
                <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -199,24 +206,10 @@
             </entry>
             <entry>
                <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Bacon</code>
+                  <code>Garlic</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>100.0</value>
-            </entry>
-            <entry>
-               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Chicken</code>
-                  <quantity>0.0</quantity>
-               </key>
-               <value>1500.0</value>
-            </entry>
-            <entry>
-               <key unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Bay</code>
-                  <quantity>0.0</quantity>
-               </key>
-               <value>2.0</value>
+               <value>10.0</value>
             </entry>
             <entry>
                <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -224,6 +217,13 @@
                   <quantity>0.0</quantity>
                </key>
                <value>150.0</value>
+            </entry>
+            <entry>
+               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Shrooms</code>
+                  <quantity>0.0</quantity>
+               </key>
+               <value>250.0</value>
             </entry>
             <entry>
                <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -234,10 +234,10 @@
             </entry>
             <entry>
                <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Herbs</code>
+                  <code>Chicken</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>1.0</value>
+               <value>1500.0</value>
             </entry>
             <entry>
                <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -248,10 +248,10 @@
             </entry>
             <entry>
                <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Garlic</code>
+                  <code>Herbs</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>10.0</value>
+               <value>1.0</value>
             </entry>
             <entry>
                <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
@@ -261,11 +261,11 @@
                <value>15.0</value>
             </entry>
             <entry>
-               <key unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
-                  <code>Brandy</code>
+               <key unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
+                  <code>Bacon</code>
                   <quantity>0.0</quantity>
                </key>
-               <value>30.0</value>
+               <value>100.0</value>
             </entry>
          </ingredients>
       </item>

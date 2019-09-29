@@ -35,12 +35,12 @@ public class ViewCashFloat {
         scrollPane.setMinViewportHeight(200);
         scrollPane.setMinViewportWidth(200);
 
-        VBox menuItemsVBox = new VBox(10);
-        menuItemsVBox.setFillWidth(true);
-        scrollPane.setContent(menuItemsVBox);
+        VBox cashFloatVBox = new VBox(10);
+        cashFloatVBox.setFillWidth(true);
+        scrollPane.setContent(cashFloatVBox);
 
-        populateVBoxMenuItems(menuItemsVBox);
-        menuItemsVBox.setAlignment(Pos.CENTER);
+        populateVBoxTable(cashFloatVBox);
+        cashFloatVBox.setAlignment(Pos.CENTER);
 
         Button closeButton = new Button("Ok");
         closeButton.setOnAction(e -> window.close());
@@ -55,15 +55,19 @@ public class ViewCashFloat {
     }
 
     /**
-     * populates a given VBox with MenuItem Labels
+     * puts a table into a given VBox
      * @param vBox to populate
      */
-    private static void populateVBoxMenuItems(VBox vBox) {
+    private static void populateVBoxTable(VBox vBox) {
         Truck truck = BusinessApp.getBusiness().getTruck();
         HashMap<Integer, Integer> cash = truck.getCashFloat();
         vBox.getChildren().add(makeTableView(cash));
     }
 
+    /**
+     * Creates a tableView populated with money denominations and their corresponding quantities
+     * @param cash A hashMap of the money and amounts
+     */
     private static TableView<Map.Entry<Double, Integer>> makeTableView(HashMap<Integer, Integer> cash) {
 
         HashMap<Double, Integer> newCash = new HashMap<>();
@@ -74,7 +78,7 @@ public class ViewCashFloat {
         TableColumn<Map.Entry<Double, Integer>, Double> column1 = new TableColumn<>("Value (NZD)");
         column1.setCellValueFactory(value -> new SimpleDoubleProperty(value.getValue().getKey()).asObject());
 
-        TableColumn<Map.Entry<Double, Integer>, Integer> column2 = new TableColumn<>("Amount");
+        TableColumn<Map.Entry<Double, Integer>, Integer> column2 = new TableColumn<>("Quantity");
         column2.setCellValueFactory(value -> new SimpleIntegerProperty(value.getValue().getValue()).asObject());
 
         ObservableList<Map.Entry<Double, Integer>> items = FXCollections.observableArrayList(newCash.entrySet());

@@ -160,7 +160,7 @@ public class KitchenController {
             text1.setFill(Color.FLORALWHITE);
             text.getChildren().add(text1);
 
-            Text text2 = new Text("\n\n          ITEM ");
+            Text text2 = new Text("\n\n    Ingredients ");
             text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
             text2.setFill(Color.FLORALWHITE);
             text.getChildren().add(text2);
