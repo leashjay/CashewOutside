@@ -15,18 +15,18 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static final String ingredientsXML = "./resources/data/testdata/Ingredients.xml";
+    public static final String ingredientsXML = "./src/main/resources/data/testdata/Ingredients.xml";
 
     /** Source menu XML file to load data from */
-    public static final String menuXML = "./resources/data/testdata/SampleMenu.xml";
+    public static final String menuXML = "./src/main/resources/data/testdata/SampleMenu.xml";
 
     /** Source supplier XML file to load data from */
-    public static final String suppliersXML = "./resources/data/testdata/Suppliers.xml";
+    public static final String suppliersXML = "./src/main/resources/data/testdata/Suppliers.xml";
 
     /**
      * Source sales XML file to load data from
      */
-    public static final String salesXML = "./resources/data/testdata/Sales.xml";
+    public static final String salesXML = "./src/main/resources/data/testdata/Sales.xml";
 
     /**
      * Primary stage for CashewOutside application

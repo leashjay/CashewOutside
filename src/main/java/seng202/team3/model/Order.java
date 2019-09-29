@@ -65,6 +65,33 @@ public class Order {
         dateOrdered = LocalDate.now();
     }
 
+    /**
+     * decreases the stock level according to the items in the Order
+     */
+    public boolean decreaseStock() {
+        if (!enoughStock()) {
+            return false;
+        }
+
+        for (MenuItem menuItem : this.itemsOrdered) {
+            menuItem.decreaseStock();
+        }
+        return true;
+    }
+
+    /**
+     * helper of decreaseStock, returns true if there is enough stock to place the order
+     * @return has enough stock
+     */
+    public boolean enoughStock() {
+        for (MenuItem menuItem : this.itemsOrdered) {
+            if (!menuItem.hasEnoughStock()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void setToNextID() {
         this.orderId = BusinessApp.getBusiness().makeNextOrderID();
     }

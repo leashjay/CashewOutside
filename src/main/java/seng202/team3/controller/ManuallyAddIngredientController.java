@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 public class ManuallyAddIngredientController {
 
-    Inventory truckInventory = BusinessApp.getBusiness().getTruck().getTruckInventory();
+    Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
 
     @FXML
     private ChoiceBox<UnitType> unitTypeChoiceBox;

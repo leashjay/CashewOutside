@@ -3,6 +3,7 @@ package seng202.team3.model;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -232,5 +233,33 @@ public class MenuItem {
     }
 
 
+    /**
+     * checks if the trucks inventory of ingredients have enough quantity (stock)
+     * @return has enough stock
+     */
+    public boolean hasEnoughStock() {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            if (truckIngredient.getQuantity() < amountRequired) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    /**
+     * decreases the trucks stock according to this MenuItem
+     */
+    public void decreaseStock() {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            truckIngredient.decreaseQuantity(amountRequired);
+        }
+    }
 }

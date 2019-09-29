@@ -96,7 +96,25 @@ public class Inventory {
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
         if (inventory != null) {
             HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
-            ingredients.putAll(newIngredients);
+            compareAndAddIngredient(newIngredients);
+        }
+    }
+
+    /**
+     * Helper method for addIngredientsFromXML to update existing ingredient's quantity
+     * or add new entry of ingredient to HashMap of ingredients.
+     *
+     * @param newIngredients
+     */
+    public void compareAndAddIngredient(HashMap<String, Ingredient> newIngredients) {
+        for (Ingredient newIng : newIngredients.values()) {
+            if (ingredients.get(newIng.getCode()) != null) {
+                Ingredient existingIng = ingredients.get(newIng.getCode());
+                if (existingIng.getQuantity() != 0) {
+                    newIng.setQuantity(existingIng.getQuantity() + newIng.getQuantity());
+                }
+            }
+            ingredients.put(newIng.getCode(), newIng);
         }
     }
 

@@ -146,6 +146,11 @@
          <name>Button mushrooms, sliced</name>
          <quantity>0.0</quantity>
       </ingredient>
+       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.34">
+           <code>OSauce</code>
+           <name>Oyster Sauce</name>
+           <quantity>500.0</quantity>
+       </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="4.0">
          <code>Choc</code>
          <name>Smith's Drinking chocolate</name>
