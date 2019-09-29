@@ -81,8 +81,8 @@ public class KitchenController {
         menuItems = new ArrayList<>();
         for (Order order: orders) {
             for (MenuItem item: order.getOrderedItems()) {
-                if (!menuItems.contains(item)) {
-                    MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
+                MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
+                if (!menuItems.contains(itemReal)) {
                     menuItems.add(itemReal);
                 }
             }

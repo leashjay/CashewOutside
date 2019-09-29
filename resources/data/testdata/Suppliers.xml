@@ -33,14 +33,14 @@
          <email>daved@davesdrinks.co.nz</email>
          <url></url>
       </supplier>
-       <supplier type="UNKNOWN">
-           <sid>sgf</sid>
-           <name>gs</name>
-           <address>gf</address>
-           <phone>45224354</phone>
-           <email>sgf</email>
-           <url>gfsgsfd</url>
-       </supplier>
+      <supplier type="UNKNOWN">
+         <sid>sgf</sid>
+         <name>gs</name>
+         <address>gf</address>
+         <phone>45224354</phone>
+         <email>sgf</email>
+         <url>gfsgsfd</url>
+      </supplier>
       <supplier type="WORK">
          <sid>s1</sid>
          <name>Countup</name>
@@ -48,14 +48,6 @@
          <phone>3451234</phone>
          <email>daveG@countup.co.nz</email>
          <url>countup.co.nz/high</url>
-      </supplier>
-      <supplier type="MOBILE">
-         <sid>s2</sid>
-         <name>Funky Kumquat</name>
-         <address>125 Woodside Lane, Christchurch</address>
-         <phone>021352176</phone>
-         <email>maryC@fkveg.co.nz</email>
-         <url>Null</url>
       </supplier>
    </providers>
 </suppliers>

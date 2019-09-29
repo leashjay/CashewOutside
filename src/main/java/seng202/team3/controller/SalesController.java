@@ -38,6 +38,9 @@ public class SalesController {
     private HBox currentOrderHBox;
 
     @FXML
+    private Button cashButton;
+
+    @FXML
     private GridPane foodItemGrid;
 
     @FXML
@@ -234,6 +237,10 @@ public class SalesController {
                 }
             }
         }
+    }
+
+    public void cashButtonPressed() {
+        ViewCashFloat.display();
     }
 
     /**
