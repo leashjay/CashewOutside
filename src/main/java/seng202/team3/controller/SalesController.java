@@ -315,8 +315,8 @@ public class SalesController {
             this.numItemsErrorLabel.setVisible(true);
         }
 
-        // checking the name is valid
-        if ((!curOrderName.equals("")) && StringChecking.isAlphaNumeric(curOrderName)) {
+        // checking the name is valid - an empty name is still valid.
+        if (StringChecking.isAlphaNumeric(curOrderName)) {
             nameErrorLabel.setVisible(false);
         } else {
             successfulOrder = false;
