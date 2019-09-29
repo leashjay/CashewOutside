@@ -291,10 +291,10 @@ public class SalesController {
 
     public void updateLabels() {
         float currentCost = this.curOrder.getTotalCost();
-        this.costLabel.setText("$" + currentCost);
+        this.costLabel.setText(String.format("$%.2f", currentCost));
         this.numOfItemsValueLabel.setText("" + this.curOrder.getOrderedItems().size());
         this.orderIDValueLabel.setText("" + this.curOrder.getOrderId());
-        this.priceValueLabel.setText("$" + currentCost);
+        this.priceValueLabel.setText(String.format("$%.2f", currentCost));
         this.nameErrorLabel.setVisible(false);
         this.numItemsErrorLabel.setVisible(false);
         this.payErrorLabel.setVisible(false);
@@ -307,6 +307,7 @@ public class SalesController {
         updateLabels(); // ensures info is up to date for the user
         String curOrderName = this.currentOrderNameTextField.getText();
         String curOrderPayment = this.payTextField.getText();
+        float change = 0;
         boolean successfulOrder = true; // true if the Order is valid;
 
         // checking the order has items
@@ -325,11 +326,8 @@ public class SalesController {
 
         // checking the amount the customer pays is valid
         if (!curOrderPayment.equals("") && StringChecking.isFloat(curOrderPayment)) {
-            float change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
-            if (change >= 0) {
-                // create new change alert
-                CustomerChangeAlert.display(change);
-            } else {
+            change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
+            if (change < 0) {
                 successfulOrder = false;
                 this.payErrorLabel.setVisible(true);
             }
@@ -340,13 +338,19 @@ public class SalesController {
 
         // must be at end of method
         if (successfulOrder) {
-            curOrder.setName(curOrderName);
-            curOrder.setTime(LocalTime.now());
-            curOrder.setDate(LocalDate.now());
-            this.salesManager.addOrder(curOrder);
-            this.currentOrderNameTextField.setText("");
-            this.payTextField.setText("");
-            newCurrentOrder();
+            boolean stockDecreasedSuccessfully = curOrder.decreaseStock();
+            if (stockDecreasedSuccessfully) {
+                CustomerChangeAlert.display(change);
+                curOrder.setName(curOrderName);
+                curOrder.setTime(LocalTime.now());
+                curOrder.setDate(LocalDate.now());
+                this.salesManager.addOrder(curOrder);
+                this.currentOrderNameTextField.setText("");
+                this.payTextField.setText("");
+                newCurrentOrder();
+            } else {
+                System.out.println("Not enough stock");
+            }
         }
 
     }
