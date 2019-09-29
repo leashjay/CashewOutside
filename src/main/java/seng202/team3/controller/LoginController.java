@@ -18,6 +18,9 @@ public class LoginController {
     Button loginButton;
 
     @FXML
+    Button backButton;
+
+    @FXML
     Text errorText;
 
     @FXML
@@ -43,7 +46,6 @@ public class LoginController {
             String key = employee.getPassword();
 
             boolean isPasswordCorrect = PasswordUtils.verifyPassword(password, key, salt);
-            System.out.println(isPasswordCorrect);
 
             if(isPasswordCorrect) {
                 errorText.setVisible(false);
@@ -58,5 +60,9 @@ public class LoginController {
         }
 
 
+    }
+
+    public void returnToMainPage() throws IOException {
+        BusinessApp.loadMainPage();
     }
 }
