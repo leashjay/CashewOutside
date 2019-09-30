@@ -32,10 +32,16 @@ public class ViewCashFloat {
         window.setMinWidth(200);
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setMinViewportHeight(200);
+        scrollPane.prefHeightProperty().bind(window.heightProperty());
+        scrollPane.prefWidthProperty().bind(window.widthProperty());
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setMinViewportHeight(290);
         scrollPane.setMinViewportWidth(200);
 
         VBox cashFloatVBox = new VBox(10);
+        cashFloatVBox.prefHeightProperty().bind(scrollPane.heightProperty());
+        cashFloatVBox.prefWidthProperty().bind(scrollPane.widthProperty());
         cashFloatVBox.setFillWidth(true);
         scrollPane.setContent(cashFloatVBox);
 

@@ -77,7 +77,7 @@ public class KitchenController {
      * Populates the menuItems ArrayList with the menu items used in the current orders
      */
     public void createMenuItemsArray() {
-        List<Order> orders = new ArrayList<>(salesHandler.getOrdersHashMap().values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         menuItems = new ArrayList<>();
         for (Order order: orders) {
             for (MenuItem item: order.getOrderedItems()) {
@@ -93,7 +93,7 @@ public class KitchenController {
      * Puts the order numbers into the combo box
      */
     public void createOrderComboBox() {
-        List<Order> orders = new ArrayList<>(salesHandler.getOrdersHashMap().values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         for (Order order: orders) {
             removeOrderCombo.getItems().add(order.getOrderId());
         }
@@ -116,7 +116,7 @@ public class KitchenController {
      * Removes a TextFlow containing an order from the orderGridPane. Called when the remove button is pressed
      */
     public void popFromOrderGrid() {
-        List<Order> orders = new ArrayList<>(salesHandler.getOrdersHashMap().values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         Object checkForNull = removeOrderCombo.getValue();
         if (checkForNull != null) {
             int orderNum = (Integer) removeOrderCombo.getSelectionModel().getSelectedItem();
@@ -126,11 +126,11 @@ public class KitchenController {
                     removed.add(ordered);
                     int index = orders.indexOf(ordered);
                     removeOrderCombo.getItems().remove(index);
-                    salesHandler.getOrdersHashMap().get(ordered.getOrderId()).orderStatus = OrderStatus.COMPLETE;
+                    salesHandler.getDisplayOrdersHashMap().get(ordered.getOrderId()).orderStatus = OrderStatus.COMPLETE;
                 }
             }
             for (Order order: removed) {
-                salesHandler.removeOrder(order.getOrderId());
+                salesHandler.removeDisplayOrder(order.getOrderId());
             }
             addOrderToGridPane();
             createMenuItemsArray();
@@ -193,7 +193,7 @@ public class KitchenController {
      * Adds a TextFlow containing the current orders to the orders grid pane
      */
     private void addOrderToGridPane() {
-        List<Order> orders = new ArrayList<>(salesHandler.getOrdersHashMap().values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         orderGridPane.getChildren().clear();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 

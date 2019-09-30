@@ -28,6 +28,13 @@ public class SalesHandler {
 
     public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
+
+    /**
+     * The orders that are to be displayed in the kitchen window
+     */
+    public HashMap<Integer, Order> displayOrders = new HashMap<>(); // Orders keyed to their orderId
+
+
     /**
      * Used for JAXB custom serialization
      *
@@ -47,12 +54,17 @@ public class SalesHandler {
     @XmlElement(name = "orders")
     private void setOrders(Orders orders) {
         for (Order order : orders.order) {
+            this.displayOrders.put(order.getOrderId(), order);
             this.orders.put(order.getOrderId(), order);
         }
     }
 
     public HashMap<Integer, Order> getOrdersHashMap() {
         return this.orders;
+    }
+
+    public HashMap<Integer, Order> getDisplayOrdersHashMap() {
+        return this.displayOrders;
     }
 
     /**
@@ -76,6 +88,7 @@ public class SalesHandler {
     public void addOrder(Order orderToAdd) {
         int key = orderToAdd.getOrderId();
         if (!this.orders.containsKey(key)) {
+            this.displayOrders.put(key, orderToAdd);
             this.orders.put(key, orderToAdd);
         } else {
             throw new Error("Order of same orderId already present in SalesHandler.orders");
@@ -92,6 +105,9 @@ public class SalesHandler {
     public void removeOrder(Integer idToRemove) {
         this.orders.remove(idToRemove);
     }
+    public void removeDisplayOrder(Integer idToRemove) {
+        this.displayOrders.remove(idToRemove);
+    }
 
     public void refundOrder(Integer idToRefund) throws Error {
         Order orderToRefund = this.orders.get(idToRefund);
@@ -102,6 +118,7 @@ public class SalesHandler {
             throw new Error("Order unable to be Refunded.");
         }
     }
+
 
     public Order getOrder(Integer id) {
         return this.orders.get(id);
