@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.*?>
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SalesController">
     <top>
         <HBox prefHeight="175.0" BorderPane.alignment="CENTER">
@@ -298,22 +284,30 @@
                 </Tab>
                 <Tab text="Orders">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <HBox>
                             <children>
-                                <TableView fx:id="orderTable" prefHeight="600.0" prefWidth="941.0" stylesheets="@../gui/styles.css">
+                                <TableView fx:id="orderTable" stylesheets="@../gui/styles.css" HBox.hgrow="SOMETIMES">
                                     <columns>
-                                        <TableColumn fx:id="idCol" prefWidth="79.0" text="ID" />
-                                        <TableColumn fx:id="nameCol" prefWidth="204.0" text="Name" />
-                                        <TableColumn fx:id="priceCol" prefWidth="70.0" text="Price" />
-                                        <TableColumn fx:id="dateCol" prefWidth="88.0" text="Date" />
-                                        <TableColumn fx:id="timeCol" prefWidth="139.0" text="Time" />
-                                        <TableColumn fx:id="numItemsCol" prefWidth="97.0" text="NumItems" />
-                                        <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="110.0" text="Status" />
-                                        <TableColumn fx:id="viewCol" prefWidth="152.0" sortable="false" text="View" />
+                                        <TableColumn fx:id="idCol" maxWidth="500.0" minWidth="30.0" prefWidth="51.0"
+                                                     text="ID"/>
+                                        <TableColumn fx:id="nameCol" maxWidth="500.0" minWidth="129.0" prefWidth="180.0"
+                                                     text="Name"/>
+                                        <TableColumn fx:id="priceCol" maxWidth="500.0" minWidth="30.0" prefWidth="101.0"
+                                                     text="Price"/>
+                                        <TableColumn fx:id="dateCol" maxWidth="500.0" minWidth="80.0" prefWidth="90.0"
+                                                     text="Date"/>
+                                        <TableColumn fx:id="timeCol" maxWidth="500.0" minWidth="108.0" prefWidth="108.0"
+                                                     text="Time"/>
+                                        <TableColumn fx:id="numItemsCol" maxWidth="500.0" minWidth="85.0"
+                                                     prefWidth="85.0" text="NumItems"/>
+                                        <TableColumn fx:id="statusCol" maxWidth="500.0" minWidth="127.0"
+                                                     prefWidth="159.0" text="Status"/>
+                                        <TableColumn fx:id="viewCol" maxWidth="500.0" minWidth="147.0" prefWidth="147.0"
+                                                     sortable="false" text="View"/>
                                     </columns>
                                 </TableView>
                             </children>
-                        </AnchorPane>
+                        </HBox>
                     </content>
                 </Tab>
             </tabs>
