@@ -68,7 +68,7 @@ public class MenuTest {
      */
     @Test
     public void testAddMenuItemFromXML() throws JAXBException {
-        Business testBusiness = new Business(BusinessApp.ingredientsXML, "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML);
+        Business testBusiness = new Business(BusinessApp.ingredientsXML, "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
         Menu testMenu = testBusiness.getMenuManager();
         assertEquals(6, testMenu.getMenuItem().size());
 

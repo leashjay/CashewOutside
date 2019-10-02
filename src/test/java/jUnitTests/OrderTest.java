@@ -9,10 +9,8 @@ import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
 import seng202.team3.util.ItemType;
 import seng202.team3.view.BusinessApp;
-import seng202.team3.wrapper.Ingredients;
 
 import javax.xml.bind.JAXBException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,7 +33,7 @@ public class OrderTest {
      */
     @Before
     public void setup() throws JAXBException {
-        business = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML);
+        business = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
         menuItem = new MenuItem("This", "a", ingredients, ItemType.MAIN);
         menuItems = new ArrayList<>();
         itemToRemove = new MenuItem("Different", "b", ingredients, ItemType.ASIAN);

@@ -28,6 +28,8 @@ public class BusinessApp extends Application {
      */
     public static final String salesXML = "./src/main/resources/data/testdata/Sales.xml";
 
+    public static final String employeeXML = "./src/main/resources/data/testdata/Employees.xml";
+
     /**
      * Primary stage for CashewOutside application
      */
@@ -42,7 +44,7 @@ public class BusinessApp extends Application {
      */
     static {
         try {
-            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML);
+            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML);
         } catch (Exception e) {
             e.printStackTrace();
         }

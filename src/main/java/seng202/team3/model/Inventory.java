@@ -6,7 +6,10 @@ import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,7 +40,6 @@ public class Inventory {
     private Float lowStockGrams = 1000f;
 
     /** A number that indicates that an ingredient with the unit type ML has low stock */
-    @XmlTransient
     private Float lowStockML = 1000f;
 
     /**

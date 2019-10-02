@@ -1,9 +1,6 @@
 package seng202.team3.model;
 
-import seng202.team3.parsing.InventoryLoader;
-import seng202.team3.parsing.MenuLoader;
-import seng202.team3.parsing.SalesLoader;
-import seng202.team3.parsing.SuppliersLoader;
+import seng202.team3.parsing.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -39,13 +36,13 @@ public class Business {
      * @param menuXML        path to menuXML
      * @param suppliersXML   path to suppliersXML
      */
-    public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML) throws JAXBException {
+    public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML, String employeeXML) throws JAXBException {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         createSalesManager(salesXML);
         //TODO Make this load from XML
-        createEmployeeManager("filename");
+        createEmployeeManager(employeeXML);
         lastOrderID = calculateLastOrderID();
 
     }
@@ -127,8 +124,9 @@ public class Business {
         salesManager = salesLoader.loadSalesData(filename);
     }
 
-    private void createEmployeeManager(String filename){
-        employeeManager = new EmployeeHandler();
+    private void createEmployeeManager(String filename) throws JAXBException {
+        EmployeeLoader employeeLoader = new EmployeeLoader();
+        employeeManager = employeeLoader.loadEmployeeData(filename);
     }
 
     /**

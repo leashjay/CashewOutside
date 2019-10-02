@@ -2,17 +2,33 @@ package seng202.team3.model;
 
 import seng202.team3.util.PasswordUtils;
 
-import java.util.Optional;
+import javax.xml.bind.annotation.*;
 
 /**
  * Class holding data about a single employee of the foodtruck
  */
+@XmlRootElement(name = "employee")
+@XmlAccessorType(XmlAccessType.NONE)
 public class Employee {
 
+    @XmlElement(name = "username")
     private String userName;
+
+    @XmlElement(name = "password")
     private String password;
+
+    @XmlElement(name = "salt")
     private String salt;
+
+    @XmlAttribute(name = "hasAdminRights")
     private boolean hasAdminRights;
+
+    /**
+     * Zero argument constructor for JAXB
+     */
+    public Employee() {
+
+    }
 
     /**
      * Gets the salt used to generate the users password

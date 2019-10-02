@@ -1,16 +1,27 @@
 package seng202.team3.model;
 
-import java.util.ArrayList;
+import seng202.team3.parsing.EmployeeAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
 
 /**
  * Class to hold information about all the employees in the food truck
  */
+@XmlRootElement(name = "employeehandler")
+@XmlAccessorType(XmlAccessType.NONE)
 public class EmployeeHandler {
+
+    @XmlElement(name = "employees")
+    @XmlJavaTypeAdapter(EmployeeAdapter.class)
     private HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
     public EmployeeHandler(){
-        createTestEmployee();
+
     }
 
     /**
@@ -51,12 +62,13 @@ public class EmployeeHandler {
      * Method to create a test employee to check the login system before
      * we use XML parsing for that.
      */
-    public void createTestEmployee(){
-        String userName = "Manager";
-        String password = "password";
-        boolean hasAdminAccess = true;
-        Employee newEmployee = new Employee(userName, password, hasAdminAccess);
-        addEmployee(newEmployee);
-    }
+//    public void createTestEmployee(){
+//        String userName = "Manager";
+//        String password = "password";
+//        boolean hasAdminAccess = true;
+//        Employee newEmployee = new Employee(userName, password, hasAdminAccess);
+//        addEmployee(newEmployee);
+//    }
+
 
 }
