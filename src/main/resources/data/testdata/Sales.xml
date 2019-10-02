@@ -23,7 +23,7 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.958090">
+       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.412488">
          <orderId>3</orderId>
          <customerName>Ooo a</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -50,7 +50,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.961004">
+       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.415215">
          <orderId>4</orderId>
          <customerName>This is IT</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -77,7 +77,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.962466">
+       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.416527">
          <orderId>5</orderId>
          <customerName>JErome</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -108,7 +108,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.963543">
+       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.417468">
          <orderId>7</orderId>
          <customerName>Hunter</customerName>
          <orderStatus>QUEUED</orderStatus>

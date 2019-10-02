@@ -11,6 +11,9 @@ import seng202.team3.util.PasswordUtils;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
+import java.util.Optional;
+
+import static seng202.team3.util.PasswordUtils.hashPassword;
 
 public class LoginController {
 
@@ -46,6 +49,7 @@ public class LoginController {
             String key = employee.getPassword();
 
             boolean isPasswordCorrect = PasswordUtils.verifyPassword(password, key, salt);
+            System.out.println("Password is " + isPasswordCorrect);
 
             if(isPasswordCorrect) {
                 errorText.setVisible(false);
@@ -53,6 +57,9 @@ public class LoginController {
             } else {
                 errorText.setText("ERROR! Incorrect password!");
                 errorText.setVisible(true);
+                System.out.println("EXPECTED: " + employee.getPassword());
+                Optional<String> actualPassword = hashPassword(password, salt);
+                System.out.println("GOT: " + actualPassword);
             }
         } else {
             errorText.setText("ERROR! User does not exist!");

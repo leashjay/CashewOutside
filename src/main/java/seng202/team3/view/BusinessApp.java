@@ -112,6 +112,7 @@ public class BusinessApp extends Application {
                 business.exportMenuAsXML(menuXML);
                 business.exportInventoryAsXML(ingredientsXML);
                 business.exportSupplierAsXML(suppliersXML);
+                business.exportEmployeeAsXML(employeeXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,13 +1,13 @@
 package seng202.team3.util;
 
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Optional;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Optional;
 
 
 /*Utility class to help with encrypting and checking passwords*/
@@ -75,7 +75,7 @@ public class PasswordUtils {
     }
 
     /**
-     * Determines whether a plaintext password generates the hashed passwoed
+     * Determines whether a plaintext password generates the hashed passwod
      * @param password the plaintext password
      * @param key the previously generated hashed password
      * @param salt the random text generated to prevent dictionary attacks.
