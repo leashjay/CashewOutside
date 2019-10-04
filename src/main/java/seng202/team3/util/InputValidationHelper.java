@@ -27,19 +27,19 @@ public class InputValidationHelper {
 
     /**
      * Method that returns true if an email address entered into a textfield is valid
-     * @param textField the textfield that will display an error if the email is not valid
-     * @param text the text we are checking
+     * @param textField the textfield that is being checked
+     * @param text the error text displayed if string is not an email
      * @return true if the text is a valid email.
      */
     public static boolean isValidEmail(TextField textField, Text text){
-        String textString = text.toString();
         boolean isValid = true;
+        String input = textField.getText();
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        if(textString.matches(regex)){
+        if(input.matches(regex)){
+            text.setVisible(false);
+        } else {
             text.setVisible(true);
             isValid = false;
-        } else {
-            text.setVisible(false);
         }
         return isValid;
     }
