@@ -66,6 +66,11 @@
          <name>Chicken stock</name>
          <quantity>500.0</quantity>
       </ingredient>
+      <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
+         <code>Salt</code>
+         <name>Table salt</name>
+         <quantity>1000.0</quantity>
+      </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
          <code>Lettuce</code>
          <name>Sliced Iceberg lettuce</name>
@@ -104,7 +109,7 @@
       <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
          <code>Onion</code>
          <name>Diced onion</name>
-         <quantity>300.0</quantity>
+         <quantity>325.0</quantity>
       </ingredient>
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="15.9">
          <code>Brandy</code>
@@ -131,6 +136,11 @@
          <name>Vodka, Ivan's special brew, 1l</name>
          <quantity>500.0</quantity>
       </ingredient>
+      <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.6">
+         <code>Oil</code>
+         <name>Canola oil</name>
+         <quantity>0.0</quantity>
+      </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.5">
          <code>Shrooms</code>
          <name>Button mushrooms, sliced</name>
@@ -139,7 +149,7 @@
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.34">
          <code>OSauce</code>
          <name>Oyster Sauce</name>
-         <quantity>500.0</quantity>
+         <quantity>2000.0</quantity>
       </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="4.0">
          <code>Choc</code>
