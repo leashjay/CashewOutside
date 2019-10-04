@@ -12,10 +12,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
-import seng202.team3.model.Business;
+import seng202.team3.model.*;
 import seng202.team3.model.MenuItem;
-import seng202.team3.model.Order;
-import seng202.team3.model.SalesHandler;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.OrderStatus;
@@ -28,6 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class SalesController {
@@ -40,6 +39,9 @@ public class SalesController {
 
     @FXML
     private Button cashButton;
+
+    @FXML
+    private Button filterButton;
 
     @FXML
     private GridPane foodItemGrid;
@@ -73,6 +75,15 @@ public class SalesController {
 
     @FXML
     private TextField payTextField;
+
+    @FXML
+    private CheckBox checkGF;
+
+    @FXML
+    private CheckBox checkVegan;
+
+    @FXML
+    private CheckBox checkVegetarian;
 
     @FXML
     private TableView<Order> orderTable;
@@ -143,7 +154,6 @@ public class SalesController {
         addMenuItemButtonsToGridPane(drinkMenuItems, drinkItemGrid);
         updateLabels();
         updateOrderTable();
-
     }
 
     /**
@@ -153,6 +163,16 @@ public class SalesController {
     private void updateOrderTable() {
         ArrayList<Order> orders = new ArrayList<>(BusinessApp.getBusiness().getSalesHandler().getOrdersHashMap().values());
         orderTable.setItems(FXCollections.observableArrayList(orders));
+    }
+
+    public void filterPressed() {
+        Business business = BusinessApp.getBusiness();
+        Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
+        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        HashMap<String, MenuItem> filteredMenuItems = new HashMap<>();
+        for (Map.Entry<String, MenuItem> entry : foodMenuItems.entrySet()) {
+//            if ()
+        }
     }
 
     /**
@@ -212,7 +232,9 @@ public class SalesController {
         final int numRowsAtStart = gridPane.getRowCount();
 
         int row = numChildrenAtStart / numColumnsAtStart; // Java Integer Division, so floors the result
+        row++;
         int column = numChildrenAtStart % numColumnsAtStart;
+        column = 0;
 
         for (MenuItem menuItem : menuItems.values()) {
             Button newButton = new Button();

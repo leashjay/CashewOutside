@@ -23,10 +23,10 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.958090">
+      <order dateOrdered="2019-10-04" timeOrdered="13:39:59.520387">
          <orderId>3</orderId>
          <customerName>Ooo a</customerName>
-         <orderStatus>QUEUED</orderStatus>
+         <orderStatus>COMPLETE</orderStatus>
          <orderCost>3382.0</orderCost>
          <itemsOrdered>
             <id>CF</id>
@@ -50,10 +50,10 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.961004">
+      <order dateOrdered="2019-10-04" timeOrdered="13:39:59.523899">
          <orderId>4</orderId>
          <customerName>This is IT</customerName>
-         <orderStatus>QUEUED</orderStatus>
+         <orderStatus>COMPLETE</orderStatus>
          <orderCost>6244.0</orderCost>
          <itemsOrdered>
             <id>BB1</id>
@@ -77,7 +77,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.962466">
+      <order dateOrdered="2019-10-04" timeOrdered="13:39:59.525121">
          <orderId>5</orderId>
          <customerName>JErome</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -108,10 +108,10 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="17:55:06.963543">
+      <order dateOrdered="2019-10-04" timeOrdered="13:39:59.525912">
          <orderId>7</orderId>
          <customerName>Hunter</customerName>
-         <orderStatus>QUEUED</orderStatus>
+         <orderStatus>COMPLETE</orderStatus>
          <orderCost>721.0</orderCost>
          <itemsOrdered>
             <id>BB1</id>

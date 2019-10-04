@@ -150,7 +150,7 @@ public class KitchenController {
         int column = 0;
         for (MenuItem item : menuItems) {
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
             ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -205,7 +205,7 @@ public class KitchenController {
         for (Order order : orders) {
 
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
 

@@ -56,7 +56,7 @@
                         <AnchorPane prefHeight="86.0" prefWidth="1000.0">
                             <children>
                                 <ComboBox fx:id="removeOrderCombo" layoutX="135.0" layoutY="40.0" prefWidth="150.0" />
-                                <Button fx:id="removeButton" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#popFromOrderGrid" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/styles.css" text="Remove" />
+                                <Button fx:id="removeButton" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#popFromOrderGrid" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/styles.css" text="Finish" />
                             </children>
                         </AnchorPane>
                     </children>
