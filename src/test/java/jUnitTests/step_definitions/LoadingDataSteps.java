@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import seng202.team3.model.*;
 import seng202.team3.parsing.InventoryLoader;
-import seng202.team3.parsing.SuppliersLoader;
+import seng202.team3.util.ItemType;
 import seng202.team3.util.MenuType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.UnitType;
@@ -13,24 +13,26 @@ import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 public class LoadingDataSteps {
     private HashMap<String, Ingredient> inventoryHashMap;
-    private HashMap<String, Supplier> supplierHashMap;
     private Inventory inventory;
+    //private Ingredient ingredient;
     private HashMap<String, MenuItem> menuContents;
     private MenuItem testMenuItem;
     private Menu testMenu;
     private Ingredient testIngredient;
+    private InventoryLoader testLoader;
     private SupplierHandler supplierHandler;
-    private SuppliersLoader suppliersLoader;
     private HashMap<String, Supplier> contactList;
     private Supplier GoodysGreens;
     private Business foodTruckBusiness;
     private String filename;
+    private MenuItem testItem;
 
     /*Background conditions setting up new business */
     @Given("a {string} for operation")
@@ -76,29 +78,34 @@ public class LoadingDataSteps {
         assertTrue(inventory.searchStock(testIngredient));
     }
 
-    @Given("a Menu item is known")
-    public void anMenuItemIsKnown() {
-        //have to ask jack to do this as I am struggleing to understand the code
-        throw new cucumber.api.PendingException();
+    @Given("an Menuitem is known")
+    public void anMenuIsKnown() {
+        Ingredient rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
+        HashMap riceStuff = new HashMap<>();
+        riceStuff.put(rice, 200f);
+        MenuItem testItem = new MenuItem("1", "Fried rice", riceStuff, ItemType.MAIN);
+        menuContents.put(testItem.getId(),testItem);
+        Menu testMenu = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
+        this.testMenu = testMenu;
+        this.testItem = testItem;
     }
 
-    @Then("the menu item is in the program")
-    public void theMenuItemIsInTheProgram() {
+    @Then("the menuitem is in the program")
+    public void theMenuIsInTheProgram() { assertTrue(testMenu.searchMenuContent(testItem)); }
+
+    @When("a menu is added")
+    public void aMenuIsAdded() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @When("a menu item is added")
-    public void aMenuItemIsAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
     @Given("an supplier is known")
     public void anSupplierIsKnown() {
         Supplier GoodysGreens = new Supplier("GG", "Goody's Greens", "12 Farm Lane", PhoneType.WORK, "0210556677", "goody@green.com", "www.goodysgreens.com");
         this.GoodysGreens = GoodysGreens;
     }
+
 
     @When("a supplier is added")
     public void aSupplierIsAdded() {
@@ -110,17 +117,17 @@ public class LoadingDataSteps {
         assertTrue(supplierHandler.getSuppliers().containsValue(GoodysGreens));
     }
 
-    @Given("an ingredient {string} for an XML file containing ingredients")
-    public void anIngredientForAnXMLFileContainingIngredients(String string) {
+    @Given("a {string} for an XML file containing ingredients")
+    public void aForAnXMLFileContainingIngredients(String string) {
         filename = "./src/main/resources/data/Ingredients.xml";
         this.filename = filename;
     }
 
-    @When("the ingredient {string} is loaded")
-    public void theIngredientIsLoaded(String string) throws JAXBException {
-        InventoryLoader testInventoryLoader = new InventoryLoader();
+    @When("the {string} is loaded")
+    public void theIsLoaded(String string) throws JAXBException {
+        InventoryLoader testLoader = new InventoryLoader();
         inventoryHashMap.clear();
-        inventory = testInventoryLoader.loadIngredientsData(filename);
+        inventory = testLoader.loadIngredientsData(filename);
         this.inventory = inventory;
         inventoryHashMap = this.inventory.getIngredients();
     }
@@ -130,50 +137,26 @@ public class LoadingDataSteps {
         assertFalse(inventoryHashMap.isEmpty());
     }
 
-    @Given("a menu {string} for an XML file containing menu items")
-    public void aMenuForAnXMLFileContainingMenuItems(String string) {
-        filename = "./src/main/resources/data/SampleMenu.xml";
-        this.filename = filename;
-    }
-
-    @When("the menu {string} is loaded")
-    public void theMenuIsLoaded(String string) {
+    @Given("a {string} for an XML file containing menu items")
+    public void aForAnXMLFileContainingMenuItems(String string) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
     @Then("the menu items map is not empty")
-    public void theMenuItemsMapIsNotEmpty() throws JAXBException {
-        //MenuLoader testMenuLoader = new MenuLoader();
-        //inventoryHashMap.clear();
-        //inventory = testMenuLoader.loadMenuData(filename);
-        //this.inventory = inventory;
-        // inventoryHashMap = this.inventory.getIngredients();
+    public void theMenuItemsMapIsNotEmpty() {
+        // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Given("a supplier {string} for an XML file containing suppliers")
-    public void aSupplierForAnXMLFileContainingSuppliers(String string) {
-        filename = "./src/main/resources/data/Suppliers.xml";
-        this.filename = filename;
-    }
-
-    @When("the supplier {string} is loaded")
-    public void theSupplierIsLoaded(String string) throws JAXBException {
-        suppliersLoader = new SuppliersLoader();
-        supplierHashMap = supplierHandler.getSuppliers();
-        supplierHashMap.clear();
-        supplierHandler = suppliersLoader.loadSuppliersData(filename);
-        supplierHashMap = supplierHandler.getSuppliers();
+    @Given("a {string} for an XML file containing suppliers")
+    public void aForAnXMLFileContainingSuppliers(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
     }
 
     @Then("the supplier map is not empty")
     public void theSupplierMapIsNotEmpty() {
-        assertFalse(supplierHashMap.isEmpty());
-    }
-
-    @Given("a ingredient {string} for an XML file containing ingredients")
-    public void aIngredientForAnXMLFileContainingIngredients(String string) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
@@ -186,12 +169,6 @@ public class LoadingDataSteps {
 
     @Then("an error message is returned to the user")
     public void anErrorMessageIsReturnedToTheUser() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Given("a menu item {string} for an XML file containing menu items")
-    public void aMenuItemForAnXMLFileContainingMenuItems(String string) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }

@@ -124,6 +124,15 @@ public class Menu {
         return filteredMenuItems;
     }
 
+    public Boolean searchMenuContent(MenuItem item) {
+        if (menuContent.get(item.getId()) == item) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     /**
      * Getter for title of menu
      * @return title
