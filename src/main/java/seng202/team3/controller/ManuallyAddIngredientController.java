@@ -112,7 +112,6 @@ public class ManuallyAddIngredientController {
     public void addIngredient() throws JAXBException, IOException {
         if (checkForErrors() == false) {
             String id = idTextField.getText();
-
             String name = nameTextField.getText();
             UnitType unitType = unitTypeChoiceBox.getValue();
             float cost = Float.parseFloat(costTextField.getText());
