@@ -94,7 +94,7 @@
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.4">
          <code>Rice</code>
          <name>Long grain rice</name>
-         <quantity>750.0</quantity>
+         <quantity>550.0</quantity>
       </ingredient>
       <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="YES" cost="0.8">
          <code>Beetroot</code>
@@ -109,7 +109,7 @@
       <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
          <code>Onion</code>
          <name>Diced onion</name>
-         <quantity>500.0</quantity>
+         <quantity>300.0</quantity>
       </ingredient>
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="15.9">
          <code>Brandy</code>
@@ -139,7 +139,7 @@
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.6">
          <code>Oil</code>
          <name>Canola oil</name>
-         <quantity>750.0</quantity>
+         <quantity>710.0</quantity>
       </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.5">
          <code>Shrooms</code>
@@ -159,7 +159,7 @@
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.5">
          <code>Chicken</code>
          <name>Chicken breast, diced</name>
-         <quantity>750.0</quantity>
+         <quantity>350.0</quantity>
       </ingredient>
       <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.7">
          <code>Garlic</code>
@@ -174,7 +174,7 @@
       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.7">
          <code>Soy</code>
          <name>Soy sauce, dark</name>
-         <quantity>500.0</quantity>
+         <quantity>460.0</quantity>
       </ingredient>
    </ingredients>
 </inventory>

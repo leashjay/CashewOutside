@@ -23,7 +23,7 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.412488">
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.621942">
          <orderId>3</orderId>
          <customerName>Ooo a</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -50,7 +50,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.415215">
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.624432">
          <orderId>4</orderId>
          <customerName>This is IT</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -77,10 +77,10 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.416527">
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.626024">
          <orderId>5</orderId>
          <customerName>JErome</customerName>
-         <orderStatus>QUEUED</orderStatus>
+           <orderStatus>COMPLETE</orderStatus>
          <orderCost>6245.0</orderCost>
          <itemsOrdered>
             <id>CF</id>
@@ -108,7 +108,7 @@
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-02" timeOrdered="18:04:30.417468">
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627116">
          <orderId>7</orderId>
          <customerName>Hunter</customerName>
          <orderStatus>QUEUED</orderStatus>
@@ -133,7 +133,62 @@
             <id>Lem</id>
             <name>LemCan</name>
          </itemsOrdered>
-         <flagsChecked>true</flagsChecked>
-      </order>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627906">
+           <orderId>9</orderId>
+           <customerName>hooha</customerName>
+           <orderStatus>COMPLETE</orderStatus>
+           <orderCost>220.0</orderCost>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628281">
+           <orderId>10</orderId>
+           <customerName>hahoo</customerName>
+           <orderStatus>COMPLETE</orderStatus>
+           <orderCost>220.0</orderCost>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628647">
+           <orderId>11</orderId>
+           <customerName>hoo</customerName>
+           <orderStatus>COMPLETE</orderStatus>
+           <orderCost>220.0</orderCost>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:16.629033">
+           <orderId>12</orderId>
+           <customerName>long dong duk</customerName>
+           <orderStatus>QUEUED</orderStatus>
+           <orderCost>220.0</orderCost>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-04" timeOrdered="19:40:45.481434">
+           <orderId>13</orderId>
+           <customerName>dong</customerName>
+           <orderStatus>QUEUED</orderStatus>
+           <orderCost>220.0</orderCost>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
    </orders>
 </sales>

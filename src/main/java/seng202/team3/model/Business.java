@@ -29,6 +29,7 @@ public class Business {
 
     private int lastOrderID;
 
+
     /**
      * Constructor of Business class
      *
