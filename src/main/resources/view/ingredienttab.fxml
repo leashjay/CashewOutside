@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.IngredientTabController">
     <children>
-      <VBox prefHeight="800.0" prefWidth="1000.0">
+      <VBox prefHeight="600.0" prefWidth="1000.0">
          <children>
               <TableView fx:id="ingredientTable" maxWidth="-Infinity" prefHeight="650.0" prefWidth="990.0">
                   <columns>
@@ -22,6 +22,7 @@
                       <TableColumn fx:id="glutenFreeCol" minWidth="9.33331298828125" prefWidth="106.0" text="Gluten Free" />
                       <TableColumn fx:id="vegetarianCol" prefWidth="113.0" text="Vegetarian" />
                       <TableColumn fx:id="veganCol" prefWidth="72.0" text="Vegan" />
+                      <TableColumn fx:id="editButtonCol" prefWidth= "142.0" text = "Edit"/>
                       <TableColumn fx:id="deleteButtonCol" prefWidth="142.6666259765625" text="Delete" />
                   </columns>
                <VBox.margin>

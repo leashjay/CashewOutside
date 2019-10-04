@@ -55,6 +55,9 @@ public class IngredientTabController {
     private TableColumn<Ingredient, Button> deleteButtonCol;
 
     @FXML
+    private TableColumn<Ingredient, Button> editButtonCol;
+
+    @FXML
     private TableColumn<Ingredient, ThreeValueLogic> glutenFreeCol;
 
     @FXML
@@ -100,7 +103,11 @@ public class IngredientTabController {
             updateIngredientTable();
         }));
 
-        List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
+            System.out.println("EDIT BUTTON CLICKED");
+        }));
+
+        List<Ingredient> ingredients = new ArrayList<>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
