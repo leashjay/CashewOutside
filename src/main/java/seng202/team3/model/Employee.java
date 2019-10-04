@@ -92,11 +92,11 @@ public class Employee {
      * @param password The employees password
      * @param hasAdminRights a boolean showing whether the employee has administrative rights
      */
-    public Employee(String userName, String password, boolean hasAdminRights){
+    public Employee(String userName, String password, boolean hasAdminRights, String salt){
         this.userName = userName;
         this.hasAdminRights = hasAdminRights;
-        this.salt = PasswordUtils.generateSalt(512).get();
-        this.password = PasswordUtils.hashPassword(password, this.salt).get();
+        this.salt = salt;
+        this.password = password;
     }
 
 
