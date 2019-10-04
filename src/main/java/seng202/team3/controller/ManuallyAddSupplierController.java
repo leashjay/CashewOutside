@@ -94,7 +94,7 @@ public class ManuallyAddSupplierController {
             hasError = true;
         }
 
-        if(InputValidationHelper.checkEmpty(emailTextField, emailErrorText)){
+        if(!InputValidationHelper.isValidEmail(emailTextField, emailErrorText)){
             hasError = true;
         }
 

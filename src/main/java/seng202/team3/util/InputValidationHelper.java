@@ -26,6 +26,25 @@ public class InputValidationHelper {
     }
 
     /**
+     * Method that returns true if an email address entered into a textfield is valid
+     * @param textField the textfield that will display an error if the email is not valid
+     * @param text the text we are checking
+     * @return true if the text is a valid email.
+     */
+    public static boolean isValidEmail(TextField textField, Text text){
+        String textString = text.toString();
+        boolean isValid = true;
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        if(textString.matches(regex)){
+            text.setVisible(true);
+            isValid = false;
+        } else {
+            text.setVisible(false);
+        }
+        return isValid;
+    }
+
+    /**
      * Checks whether a textfield contains a valid float
      * @param textField the textfield that is being checked
      * @param errorText the error text to be displayed if the textfield does not contain a valid float
