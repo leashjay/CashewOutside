@@ -8,6 +8,10 @@ import javafx.scene.text.Text;
  */
 public class InputValidationHelper {
 
+    public static final String URL_REGEX = "hi";
+    public static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    public static final String PHONE_NUMBER_REGEX = "\\d{10}|\\d{9}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+
     /**
      * Method that true empty if a textfield contains no text
      * @param textField the textfield to be checked
@@ -29,12 +33,12 @@ public class InputValidationHelper {
      * Method that returns true if an email address entered into a textfield is valid
      * @param textField the textfield that is being checked
      * @param text the error text displayed if string is not an email
+     * @param regex the regular expression the input is being matched with
      * @return true if the text is a valid email.
      */
-    public static boolean isValidEmail(TextField textField, Text text){
+    public static boolean isValidWithRegex(TextField textField, Text text, String regex){
         boolean isValid = true;
         String input = textField.getText();
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         if(input.matches(regex)){
             text.setVisible(false);
         } else {
@@ -43,6 +47,7 @@ public class InputValidationHelper {
         }
         return isValid;
     }
+
 
     /**
      * Checks whether a textfield contains a valid float
