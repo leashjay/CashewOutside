@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import seng202.team3.model.Business;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 
 public class BusinessApp extends Application {
@@ -15,29 +16,35 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static final String ingredientsXML = "./src/main/resources/data/testdata/Ingredients.xml";
+    public static String ingredientsXML = "./src/main/resources/data/realdata/Ingredients.xml";
 
     /** Source menu XML file to load data from */
-    public static final String menuXML = "./src/main/resources/data/testdata/SampleMenu.xml";
+    public static String menuXML = "./src/main/resources/data/realdata/SampleMenu.xml";
 
     /** Source supplier XML file to load data from */
-    public static final String suppliersXML = "./src/main/resources/data/testdata/Suppliers.xml";
+    public static String suppliersXML = "./src/main/resources/data/realdata/Suppliers.xml";
 
     /**
      * Source sales XML file to load data from
      */
-    public static final String salesXML = "./src/main/resources/data/testdata/Sales.xml";
-
-    public static final String employeeXML = "./src/main/resources/data/testdata/Employees.xml";
+    public static String salesXML = "./src/main/resources/data/realdata/Sales.xml";
 
     /**
-     * Primary stage for CashewOutside application
+     * Source employee XML file to load data from
      */
+    public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
+    /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
-    /**
-     * Business instance to hold all model classes data in memory
-     */
+    /** Business instance to hold all model classes data in memory */
     private static Business business;
+    /**
+     * Date of business operation (usually today)
+     */
+    private LocalDate dateOperation;
+    /**
+     * XML path prefix
+     */
+    private String pathPrefix = "./src/main/resources/data/realdata/";
 
     /**
      * Creating a business instance when application is launched
@@ -107,17 +114,32 @@ public class BusinessApp extends Application {
     public void start(Stage pStage) throws IOException {
         primaryStage = pStage;
         primaryStage.setOnCloseRequest(ev -> {
+            alterXMLPath();
             try {
                 business.exportOrdersAsXML(salesXML);
                 business.exportMenuAsXML(menuXML);
                 business.exportInventoryAsXML(ingredientsXML);
                 business.exportSupplierAsXML(suppliersXML);
+                business.exportEmployeeAsXML(employeeXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         loadMainPage();
         primaryStage.show();
+    }
+
+
+    /**
+     * alter XML path to only export data accumulated until a certain date
+     */
+    public void alterXMLPath() {
+        dateOperation = LocalDate.now();
+        ingredientsXML = pathPrefix + "Ingredients" + dateOperation.toString() + ".xml";
+        menuXML = pathPrefix + "SampleMenu" + dateOperation.toString() + ".xml";
+        suppliersXML = pathPrefix + "Suppliers" + dateOperation.toString() + ".xml";
+        salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
+        employeeXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
     }
 
     /**

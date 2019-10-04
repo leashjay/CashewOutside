@@ -21,6 +21,9 @@ public class LoginController {
     Button backButton;
 
     @FXML
+    Button bypassLoginButton;
+
+    @FXML
     Text errorText;
 
     @FXML
@@ -46,6 +49,8 @@ public class LoginController {
             String key = employee.getPassword();
 
             boolean isPasswordCorrect = PasswordUtils.verifyPassword(password, key, salt);
+            //System.out.println("Password was: " + PasswordUtils.hashPassword(password, salt));
+            //System.out.println("Expected: " + employee.getPassword());
 
             if(isPasswordCorrect) {
                 errorText.setVisible(false);
@@ -60,6 +65,10 @@ public class LoginController {
         }
 
 
+    }
+
+    public void bypassLogin() throws IOException {
+        BusinessApp.loadManagementPage();
     }
 
     public void returnToMainPage() throws IOException {

@@ -14,7 +14,7 @@ public class EmployeeTest {
 
     @Test
     public void EmployeeConstructorTest() {
-        Employee employee = new Employee("user1", "password123", true);
+        Employee employee = new Employee("user1", "password123", true, PasswordUtils.generateSalt(512).get());
         assertEquals(employee.getUserName(), "user1");
         assertEquals(employee.hasAdminRights(), true);
         assertNotNull(employee.getPassword());
