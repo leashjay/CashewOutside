@@ -2,6 +2,7 @@ package seng202.team3.util;
 
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import seng202.team3.view.BusinessApp;
 
 /**
  * Helper class created to help with input validating forms the user inputs data into
@@ -11,6 +12,7 @@ public class InputValidationHelper {
     public static final String URL_REGEX = "^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)([).!';/?:,][[:blank:]])?$";
     public static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     public static final String PHONE_NUMBER_REGEX = "\\d{10}|\\d{9}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+    public static final String camelCasePattern = "([A-Z]+[a-z]+\\w+)+";
 
     /**
      * Method that true empty if a textfield contains no text
@@ -69,5 +71,40 @@ public class InputValidationHelper {
         return isFloat;
     }
 
+
+    public static boolean checkIngredientValidId(TextField textField, Text errorText) {
+        String inputId = textField.getText();
+        //ID not valid
+        if (!inputId.matches(camelCasePattern)) {
+            errorText.setText("Field must contain data entered in a camel case pattern!");
+            errorText.setVisible(true);
+            return false;
+
+        } else if (BusinessApp.getBusiness().getTruck().getInventory().getIngredients().keySet().contains(inputId)) {
+            errorText.setText("Id entered is already registered in database.\n Try another id");
+            errorText.setVisible(true);
+            return false;
+        } else {
+            errorText.setVisible(false);
+            return true;
+        }
+    }
+
+    public static boolean checkSupplierValidId(TextField textField, Text errorText) {
+        String inputId = textField.getText();
+        //ID not valid
+        if (!inputId.matches(camelCasePattern)) {
+            errorText.setText("Field must contain data entered in a camel case pattern!");
+            errorText.setVisible(true);
+            return false;
+        } else if (BusinessApp.getBusiness().getSupplierHandler().getSuppliers().keySet().contains(inputId)) {
+            errorText.setText("Id entered is already registered in database.\n Try another id");
+            errorText.setVisible(true);
+            return false;
+        } else {
+            errorText.setVisible(false);
+            return true;
+        }
+    }
 
 }

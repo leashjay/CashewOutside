@@ -83,7 +83,7 @@ public class ManuallyAddSupplierController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
-        if(InputValidationHelper.checkEmpty(idTextField, idErrorText)){
+        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkSupplierValidId(idTextField, idErrorText) == false) {
             hasError = true;
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){

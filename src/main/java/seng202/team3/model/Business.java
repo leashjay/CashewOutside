@@ -174,7 +174,6 @@ public class Business {
         employeeLoader.exportEmployeeData(file, employeeManager);
     }
 
-
     /**
      * gets the lastOrderID
      * @return the lastOrderID

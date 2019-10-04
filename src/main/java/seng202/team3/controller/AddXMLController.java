@@ -105,7 +105,6 @@ public class AddXMLController {
 
         showErrorMessage(fileString);
 
-        //TODO: link menu item tab with menuitemxml screen
         stage = (Stage) importMenuItemXMLButton.getScene().getWindow();
         MenuItemTabController.getInstance().updateMenuItemTable();
     }
