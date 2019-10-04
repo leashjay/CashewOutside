@@ -12,14 +12,9 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
-import seng202.team3.model.Business;
+import seng202.team3.model.*;
 import seng202.team3.model.MenuItem;
-import seng202.team3.model.Order;
-import seng202.team3.model.SalesHandler;
-import seng202.team3.util.ActionButtonTableCell;
-import seng202.team3.util.ItemType;
-import seng202.team3.util.OrderStatus;
-import seng202.team3.util.StringChecking;
+import seng202.team3.util.*;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
@@ -28,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class SalesController {
@@ -100,6 +96,10 @@ public class SalesController {
 
     @FXML
     private TableColumn<Order, Button> viewCol;
+
+    private boolean gfSelected = false;
+    private boolean veganSelected = false;
+    private boolean vegetarianSelected = false;
 
     private final Insets gridPadding = new Insets(50, 50, 50, 50);
     private SalesHandler salesManager;
@@ -214,6 +214,33 @@ public class SalesController {
         int row = numChildrenAtStart / numColumnsAtStart; // Java Integer Division, so floors the result
         int column = numChildrenAtStart % numColumnsAtStart;
 
+        Button filterButton = new Button();
+        filterButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" + "-fx-pref-width: 100;-fx-pref-height: 50;-fx-background-color: #1976D2;-fx-wrap-text: true;");
+        gridPane.getRowConstraints().get(0).setMaxHeight(70);
+        GridPane.setConstraints(filterButton, column, row, 1, 1, HPos.CENTER, VPos.BOTTOM);
+        filterButton.setText("Filter");
+        gridPane.add(filterButton, column, row);
+        column++;
+
+        CheckBox checkGF = new CheckBox();
+        CheckBox checkVegan = new CheckBox();
+        CheckBox checkVegetarian = new CheckBox();
+        checkGF.setSelected(gfSelected);
+        checkVegan.setSelected(veganSelected);
+        checkVegetarian.setSelected(vegetarianSelected);
+        checkGF.setText("Gluten Free");
+        checkVegan.setText("Vegan");
+        checkVegetarian.setText("Vegetarian");
+        gridPane.add(checkGF, column, row);
+        column++;
+        gridPane.add(checkVegan, column, row);
+        column++;
+        gridPane.add(checkVegetarian, column, row);
+        row++;
+        column = 0;
+        filterButton.setOnAction(e -> filterItems(checkGF, checkVegan, checkVegetarian));
+
+
         for (MenuItem menuItem : menuItems.values()) {
             Button newButton = new Button();
             // TODO Find out how to set this button's style to styles.css #foodButton
@@ -238,6 +265,36 @@ public class SalesController {
                 }
             }
         }
+    }
+
+    public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian) {
+        Business business = BusinessApp.getBusiness();
+        Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
+        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        HashMap<String, MenuItem> filteredItems = new HashMap<>();
+        for (Map.Entry<String, MenuItem> entry : foodMenuItems.entrySet()) {
+            if (gf.isSelected()) {
+                gfSelected = true;
+                if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
+                    filteredItems.put(entry.getKey(), entry.getValue());
+                }
+            } else {gfSelected = false;} if (vegan.isSelected()) {
+                veganSelected = true;
+                if (entry.getValue().isVegan() == ThreeValueLogic.YES) {
+                    filteredItems.put(entry.getKey(), entry.getValue());
+                }
+            } else {veganSelected = false;} if (vegetarian.isSelected()) {
+                vegetarianSelected = true;
+                if (entry.getValue().isVegetarian() == ThreeValueLogic.YES) {
+                    filteredItems.put(entry.getKey(), entry.getValue());
+                }
+            } else {vegetarianSelected = false;} if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
+                filteredItems = foodMenuItems;
+            }
+        }
+        foodItemGrid.getChildren().clear();
+        addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
+
     }
 
     public void cashButtonPressed() {

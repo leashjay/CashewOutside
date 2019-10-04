@@ -1,13 +1,13 @@
 package seng202.team3.util;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 
 /*Utility class to help with encrypting and checking passwords*/
@@ -75,14 +75,17 @@ public class PasswordUtils {
     }
 
     /**
-     * Determines whether a plaintext password generates the hashed passwod
+     * Determines whether a plaintext password generates the hashed password
      * @param password the plaintext password
      * @param key the previously generated hashed password
      * @param salt the random text generated to prevent dictionary attacks.
      * @return true if the password matches the salted password.
      */
     public static boolean verifyPassword (String password, String key, String salt) {
-        Optional<String> optEncrypted = hashPassword(password, salt);
-        return optEncrypted.map(s -> s.equals(key)).orElse(false);
+        String encrypted = hashPassword(password, salt).get();
+        System.out.println("EXPECTED: " + key);
+        System.out.println("GOT: " + encrypted);
+        System.out.println(key.equals(password));
+        return key.equals(password);
     }
 }
