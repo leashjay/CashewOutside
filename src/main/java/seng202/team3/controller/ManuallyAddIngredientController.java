@@ -34,6 +34,12 @@ public class ManuallyAddIngredientController {
     private TextField nameTextField;
 
     @FXML
+    private TextField quantityTextField;
+
+    @FXML
+    private Text quantityErrorText;
+
+    @FXML
     private TextField costTextField;
 
     @FXML
@@ -80,10 +86,15 @@ public class ManuallyAddIngredientController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
+
         if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
             hasError = true;
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
+            hasError = true;
+        }
+
+        if (InputValidationHelper.isValidFloat(quantityTextField, quantityErrorText) == false){
             hasError = true;
         }
 
@@ -104,6 +115,7 @@ public class ManuallyAddIngredientController {
             String name = nameTextField.getText();
             UnitType unitType = unitTypeChoiceBox.getValue();
             float cost = Float.parseFloat(costTextField.getText());
+            float quantity = Float.parseFloat(quantityTextField.getText());
 
             ThreeValueLogic isGlutenFree;
             ThreeValueLogic isVegan;
@@ -128,7 +140,7 @@ public class ManuallyAddIngredientController {
             }
 
 
-            Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost);
+            Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost, quantity);
 
             truckInventory.addIngredient(newIngredient);
             Stage stage = (Stage) addIngredientButton.getScene().getWindow();
