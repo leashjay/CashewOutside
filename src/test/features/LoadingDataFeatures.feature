@@ -2,7 +2,8 @@ Feature: Loading Data Features
   Acceptance tests for manual loading of data and loading of xml data files
 
   Background:
-    Given an "inventory" to hold ingredients
+    Given a "BusinessName" for operation
+    And an "inventory" to hold ingredients
     And an "menu" to collect menu items
     And an "contact list" to suppliers details
 
@@ -17,24 +18,24 @@ Feature: Loading Data Features
     Then the menu is in the program
 
   Scenario: Manually Load a supplier
-    Given an supplier has a "sid", "name", "address", "phoneType", "phoneNumber", sometimes an "email" and/or a"url"
+    Given an supplier is known
     When a supplier is added
     Then the supplier is in the program
 
   Scenario: Load an XML Ingredient file
     Given a "filepath" for an XML file containing ingredients
-    When the "filepath" is used in the application
+    When the "filepath" is loaded
     Then the inventory map is not Null
 
   Scenario: Load an XML Menu Items file
     Given a "filepath" for an XML file containing menu items
-    When the "filepath" is used in the application
-    Then the menu items map is not Null
+    When the "filepath" is loaded
+    Then the menu items map is not empty
 
   Scenario: Load an XML Supplier file
     Given a "filepath" for an XML file containing suppliers
-    When the "filepath" is used in the application
-    Then the supplier map is not Null
+    When the "filepath" is loaded
+    Then the supplier map is not empty
 
   Scenario: An XML Ingredient file with Errors is Handled
     Given a "filepath" for an XML file containing ingredients
