@@ -84,7 +84,6 @@ public class Inventory {
      * Adds an ingredient to the ingredients HashMap
      * @param addedIngredient The ingredient that's to be added to the list
      */
-    //TODO calculate cost price here and dont just replace current ingredient
     public void addIngredient(Ingredient addedIngredient) {
         ingredients.put(addedIngredient.getCode(), addedIngredient);
     }
