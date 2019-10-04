@@ -6,7 +6,10 @@ import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.UnitType;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,14 +34,12 @@ public class Inventory {
     private HashMap<String, Ingredient> ingredients;
 
     /** A number that indicates that an ingredient with the unit type COUNT has low stock */
-    // Not really sure about what would be realistic here, so these numbers for low stock are very subject to change.
     private Float lowStockCount = 10f;
 
     /** A number that indicates that an ingredient with the unit type GRAMS has low stock */
     private Float lowStockGrams = 1000f;
 
     /** A number that indicates that an ingredient with the unit type ML has low stock */
-    @XmlTransient
     private Float lowStockML = 1000f;
 
     /**
@@ -64,29 +65,12 @@ public class Inventory {
 
 
     /**
-     * Getter for inventory description
-     * @return desc
-     */
-    public String getDesc() {
-        return description;
-    }
-
-    /**
      * Getter for list of ingredients
      * @return ingredients
      */
     public HashMap<String, Ingredient> getIngredients() {
         return ingredients;
     }
-
-    /**
-     * Getter for Inventory Loader
-     *
-     * @return inventoryLoader
-     */
-    public InventoryLoader getInventoryLoader() {
-        return inventoryLoader; }
-
 
     /**
      * Removes an ingredient from the ingredients HashMap
@@ -112,8 +96,28 @@ public class Inventory {
     public void addIngredientsFromXML(String file) throws JAXBException {
         inventoryLoader = new InventoryLoader();
         Inventory inventory = inventoryLoader.loadIngredientsData(file);
-        HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
-        ingredients.putAll(newIngredients);
+        if (inventory != null) {
+            HashMap<String, Ingredient> newIngredients = inventory.getIngredients();
+            compareAndAddIngredient(newIngredients);
+        }
+    }
+
+    /**
+     * Helper method for addIngredientsFromXML to update existing ingredient's quantity
+     * or add new entry of ingredient to HashMap of ingredients.
+     *
+     * @param newIngredients
+     */
+    public void compareAndAddIngredient(HashMap<String, Ingredient> newIngredients) {
+        for (Ingredient newIng : newIngredients.values()) {
+            if (ingredients.get(newIng.getCode()) != null) {
+                Ingredient existingIng = ingredients.get(newIng.getCode());
+                if (existingIng.getQuantity() != 0) {
+                    newIng.setQuantity(existingIng.getQuantity() + newIng.getQuantity());
+                }
+            }
+            ingredients.put(newIng.getCode(), newIng);
+        }
     }
 
     /**

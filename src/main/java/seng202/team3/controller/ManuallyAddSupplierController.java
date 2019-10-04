@@ -9,9 +9,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seng202.team3.model.Supplier;
 import seng202.team3.model.SupplierHandler;
+import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.PhoneType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
 public class ManuallyAddSupplierController {
@@ -61,7 +63,9 @@ public class ManuallyAddSupplierController {
     Text urlErrorText;
 
 
-
+    /**
+     * Method called to setup intial GUI of the form.
+     */
     public void initialize(){
         phoneTypeChoiceBox.getItems().add(PhoneType.HOME);
         phoneTypeChoiceBox.getItems().add(PhoneType.MOBILE);
@@ -72,6 +76,10 @@ public class ManuallyAddSupplierController {
 
     }
 
+    /**
+     * Checks the validity of input entered into the form.
+     * @return true of the form has errors, false if the form is error free.
+     */
     private boolean checkForErrors(){
         boolean hasError = false;
 
@@ -101,13 +109,10 @@ public class ManuallyAddSupplierController {
         return hasError;
     }
 
-    //TODO Add input validation on this form
-
     /**
      * Method that adds a supplier using the data that the user has given
-     * @throws IOException
      */
-    public void addSupplier() throws IOException {
+    public void addSupplier() throws JAXBException, IOException {
         if(checkForErrors() == false) {
             String id = idTextField.getText();
             String name = nameTextField.getText();
@@ -124,15 +129,8 @@ public class ManuallyAddSupplierController {
             SupplierTabController.getInstance().updateSupplierTable();
 
             stage.close();
+            BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         }
     }
 
-
-//    private boolean isInt(TextField input, String message){
-//        try{
-//            int id = Integer.parseInt(input.getText());
-//        } catch (NumberFormatException e){
-//            p
-//        }
-//    }
 }

@@ -3,6 +3,7 @@ package seng202.team3.model;
 
 import seng202.team3.util.OrderStatus;
 import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
@@ -10,10 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * @generated
+ * Order class to store details of order
  */
 
 @XmlRootElement(name = "entry")
@@ -26,6 +24,9 @@ public class Order {
 
     @XmlElement(name = "orderId")
     private int orderId; // should be unique across multiple orders
+
+    @XmlElement(name = "customerName")
+    private String name = "";
 
     @XmlElement(name = "orderStatus")
     public OrderStatus orderStatus;
@@ -48,6 +49,7 @@ public class Order {
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
+
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -56,9 +58,42 @@ public class Order {
      */
     public Order() {
         // TODO change timeOrdered to be set when order is ordered.
-        super();
+//        super();
+        this.orderStatus = OrderStatus.QUEUED;
+        // TODO remove these two following lines, while not breaking functionality ;)
         setTime(LocalTime.now());
         dateOrdered = LocalDate.now();
+    }
+
+    /**
+     * decreases the stock level according to the items in the Order
+     */
+    public boolean decreaseStock() {
+        if (!enoughStock()) {
+            return false;
+        }
+
+        for (MenuItem menuItem : this.itemsOrdered) {
+            menuItem.decreaseStock();
+        }
+        return true;
+    }
+
+    /**
+     * helper of decreaseStock, returns true if there is enough stock to place the order
+     * @return has enough stock
+     */
+    public boolean enoughStock() {
+        for (MenuItem menuItem : this.itemsOrdered) {
+            if (!menuItem.hasEnoughStock()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void setToNextID() {
+        this.orderId = BusinessApp.getBusiness().makeNextOrderID();
     }
 
     public LocalTime getTime() {
@@ -124,7 +159,7 @@ public class Order {
         this.isVegFlag = getFlagAdding(this.isVegFlag, itemToAdd.isVegetarian());
         this.isVeganFlag = getFlagAdding(this.isVeganFlag, itemToAdd.isVegan());
         this.itemsOrdered.add(itemToAdd);
-        this.orderCost += itemToAdd.getCostPrice();
+        this.orderCost += itemToAdd.getSalePrice();
     }
 
     /**
@@ -170,7 +205,7 @@ public class Order {
             if (!flagsChecked) {
                 updateFlags();
             }
-            this.orderCost -= itemToRemove.getCostPrice();
+            this.orderCost -= itemToRemove.getSalePrice();
         }
     }
 
@@ -204,22 +239,36 @@ public class Order {
         this.orderStatus = newStatus;
     }
 
+    /**
+     * calculates the cost of an order from a given list of MenuItems
+     * @param itemsToCalculate the MenuItems
+     * @return the total cost
+     */
     public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
         float cost = 0;
         for (MenuItem item : itemsToCalculate) {
-            cost += item.getCostPrice();
+            cost += item.getSalePrice();
         }
         return cost;
     }
     public ArrayList<MenuItem> getOrderedItems() {
         return this.itemsOrdered;
     }
+
     public OrderStatus getStatus() {
         return this.orderStatus;
     }
 
-    public ArrayList<MenuItem> getItemsOrdered() {
-        return this.itemsOrdered;
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
+
+    public LocalDate getDate() { return this.dateOrdered; }
+
+    public int getNumItems() {
+        return this.itemsOrdered.size();
     }
+
+    public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
 }
 

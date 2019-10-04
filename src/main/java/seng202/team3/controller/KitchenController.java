@@ -1,23 +1,27 @@
 package seng202.team3.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import seng202.team3.model.*;
+import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
-import seng202.team3.util.ItemType;
+import seng202.team3.model.Order;
+import seng202.team3.model.SalesHandler;
 import seng202.team3.util.OrderStatus;
-import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class KitchenController {
 
@@ -73,12 +77,13 @@ public class KitchenController {
      * Populates the menuItems ArrayList with the menu items used in the current orders
      */
     public void createMenuItemsArray() {
-        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         menuItems = new ArrayList<>();
         for (Order order: orders) {
             for (MenuItem item: order.getOrderedItems()) {
-                if (menuItems.contains(item) == false) {
-                    menuItems.add(item);
+                MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
+                if (!menuItems.contains(itemReal)) {
+                    menuItems.add(itemReal);
                 }
             }
         }
@@ -88,7 +93,7 @@ public class KitchenController {
      * Puts the order numbers into the combo box
      */
     public void createOrderComboBox() {
-        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         for (Order order: orders) {
             removeOrderCombo.getItems().add(order.getOrderId());
         }
@@ -100,8 +105,6 @@ public class KitchenController {
      * This method is called automatically by the FXMLLoader
      */
     public void initialize() {
-        getOrders();
-        menuItems = new ArrayList<>();
         addOrderToGridPane();
         createMenuItemsArray();
         addMenuToGridPane();
@@ -113,7 +116,7 @@ public class KitchenController {
      * Removes a TextFlow containing an order from the orderGridPane. Called when the remove button is pressed
      */
     public void popFromOrderGrid() {
-        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         Object checkForNull = removeOrderCombo.getValue();
         if (checkForNull != null) {
             int orderNum = (Integer) removeOrderCombo.getSelectionModel().getSelectedItem();
@@ -123,11 +126,11 @@ public class KitchenController {
                     removed.add(ordered);
                     int index = orders.indexOf(ordered);
                     removeOrderCombo.getItems().remove(index);
-                    salesHandler.orders.get(ordered).orderStatus = OrderStatus.COMPLETE;
+                    salesHandler.getDisplayOrdersHashMap().get(ordered.getOrderId()).orderStatus = OrderStatus.COMPLETE;
                 }
             }
             for (Order order: removed) {
-                salesHandler.removeOrder(order.getOrderId());
+                salesHandler.removeDisplayOrder(order.getOrderId());
             }
             addOrderToGridPane();
             createMenuItemsArray();
@@ -139,15 +142,15 @@ public class KitchenController {
      * Adds a TextFlow (containing a menu item and ingredients) to the menu item grid pane
      */
     private void addMenuToGridPane() {
+        createMenuItemsArray();
         menuItemGridPane.getChildren().clear();
         final int numColumnsAtStart = menuItemGridPane.getColumnCount();
 
         int row = 0;
         int column = 0;
-
         for (MenuItem item : menuItems) {
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
             ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -157,7 +160,7 @@ public class KitchenController {
             text1.setFill(Color.FLORALWHITE);
             text.getChildren().add(text1);
 
-            Text text2 = new Text("\n\n          ITEM ");
+            Text text2 = new Text("\n\n    Ingredients ");
             text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
             text2.setFill(Color.FLORALWHITE);
             text.getChildren().add(text2);
@@ -167,11 +170,11 @@ public class KitchenController {
                 ingredients.add(entry.getKey());
                 Text text3 = new Text();
                 if (entry.getKey().getUnit() == UnitType.GRAM) {
-                    text3 = new Text("\n\n  x" + entry.getValue() + "g   " + entry.getKey().getName());
+                    text3 = new Text("\n\n  x" + entry.getValue() + "g   " + entry.getKey().getCode());
                 } else if (entry.getKey().getUnit() == UnitType.ML) {
-                    text3 = new Text("\n\n  x" + entry.getValue() + "mL   " + entry.getKey().getName());
+                    text3 = new Text("\n\n  x" + entry.getValue() + "mL   " + entry.getKey().getCode());
                 } else {
-                    text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getName());
+                    text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getCode());
                 }
                 text3.setFill(Color.FLORALWHITE);
                 text.getChildren().add(text3);
@@ -186,45 +189,11 @@ public class KitchenController {
         }
     }
 
-    private void getOrders() {
-        Ingredient rice = new Ingredient("1", "Rice", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.001f);
-        Ingredient carrot = new Ingredient("2", "Carrot", UnitType.COUNT, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        Ingredient peas = new Ingredient("3", "Peas", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 0.01f);
-        Ingredient egg = new Ingredient("4", "Rice", UnitType.GRAM, ThreeValueLogic.NO, ThreeValueLogic.YES,
-                ThreeValueLogic.YES, 1f);
-
-        HashMap<Ingredient, Float>friedRiceIngredients = new HashMap<>();
-        friedRiceIngredients.put(rice, 200f);
-        friedRiceIngredients.put(carrot, 50f);
-        friedRiceIngredients.put(peas, 50f);
-        MenuItem friedRice = new MenuItem("1", "Fried rice", friedRiceIngredients, ItemType.MAIN);
-        MenuItem testFood = new MenuItem("2", "Test Food", friedRiceIngredients, ItemType.MAIN);
-        Order order2 = new Order();
-        order2.addToOrder(friedRice);
-        order2.addToOrder(friedRice);
-        order2.setOrderId(3);
-        Order order5 = new Order();
-        order5.addToOrder(friedRice);
-        order5.addToOrder(friedRice);
-        order5.setOrderId(7);
-        salesHandler.addOrder(order5);
-        Order order7 = new Order();
-        order7.addToOrder(friedRice);
-        order7.addToOrder(testFood);
-        order7.setOrderId(6);
-        salesHandler.addOrder(order7);
-        salesHandler.addOrder(order2);
-    }
-
-
     /**
      * Adds a TextFlow containing the current orders to the orders grid pane
      */
     private void addOrderToGridPane() {
-        List<Order> orders = new ArrayList<>(salesHandler.orders.values());
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         orderGridPane.getChildren().clear();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -236,7 +205,7 @@ public class KitchenController {
         for (Order order : orders) {
 
             TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
+            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: SteelBlue;");
             text.setPrefHeight(200);
             text.setPrefWidth(150);
 

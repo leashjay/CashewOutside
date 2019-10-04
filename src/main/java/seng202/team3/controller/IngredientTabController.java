@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
+import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
@@ -21,6 +22,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for the ingredient tab within the management section of the GUI
+ */
 public class IngredientTabController {
 
     @FXML
@@ -78,9 +82,10 @@ public class IngredientTabController {
         return instance;
     }
 
+    /**
+     * Method called to set up tableview and other GUI components when control is initialized.
+     */
     public void initialize() {
-
-        // PropertyValueFactory uses your getter, so you MUST have a getter matching getX, where X is whatever you put as the string in the object your table is on.
         idCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
@@ -96,10 +101,12 @@ public class IngredientTabController {
         }));
 
         List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
-        //List<Supplier> suppliers = createTestData(); // This would come from your real data however you access that.
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
+    /**
+     * Method that opens the input form to add an ingredient manually
+     */
     public void openAddIngredientScreen(){
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
@@ -115,6 +122,10 @@ public class IngredientTabController {
 
     }
 
+    /**
+     * Method that opens the input from to add an ingredient from xml
+     * @throws IOException the exception thrown
+     */
     public void openAddIngredientXMLScreen() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/addingredientxml.fxml"));
         Stage stage = new Stage();
@@ -125,6 +136,9 @@ public class IngredientTabController {
         stage.showAndWait();
     }
 
+    /**
+     * Called to update the values of the ingredients table with the most recent values.
+     */
     public void updateIngredientTable(){
         List<Ingredient> ingredients= new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));

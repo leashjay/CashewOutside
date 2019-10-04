@@ -3,6 +3,7 @@ package seng202.team3.model;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -28,30 +29,48 @@ public class MenuItem {
     @XmlElement(name = "name")
     private String name;
 
+    /**
+     * Total cost of menu item without the mark up
+     */
+    @XmlElement(name = "cost")
+    private float totalCost;
+
     /** List of ingredients and their quantities needed to make the menu item */
     @XmlElement
-    private HashMap<Ingredient, Float> ingredients;
+    private HashMap<Ingredient, Float> ingredients = new HashMap<>();
 
-    /**
-     * Type of cuisine
-     */
+    /** Type of cuisine */
     @XmlAttribute(name = "type")
     private ItemType type;
 
 
-    private ArrayList<ItemType> itemTypes;
+    /**
+     * isVegan flag for menu item
+     */
+    @XmlAttribute(name = "isVegan")
+    private ThreeValueLogic isVegan;
 
+
+    /**
+     * isVegetarian flag for menu item
+     */
+    @XmlAttribute(name = "isVeg")
+    private ThreeValueLogic isVegetarian;
+
+    /**
+     * isGlutenFree flag for menu item
+     */
+    @XmlAttribute(name = "isGF")
+    private ThreeValueLogic isGlutenFree;
+
+    private ArrayList<ItemType> itemTypes;
 
     private UnitType foodType;
 
-    /**
-     * The price the business sells the item for
-     */
+    /** The price the business sells the item for */
     private float salePrice;
 
-    /**
-     * The number of servings the menu item has
-     */
+    /** The number of servings the menu item has */
     @XmlAttribute(name = "serves")
     private int numServings;
 
@@ -115,7 +134,7 @@ public class MenuItem {
      * Returns cost which the business sells the item for
      * @return a float showing the cost the business sells the item for
      */
-   public float getSalePrice(){return salePrice;}
+    public float getSalePrice(){return totalCost;}
 
    public int getServings(){return numServings;}
 
@@ -126,7 +145,6 @@ public class MenuItem {
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
         ingredients.put(ingredient, quantity);
-        //IF ingredient is not glueten free
     }
 
     /**
@@ -142,24 +160,27 @@ public class MenuItem {
      * @return a float showing the price to create the given recipe
      */
     public float getCostPrice() {
-        float totalPrice = 0;
+        totalCost = 0;
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            totalPrice += ingredient.getCost() * entry.getValue();
+            totalCost += ingredient.getCost() * entry.getValue();
         }
 
-        return totalPrice;
+        return totalCost;
     }
 
+    public void setSalePrice(float newPrice) {
+        this.totalCost = newPrice;
+    }
 
     //TODO Possibly change this into a singular method with parameters
     /**
-     * Method to check if an ingredient is gluten free
+     * Method to check if a menu item is gluten free
      * @return Three value logic showing if the menu item is gluten free
      */
     public ThreeValueLogic isGlutenFree(){
-        ThreeValueLogic isGlutenFree = ThreeValueLogic.YES;
+        isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN){
@@ -174,11 +195,11 @@ public class MenuItem {
     }
 
     /**
-     * Method to check if an ingredient is vegetarian
+     * Method to check if a menu item is vegetarian
      * @return Three value logic showing if the menu item is vegetarian
      */
     public ThreeValueLogic isVegetarian(){
-        ThreeValueLogic isVegetarian = ThreeValueLogic.YES;
+        isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN){
@@ -197,7 +218,7 @@ public class MenuItem {
      * @return
      */
     public ThreeValueLogic isVegan(){
-        ThreeValueLogic isVegan = ThreeValueLogic.YES;
+        isVegan = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
             if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
@@ -212,5 +233,33 @@ public class MenuItem {
     }
 
 
+    /**
+     * checks if the trucks inventory of ingredients have enough quantity (stock)
+     * @return has enough stock
+     */
+    public boolean hasEnoughStock() {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            if (truckIngredient.getQuantity() < amountRequired) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    /**
+     * decreases the trucks stock according to this MenuItem
+     */
+    public void decreaseStock() {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            truckIngredient.decreaseQuantity(amountRequired);
+        }
+    }
 }

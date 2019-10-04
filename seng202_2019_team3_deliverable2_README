@@ -1,0 +1,37 @@
+# Seng 202_Assignment_cashewOutside
+
+Seng 202 Assignment 1 - Food Truck POS Application
+
+Created by Alyssa Josephs, Andrew Sturman, Cheng Yi Kok, Hunter Craig, Jack Walsh, Jerome Grubb
+
+# To run this application:
+
+1. Ensure that the machine has Java v11 or newer installed
+2. Ensure the resources folder with the source XML files are relocated/located in the directory where the jar is.
+2. In the terminal, with the CD set to the directory of the file call:
+3. java -jar cashewOutside.jar
+
+# The source code:
+Can be found at UCGitLab repository on request: https://eng-git.canterbury.ac.nz/ajo110/cashewOutside
+Coding of this project was undertaken in Java using IntelliJ IDE.
+To view/alter code will require use of a machine with Java and a suitable IDE installed.
+If using IntelliJ, open the program and ensure that the JavaFX window application is installed for the GUI component of the project.
+JUnit will also be required for any testing undertaken.
+
+How to Import project in intellij from gitlab download
+1. Open Intellij
+2. Close any previously open projects
+3. Select check out from version control
+4. Choose git option
+5. Paste in the link https://eng-git.canterbury.ac.nz/ajo110/cashewOutside.git in the url box and choose your desired directory
+6. Open the project in intellij
+
+How to Import project in intellij from folder
+1. Open Intellij
+2. Click import project
+3. Navigate to the directory where you have downloaded the cashewOutside main folder
+4. Select this folder and click "ok" to import the project.
+5. Open the project in intellij
+6. Make sure the auto enable imports is turned on in intellij
+
+

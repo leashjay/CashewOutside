@@ -1,8 +1,11 @@
-package seng202.team3.controller;
+package seng202.team3.util;
 
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Helper class created to help with input validating forms the user inputs data into
+ */
 public class InputValidationHelper {
 
     /**

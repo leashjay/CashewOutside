@@ -110,8 +110,6 @@ public class Ingredient {
         this.cost = cost;
     }
 
-
-
     /**
      * Getter for ingredient's short name
      * @return code
@@ -259,4 +257,15 @@ public class Ingredient {
         quantity = newQuantity;
     }
 
+    /**
+     *
+     * @param decreaseAmount amount to decrease the quantity of the Ingredient
+     */
+    public void decreaseQuantity(float decreaseAmount) {
+        if (this.quantity >= decreaseAmount) {
+            this.quantity -= decreaseAmount;
+        } else {
+            throw new Error("Not enough stock");
+        }
+    }
 }

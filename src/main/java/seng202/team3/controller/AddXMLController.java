@@ -13,6 +13,7 @@ import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddXMLController {
@@ -33,25 +34,25 @@ public class AddXMLController {
 
     private String errorMessage;
 
-    Stage stage;
+    private Stage stage;
 
     @FXML
-    Button browseButton;
+    private Button browseButton;
 
     @FXML
-    TextField pathString;
+    private TextField pathString;
 
     @FXML
-    Button importSupplierXMLButton;
+    private Button importSupplierXMLButton;
 
     @FXML
-    Button importIngredientXMLButton;
+    private Button importIngredientXMLButton;
 
     @FXML
-    Button importMenuItemXMLButton;
+    private Button importMenuItemXMLButton;
 
     @FXML
-    Text feedbackMessage;
+    private Text feedbackMessage;
 
 
 
@@ -60,9 +61,10 @@ public class AddXMLController {
     /**
      * Called by importSuppplierXMLButton to load SupplierXML into database
      */
-    public void addSupplierXML(){
+    public void addSupplierXML() throws IOException {
         try {
             supplierHandler.addSupplierFromXML(fileString);
+            BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }
@@ -76,9 +78,10 @@ public class AddXMLController {
     /**
      * Called by importIngredientXMLButton to load Ingredient XML into database
      */
-    public void addIngredientXML() {
+    public void addIngredientXML() throws IOException {
         try {
             inventory.addIngredientsFromXML(fileString);
+            BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }
@@ -92,9 +95,10 @@ public class AddXMLController {
     /**
      * Called by importMenuItemXMLButton to load menu items into database
      */
-    public void addMenuItemXML() {
+    public void addMenuItemXML() throws IOException {
         try {
             menu.addMenuItemFromXML(fileString);
+            BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         }
@@ -122,9 +126,11 @@ public class AddXMLController {
 
         if (errorMessage != null && errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
+            feedbackMessage.setVisible(false);
         } else {
             feedbackMessage.setText(errorMessage);
             errorMessageList.clear();
+            feedbackMessage.setVisible(true);
         }
     }
 
@@ -137,11 +143,11 @@ public class AddXMLController {
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
+            fileString = selectedFile.getPath();
         } else {
             pathString.setText("File selection cancelled.");
         }
 
-        fileString = selectedFile.getPath();
     }
 
 

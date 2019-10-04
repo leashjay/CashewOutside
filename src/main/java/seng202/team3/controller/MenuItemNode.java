@@ -3,8 +3,6 @@ package seng202.team3.controller;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seng202.team3.model.MenuItem;
@@ -42,8 +40,8 @@ public class MenuItemNode extends VBox {
      */
     private void updateLabels() {
         this.quantityLabel.setText(String.valueOf(quantity));
-        this.costValue.setText("$" + (menuItem.getCostPrice() * quantity));
-        this.parent.updateCostLabel();
+        this.costValue.setText(String.format("$%.2f", (menuItem.getSalePrice() * quantity)));
+        this.parent.updateLabels();
     }
 
     private void setUpButtons() {

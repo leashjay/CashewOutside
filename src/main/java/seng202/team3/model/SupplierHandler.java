@@ -123,8 +123,10 @@ public class SupplierHandler {
     public void addSupplierFromXML(String file) throws JAXBException {
         suppliersLoader = new SuppliersLoader();
         SupplierHandler supplierHandler = suppliersLoader.loadSuppliersData(file);
-        HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();
-        suppliers.putAll(newSuppliers);
+        if (supplierHandler != null) {
+            HashMap<String, Supplier> newSuppliers = supplierHandler.getSuppliers();
+            suppliers.putAll(newSuppliers);
+        }
     }
 
     /**

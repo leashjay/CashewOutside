@@ -1,4 +1,4 @@
-package seng202.team3.controller;
+package seng202.team3.util;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
