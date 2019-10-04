@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 
 public class OrderFeaturesSteps {
 
+
     @Given("a cash float")
     public void aCashFloat() {
         // Write code here that turns the phrase above into concrete actions
@@ -95,6 +96,5 @@ public class OrderFeaturesSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
-
 
 }
