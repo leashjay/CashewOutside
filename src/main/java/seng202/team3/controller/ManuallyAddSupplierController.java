@@ -83,7 +83,7 @@ public class ManuallyAddSupplierController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
-        if(InputValidationHelper.checkEmpty(idTextField, idErrorText)){
+        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkSupplierValidId(idTextField, idErrorText) == false) {
             hasError = true;
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
@@ -94,15 +94,15 @@ public class ManuallyAddSupplierController {
             hasError = true;
         }
 
-        if(InputValidationHelper.checkEmpty(emailTextField, emailErrorText)){
+        if(!InputValidationHelper.isValidWithRegex(emailTextField, emailErrorText, InputValidationHelper.EMAIL_REGEX)){
             hasError = true;
         }
 
-        if(InputValidationHelper.checkEmpty(phoneTextField, phoneErrorText)){
+        if(!InputValidationHelper.isValidWithRegex(phoneTextField, phoneErrorText, InputValidationHelper.PHONE_NUMBER_REGEX)){
             hasError = true;
         }
 
-        if(InputValidationHelper.checkEmpty(urlTextField, urlErrorText)){
+        if(!InputValidationHelper.isValidWithRegex(urlTextField, urlErrorText, InputValidationHelper.URL_REGEX)){
             hasError = true;
         }
 

@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import seng202.team3.model.Business;
 
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 
 public class BusinessApp extends Application {
@@ -15,38 +17,59 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static final String ingredientsXML = "./src/main/resources/data/testdata/Ingredients.xml";
+    public static String ingredientsXML = "./src/main/resources/data/realdata/Ingredients.xml";
 
     /** Source menu XML file to load data from */
-    public static final String menuXML = "./src/main/resources/data/testdata/SampleMenu.xml";
+    public static String menuXML = "./src/main/resources/data/realdata/SampleMenu.xml";
 
     /** Source supplier XML file to load data from */
-    public static final String suppliersXML = "./src/main/resources/data/testdata/Suppliers.xml";
+    public static String suppliersXML = "./src/main/resources/data/realdata/Suppliers.xml";
 
-    /**
-     * Source sales XML file to load data from
-     */
-    public static final String salesXML = "./src/main/resources/data/testdata/Sales.xml";
+    /** Source sales XML file to load data from */
+    public static String salesXML = "./src/main/resources/data/realdata/Sales.xml";
 
-    public static final String employeeXML = "./src/main/resources/data/testdata/Employees.xml";
+    /** Source employee XML file to load data from */
+    public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
 
-    /**
-     * Primary stage for CashewOutside application
-     */
+    /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
-    /**
-     * Business instance to hold all model classes data in memory
-     */
+
+    /** Business instance to hold all model classes data in memory */
     private static Business business;
+
+    /**
+     * Date of business operation (usually today)
+     */
+    private static LocalDate dateOperation;
+
+    /**
+     * XML path prefix
+     */
+    private static String pathPrefix = "./src/main/resources/data/realdata/";
 
     /**
      * Creating a business instance when application is launched
      */
     static {
         try {
+            checkBusinessDay();
             business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void checkBusinessDay() {
+        dateOperation = LocalDate.now();
+        alterXMLPath();
+        File ingredientsFile = new File(ingredientsXML);
+        File menuFile = new File(menuXML);
+        File salesFile = new File(salesXML);
+        File suppliersFile = new File(suppliersXML);
+        File employeeFile = new File(employeeXML);
+        if (!ingredientsFile.exists() && !menuFile.exists() && !salesFile.exists() && !suppliersFile.exists() && !employeeFile.exists()) {
+            dateOperation = LocalDate.now().minusDays(1);
+            alterXMLPath();
         }
     }
 
@@ -91,7 +114,7 @@ public class BusinessApp extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
-    /**
+    /**suppleirsXML
      * Load kitchen page
      */
     public static void loadKitchenPage() throws IOException {
@@ -101,17 +124,31 @@ public class BusinessApp extends Application {
     }
 
     /**
+     * alter XML path to only export data accumulated until a certain date
+     */
+    public static void alterXMLPath() {
+        ingredientsXML = pathPrefix + "Ingredients" + dateOperation.toString() + ".xml";
+        menuXML = pathPrefix + "SampleMenu" + dateOperation.toString() + ".xml";
+        suppliersXML = pathPrefix + "Suppliers" + dateOperation.toString() + ".xml";
+        salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
+        employeeXML = pathPrefix + "Employee" + dateOperation.toString() + ".xml";
+    }
+
+    /**
      * Create primary stage and set up export data feature on close request
      */
     @Override
     public void start(Stage pStage) throws IOException {
         primaryStage = pStage;
         primaryStage.setOnCloseRequest(ev -> {
+            dateOperation = LocalDate.now();
+            alterXMLPath();
             try {
                 business.exportOrdersAsXML(salesXML);
                 business.exportMenuAsXML(menuXML);
                 business.exportInventoryAsXML(ingredientsXML);
                 business.exportSupplierAsXML(suppliersXML);
+                business.exportEmployeeAsXML(employeeXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }

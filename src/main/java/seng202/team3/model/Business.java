@@ -29,6 +29,7 @@ public class Business {
 
     private int lastOrderID;
 
+
     /**
      * Constructor of Business class
      *
@@ -168,6 +169,10 @@ public class Business {
         menuLoader.exportMenuData(file, menuManager);
     }
 
+    public void exportEmployeeAsXML(String file) throws JAXBException, IOException {
+        EmployeeLoader employeeLoader = new EmployeeLoader();
+        employeeLoader.exportEmployeeData(file, employeeManager);
+    }
 
     /**
      * gets the lastOrderID

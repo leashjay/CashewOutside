@@ -105,7 +105,6 @@ public class AddXMLController {
 
         showErrorMessage(fileString);
 
-        //TODO: link menu item tab with menuitemxml screen
         stage = (Stage) importMenuItemXMLButton.getScene().getWindow();
         MenuItemTabController.getInstance().updateMenuItemTable();
     }
@@ -126,7 +125,7 @@ public class AddXMLController {
 
         if (errorMessage != null && errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
-            feedbackMessage.setVisible(false);
+            feedbackMessage.setVisible(true);
         } else {
             feedbackMessage.setText(errorMessage);
             errorMessageList.clear();
@@ -140,6 +139,8 @@ public class AddXMLController {
      */
     public void browseButtonPressed() {
         fileChooser.setTitle("Select XML files");
+        File defaultDirectory = new File("./src");
+        fileChooser.setInitialDirectory(defaultDirectory);
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());

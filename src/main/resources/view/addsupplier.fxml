@@ -153,7 +153,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="19">
                <children>
                   <TextField fx:id="urlTextField" promptText="Enter URL here" />
-                  <Text fx:id="urlErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid URL" visible="false" />
+                  <Text fx:id="urlErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="ERROR: Please enter a valid URL such as https://address.com" visible="false" />
                </children>
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
@@ -164,7 +164,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </TextField>
-            <Text fx:id="phoneErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a valid Number" visible="false" GridPane.rowIndex="17">
+            <Text fx:id="phoneErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Error: Please enter a 9 or 10 digit number" visible="false" GridPane.rowIndex="17">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>

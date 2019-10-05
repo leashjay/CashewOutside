@@ -34,6 +34,12 @@ public class ManuallyAddIngredientController {
     private TextField nameTextField;
 
     @FXML
+    private TextField quantityTextField;
+
+    @FXML
+    private Text quantityErrorText;
+
+    @FXML
     private TextField costTextField;
 
     @FXML
@@ -57,6 +63,7 @@ public class ManuallyAddIngredientController {
     @FXML
     private Text costErrorText;
 
+
     /**
      * Method called to set the initial values and the GUI for the form.
      */
@@ -79,10 +86,15 @@ public class ManuallyAddIngredientController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
-        if(InputValidationHelper.checkEmpty(idTextField, idErrorText)){
+
+        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
             hasError = true;
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
+            hasError = true;
+        }
+
+        if (InputValidationHelper.isValidFloat(quantityTextField, quantityErrorText) == false){
             hasError = true;
         }
 
@@ -93,15 +105,17 @@ public class ManuallyAddIngredientController {
         return hasError;
     }
 
+
     /**
      * Method that adds a supplier using the data that the user has given
      */
     public void addIngredient() throws JAXBException, IOException {
-        if(!checkForErrors()) {
+        if (checkForErrors() == false) {
             String id = idTextField.getText();
             String name = nameTextField.getText();
             UnitType unitType = unitTypeChoiceBox.getValue();
             float cost = Float.parseFloat(costTextField.getText());
+            float quantity = Float.parseFloat(quantityTextField.getText());
 
             ThreeValueLogic isGlutenFree;
             ThreeValueLogic isVegan;
@@ -126,7 +140,7 @@ public class ManuallyAddIngredientController {
             }
 
 
-            Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost);
+            Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost, quantity);
 
             truckInventory.addIngredient(newIngredient);
             Stage stage = (Stage) addIngredientButton.getScene().getWindow();
@@ -136,7 +150,10 @@ public class ManuallyAddIngredientController {
             stage.close();
 
             BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
+
+
         }
 
     }
 }
+
