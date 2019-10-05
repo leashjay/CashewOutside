@@ -74,6 +74,8 @@ public class SupplierTabController
     @FXML
     private TableColumn<Supplier, Button> deleteButtonCol;
 
+    public static boolean delete = false;
+
     public void initialize() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -84,7 +86,11 @@ public class SupplierTabController
         phoneTypeCol.setCellValueFactory(new PropertyValueFactory<>("phoneType"));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", supplier -> {
-            supplierHandler.removeSupplier(supplier.getSid());
+            ConfirmDeletePopup.display('S');
+            if (delete == true) {
+                delete = false;
+                supplierHandler.removeSupplier(supplier.getSid());
+            }
             updateSupplierTable();
         }));
 

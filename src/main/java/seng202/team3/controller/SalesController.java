@@ -229,16 +229,17 @@ public class SalesController {
         checkVegan.setSelected(veganSelected);
         checkVegetarian.setSelected(vegetarianSelected);
         checkGF.setText("Gluten Free");
-        checkVegan.setText("Vegan");
-        checkVegetarian.setText("Vegetarian");
+        checkVegan.setText("Vegan        ");
+        checkVegetarian.setText("Vegetarian ");
+        GridPane.setConstraints(checkGF, column, row, 1, 1, HPos.CENTER, VPos.TOP);
+        GridPane.setConstraints(checkVegan, column, row, 1, 1, HPos.CENTER, VPos.BOTTOM);
+        GridPane.setConstraints(checkVegetarian, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
         gridPane.add(checkGF, column, row);
-        column++;
         gridPane.add(checkVegan, column, row);
-        column++;
         gridPane.add(checkVegetarian, column, row);
         row++;
         column = 0;
-        filterButton.setOnAction(e -> filterItems(checkGF, checkVegan, checkVegetarian));
+        filterButton.setOnAction(e -> filterItems(checkGF, checkVegan, checkVegetarian,gridPane));
 
 
         for (MenuItem menuItem : menuItems.values()) {
@@ -267,12 +268,21 @@ public class SalesController {
         }
     }
 
-    public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian) {
+    public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian, GridPane grid) {
         Business business = BusinessApp.getBusiness();
+
         Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
-        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
+        HashMap<String, MenuItem> chosenHashMap = new HashMap<>();
+
+        if (grid == foodItemGrid) {
+            chosenHashMap = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        } else {
+            chosenHashMap = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
+        }
+
         HashMap<String, MenuItem> filteredItems = new HashMap<>();
-        for (Map.Entry<String, MenuItem> entry : foodMenuItems.entrySet()) {
+        for (Map.Entry<String, MenuItem> entry : chosenHashMap.entrySet()) {
             if (gf.isSelected()) {
                 gfSelected = true;
                 if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
@@ -289,11 +299,16 @@ public class SalesController {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
             } else {vegetarianSelected = false;} if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
-                filteredItems = foodMenuItems;
+                filteredItems = chosenHashMap;
             }
         }
-        foodItemGrid.getChildren().clear();
-        addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
+        if (grid == drinkItemGrid) {
+            drinkItemGrid.getChildren().clear();
+            addMenuItemButtonsToGridPane(filteredItems, drinkItemGrid);
+        } else if (grid == foodItemGrid) {
+            foodItemGrid.getChildren().clear();
+            addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
+        }
 
     }
 

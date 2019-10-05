@@ -66,6 +66,7 @@ public class MenuItemTabController {
         instance = this;
     }
 
+    public static boolean delete = false;
 
     /**
      * Returns an instance of the MenuItemTabController so other controller classes can use its methods
@@ -91,10 +92,15 @@ public class MenuItemTabController {
             //TODO implement logic for showing ingredients in menu item
         }));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", menuItem -> {
-            menu.removeMenuItem(menuItem.getId());
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", menuItem ->         {
+            ConfirmDeletePopup.display('M');
+            if (delete == true) {
+                delete = false;
+                menu.removeMenuItem(menuItem.getId());
+            }
             updateMenuItemTable();
         }));
+
 
         List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));

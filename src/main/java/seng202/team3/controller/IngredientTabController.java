@@ -68,6 +68,8 @@ public class IngredientTabController {
 
     private static IngredientTabController instance;
 
+    public static boolean delete = false;
+
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
 
     /**
@@ -98,10 +100,15 @@ public class IngredientTabController {
         unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient -> {
-            inventory.removeIngredient(ingredient.getCode());
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient ->         {
+            ConfirmDeletePopup.display('I');
+            if (delete == true) {
+                delete = false;
+                inventory.removeIngredient(ingredient.getCode());
+            }
             updateIngredientTable();
         }));
+
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
             System.out.println("EDIT BUTTON CLICKED");
