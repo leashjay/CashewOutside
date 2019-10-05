@@ -17,6 +17,14 @@
 <suppliers>
    <description>Some sample supplier data</description>
    <providers>
+       <supplier type="MOBILE">
+           <sid>s3</sid>
+           <name>Admiral Benjamin's Seafoods</name>
+           <address>86 Low Street, Christchurch</address>
+           <phone>021345666</phone>
+           <email>bigben@cfoods.co.nz</email>
+           <url>cfoods.co.nz</url>
+       </supplier>
       <supplier type="WORK">
          <sid>s4</sid>
          <name>Dave's Drinks</name>

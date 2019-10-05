@@ -14,6 +14,7 @@ import seng202.team3.view.BusinessApp;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class AddXMLController {
@@ -63,10 +64,13 @@ public class AddXMLController {
      */
     public void addSupplierXML() throws IOException {
         try {
+            Paths.get(fileString);
             supplierHandler.addSupplierFromXML(fileString);
             BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);
@@ -80,10 +84,13 @@ public class AddXMLController {
      */
     public void addIngredientXML() throws IOException {
         try {
+            Paths.get(fileString);
             inventory.addIngredientsFromXML(fileString);
             BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);
@@ -97,10 +104,13 @@ public class AddXMLController {
      */
     public void addMenuItemXML() throws IOException {
         try {
+            Paths.get(fileString);
             menu.addMenuItemFromXML(fileString);
             BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);

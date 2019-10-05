@@ -21,6 +21,11 @@
 <inventory>
    <description>Our ingredients in no particular order (incomplete).</description>
    <ingredients>
+       <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.8">
+           <code>TSauce</code>
+           <name>Tomato sauce</name>
+           <quantity>500.0</quantity>
+       </ingredient>
       <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="NO" cost="1.0">
          <code>BBun</code>
          <name>Hamburger bun</name>
