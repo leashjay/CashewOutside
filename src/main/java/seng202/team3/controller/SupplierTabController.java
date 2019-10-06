@@ -9,15 +9,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Supplier;
 import seng202.team3.model.SupplierHandler;
+import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.ActionButtonTableCell;
-import seng202.team3.util.PhoneType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +78,14 @@ public class SupplierTabController
     @FXML
     private TableColumn<Supplier, Button> deleteButtonCol;
 
+    @FXML
+    private AnchorPane supplierTabAnchorPane;
+
     public static boolean delete = false;
+
+    private FileChooser chooser;
+
+    private SuppliersLoader suppliersLoader;
 
     public void initialize() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("Sid"));
@@ -137,6 +148,28 @@ public class SupplierTabController
     public void updateSupplierTable(){
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
         supplierTable.setItems(FXCollections.observableArrayList(suppliers));
+    }
+
+    /**
+     * Created file chooser and set extension filter to only export XML file
+     */
+    private void initializeFileChooser() {
+        chooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML Files (*.xml)|*.xml", "*.xml");
+        chooser.getExtensionFilters().add(extFilter);
+    }
+
+    /**
+     * Export supplier data as XML file to chosen directory
+     */
+    public void exportSuppliersXML() throws JAXBException, IOException {
+        initializeFileChooser();
+        Stage stage = (Stage) supplierTabAnchorPane.getScene().getWindow();
+        File file = chooser.showSaveDialog(stage);
+        if (file != null) {
+            suppliersLoader = new SuppliersLoader();
+            suppliersLoader.exportSupplierData(file.getPath(), supplierHandler);
+        }
     }
 
 }

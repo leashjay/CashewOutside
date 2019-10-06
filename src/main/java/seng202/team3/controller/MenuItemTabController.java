@@ -9,16 +9,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
-import seng202.team3.model.MenuList;
+import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ItemType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +58,16 @@ public class MenuItemTabController {
     @FXML
     private TableColumn<MenuItem, Button> deleteButtonCol;
 
+    @FXML
+    private AnchorPane menuTabAnchorPane;
+
     private static MenuItemTabController instance;
 
     private Menu menu = BusinessApp.getBusiness().getMenuManager();
+
+    private FileChooser chooser;
+
+    private MenuLoader menuLoader;
 
     /**
      * Holds an instance of the MenuItemTabController class so other controllers can call its methods
@@ -128,4 +138,27 @@ public class MenuItemTabController {
         List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
     }
+
+    /**
+     * Create file chooser and set extension filter to only export XML file
+     */
+    private void initializeFileChooser() {
+        chooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML Files (*.xml)|*.xml", "*.xml");
+        chooser.getExtensionFilters().add(extFilter);
+    }
+
+    /**
+     * Export menu data as xml in chosen directory
+     */
+    public void exportMenuXML() throws JAXBException, IOException {
+        initializeFileChooser();
+        Stage stage = (Stage) menuTabAnchorPane.getScene().getWindow();
+        File file = chooser.showSaveDialog(stage);
+        if (file != null) {
+            menuLoader = new MenuLoader();
+            menuLoader.exportMenuData(file.getPath(), menu);
+        }
+    }
+
 }
