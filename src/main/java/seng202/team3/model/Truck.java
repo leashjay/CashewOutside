@@ -24,6 +24,8 @@ public class Truck {
      */
     private Inventory truckInventory;
 
+    public float currentFloat;
+
     /**
      * Constructor for Truck class
      * @param ingredientsXML path to ingredientsXML
