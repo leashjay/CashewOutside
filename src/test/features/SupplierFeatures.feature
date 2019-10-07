@@ -1,7 +1,7 @@
-#Feature: Supplier feature.
-#    Some example scenarios involving suppliers
-#
-#    Scenario: Missing email
-#        Given Supplier Funky Kumquat has no URL
-#        When The Funky Kumquat is loaded
-#        Then a default URL is assigned
+Feature: Supplier management
+
+  Background:
+    Given a "BusinessName" for operation
+    And a cash float
+    And an ingredients "inventory" to hold ingredients
+    And a database of sales "orders" to hold all orders made

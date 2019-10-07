@@ -139,7 +139,7 @@ public class Ingredient {
      * Getter for quantity of ingredient
      * @return quantity
      */
-    public float getQuantity() {
+    public Float getQuantity() {
         return quantity;
     }
 

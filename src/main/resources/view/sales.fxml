@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.*?>
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SalesController">
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SalesController">
     <top>
         <HBox prefHeight="175.0" BorderPane.alignment="CENTER">
             <children>
@@ -271,11 +285,6 @@
                                                 <Polygon fill="#ff1f2d" points="59.666748046875, -23.16680908203125, 37.8333740234375, 2.83319091796875, 37.8333740234375, 2.83319091796875, 59.666748046875, 30.83319091796875, 59.666748046875, 14.83319091796875, 87.8333740234375, 14.83319091796875, 87.8333740234375, -7.6666259765625, 59.666748046875, -7.6666259765625" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                             </children>
                                         </GridPane>
-                                        <Button fx:id="cashButton" mnemonicParsing="false" onAction="#cashButtonPressed" prefHeight="73.0" prefWidth="109.0" text="Cash Float" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Button>
                                     </children>
                                 </GridPane>
                             </children>
@@ -288,22 +297,14 @@
                             <children>
                                 <TableView fx:id="orderTable" stylesheets="@../gui/styles.css" HBox.hgrow="SOMETIMES">
                                     <columns>
-                                        <TableColumn fx:id="idCol" maxWidth="500.0" minWidth="30.0" prefWidth="51.0"
-                                                     text="ID"/>
-                                        <TableColumn fx:id="nameCol" maxWidth="500.0" minWidth="129.0" prefWidth="180.0"
-                                                     text="Name"/>
-                                        <TableColumn fx:id="priceCol" maxWidth="500.0" minWidth="30.0" prefWidth="101.0"
-                                                     text="Price"/>
-                                        <TableColumn fx:id="dateCol" maxWidth="500.0" minWidth="80.0" prefWidth="90.0"
-                                                     text="Date"/>
-                                        <TableColumn fx:id="timeCol" maxWidth="500.0" minWidth="108.0" prefWidth="108.0"
-                                                     text="Time"/>
-                                        <TableColumn fx:id="numItemsCol" maxWidth="500.0" minWidth="85.0"
-                                                     prefWidth="85.0" text="NumItems"/>
-                                        <TableColumn fx:id="statusCol" maxWidth="500.0" minWidth="127.0"
-                                                     prefWidth="159.0" text="Status"/>
-                                        <TableColumn fx:id="viewCol" maxWidth="500.0" minWidth="147.0" prefWidth="147.0"
-                                                     sortable="false" text="View"/>
+                                        <TableColumn fx:id="idCol" maxWidth="500.0" minWidth="30.0" prefWidth="51.0" text="ID" />
+                                        <TableColumn fx:id="nameCol" maxWidth="500.0" minWidth="129.0" prefWidth="180.0" text="Name" />
+                                        <TableColumn fx:id="priceCol" maxWidth="500.0" minWidth="30.0" prefWidth="101.0" text="Price" />
+                                        <TableColumn fx:id="dateCol" maxWidth="500.0" minWidth="80.0" prefWidth="90.0" text="Date" />
+                                        <TableColumn fx:id="timeCol" maxWidth="500.0" minWidth="108.0" prefWidth="108.0" text="Time" />
+                                        <TableColumn fx:id="numItemsCol" maxWidth="500.0" minWidth="85.0" prefWidth="85.0" text="NumItems" />
+                                        <TableColumn fx:id="statusCol" maxWidth="500.0" minWidth="127.0" prefWidth="159.0" text="Status" />
+                                        <TableColumn fx:id="viewCol" maxWidth="500.0" minWidth="147.0" prefWidth="147.0" sortable="false" text="View" />
                                     </columns>
                                 </TableView>
                             </children>
