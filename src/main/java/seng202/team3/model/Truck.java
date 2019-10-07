@@ -32,6 +32,8 @@ public class Truck {
     @XmlElement(name = "cashAccount")
     private float cashAccount;
 
+    public float currentFloat;
+
     public Truck() {
     }
 
