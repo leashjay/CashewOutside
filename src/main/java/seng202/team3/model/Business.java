@@ -37,7 +37,7 @@ public class Business {
      * @param menuXML        path to menuXML
      * @param suppliersXML   path to suppliersXML
      */
-    public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML, String employeeXML) throws JAXBException {
+    public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML, String employeeXML, String truckXML) throws JAXBException {
         thisTruck = new Truck(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
@@ -172,6 +172,11 @@ public class Business {
     public void exportEmployeeAsXML(String file) throws JAXBException, IOException {
         EmployeeLoader employeeLoader = new EmployeeLoader();
         employeeLoader.exportEmployeeData(file, employeeManager);
+    }
+
+    public void exportTruckAsXML(String file) throws JAXBException, IOException {
+        TruckLoader truckLoader = new TruckLoader();
+        truckLoader.exportTruckData(file, thisTruck);
     }
 
     /**
