@@ -133,8 +133,11 @@ public class AddXMLController {
             errorMessage += " \n";
         }
 
-        if (errorMessage != null && errorMessage.length() == 0) {
+        if (errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
+            feedbackMessage.setVisible(true);
+        } else if (errorMessage.contains("null")) {
+            feedbackMessage.setText("File chosen violates dtd. Please choose an appropriate XML file");
             feedbackMessage.setVisible(true);
         } else {
             feedbackMessage.setText(errorMessage);
@@ -149,8 +152,6 @@ public class AddXMLController {
      */
     public void browseButtonPressed() {
         fileChooser.setTitle("Select XML files");
-        File defaultDirectory = new File("./src");
-        fileChooser.setInitialDirectory(defaultDirectory);
         selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
