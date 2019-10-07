@@ -4,6 +4,10 @@ package seng202.team3.model;
 import seng202.team3.parsing.InventoryLoader;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +16,8 @@ import java.util.HashMap;
 /**
  * Truck class holds truck inventory including stock and cash floats
  **/
-
+@XmlRootElement(name = "truck")
+@XmlAccessorType(XmlAccessType.NONE)
 public class Truck {
     /**
      * cashFloat Key: denomination of type int (round to the nearest hundredth)
@@ -23,6 +28,12 @@ public class Truck {
      * Inventory specific to a truck
      */
     private Inventory truckInventory;
+
+    @XmlElement(name = "cashAccount")
+    private float cashAccount;
+
+    public Truck() {
+    }
 
     /**
      * Constructor for Truck class
@@ -44,6 +55,8 @@ public class Truck {
         cashFloat.put(50, 10);
         cashFloat.put(20, 10);
         cashFloat.put(10, 10);
+
+        cashAccount += 500;
     }
 
     /**
@@ -75,51 +88,14 @@ public class Truck {
         return cashFloat;
     }
 
-
-    /**
-     * Parse denomination string into cashFloat
-     * @param denomStr denomination string from Sales Screen
+    /** public static
+     * Getter for cash account
+     * @return cashAccount
      */
-    public void addDenom(String denomStr) {
-        int denom;
-        switch (denomStr) {
-            case "NZD 100":
-                denom = 10000;
-                break;
-            case "NZD 50":
-                denom = 5000;
-                break;
-            case "NZD 20":
-                denom = 2000;
-                break;
-            case "NZD 10":
-                denom = 1000;
-                break;
-            case "NZD 5":
-                denom = 500;
-                break;
-            case "NZD 2":
-                denom = 200;
-                break;
-            case "NZD 1":
-                denom = 100;
-                break;
-            case "NZD 0.5":
-                denom = 50;
-                break;
-            case "NZD 0.2":
-                denom = 20;
-                break;
-            case "NZD 0.1":
-                denom = 10;
-                break;
-            default:
-                denom = 0;
-        }
-        if (denom != 0) {
-            cashFloat.put(denom, cashFloat.get(denom) + 1);
-        }
+    public float getCashAccount() {
+        return cashAccount;
     }
+
 
     /**
      * uses a greedy algorithm to increase the Truck's cashFloat

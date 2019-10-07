@@ -31,6 +31,11 @@ public class BusinessApp extends Application {
     /** Source employee XML file to load data from */
     public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
 
+    /**
+     * Source truck XML file to load data from
+     */
+    public static String truckXML = "./src/main/resources/data/realdata/Truck.xml";
+
     /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
 
@@ -53,7 +58,7 @@ public class BusinessApp extends Application {
     static {
         try {
             checkBusinessDay();
-            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML);
+            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML, truckXML);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,7 +72,8 @@ public class BusinessApp extends Application {
         File salesFile = new File(salesXML);
         File suppliersFile = new File(suppliersXML);
         File employeeFile = new File(employeeXML);
-        if (!ingredientsFile.exists() && !menuFile.exists() && !salesFile.exists() && !suppliersFile.exists() && !employeeFile.exists()) {
+        File truckFile = new File(truckXML);
+        if (!ingredientsFile.exists() && !menuFile.exists() && !salesFile.exists() && !suppliersFile.exists() && !employeeFile.exists() && !truckFile.exists()) {
             dateOperation = LocalDate.now().minusDays(1);
             alterXMLPath();
         }
@@ -132,6 +138,7 @@ public class BusinessApp extends Application {
         suppliersXML = pathPrefix + "Suppliers" + dateOperation.toString() + ".xml";
         salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
         employeeXML = pathPrefix + "Employee" + dateOperation.toString() + ".xml";
+        truckXML = pathPrefix + "Truck" + dateOperation.toString() + ".xml";
     }
 
     /**
@@ -149,6 +156,7 @@ public class BusinessApp extends Application {
                 business.exportInventoryAsXML(ingredientsXML);
                 business.exportSupplierAsXML(suppliersXML);
                 business.exportEmployeeAsXML(employeeXML);
+                business.exportTruckAsXML(truckXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }

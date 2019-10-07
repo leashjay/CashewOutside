@@ -152,7 +152,7 @@ public class AddXMLController {
      */
     public void browseButtonPressed() {
         fileChooser.setTitle("Select XML files");
-        selectedFile = fileChooser.showOpenDialog(null);
+        selectedFile = fileChooser.showOpenDialog(feedbackMessage.getScene().getWindow());
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
             fileString = selectedFile.getPath();

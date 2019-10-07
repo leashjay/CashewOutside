@@ -37,7 +37,7 @@ public class LoadingDataSteps {
     /*Background conditions setting up new business */
     @Given("a {string} for operation")
     public void aForOperation(String string) throws JAXBException {
-        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
     }
 
     /*Background conditions setting up inventory list */

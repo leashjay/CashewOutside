@@ -9,8 +9,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,12 +26,20 @@ public class SalesHandler {
 
     public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
+    private float cashAccount;
+
 
     /**
      * The orders that are to be displayed in the kitchen window
      */
     public HashMap<Integer, Order> displayOrders = new HashMap<>(); // Orders keyed to their orderId
 
+
+/*    @XmlElement(name = "cashAccount")
+    public float getCashAccountFromTruck() {
+        cashAccount = Truck.cashAccount;
+        return cashAccount;
+    }*/
 
     /**
      * Used for JAXB custom serialization
