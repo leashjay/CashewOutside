@@ -2,6 +2,7 @@ package seng202.team3.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -311,17 +312,26 @@ public class SalesController {
                 if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {gfSelected = false;} if (vegan.isSelected()) {
+            } else {
+                gfSelected = false;
+            }
+            if (vegan.isSelected()) {
                 veganSelected = true;
                 if (entry.getValue().isVegan() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {veganSelected = false;} if (vegetarian.isSelected()) {
+            } else {
+                veganSelected = false;
+            }
+            if (vegetarian.isSelected()) {
                 vegetarianSelected = true;
                 if (entry.getValue().isVegetarian() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {vegetarianSelected = false;} if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
+            } else {
+                vegetarianSelected = false;
+            }
+            if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
                 filteredItems = chosenHashMap;
             }
         }
@@ -332,7 +342,45 @@ public class SalesController {
             foodItemGrid.getChildren().clear();
             addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
         }
+    }
 
+    /**
+     * removes the rightmost character from payTextField, this function is used by the polygon on the make sale tab
+     */
+    @FXML
+    public void deleteCharFromCustomerPaysTextField() {
+        String curText = payTextField.getText();
+        int newLength = curText.length() - 1;
+        if (newLength >= 0) {
+            payTextField.setText(curText.substring(0, newLength));
+        }
+    }
+
+    /**
+     * helper of numberButtonsHandler
+     * adds a given character payTextField, this function is used by the buttons in the make sale tab
+     * @param character the character to add
+     */
+    private void addCharToCustomerPaysTextField(String character) {
+        payTextField.setText(payTextField.getText() + character);
+    }
+
+    /**
+     * the button handler for the number buttons on the make sale screen,
+     * adds characters to the Customer Pays Text Field, based on the text of the button
+     * @param event the event by the javaFX Button
+     */
+    @FXML
+    public void numberButtonsHandler(ActionEvent event) {
+        Object potentialButtonObject = event.getSource();
+        // Check to see if the Object is a Button
+        if (potentialButtonObject.getClass() == Button.class) {
+            Button numberButton = (Button) potentialButtonObject;
+            addCharToCustomerPaysTextField(numberButton.getText());
+        } else {
+            throw new Error("The Object that called numberButtonsHandler" +
+                    " was not a button and instead a: " + potentialButtonObject.getClass());
+        }
     }
 
     /**
@@ -424,7 +472,7 @@ public class SalesController {
         }
 
         // checking the amount the customer pays is valid
-        if (!curOrderPayment.equals("") && StringChecking.isFloat(curOrderPayment)) {
+        if (!curOrderPayment.equals("") && StringChecking.isTwoDPFLoat(curOrderPayment)) {
             change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
             if (change < 0) {
                 successfulOrder = false;
@@ -441,18 +489,18 @@ public class SalesController {
             if (stockDecreasedSuccessfully) {
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
-                curOrder.setTime(LocalTime.now());
-                curOrder.setDate(LocalDate.now());
+                curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();
+                BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
+                BusinessApp.getBusiness().exportOrdersAsXML(BusinessApp.salesXML);
             } else {
                 System.out.println("Not enough stock");
             }
         }
-        BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
-        BusinessApp.getBusiness().exportOrdersAsXML(BusinessApp.salesXML);
+
     }
 
 

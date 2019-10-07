@@ -22,6 +22,13 @@ public final class StringChecking {
     }
 
     /**
+     * method to check if the string is a valid positive float up to two decimal places
+     */
+    public static boolean isTwoDPFLoat(String stringToCheck) {
+        return stringToCheck.matches("[+]?([0-9]*[.])?[0-9]?[0-9]?") && !stringToCheck.equals(".");
+    }
+
+    /**
      * method to check if an string could be a valid email
      * regular expression taken from https://www.regular-expressions.info/email.html in accordance with RFC1035
      * *IMPORTANT*
