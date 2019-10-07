@@ -34,13 +34,15 @@ public class Inventory {
     private HashMap<String, Ingredient> ingredients;
 
     /** A number that indicates that an ingredient with the unit type COUNT has low stock */
-    private Float lowStockCount = 10f;
+    public static Float LOWSTOCKCOUNT = 10f;
 
     /** A number that indicates that an ingredient with the unit type GRAMS has low stock */
-    private Float lowStockGrams = 1000f;
+    public static Float LOWSTOCKGRAMS = 1000f;
 
     /** A number that indicates that an ingredient with the unit type ML has low stock */
-    private Float lowStockML = 1000f;
+    public static Float LOWSTOCKML = 1000f;
+
+    public static Float LOWSTOCKUNKNOWN = 1000f;
 
     /**
      * Inventory Loader object to call import and export method
@@ -172,11 +174,11 @@ public class Inventory {
      * @return a boolean indicating whether the ingredient has low stock
      */
     private Boolean checkLowStock(Ingredient ingredient) {
-        if (ingredient.getUnit() == UnitType.COUNT && ingredient.getQuantity() <= lowStockCount) {
+        if (ingredient.getUnit() == UnitType.COUNT && ingredient.getQuantity() <= LOWSTOCKCOUNT) {
             return true;
-        } else if (ingredient.getUnit() == UnitType.ML && ingredient.getQuantity() <= lowStockML) {
+        } else if (ingredient.getUnit() == UnitType.ML && ingredient.getQuantity() <= LOWSTOCKML) {
             return true;
-        } else if (ingredient.getUnit() == UnitType.GRAM && ingredient.getQuantity() <= lowStockGrams) {
+        } else if (ingredient.getUnit() == UnitType.GRAM && ingredient.getQuantity() <= LOWSTOCKGRAMS) {
             return true;
         }
         return false;

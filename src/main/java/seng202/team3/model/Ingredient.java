@@ -269,4 +269,28 @@ public class Ingredient {
             throw new Error("Not enough stock");
         }
     }
+
+    /**
+     * Returns a boolean whether the specified ingredient is lower than a low stock amount for that ingredients type
+     * @return true if the ingredient is lower than the low stock count
+     */
+    public boolean isLowStock(){
+        boolean isLow = false;
+        switch (unit){
+            case GRAM:
+                isLow = (quantity < Inventory.LOWSTOCKGRAMS);
+                break;
+            case COUNT:
+                isLow = (quantity < Inventory.LOWSTOCKCOUNT);
+                break;
+            case ML:
+                isLow = (quantity < Inventory.LOWSTOCKML);
+                break;
+            case UNKNOWN:
+                isLow = (quantity < Inventory.LOWSTOCKUNKNOWN);
+                break;
+
+        }
+        return isLow;
+    }
 }
