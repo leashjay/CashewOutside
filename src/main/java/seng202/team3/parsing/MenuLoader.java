@@ -84,12 +84,12 @@ public class MenuLoader {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             InputStream inputStream = new FileInputStream(new File(fileName));
             menuLoad = (Menu) unmarshaller.unmarshal(inputStream);
-        } catch (ParserConfigurationException pce) {
-            AddXMLController.errorMessageList.add(pce.getMessage());
-        } catch (SAXException spe) {
-            AddXMLController.errorMessageList.add(spe.getMessage());
         } catch (IOException ioe) {
-            AddXMLController.errorMessageList.add(ioe.getMessage());
+            AddXMLController.errorMessageList.add("File not found in directory");
+        } catch (SAXException spe) {
+            AddXMLController.errorMessageList.add("File format incompatible, please choose an XML file");
+        } catch (ParserConfigurationException pce) {
+            AddXMLController.errorMessageList.add("XML file chosen violates embedded dtd");
         }
         return menuLoad;
     }

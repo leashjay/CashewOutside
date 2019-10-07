@@ -100,7 +100,7 @@ public class Ingredient {
      */
 
     public Ingredient(String code, String name, UnitType unit, ThreeValueLogic isVeg, ThreeValueLogic isVegan,
-                      ThreeValueLogic isGF, float cost) {
+                      ThreeValueLogic isGF, float cost, float quantity) {
         this.code = code;
         this.name = name;
         this.unit = unit;
@@ -108,6 +108,7 @@ public class Ingredient {
         this.isVegan = isVegan;
         this.isGF = isGF;
         this.cost = cost;
+        this.quantity = quantity;
     }
 
     /**
@@ -138,7 +139,7 @@ public class Ingredient {
      * Getter for quantity of ingredient
      * @return quantity
      */
-    public float getQuantity() {
+    public Float getQuantity() {
         return quantity;
     }
 

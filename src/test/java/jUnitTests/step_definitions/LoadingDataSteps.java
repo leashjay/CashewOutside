@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import seng202.team3.model.*;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.parsing.SuppliersLoader;
+import seng202.team3.util.ItemType;
 import seng202.team3.util.MenuType;
 import seng202.team3.util.PhoneType;
 import seng202.team3.util.UnitType;
@@ -27,6 +28,7 @@ public class LoadingDataSteps {
     private Ingredient testIngredient;
     private SupplierHandler supplierHandler;
     private SuppliersLoader suppliersLoader;
+    private MenuItem testItem;
     private HashMap<String, Supplier> contactList;
     private Supplier GoodysGreens;
     private Business foodTruckBusiness;
@@ -35,7 +37,7 @@ public class LoadingDataSteps {
     /*Background conditions setting up new business */
     @Given("a {string} for operation")
     public void aForOperation(String string) throws JAXBException {
-        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
     }
 
     /*Background conditions setting up inventory list */
@@ -78,14 +80,20 @@ public class LoadingDataSteps {
 
     @Given("a Menu item is known")
     public void anMenuItemIsKnown() {
-        //have to ask jack to do this as I am struggleing to understand the code
-        throw new cucumber.api.PendingException();
+        Ingredient rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
+        HashMap riceStuff = new HashMap<>();
+        riceStuff.put(rice, 200f);
+        MenuItem testItem = new MenuItem("1", "Fried rice", riceStuff, ItemType.MAIN);
+        menuContents.put(testItem.getId(),testItem);
+        Menu testMenu = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
+        this.testMenu = testMenu;
+        this.testItem = testItem;
     }
+
 
     @Then("the menu item is in the program")
     public void theMenuItemIsInTheProgram() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertTrue(testMenu.searchMenuContent(testItem));
     }
 
     @When("a menu item is added")

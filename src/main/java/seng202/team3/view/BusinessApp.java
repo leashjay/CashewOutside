@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import seng202.team3.model.Business;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -24,36 +25,57 @@ public class BusinessApp extends Application {
     /** Source supplier XML file to load data from */
     public static String suppliersXML = "./src/main/resources/data/realdata/Suppliers.xml";
 
-    /**
-     * Source sales XML file to load data from
-     */
+    /** Source sales XML file to load data from */
     public static String salesXML = "./src/main/resources/data/realdata/Sales.xml";
 
-    /**
-     * Source employee XML file to load data from
-     */
+    /** Source employee XML file to load data from */
     public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
+
+    /**
+     * Source truck XML file to load data from
+     */
+    public static String truckXML = "./src/main/resources/data/realdata/Truck.xml";
+
     /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
+
     /** Business instance to hold all model classes data in memory */
     private static Business business;
+
     /**
      * Date of business operation (usually today)
      */
-    private LocalDate dateOperation;
+    private static LocalDate dateOperation;
+
     /**
      * XML path prefix
      */
-    private String pathPrefix = "./src/main/resources/data/realdata/";
+    private static String pathPrefix = "./src/main/resources/data/realdata/";
 
     /**
      * Creating a business instance when application is launched
      */
     static {
         try {
-            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML);
+            checkBusinessDay();
+            business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML, truckXML);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void checkBusinessDay() {
+        dateOperation = LocalDate.now();
+        alterXMLPath();
+        File ingredientsFile = new File(ingredientsXML);
+        File menuFile = new File(menuXML);
+        File salesFile = new File(salesXML);
+        File suppliersFile = new File(suppliersXML);
+        File employeeFile = new File(employeeXML);
+        File truckFile = new File(truckXML);
+        if (!ingredientsFile.exists() && !menuFile.exists() && !salesFile.exists() && !suppliersFile.exists() && !employeeFile.exists() && !truckFile.exists()) {
+            dateOperation = LocalDate.now().minusDays(1);
+            alterXMLPath();
         }
     }
 
@@ -98,7 +120,7 @@ public class BusinessApp extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
-    /**
+    /**suppleirsXML
      * Load kitchen page
      */
     public static void loadKitchenPage() throws IOException {
@@ -108,12 +130,25 @@ public class BusinessApp extends Application {
     }
 
     /**
+     * alter XML path to only export data accumulated until a certain date
+     */
+    public static void alterXMLPath() {
+        ingredientsXML = pathPrefix + "Ingredients" + dateOperation.toString() + ".xml";
+        menuXML = pathPrefix + "SampleMenu" + dateOperation.toString() + ".xml";
+        suppliersXML = pathPrefix + "Suppliers" + dateOperation.toString() + ".xml";
+        salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
+        employeeXML = pathPrefix + "Employee" + dateOperation.toString() + ".xml";
+        truckXML = pathPrefix + "Truck" + dateOperation.toString() + ".xml";
+    }
+
+    /**
      * Create primary stage and set up export data feature on close request
      */
     @Override
     public void start(Stage pStage) throws IOException {
         primaryStage = pStage;
         primaryStage.setOnCloseRequest(ev -> {
+            dateOperation = LocalDate.now();
             alterXMLPath();
             try {
                 business.exportOrdersAsXML(salesXML);
@@ -121,25 +156,13 @@ public class BusinessApp extends Application {
                 business.exportInventoryAsXML(ingredientsXML);
                 business.exportSupplierAsXML(suppliersXML);
                 business.exportEmployeeAsXML(employeeXML);
+                business.exportTruckAsXML(truckXML);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         loadMainPage();
         primaryStage.show();
-    }
-
-
-    /**
-     * alter XML path to only export data accumulated until a certain date
-     */
-    public void alterXMLPath() {
-        dateOperation = LocalDate.now();
-        ingredientsXML = pathPrefix + "Ingredients" + dateOperation.toString() + ".xml";
-        menuXML = pathPrefix + "SampleMenu" + dateOperation.toString() + ".xml";
-        suppliersXML = pathPrefix + "Suppliers" + dateOperation.toString() + ".xml";
-        salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
-        employeeXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
     }
 
     /**

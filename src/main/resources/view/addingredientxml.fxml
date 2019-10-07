@@ -5,9 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.AddXMLController">
-    <children>
-        <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="407.0" prefWidth="600.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="seng202.team3.controller.AddXMLController">
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="0.0" prefWidth="0.0" />
@@ -47,8 +48,8 @@
                     </GridPane.margin>
                 </Button>
                 <Text fx:id="feedbackMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;"
-                      text="Please insert a proper path" visible="false" GridPane.halignment="RIGHT"
-                      GridPane.rowIndex="3">
+                      text="Please insert a proper path" visible="false" wrappingWidth="400.0"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets right="20.0" />
                     </GridPane.margin>
@@ -60,5 +61,5 @@
             </Button>
             </children>
         </GridPane>
-    </children>
-</AnchorPane>
+    </center>
+</BorderPane>

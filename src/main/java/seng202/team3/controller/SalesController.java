@@ -104,6 +104,7 @@ public class SalesController {
 
     private final Insets gridPadding = new Insets(50, 50, 50, 50);
     private SalesHandler salesManager;
+    private Inventory truckInventory;
     private Order curOrder;
     private final float rowHeight = 150;
     private HashMap<MenuItem, MenuItemNode> currentOrderHBoxMenuItems = new HashMap<>();
@@ -129,6 +130,7 @@ public class SalesController {
         curOrder = new Order();
         curOrder.setToNextID();
         salesManager = business.getSalesHandler();
+        truckInventory = business.getTruck().getInventory();
         // declare what ItemTypes are assigned to which GridPane
         Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
         Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
@@ -230,16 +232,17 @@ public class SalesController {
         checkVegan.setSelected(veganSelected);
         checkVegetarian.setSelected(vegetarianSelected);
         checkGF.setText("Gluten Free");
-        checkVegan.setText("Vegan");
-        checkVegetarian.setText("Vegetarian");
+        checkVegan.setText("Vegan        ");
+        checkVegetarian.setText("Vegetarian ");
         gridPane.add(checkGF, column, row);
         column++;
         gridPane.add(checkVegan, column, row);
         column++;
+
         gridPane.add(checkVegetarian, column, row);
         row++;
         column = 0;
-        filterButton.setOnAction(e -> filterItems(checkGF, checkVegan, checkVegetarian));
+        filterButton.setOnAction(e -> filterItems(checkGF, checkVegan, checkVegetarian,gridPane));
 
 
         for (MenuItem menuItem : menuItems.values()) {
@@ -248,13 +251,18 @@ public class SalesController {
             // TODO Have the buttons display their flags (gf, veg, vegan)
             // TODO Format GridPane properly.
 
-            newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
-                    "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
-
             newButton.setPadding(gridPadding); // This line maybe irrelevant, unsure right now.
             GridPane.setConstraints(newButton, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
             newButton.setText(menuItem.getName());
             newButton.setOnAction(e -> addToCurrentOrder(menuItem)); // lambda function
+            if (hasEnoughStock(menuItem)) {
+                newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
+                        "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
+            } else {
+                newButton.setDisable(true);
+                newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
+                        "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #808080;-fx-wrap-text: true;");
+            }
             gridPane.add(newButton, column, row);
 
             column++;
@@ -268,12 +276,37 @@ public class SalesController {
         }
     }
 
-    public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian) {
+    public boolean hasEnoughStock(MenuItem menuItem) {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : menuItem.getIngredients().entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            if (truckIngredient.getQuantity() != null)  {
+                truckIngredient.setQuantity(0);
+            }
+            if (truckIngredient.getQuantity() < amountRequired) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian, GridPane grid) {
         Business business = BusinessApp.getBusiness();
+
         Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
-        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
+        HashMap<String, MenuItem> chosenHashMap = new HashMap<>();
+
+        if (grid == foodItemGrid) {
+            chosenHashMap = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+        } else {
+            chosenHashMap = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
+        }
+
         HashMap<String, MenuItem> filteredItems = new HashMap<>();
-        for (Map.Entry<String, MenuItem> entry : foodMenuItems.entrySet()) {
+        for (Map.Entry<String, MenuItem> entry : chosenHashMap.entrySet()) {
             if (gf.isSelected()) {
                 gfSelected = true;
                 if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
@@ -290,13 +323,16 @@ public class SalesController {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
             } else {vegetarianSelected = false;} if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
-                filteredItems = foodMenuItems;
+                filteredItems = chosenHashMap;
             }
         }
-        foodItemGrid.getChildren().clear();
-        addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
-
-    }
+        if (grid == drinkItemGrid) {
+            drinkItemGrid.getChildren().clear();
+            addMenuItemButtonsToGridPane(filteredItems, drinkItemGrid);
+        } else if (grid == foodItemGrid) {
+            foodItemGrid.getChildren().clear();
+            addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
+        }
 
     /**
      * removes the rightmost character from payTextField, this function is used by the polygon on the make sale tab

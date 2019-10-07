@@ -128,7 +128,7 @@ public class InventoryTests {
      */
     @Test
     public void testAddIngredientFromXML() throws JAXBException {
-        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
         Inventory testInventory = testBusiness.getTruck().getInventory();
         assertEquals(30, testInventory.getIngredients().size());
 
@@ -143,7 +143,7 @@ public class InventoryTests {
      */
     @Test
     public void testCompareAndAdd() throws JAXBException {
-        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
         Inventory testInventory = testBusiness.getTruck().getInventory();
         Float saltQuantity = testInventory.getIngredients().get("Salt").getQuantity();
         assertEquals(500f, saltQuantity);

@@ -14,6 +14,7 @@ import seng202.team3.view.BusinessApp;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class AddXMLController {
@@ -63,10 +64,13 @@ public class AddXMLController {
      */
     public void addSupplierXML() throws IOException {
         try {
+            Paths.get(fileString);
             supplierHandler.addSupplierFromXML(fileString);
             BusinessApp.getBusiness().exportSupplierAsXML(BusinessApp.suppliersXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);
@@ -80,10 +84,13 @@ public class AddXMLController {
      */
     public void addIngredientXML() throws IOException {
         try {
+            Paths.get(fileString);
             inventory.addIngredientsFromXML(fileString);
             BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);
@@ -97,15 +104,17 @@ public class AddXMLController {
      */
     public void addMenuItemXML() throws IOException {
         try {
+            Paths.get(fileString);
             menu.addMenuItemFromXML(fileString);
             BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
+        } catch (NullPointerException npe) {
+            errorMessageList.add("Invalid path entered, please enter a proper path to file");
         }
 
         showErrorMessage(fileString);
 
-        //TODO: link menu item tab with menuitemxml screen
         stage = (Stage) importMenuItemXMLButton.getScene().getWindow();
         MenuItemTabController.getInstance().updateMenuItemTable();
     }
@@ -124,9 +133,12 @@ public class AddXMLController {
             errorMessage += " \n";
         }
 
-        if (errorMessage != null && errorMessage.length() == 0) {
+        if (errorMessage.length() == 0) {
             feedbackMessage.setText("Import from " + fileName + " is a success!");
-            feedbackMessage.setVisible(false);
+            feedbackMessage.setVisible(true);
+        } else if (errorMessage.contains("null")) {
+            feedbackMessage.setText("File chosen violates dtd. Please choose an appropriate XML file");
+            feedbackMessage.setVisible(true);
         } else {
             feedbackMessage.setText(errorMessage);
             errorMessageList.clear();
@@ -140,7 +152,7 @@ public class AddXMLController {
      */
     public void browseButtonPressed() {
         fileChooser.setTitle("Select XML files");
-        selectedFile = fileChooser.showOpenDialog(null);
+        selectedFile = fileChooser.showOpenDialog(feedbackMessage.getScene().getWindow());
         if (selectedFile != null) {
             pathString.setText("File selected: " + selectedFile.getName());
             fileString = selectedFile.getPath();

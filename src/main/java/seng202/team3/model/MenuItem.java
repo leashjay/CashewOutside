@@ -93,6 +93,7 @@ public class MenuItem {
         this.name = name;
         this.ingredients = ingredients;
         this.type = type;
+        this.numServings = 1;
     }
 
     /**

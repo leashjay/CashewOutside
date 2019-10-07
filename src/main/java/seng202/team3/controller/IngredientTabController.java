@@ -9,15 +9,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
+import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +60,9 @@ public class IngredientTabController {
     private TableColumn<Ingredient, Button> deleteButtonCol;
 
     @FXML
+    private TableColumn<Ingredient, Button> editButtonCol;
+
+    @FXML
     private TableColumn<Ingredient, ThreeValueLogic> glutenFreeCol;
 
     @FXML
@@ -63,9 +71,18 @@ public class IngredientTabController {
     @FXML
     private TableColumn<Ingredient, ThreeValueLogic> veganCol;
 
+    @FXML
+    private AnchorPane ingredientTabAnchorPane;
+
     private static IngredientTabController instance;
 
+    public static boolean delete = false;
+
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+    private FileChooser chooser;
+
+    private InventoryLoader inventoryLoader;
 
     /**
      * Holds an instance of the IngredientTabController class so other controllers can call it's methods
@@ -95,31 +112,50 @@ public class IngredientTabController {
         unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("Unit"));
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
-        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient -> {
-            inventory.removeIngredient(ingredient.getCode());
+        deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient ->         {
+            ConfirmDeletePopup.display('I');
+            if (delete == true) {
+                delete = false;
+                inventory.removeIngredient(ingredient.getCode());
+            }
             updateIngredientTable();
         }));
 
-        List<Ingredient> ingredients = new ArrayList<Ingredient>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
+
+        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
+            System.out.println("EDIT BUTTON CLICKED");
+            ManuallyAddIngredientController controller = loadAddOrEditIngedientScreen("Edit ingredient");
+            controller.setParameters(ingredient);
+        }));
+
+        List<Ingredient> ingredients = new ArrayList<>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
+    }
+
+    private ManuallyAddIngredientController loadAddOrEditIngedientScreen(String title) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addingredient.fxml"));
+            Parent root = loader.load();
+            ManuallyAddIngredientController controller = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 350, 500));
+            stage.showAndWait();
+            return controller;
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
      * Method that opens the input form to add an ingredient manually
      */
     public void openAddIngredientScreen(){
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.setTitle("Add supplier");
-            stage.setScene(new Scene(root, 350, 500));
-            stage.showAndWait();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
+        loadAddOrEditIngedientScreen("Add ingredient");
     }
 
     /**
@@ -144,6 +180,29 @@ public class IngredientTabController {
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
+    /**
+     * Create file chooser and set extension filter to only export XML file
+     */
+    private void initializeFileChooser() {
+        chooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML Files (*.xml)|*.xml", "*.xml");
+        chooser.getExtensionFilters().add(extFilter);
+    }
 
-
+    /**
+     * Export ingredients data as XML file to chosen directory
+     */
+    public void exportIngredientsXML() throws JAXBException, IOException {
+        initializeFileChooser();
+        Stage stage = (Stage) ingredientTabAnchorPane.getScene().getWindow();
+        File file = chooser.showSaveDialog(stage);
+        if (file != null) {
+            inventoryLoader = new InventoryLoader();
+            inventoryLoader.exportIngredientsData(file.getPath(), inventory);
+        }
+    }
 }
+
+
+
+
