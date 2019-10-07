@@ -8,8 +8,7 @@ public class MenuManagementSteps {
 
     @Given("choc and regMilk in inventory")
     public void chocAndRegMilkInInventory() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+
     }
 
     @When("a menu item is created for chocolate milk")
