@@ -133,32 +133,33 @@ public class IngredientTabController {
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
             System.out.println("EDIT BUTTON CLICKED");
             editOrAddMode = EDIT_MODE;
-            ManuallyAddIngredientController controller = loadAddOrEditIngedientScreen("Edit ingredient");
-            controller.setParameters(ingredient);
+            loadAddOrEditIngedientScreen("Edit ingredient", ingredient);
+
         }));
 
         List<Ingredient> ingredients = new ArrayList<>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
-    private ManuallyAddIngredientController loadAddOrEditIngedientScreen(String title) {
+    private void loadAddOrEditIngedientScreen(String title, Ingredient ingredientToEdit) {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addingredient.fxml"));
             Parent root = loader.load();
             ManuallyAddIngredientController controller = loader.getController();
-
+            if(ingredientToEdit != null){
+                controller.setParameters(ingredientToEdit);
+            }
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle(title);
             stage.setScene(new Scene(root, 350, 500));
             stage.showAndWait();
-            controller.editing = true;
-            return controller;
+
         } catch (IOException e){
             e.printStackTrace();
         }
-        return null;
+
     }
 
     /**
@@ -166,7 +167,7 @@ public class IngredientTabController {
      */
     public void openAddIngredientScreen(){
         editOrAddMode = ADD_MODE;
-        loadAddOrEditIngedientScreen("Add ingredient");
+        loadAddOrEditIngedientScreen("Add ingredient", null);
     }
 
     /**
