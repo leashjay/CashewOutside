@@ -103,6 +103,7 @@ public class SalesController {
 
     private final Insets gridPadding = new Insets(50, 50, 50, 50);
     private SalesHandler salesManager;
+    private Inventory truckInventory;
     private Order curOrder;
     private final float rowHeight = 150;
     private HashMap<MenuItem, MenuItemNode> currentOrderHBoxMenuItems = new HashMap<>();
@@ -128,6 +129,7 @@ public class SalesController {
         curOrder = new Order();
         curOrder.setToNextID();
         salesManager = business.getSalesHandler();
+        truckInventory = business.getTruck().getInventory();
         // declare what ItemTypes are assigned to which GridPane
         Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
         Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
@@ -231,11 +233,11 @@ public class SalesController {
         checkGF.setText("Gluten Free");
         checkVegan.setText("Vegan        ");
         checkVegetarian.setText("Vegetarian ");
-        GridPane.setConstraints(checkGF, column, row, 1, 1, HPos.CENTER, VPos.TOP);
-        GridPane.setConstraints(checkVegan, column, row, 1, 1, HPos.CENTER, VPos.BOTTOM);
-        GridPane.setConstraints(checkVegetarian, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
         gridPane.add(checkGF, column, row);
+        column++;
         gridPane.add(checkVegan, column, row);
+        column++;
+
         gridPane.add(checkVegetarian, column, row);
         row++;
         column = 0;
@@ -248,13 +250,18 @@ public class SalesController {
             // TODO Have the buttons display their flags (gf, veg, vegan)
             // TODO Format GridPane properly.
 
-            newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
-                    "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
-
             newButton.setPadding(gridPadding); // This line maybe irrelevant, unsure right now.
             GridPane.setConstraints(newButton, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
             newButton.setText(menuItem.getName());
             newButton.setOnAction(e -> addToCurrentOrder(menuItem)); // lambda function
+            if (hasEnoughStock(menuItem)) {
+                newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
+                        "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
+            } else {
+                newButton.setDisable(true);
+                newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
+                        "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #808080;-fx-wrap-text: true;");
+            }
             gridPane.add(newButton, column, row);
 
             column++;
@@ -266,6 +273,22 @@ public class SalesController {
                 }
             }
         }
+    }
+
+    public boolean hasEnoughStock(MenuItem menuItem) {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : menuItem.getIngredients().entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
+            Float amountRequired = ingredientFloatEntry.getValue();
+            if (truckIngredient.getQuantity() != null)  {
+                truckIngredient.setQuantity(0);
+            }
+            if (truckIngredient.getQuantity() < amountRequired) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian, GridPane grid) {
@@ -310,10 +333,6 @@ public class SalesController {
             addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
         }
 
-    }
-
-    public void cashButtonPressed() {
-        ViewCashFloat.display();
     }
 
     /**
