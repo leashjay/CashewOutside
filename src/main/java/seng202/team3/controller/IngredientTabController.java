@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
+import seng202.team3.model.Menu;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ThreeValueLogic;
@@ -84,6 +85,7 @@ public class IngredientTabController {
     public static boolean delete = false;
 
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+    private Menu menu = BusinessApp.getBusiness().getMenuManager();
 
     private FileChooser chooser;
 
@@ -122,6 +124,7 @@ public class IngredientTabController {
             if (delete == true) {
                 delete = false;
                 inventory.removeIngredient(ingredient.getCode());
+                menu.removeIngredientFromMenuItems(ingredient);
             }
             updateIngredientTable();
         }));
