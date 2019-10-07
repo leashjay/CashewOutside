@@ -30,7 +30,7 @@ public class Ingredient {
 
     /** Quantity of ingredient in stock*/
     @XmlElement
-    private Float quantity;
+    private float quantity;
 
     /** Information about vegan attribute */
     @XmlAttribute
