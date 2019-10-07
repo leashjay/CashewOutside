@@ -6,40 +6,77 @@ import io.cucumber.java.en.When;
 
 public class MenuManagementSteps {
 
-    @Given("ingredients in inventory")
-    public void ingredients_in_inventory() {
+    @Given("choc and regMilk in inventory")
+    public void chocAndRegMilkInInventory() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @When("a menu item is created")
-    public void a_menu_item_is_created() {
+    @When("a menu item is created for chocolate milk")
+    public void aMenuItemIsCreatedForChocolateMilk() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
     @Then("correct serving size is calculated")
-    public void correct_serving_size_is_calculated() {
+    public void correctServingSizeIsCalculated() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Given("a menu item")
-    public void a_menu_item() {
+    @Given("choc milk and no stock")
+    public void chocMilkAndNoStock() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @When("there is no stock and a menu item is added to an order")
-    public void there_is_no_stock_and_a_menu_item_is_added_to_an_order() {
+    @When("an order is placed for chocolate milk")
+    public void anOrderIsPlacedForChocolateMilk() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Then("the menu item shows no servings and the menu is not added to the order")
-    public void the_menu_item_shows_no_servings_and_the_menu_is_not_added_to_the_order() {
+    @Then("the menu item serving count is {int} and adding to an order exceptions are handled")
+    public void theMenuItemServingCountIsAndAddingToAnOrderExceptionsAreHandled(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
+
+    @Given("When an order is made for a menu item")
+    public void whenAnOrderIsMadeForAMenuItem() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("an intolerance for gluten is flagged")
+    public void anIntoleranceForGlutenIsFlagged() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("an order exceptions are handled")
+    public void anOrderExceptionsAreHandled() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("When an order is made for a vegetarian item")
+    public void whenAnOrderIsMadeForAVegetarianItem() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("when they order a vegetarian meal")
+    public void whenTheyOrderAVegetarianMeal() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("a search of all ingredients show only yes on vege flags")
+    public void aSearchOfAllIngredientsShowOnlyYesOnVegeFlags() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
 
 }

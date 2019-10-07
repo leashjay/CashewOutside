@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 
 public class OrderFeaturesSteps {
 
-
     @Given("a cash float")
     public void aCashFloat() {
         // Write code here that turns the phrase above into concrete actions
@@ -25,8 +24,8 @@ public class OrderFeaturesSteps {
         throw new cucumber.api.PendingException();
     }
 
-    @Given("menu items are selected in an order")
-    public void menuItemsAreSelectedInAnOrder() {
+    @Given("a beefburger is added to an order")
+    public void aBeefburgerIsAddedToAnOrder() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
@@ -37,50 +36,74 @@ public class OrderFeaturesSteps {
         throw new cucumber.api.PendingException();
     }
 
-    @Then("the correct order total is calculated")
-    public void theCorrectOrderTotalIsCalculated() {
+    @Then("the correct order total is calculated as ${double}")
+    public void theCorrectOrderTotalIsCalculatedAs$(Double double1) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Given("the customer places an order")
-    public void theCustomerPlacesAnOrder() {
+    @Given("the customer places an order for coq au van")
+    public void theCustomerPlacesAnOrderForCoqAuVan() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @When("the customer pays")
-    public void theCustomerPays() {
+    @When("the customer pays ${double}")
+    public void theCustomerPays$(Double double1) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Then("the correct change is calculated and the inventory stock levels are reduced")
-    public void theCorrectChangeIsCalculatedAndTheInventoryStockLevelsAreReduced() {
+    @Then("the correct change of ${double} is calculated and the inventory stock levels are reduced accordingly")
+    public void theCorrectChangeOf$IsCalculatedAndTheInventoryStockLevelsAreReducedAccordingly(Double double1) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Given("an order is placed")
-    public void anOrderIsPlaced() {
+    @Given("the customer places an order for baby face")
+    public void theCustomerPlacesAnOrderForBabyFace() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @When("cash is handed over and a sale made")
-    public void cashIsHandedOverAndASaleMade() {
+    @Then("the baby face cost is added to the float")
+    public void theBabyFaceCostIsAddedToTheFloat() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Then("the float shows the correct total and the inventory stock levels are reduced")
-    public void theFloatShowsTheCorrectTotalAndTheInventoryStockLevelsAreReduced() {
+    @Given("the customer places an order for banana split")
+    public void theCustomerPlacesAnOrderForBananaSplit() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
 
-    @Given("an order is cancelled")
-    public void anOrderIsCancelled() {
+    @Then("the inventory stock levels are reduced accordingly")
+    public void theInventoryStockLevelsAreReducedAccordingly() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("an order is placed for {int} LemCans")
+    public void anOrderIsPlacedForLemCans(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("${int} cash is handed over and a sale made")
+    public void $CashIsHandedOverAndASaleMade(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the float shows the new correct total and the inventory stock levels are reduced accordingly")
+    public void theFloatShowsTheNewCorrectTotalAndTheInventoryStockLevelsAreReducedAccordingly() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("an order is cancelled by customer")
+    public void anOrderIsCancelledByCustomer() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
@@ -96,5 +119,6 @@ public class OrderFeaturesSteps {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
+
 
 }
