@@ -85,7 +85,7 @@ public class PasswordUtils {
         String encrypted = hashPassword(password, salt).get();
         System.out.println("EXPECTED: " + key);
         System.out.println("GOT: " + encrypted);
-        System.out.println(key.equals(password));
-        return key.equals(password);
+        System.out.println(key.equals(encrypted));
+        return key.equals(encrypted);
     }
 }

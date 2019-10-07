@@ -7,10 +7,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
+<AnchorPane minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
 
     <children>
-        <TabPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/styles.css" tabClosingPolicy="UNAVAILABLE">
+        <TabPane maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/styles.css" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab fx:id="suppliersTab" text="Suppliers">
                     <fx:include source="suppliertab.fxml" />

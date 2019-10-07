@@ -124,28 +124,38 @@ public class IngredientTabController {
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
             System.out.println("EDIT BUTTON CLICKED");
+            ManuallyAddIngredientController controller = loadAddOrEditIngedientScreen("Edit ingredient");
+            controller.setParameters(ingredient);
         }));
 
         List<Ingredient> ingredients = new ArrayList<>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
+    private ManuallyAddIngredientController loadAddOrEditIngedientScreen(String title) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addingredient.fxml"));
+            Parent root = loader.load();
+            ManuallyAddIngredientController controller = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 350, 500));
+            stage.showAndWait();
+            return controller;
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Method that opens the input form to add an ingredient manually
      */
     public void openAddIngredientScreen(){
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("/view/addingredient.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.setTitle("Add supplier");
-            stage.setScene(new Scene(root, 350, 500));
-            stage.showAndWait();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
+        loadAddOrEditIngedientScreen("Add ingredient");
     }
 
     /**

@@ -63,6 +63,12 @@ public class ManuallyAddIngredientController {
     @FXML
     private Text costErrorText;
 
+    boolean editing = false;
+
+    public void setParameters(Ingredient ingredient) {
+        editing = true;
+        idTextField.setDisable(true);
+    }
 
     /**
      * Method called to set the initial values and the GUI for the form.
@@ -142,7 +148,10 @@ public class ManuallyAddIngredientController {
 
             Ingredient newIngredient = new Ingredient(id, name, unitType, isVegetarian, isVegan, isGlutenFree, cost, quantity);
 
+            //TODO if editing don't add, edit
             truckInventory.addIngredient(newIngredient);
+
+
             Stage stage = (Stage) addIngredientButton.getScene().getWindow();
 
             IngredientTabController.getInstance().updateIngredientTable();
