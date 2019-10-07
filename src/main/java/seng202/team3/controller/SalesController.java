@@ -312,17 +312,26 @@ public class SalesController {
                 if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {gfSelected = false;} if (vegan.isSelected()) {
+            } else {
+                gfSelected = false;
+            }
+            if (vegan.isSelected()) {
                 veganSelected = true;
                 if (entry.getValue().isVegan() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {veganSelected = false;} if (vegetarian.isSelected()) {
+            } else {
+                veganSelected = false;
+            }
+            if (vegetarian.isSelected()) {
                 vegetarianSelected = true;
                 if (entry.getValue().isVegetarian() == ThreeValueLogic.YES) {
                     filteredItems.put(entry.getKey(), entry.getValue());
                 }
-            } else {vegetarianSelected = false;} if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
+            } else {
+                vegetarianSelected = false;
+            }
+            if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
                 filteredItems = chosenHashMap;
             }
         }
@@ -333,6 +342,7 @@ public class SalesController {
             foodItemGrid.getChildren().clear();
             addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
         }
+    }
 
     /**
      * removes the rightmost character from payTextField, this function is used by the polygon on the make sale tab
@@ -371,10 +381,6 @@ public class SalesController {
             throw new Error("The Object that called numberButtonsHandler" +
                     " was not a button and instead a: " + potentialButtonObject.getClass());
         }
-    }
-
-    public void cashButtonPressed() {
-        ViewCashFloat.display();
     }
 
     /**
@@ -483,18 +489,18 @@ public class SalesController {
             if (stockDecreasedSuccessfully) {
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
-                curOrder.setTime(LocalTime.now());
-                curOrder.setDate(LocalDate.now());
+                curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();
+                BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
+                BusinessApp.getBusiness().exportOrdersAsXML(BusinessApp.salesXML);
             } else {
                 System.out.println("Not enough stock");
             }
         }
-        BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
-        BusinessApp.getBusiness().exportOrdersAsXML(BusinessApp.salesXML);
+
     }
 
 

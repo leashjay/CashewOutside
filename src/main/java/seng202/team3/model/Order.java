@@ -270,5 +270,11 @@ public class Order {
     }
 
     public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
+
+    public void confirmOrder() {
+        this.setTime(LocalTime.now());
+        this.setDate(LocalDate.now());
+        this.changeStatus(OrderStatus.QUEUED);
+    }
 }
 
