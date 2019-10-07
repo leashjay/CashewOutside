@@ -68,18 +68,27 @@ public class ManuallyAddIngredientController {
     public void setParameters(Ingredient ingredient) {
         editing = true;
         idTextField.setDisable(true);
+        idTextField.setText("This is working");
+        nameTextField.setText(ingredient.getName());
+        System.out.println("set parameters called");
     }
 
     /**
      * Method called to set the initial values and the GUI for the form.
      */
     public void initialize(){
+        editing = IngredientTabController.getEditOrAddMode() == IngredientTabController.EDIT_MODE;
+
         unitTypeChoiceBox.getItems().add(UnitType.UNKNOWN);
         unitTypeChoiceBox.getItems().add(UnitType.COUNT);
         unitTypeChoiceBox.getItems().add(UnitType.GRAM);
         unitTypeChoiceBox.getItems().add(UnitType.ML);
 
         unitTypeChoiceBox.setValue(UnitType.UNKNOWN);
+
+        if(editing){
+            System.out.println("currently editing");
+        }
 
     }
 
