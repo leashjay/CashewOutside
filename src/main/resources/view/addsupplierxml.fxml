@@ -42,8 +42,8 @@
                     </GridPane.margin>
                 </TextField>
                 <Text fx:id="feedbackMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;"
-                      text="Please insert a proper path" visible="false" GridPane.halignment="RIGHT"
-                      GridPane.rowIndex="3">
+                      text="Please insert a proper path" visible="false" wrappingWidth="500.0"
+                      GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></Text>
