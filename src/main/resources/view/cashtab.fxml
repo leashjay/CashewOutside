@@ -9,15 +9,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <AnchorPane prefHeight="679.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.CashTabController">
    <children>
       <GridPane layoutX="14.0" layoutY="14.0" prefHeight="656.0" prefWidth="802.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="140.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="142.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="169.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="15.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="104.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="117.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="79.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="41.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="39.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.0" minWidth="10.0" prefWidth="309.0" />
@@ -34,13 +33,24 @@
             <Label prefHeight="39.0" prefWidth="182.0" text="Current" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="startFloatField" prefHeight="26.0" prefWidth="128.0" promptText="Initial cash float" GridPane.columnIndex="2" />
             <Button fx:id="startButton" mnemonicParsing="false" onAction="#startButtonPushed" text="Start Day" GridPane.columnIndex="1" />
-            <Button fx:id="endButton" mnemonicParsing="false" onAction="#endButtonPushed" text="End day" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextFlow fx:id="endFloatField" maxHeight="30.0" prefHeight="103.0" prefWidth="155.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusButtonPushed" prefHeight="26.0" prefWidth="74.0" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="subtractButton" mnemonicParsing="false" onAction="#subtractButtonPushed" prefHeight="26.0" prefWidth="76.0" text="Subtract" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="endButton" mnemonicParsing="false" onAction="#endButtonPushed" text="End day" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextFlow fx:id="endFloatField" maxHeight="30.0" prefHeight="103.0" prefWidth="155.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="addFloatField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="subtractFloatField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextFlow fx:id="currentFloatField" maxHeight="30.0" prefHeight="103.0" prefWidth="155.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="36.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="4.0" prefWidth="17.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="64.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="subtractButton" mnemonicParsing="false" onAction="#subtractButtonPushed" prefHeight="15.0" prefWidth="32.0" text="-" GridPane.columnIndex="2" />
+                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusButtonPushed" prefHeight="26.0" prefWidth="23.0" text="+" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>

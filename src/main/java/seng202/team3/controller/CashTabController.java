@@ -21,9 +21,6 @@ public class CashTabController {
     public TextField addFloatField;
 
     @FXML
-    public TextField subtractFloatField;
-
-    @FXML
     public TextFlow currentFloatField;
 
     @FXML
@@ -45,12 +42,18 @@ public class CashTabController {
 
     public void initialize() {
         endButton.setDisable(true);
+        plusButton.setDisable(true);
+        subtractButton.setDisable(true);
         currentFloatField.setStyle("-fx-border-color: lightgrey;-fx-background-color: White;");
         endFloatField.setStyle("-fx-border-color: lightgrey;-fx-background-color: White;");
+        Text text = new Text(Float.toString(truck.currentFloat));
+        currentFloatField.getChildren().add(text);
     }
 
     public void startButtonPushed() {
         startFloat = Float.parseFloat(startFloatField.getText());
+        plusButton.setDisable(false);
+        subtractButton.setDisable(false);
         startButton.setDisable(true);
         endButton.setDisable(false);
         startFloatField.setDisable(true);
@@ -67,6 +70,8 @@ public class CashTabController {
         Text text = new Text(Float.toString(truck.currentFloat));
         endFloatField.getChildren().clear();
         endFloatField.getChildren().add(text);
+        plusButton.setDisable(true);
+        subtractButton.setDisable(true);
         startButton.setDisable(false);
         startFloatField.setDisable(false);
         startFloatField.clear();
@@ -82,10 +87,10 @@ public class CashTabController {
     }
 
     public void subtractButtonPushed() {
-        truck.currentFloat -= Float.parseFloat(subtractFloatField.getText());
+        truck.currentFloat -= Float.parseFloat(addFloatField.getText());
         Text text = new Text(Float.toString((truck.currentFloat)));
         currentFloatField.getChildren().clear();
-        subtractFloatField.clear();
+        addFloatField.clear();
         currentFloatField.getChildren().add(text);
 
     }
