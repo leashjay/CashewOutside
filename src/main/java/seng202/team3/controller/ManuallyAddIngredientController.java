@@ -65,9 +65,23 @@ public class ManuallyAddIngredientController {
 
     boolean editing = false;
 
+    Ingredient ingredientBeingEdited;
+
+    /**
+     * Sets the value of the form inputs to show the current values of the ingredient.
+     * @param ingredient the ingredient we are showing information about
+     */
     public void setParameters(Ingredient ingredient) {
         editing = true;
+        ingredientBeingEdited = ingredient;
         idTextField.setDisable(true);
+        nameTextField.setText(ingredient.getName());
+        unitTypeChoiceBox.setValue(ingredient.getUnit());
+        quantityTextField.setText(String.valueOf(ingredient.getQuantity()));
+        costTextField.setText(String.valueOf(ingredient.getCost()));
+        glutenFreeCheckBox.setSelected(ingredient.getIsGlutenFree() == ThreeValueLogic.YES);
+        veganCheckBox.setSelected(ingredient.getIsVegan() == ThreeValueLogic.YES);
+        vegetarianCheckBox.setSelected(ingredient.getIsVegetarian() == ThreeValueLogic.YES);
     }
 
     /**
@@ -81,6 +95,10 @@ public class ManuallyAddIngredientController {
 
         unitTypeChoiceBox.setValue(UnitType.UNKNOWN);
 
+        if(editing){
+            System.out.println("currently editing");
+        }
+
     }
 
 
@@ -92,9 +110,10 @@ public class ManuallyAddIngredientController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
-
-        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
-            hasError = true;
+        if(editing == false) {
+            if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
+                hasError = true;
+            }
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
             hasError = true;
@@ -117,7 +136,14 @@ public class ManuallyAddIngredientController {
      */
     public void addIngredient() throws JAXBException, IOException {
         if (checkForErrors() == false) {
-            String id = idTextField.getText();
+
+            String id;
+            if(editing){
+                 id = ingredientBeingEdited.getCode();
+            } else {
+                 id = idTextField.getText();
+            }
+
             String name = nameTextField.getText();
             UnitType unitType = unitTypeChoiceBox.getValue();
             float cost = Float.parseFloat(costTextField.getText());

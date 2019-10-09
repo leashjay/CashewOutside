@@ -9,6 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -181,6 +182,22 @@ public class Menu {
             HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
             menuContent.putAll(newMenuItems);
         }
+    }
+
+    /**
+     * Iterates through the menu items in a menu and removes the specified ingredient from all menu items
+     * @return how many menu items the ingredient was removed from
+     */
+    public int removeIngredientFromMenuItems(Ingredient ingredient){
+        int itemsRemovedFrom = 0;
+        for (Map.Entry<String, MenuItem> menuItemEntry : menuContent.entrySet()) {
+            MenuItem menuItem = menuItemEntry.getValue();
+            if(menuItem.getIngredients().containsKey(ingredient)) {
+                menuItem.removeIngredientFromRecipe(ingredient);
+                itemsRemovedFrom += 1;
+            }
+        }
+        return itemsRemovedFrom;
     }
 
 }

@@ -24,6 +24,7 @@ public class MenuTest {
     private Menu notOnlyRice;
 
     private Ingredient wings;
+    private Ingredient beans;
     private MenuItem justWings;
     private HashMap<Ingredient, Float>  wingsStuff;
 
@@ -40,6 +41,7 @@ public class MenuTest {
         menuContents.put(justRice.getId(),justRice);
 
         wings = new Ingredient("12", "Wings", 1f, UnitType.COUNT, 1f);
+        beans = new Ingredient("14", "Beans", 1f, UnitType.COUNT, 1f);
         wingsStuff = new HashMap<>();
         wingsStuff.put(wings, 6f);
         justWings = new MenuItem("12", "Wings", wingsStuff, ItemType.GRILL);
@@ -76,6 +78,20 @@ public class MenuTest {
         testMenu.addMenuItemFromXML("./src/main/resources/data/testdata/testMenu1.xml");
         assertEquals(7, testMenu.getMenuItem().size());
         assertTrue(testMenu.getMenuItem().keySet().contains("KS1"));
+    }
+
+    @Test
+    public void ingredientDeletionTest(){
+        notOnlyRice.addMenuItem(justWings);
+        HashMap<Ingredient, Float> chickenOnRiceIngredients = new HashMap<>();
+        chickenOnRiceIngredients.put(wings, 6f);
+        chickenOnRiceIngredients.put(rice, 6f);
+        MenuItem chickenOnRice = new MenuItem("12", "Wings", chickenOnRiceIngredients, ItemType.GRILL);
+        notOnlyRice.addMenuItem(chickenOnRice);
+        assertEquals(notOnlyRice.removeIngredientFromMenuItems(rice), 2);
+        assertEquals(notOnlyRice.removeIngredientFromMenuItems(rice), 0);
+        assertEquals(notOnlyRice.removeIngredientFromMenuItems(beans), 0);
+
     }
 
 }

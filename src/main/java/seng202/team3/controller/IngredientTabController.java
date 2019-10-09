@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
+import seng202.team3.model.Menu;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ThreeValueLogic;
@@ -79,6 +80,7 @@ public class IngredientTabController {
     public static boolean delete = false;
 
     private Inventory inventory = BusinessApp.getBusiness().getTruck().getInventory();
+    private Menu menu = BusinessApp.getBusiness().getMenuManager();
 
     private FileChooser chooser;
 
@@ -117,46 +119,49 @@ public class IngredientTabController {
             if (delete == true) {
                 delete = false;
                 inventory.removeIngredient(ingredient.getCode());
+                menu.removeIngredientFromMenuItems(ingredient);
             }
             updateIngredientTable();
         }));
 
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
-            System.out.println("EDIT BUTTON CLICKED");
-            ManuallyAddIngredientController controller = loadAddOrEditIngedientScreen("Edit ingredient");
-            controller.setParameters(ingredient);
+            loadAddOrEditIngedientScreen("Edit ingredient", ingredient);
+
         }));
 
         List<Ingredient> ingredients = new ArrayList<>(BusinessApp.getBusiness().getTruck().getInventory().getIngredients().values());
         ingredientTable.setItems(FXCollections.observableArrayList(ingredients));
     }
 
-    private ManuallyAddIngredientController loadAddOrEditIngedientScreen(String title) {
+    private void loadAddOrEditIngedientScreen(String title, Ingredient ingredientToEdit) {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addingredient.fxml"));
             Parent root = loader.load();
             ManuallyAddIngredientController controller = loader.getController();
-
+            if(ingredientToEdit != null){
+                controller.setParameters(ingredientToEdit);
+            }
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle(title);
             stage.setScene(new Scene(root, 350, 500));
             stage.showAndWait();
-            return controller;
+
         } catch (IOException e){
             e.printStackTrace();
         }
-        return null;
+
     }
 
     /**
      * Method that opens the input form to add an ingredient manually
      */
     public void openAddIngredientScreen(){
-        loadAddOrEditIngedientScreen("Add ingredient");
+        loadAddOrEditIngedientScreen("Add ingredient", null);
     }
+
 
     /**
      * Method that opens the input from to add an ingredient from xml
