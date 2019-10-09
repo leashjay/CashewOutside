@@ -57,10 +57,11 @@ public class Order {
      * @generated
      */
     public Order() {
-        // TODO change timeOrdered to be set when order is ordered.
-//        super();
+        //TODO change timeOrdered to be set when order is ordered.
+        super();
+
         this.orderStatus = OrderStatus.QUEUED;
-        // TODO remove these two following lines, while not breaking functionality ;)
+        //TODO remove these two following lines, while not breaking functionality ;)
         setTime(LocalTime.now());
         dateOrdered = LocalDate.now();
     }
@@ -270,5 +271,11 @@ public class Order {
     }
 
     public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
+
+    public void confirmOrder() {
+        this.setTime(LocalTime.now());
+        this.setDate(LocalDate.now());
+        this.changeStatus(OrderStatus.QUEUED);
+    }
 }
 

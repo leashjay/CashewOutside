@@ -33,7 +33,7 @@ public class OrderTest {
      */
     @Before
     public void setup() throws JAXBException {
-        business = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        business = new Business(BusinessApp.ingredientsXML, BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
         menuItem = new MenuItem("This", "a", ingredients, ItemType.MAIN);
         menuItems = new ArrayList<>();
         itemToRemove = new MenuItem("Different", "b", ingredients, ItemType.ASIAN);

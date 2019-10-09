@@ -3,8 +3,10 @@ package jUnitTests.step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.xml.sax.SAXException;
 import seng202.team3.model.*;
 import seng202.team3.parsing.InventoryLoader;
+import seng202.team3.parsing.MenuLoader;
 import seng202.team3.parsing.SuppliersLoader;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.MenuType;
@@ -13,10 +15,14 @@ import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
+import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 public class LoadingDataSteps {
     private HashMap<String, Ingredient> inventoryHashMap;
@@ -33,11 +39,14 @@ public class LoadingDataSteps {
     private Supplier GoodysGreens;
     private Business foodTruckBusiness;
     private String filename;
+    private MenuLoader testMenuLoader;
+    private InventoryLoader testInventoryLoader;
+    private ArrayList<String> errorMessageList;
 
     /*Background conditions setting up new business */
     @Given("a {string} for operation")
     public void aForOperation(String string) throws JAXBException {
-        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML);
+        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
     }
 
     /*Background conditions setting up inventory list */
@@ -126,7 +135,7 @@ public class LoadingDataSteps {
 
     @When("the ingredient {string} is loaded")
     public void theIngredientIsLoaded(String string) throws JAXBException {
-        InventoryLoader testInventoryLoader = new InventoryLoader();
+        testInventoryLoader = new InventoryLoader();
         inventoryHashMap.clear();
         inventory = testInventoryLoader.loadIngredientsData(filename);
         this.inventory = inventory;
@@ -145,13 +154,17 @@ public class LoadingDataSteps {
     }
 
     @When("the menu {string} is loaded")
-    public void theMenuIsLoaded(String string) {
-        // Write code here that turns the phrase above into concrete actions
+    public void theMenuIsLoaded(String string) throws JAXBException {
+        testMenuLoader = new MenuLoader();
+        menuContents.clear();
+        testMenu = testMenuLoader.loadMenuData(filename);
+        menuContents = testMenu.getMenuItem();
         throw new cucumber.api.PendingException();
     }
 
     @Then("the menu items map is not empty")
     public void theMenuItemsMapIsNotEmpty() throws JAXBException {
+        assertFalse(menuContents.isEmpty());
         //MenuLoader testMenuLoader = new MenuLoader();
         //inventoryHashMap.clear();
         //inventory = testMenuLoader.loadMenuData(filename);
@@ -182,24 +195,36 @@ public class LoadingDataSteps {
 
     @Given("a ingredient {string} for an XML file containing ingredients")
     public void aIngredientForAnXMLFileContainingIngredients(String string) {
-        // Write code here that turns the phrase above into concrete actions
+        filename = "./src/main/resources/data/testdata/testErrorIngredients.xml";
         throw new cucumber.api.PendingException();
     }
 
     @When("the {string} is used and an integrity error is found")
     public void theIsUsedAndAnIntegrityErrorIsFound(String string) {
-        // Write code here that turns the phrase above into concrete actions
+        try {
+            validateXMLFile(filename);
+            inventory = testInventoryLoader.loadIngredientsData(filename);
+        } catch (IOException ioe) {
+            errorMessageList.add(ioe.getMessage());
+        } catch (SAXException spe) {
+            errorMessageList.add(spe.getMessage());
+        } catch (ParserConfigurationException pce) {
+            errorMessageList.add(pce.getMessage());
+        } catch (JAXBException jaxbe) {
+            errorMessageList.add(jaxbe.getMessage());
+        }
         throw new cucumber.api.PendingException();
     }
 
     @Then("an error message is returned to the user")
     public void anErrorMessageIsReturnedToTheUser() {
-        // Write code here that turns the phrase above into concrete actions
+        assertFalse(errorMessageList.isEmpty());
         throw new cucumber.api.PendingException();
     }
 
     @Given("a menu item {string} for an XML file containing menu items")
     public void aMenuItemForAnXMLFileContainingMenuItems(String string) {
+        filename = "./src/main/resources/data/testdata/testErrorMenu.xml";
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }

@@ -1,12 +1,27 @@
 Feature: Menu Management
 
+  Background:
+    Given a "BusinessName" for operation
+    And a cash float
+    And an ingredients "inventory" to hold ingredients
+    And a database of sales "orders" to hold all orders made
+
   Scenario: Serving size can be calculated
-    Given ingredients in inventory
-    When a menu item is created
+    Given choc and regMilk in inventory
+    When a menu item is created for chocolate milk
     Then correct serving size is calculated
 
   Scenario: When stock is low
-    Given a menu item
-    When there is no stock and a menu item is added to an order
-    Then the menu item shows no servings and the menu is not added to the order
+    Given choc milk and no stock
+    When an order is placed for chocolate milk
+    Then the menu item serving count is 0 and adding to an order exceptions are handled
 
+  Scenario: A customer has an intolerance
+    Given When an order is made for a menu item
+    When an intolerance for gluten is flagged
+    Then an order exceptions are handled
+
+  Scenario: A customer is a vegetarian
+    Given When an order is made for a vegetarian item
+    When when they order a vegetarian meal
+    Then a search of all ingredients show only yes on vege flags
