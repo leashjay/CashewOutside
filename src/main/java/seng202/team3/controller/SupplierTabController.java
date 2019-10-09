@@ -79,6 +79,9 @@ public class SupplierTabController
     private TableColumn<Supplier, Button> deleteButtonCol;
 
     @FXML
+    private TableColumn<Supplier, Button> editButtonCol;
+
+    @FXML
     private AnchorPane supplierTabAnchorPane;
 
     public static boolean delete = false;
@@ -103,6 +106,10 @@ public class SupplierTabController
                 supplierHandler.removeSupplier(supplier.getSid());
             }
             updateSupplierTable();
+        }));
+
+        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", supplier -> {
+            loadOrEditSuppliersScreen("Edit Supplier", supplier);
         }));
 
         List<Supplier> suppliers = new ArrayList<Supplier>(BusinessApp.getBusiness().getSupplierHandler().getSuppliers().values());
