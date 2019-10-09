@@ -75,7 +75,7 @@ public class MenuTest {
         assertEquals(6, testMenu.getMenuItem().size());
 
 
-        testMenu.addMenuItemFromXML("./src/main/resources/data/testdata/testMenu1.xml");
+        testMenu.addMenuItemFromXML("./src/test/resources/data/testdata/testMenu1.xml");
         assertEquals(7, testMenu.getMenuItem().size());
         assertTrue(testMenu.getMenuItem().keySet().contains("KS1"));
     }

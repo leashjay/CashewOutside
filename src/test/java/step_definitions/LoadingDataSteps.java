@@ -1,4 +1,4 @@
-package jUnitTests.step_definitions;
+package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -93,7 +93,7 @@ public class LoadingDataSteps {
         HashMap riceStuff = new HashMap<>();
         riceStuff.put(rice, 200f);
         MenuItem testItem = new MenuItem("1", "Fried rice", riceStuff, ItemType.MAIN);
-        menuContents.put(testItem.getId(),testItem);
+        menuContents.put(testItem.getId(), testItem);
         Menu testMenu = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
         this.testMenu = testMenu;
         this.testItem = testItem;

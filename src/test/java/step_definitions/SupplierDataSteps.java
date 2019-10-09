@@ -1,4 +1,4 @@
-package jUnitTests.step_definitions;
+package step_definitions;
 
 public class SupplierDataSteps {
 

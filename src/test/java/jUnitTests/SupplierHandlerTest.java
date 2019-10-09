@@ -91,7 +91,7 @@ public class SupplierHandlerTest {
         assertEquals(4, testSupplierHandler.getSuppliers().size());
 
 
-        testSupplierHandler.addSupplierFromXML("./src/main/resources/data/testdata/testSupplier1.xml");
+        testSupplierHandler.addSupplierFromXML("./src/test/resources/data/testdata/testSupplier1.xml");
         assertEquals(5, testSupplierHandler.getSuppliers().size());
         assertTrue(testSupplierHandler.getSuppliers().keySet().contains("s6"));
     }
