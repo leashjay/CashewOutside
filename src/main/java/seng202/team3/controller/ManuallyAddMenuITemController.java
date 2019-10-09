@@ -3,9 +3,15 @@ package seng202.team3.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.text.Text;
+import seng202.team3.model.Inventory;
+import seng202.team3.model.Menu;
 import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.ItemType;
+import seng202.team3.view.BusinessApp;
+
+import java.util.Set;
 
 public class ManuallyAddMenuITemController {
 
@@ -22,7 +28,7 @@ public class ManuallyAddMenuITemController {
     private Text menuItemNameErrorText;
 
     /**
-     * AutoCompleteTextField
+     * AutoCompleteTextField (search by key)
      **/
     @FXML
     private TextField ingredientKey;
@@ -45,7 +51,15 @@ public class ManuallyAddMenuITemController {
     @FXML
     private ChoiceBox<ItemType> itemTypeCheckBox;
 
+    /**current inventory for the business */
+    Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+    /** current menu */
+    Menu currentMenu = BusinessApp.getBusiness().getMenuManager();
+
     public void initialize() {
+        Set<String> possibleKeys = truckInventory.getIngredients().keySet();
+        TextFields.bindAutoCompletion(ingredientKey, possibleKeys);
         itemTypeCheckBox.getItems().add(ItemType.BEVERAGE);
         itemTypeCheckBox.getItems().add(ItemType.MAIN);
         itemTypeCheckBox.getItems().add(ItemType.ASIAN);
@@ -82,7 +96,6 @@ public class ManuallyAddMenuITemController {
             String id = idTextField.getText();
             String name = menuItemNameTextField.getText();
             ItemType itemType = itemTypeCheckBox.getValue();
-
 
         }
 
