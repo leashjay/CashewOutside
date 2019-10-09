@@ -10,6 +10,7 @@ import seng202.team3.model.Business;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class BusinessApp extends Application {
@@ -52,6 +53,8 @@ public class BusinessApp extends Application {
      */
     private static String pathPrefix = "./src/main/resources/data/realdata/";
 
+    private static ArrayList<File> fileArrayList;
+
     /**
      * Creating a business instance when application is launched
      */
@@ -73,9 +76,18 @@ public class BusinessApp extends Application {
         File suppliersFile = new File(suppliersXML);
         File employeeFile = new File(employeeXML);
         File truckFile = new File(truckXML);
-        if (!ingredientsFile.exists() && !menuFile.exists() && !salesFile.exists() && !suppliersFile.exists() && !employeeFile.exists() && !truckFile.exists()) {
+        if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
             dateOperation = LocalDate.now().minusDays(1);
             alterXMLPath();
+            ingredientsFile = new File(ingredientsXML);
+            menuFile = new File(menuXML);
+            salesFile = new File(salesXML);
+            suppliersFile = new File(suppliersXML);
+            employeeFile = new File(employeeXML);
+            truckFile = new File(truckXML);
+            if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
+                alterXMLPathToOriginal();
+            }
         }
     }
 
@@ -139,6 +151,15 @@ public class BusinessApp extends Application {
         salesXML = pathPrefix + "Sales" + dateOperation.toString() + ".xml";
         employeeXML = pathPrefix + "Employee" + dateOperation.toString() + ".xml";
         truckXML = pathPrefix + "Truck" + dateOperation.toString() + ".xml";
+    }
+
+    public static void alterXMLPathToOriginal() {
+        ingredientsXML = pathPrefix + "Ingredients" + ".xml";
+        menuXML = pathPrefix + "SampleMenu" + ".xml";
+        suppliersXML = pathPrefix + "Suppliers" + ".xml";
+        salesXML = pathPrefix + "Sales" + ".xml";
+        employeeXML = pathPrefix + "Employee" + ".xml";
+        truckXML = pathPrefix + "Truck" + ".xml";
     }
 
     /**
