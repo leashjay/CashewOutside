@@ -110,9 +110,10 @@ public class ManuallyAddIngredientController {
     private boolean checkForErrors(){
         boolean hasError = false;
 
-
-        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
-            hasError = true;
+        if(editing == false) {
+            if (InputValidationHelper.checkEmpty(idTextField, idErrorText) == true || (InputValidationHelper.checkIngredientValidId(idTextField, idErrorText) == false)) {
+                hasError = true;
+            }
         }
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
             hasError = true;
