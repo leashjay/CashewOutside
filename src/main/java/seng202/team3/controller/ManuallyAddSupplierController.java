@@ -77,6 +77,14 @@ public class ManuallyAddSupplierController {
     }
 
     /**
+     * Sets the values of the form to relate to the supplier we are editing
+     * @param supplierToEdit the supplier we are editing
+     */
+    public void setParameters(Supplier supplierToEdit) {
+        //Initalize parameters here
+    }
+
+    /**
      * Checks the validity of input entered into the form.
      * @return true of the form has errors, false if the form is error free.
      */

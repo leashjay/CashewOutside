@@ -112,15 +112,21 @@ public class SupplierTabController
     /**
      * Opens the screen to manually add a supplier.
      */
-    public void openAddSupplierScreen(){
+    public void loadOrEditSuppliersScreen(String title, Supplier supplierToEdit){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/view/addsupplier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addsupplier.fxml"));
+            Parent root = loader.load();
+            ManuallyAddSupplierController controller = loader.getController();
+            if(supplierToEdit != null){
+                controller.setParameters(supplierToEdit);
+            }
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            stage.setTitle("Add supplier");
-            stage.setScene(new Scene(root, 350, 600));
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 350, 650));
             stage.showAndWait();
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -170,6 +176,10 @@ public class SupplierTabController
             suppliersLoader = new SuppliersLoader();
             suppliersLoader.exportSupplierData(file.getPath(), supplierHandler);
         }
+    }
+
+    public void openAddSuppliersScreen(){
+        loadOrEditSuppliersScreen("Add ingredient", null);
     }
 
 }
