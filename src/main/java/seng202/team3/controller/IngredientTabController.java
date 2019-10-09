@@ -33,11 +33,6 @@ import java.util.List;
  */
 public class IngredientTabController {
 
-    public final static int ADD_MODE = 0;
-    public final static int EDIT_MODE = 1;
-
-    private static int editOrAddMode = ADD_MODE;
-
     @FXML
     private Button addManuallyButton;
 
@@ -131,8 +126,6 @@ public class IngredientTabController {
 
 
         editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", ingredient -> {
-            System.out.println("EDIT BUTTON CLICKED");
-            editOrAddMode = EDIT_MODE;
             loadAddOrEditIngedientScreen("Edit ingredient", ingredient);
 
         }));
@@ -166,17 +159,9 @@ public class IngredientTabController {
      * Method that opens the input form to add an ingredient manually
      */
     public void openAddIngredientScreen(){
-        editOrAddMode = ADD_MODE;
         loadAddOrEditIngedientScreen("Add ingredient", null);
     }
 
-    /**
-     * Getter for whether we are adding or editing an ingredient
-     * @return
-     */
-    public static int getEditOrAddMode(){
-        return editOrAddMode;
-    }
 
     /**
      * Method that opens the input from to add an ingredient from xml

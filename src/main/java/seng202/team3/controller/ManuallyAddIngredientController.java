@@ -65,20 +65,29 @@ public class ManuallyAddIngredientController {
 
     boolean editing = false;
 
+    Ingredient ingredientBeingEdited;
+
+    /**
+     * Sets the value of the form inputs to show the current values of the ingredient.
+     * @param ingredient the ingredient we are showing information about
+     */
     public void setParameters(Ingredient ingredient) {
         editing = true;
+        ingredientBeingEdited = ingredient;
         idTextField.setDisable(true);
-        idTextField.setText("This is working");
         nameTextField.setText(ingredient.getName());
-        System.out.println("set parameters called");
+        unitTypeChoiceBox.setValue(ingredient.getUnit());
+        quantityTextField.setText(String.valueOf(ingredient.getQuantity()));
+        costTextField.setText(String.valueOf(ingredient.getCost()));
+        glutenFreeCheckBox.setSelected(ingredient.getIsGlutenFree() == ThreeValueLogic.YES);
+        veganCheckBox.setSelected(ingredient.getIsVegan() == ThreeValueLogic.YES);
+        vegetarianCheckBox.setSelected(ingredient.getIsVegetarian() == ThreeValueLogic.YES);
     }
 
     /**
      * Method called to set the initial values and the GUI for the form.
      */
     public void initialize(){
-        editing = IngredientTabController.getEditOrAddMode() == IngredientTabController.EDIT_MODE;
-
         unitTypeChoiceBox.getItems().add(UnitType.UNKNOWN);
         unitTypeChoiceBox.getItems().add(UnitType.COUNT);
         unitTypeChoiceBox.getItems().add(UnitType.GRAM);
@@ -126,7 +135,14 @@ public class ManuallyAddIngredientController {
      */
     public void addIngredient() throws JAXBException, IOException {
         if (checkForErrors() == false) {
-            String id = idTextField.getText();
+
+            String id;
+            if(editing){
+                 id = ingredientBeingEdited.getCode();
+            } else {
+                 id = idTextField.getText();
+            }
+
             String name = nameTextField.getText();
             UnitType unitType = unitTypeChoiceBox.getValue();
             float cost = Float.parseFloat(costTextField.getText());
