@@ -282,11 +282,13 @@ public class SalesController {
             Ingredient ingredient = ingredientFloatEntry.getKey();
             Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
             Float amountRequired = ingredientFloatEntry.getValue();
-            if (truckIngredient.getQuantity() != null)  {
-                truckIngredient.setQuantity(0);
-            }
-            if (truckIngredient.getQuantity() < amountRequired) {
-                return false;
+            if (truckIngredient != null) {
+                if (truckIngredient.getQuantity() == null)  {
+                    truckIngredient.setQuantity(0);
+                }
+                if (truckIngredient.getQuantity() < amountRequired) {
+                    return false;
+                }
             }
         }
         return true;

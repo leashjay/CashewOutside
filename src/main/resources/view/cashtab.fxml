@@ -31,7 +31,6 @@
         </rowConstraints>
          <children>
             <Label prefHeight="39.0" prefWidth="182.0" text="Current" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="startFloatField" prefHeight="26.0" prefWidth="128.0" promptText="Initial cash float" GridPane.columnIndex="2" />
             <Button fx:id="startButton" mnemonicParsing="false" onAction="#startButtonPushed" text="Start Day" GridPane.columnIndex="1" />
             <Button fx:id="endButton" mnemonicParsing="false" onAction="#endButtonPushed" text="End day" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextFlow fx:id="endFloatField" maxHeight="30.0" prefHeight="103.0" prefWidth="155.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
