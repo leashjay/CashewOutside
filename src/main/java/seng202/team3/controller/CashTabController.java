@@ -12,9 +12,6 @@ import seng202.team3.view.BusinessApp;
 public class CashTabController {
 
     @FXML
-    public TextField startFloatField;
-
-    @FXML
     public TextFlow endFloatField;
 
     @FXML
@@ -51,12 +48,10 @@ public class CashTabController {
     }
 
     public void startButtonPushed() {
-        startFloat = Float.parseFloat(startFloatField.getText());
         plusButton.setDisable(false);
         subtractButton.setDisable(false);
         startButton.setDisable(true);
         endButton.setDisable(false);
-        startFloatField.setDisable(true);
         truck.currentFloat += startFloat;
         currentFloatField.getChildren().clear();
         Text text = new Text(Float.toString(truck.currentFloat));
@@ -73,8 +68,6 @@ public class CashTabController {
         plusButton.setDisable(true);
         subtractButton.setDisable(true);
         startButton.setDisable(false);
-        startFloatField.setDisable(false);
-        startFloatField.clear();
 
     }
 
