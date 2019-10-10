@@ -1,11 +1,14 @@
 package seng202.team3.model;
 
 
+import seng202.team3.parsing.DateAdapter;
+import seng202.team3.parsing.TimeAdapter;
 import seng202.team3.util.OrderStatus;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,9 +21,13 @@ import java.util.ArrayList;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Order {
     // TODO make Order Observable so Sales is dynamically updated when MenuItems are added etc.
+    @XmlAttribute(name = "dateOrdered")
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private LocalDate dateOrdered;
 
-	private LocalTime timeOrdered;
+    @XmlAttribute(name = "timeOrdered")
+    @XmlJavaTypeAdapter(TimeAdapter.class)
+    private LocalTime timeOrdered;
 
     @XmlElement(name = "orderId")
     private int orderId; // should be unique across multiple orders
@@ -60,10 +67,10 @@ public class Order {
         //TODO change timeOrdered to be set when order is ordered.
         super();
 
-        this.orderStatus = OrderStatus.QUEUED;
+        //this.orderStatus = OrderStatus.QUEUED;
         //TODO remove these two following lines, while not breaking functionality ;)
-        setTime(LocalTime.now());
-        dateOrdered = LocalDate.now();
+        //setTime(LocalTime.now());
+        //dateOrdered = LocalDate.now();
     }
 
     /**
@@ -112,26 +119,6 @@ public class Order {
      */
     public float getTotalCost() {
         return orderCost;
-    }
-
-    /**
-     * Getter for DateOrdered of type string
-     *
-     * @return dateOrdered
-     */
-    @XmlAttribute(name = "dateOrdered")
-    public String getDateOrdered() {
-        return dateOrdered.toString();
-    }
-
-    /**
-     * Getter for timeOrdered of type string
-     *
-     * @return timeOrdered
-     */
-    @XmlAttribute(name = "timeOrdered")
-    public String getTimeOrdered() {
-        return timeOrdered.toString();
     }
 
     public int getOrderId() {
