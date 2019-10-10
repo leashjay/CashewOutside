@@ -199,6 +199,11 @@ public class Ingredient {
         unit = newUnit;
     }
 
+    /**
+     * Converts the given string representation of a unit type to the actual type.
+     * @param unit the string representation of the unit type of an ingredient
+     * @return the Unit type util value for that unit
+     */
     public UnitType convertToUnit(String unit) {
         UnitType newUnit = UnitType.UNKNOWN;
         if (unit.toUpperCase() == "GRAM") {
@@ -245,6 +250,11 @@ public class Ingredient {
         cost = calcCost;
     }
 
+    /**
+     * Calculates the average price of an ingredient based on the new cost price, current stock and the stock that was added.
+     * @param newCost the cost of the new ingredients we have received
+     * @param oldQuantity the amount of the ingredient we had previously
+     */
     public void setCost(float newCost, float oldQuantity) {
         Float calcCost = ((oldQuantity * newCost) + (getQuantity() * getCost())) / (getQuantity() + oldQuantity);
         cost = calcCost;
@@ -259,7 +269,7 @@ public class Ingredient {
     }
 
     /**
-     *
+     *Decreases the quantity of the ingredient by the specified amount
      * @param decreaseAmount amount to decrease the quantity of the Ingredient
      */
     public void decreaseQuantity(float decreaseAmount) {
