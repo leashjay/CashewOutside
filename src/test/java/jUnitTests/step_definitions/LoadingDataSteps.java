@@ -3,7 +3,7 @@ package jUnitTests.step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.xml.sax.SAXException;
+import seng202.team3.controller.AddXMLController;
 import seng202.team3.model.*;
 import seng202.team3.parsing.InventoryLoader;
 import seng202.team3.parsing.MenuLoader;
@@ -15,14 +15,10 @@ import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
-import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 public class LoadingDataSteps {
     private HashMap<String, Ingredient> inventoryHashMap;
@@ -41,7 +37,6 @@ public class LoadingDataSteps {
     private String filename;
     private MenuLoader testMenuLoader;
     private InventoryLoader testInventoryLoader;
-    private ArrayList<String> errorMessageList;
 
     /*Background conditions setting up new business */
     @Given("a {string} for operation")
@@ -200,25 +195,15 @@ public class LoadingDataSteps {
     }
 
     @When("the {string} is used and an integrity error is found")
-    public void theIsUsedAndAnIntegrityErrorIsFound(String string) {
-        try {
-            validateXMLFile(filename);
-            inventory = testInventoryLoader.loadIngredientsData(filename);
-        } catch (IOException ioe) {
-            errorMessageList.add(ioe.getMessage());
-        } catch (SAXException spe) {
-            errorMessageList.add(spe.getMessage());
-        } catch (ParserConfigurationException pce) {
-            errorMessageList.add(pce.getMessage());
-        } catch (JAXBException jaxbe) {
-            errorMessageList.add(jaxbe.getMessage());
-        }
+    public void theIsUsedAndAnIntegrityErrorIsFound(String string) throws JAXBException {
+        AddXMLController.errorMessageList.clear();
+        inventory = testInventoryLoader.loadIngredientsData(filename);
         throw new cucumber.api.PendingException();
     }
 
     @Then("an error message is returned to the user")
     public void anErrorMessageIsReturnedToTheUser() {
-        assertFalse(errorMessageList.isEmpty());
+        assertFalse(AddXMLController.errorMessageList.isEmpty());
         throw new cucumber.api.PendingException();
     }
 

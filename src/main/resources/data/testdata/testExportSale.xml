@@ -23,22 +23,22 @@
         ]>
 <sales>
    <orders>
-       <order dateOrdered="2019-10-10" timeOrdered="17:09:11.521048300">
+       <order dateOrdered="2019-10-10" timeOrdered="23:30:50.390194400">
          <orderId>1</orderId>
          <customerName></customerName>
          <orderStatus>COMPLETE</orderStatus>
-         <orderCost>0.0</orderCost>
+           <orderCost>NaN</orderCost>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order dateOrdered="2019-10-10" timeOrdered="17:09:11.523044500">
+       <order dateOrdered="2019-10-10" timeOrdered="23:30:50.391191800">
          <orderId>2</orderId>
          <customerName></customerName>
          <orderStatus>COOKING</orderStatus>
-         <orderCost>0.0</orderCost>
+           <orderCost>NaN</orderCost>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>

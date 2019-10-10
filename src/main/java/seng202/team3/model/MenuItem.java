@@ -65,6 +65,10 @@ public class MenuItem {
     @XmlAttribute(name = "serves")
     private int numServings;
 
+    /**
+     * Markup to calculate sales price
+     */
+    private float markup = (float) 1.1;
 
     /**
      * No arg constructor for JAXB
@@ -85,6 +89,7 @@ public class MenuItem {
         this.ingredients = ingredients;
         this.type = type;
         this.numServings = 1;
+        this.markup = (float) 1.1;
     }
 
     /**
@@ -127,10 +132,13 @@ public class MenuItem {
      * @return a float showing the cost the business sells the item for
      */
     public float getSalePrice() {
-        return totalCost;
+        totalCost = getCostPrice();
+        return totalCost * markup;
     }
 
+
    public int getServings(){return numServings;}
+
 
     /**
      * Adds the given ingredient to the recipe
@@ -160,7 +168,6 @@ public class MenuItem {
             Ingredient ingredient = entry.getKey();
             totalCost += ingredient.getCost() * entry.getValue();
         }
-
         return totalCost;
     }
 

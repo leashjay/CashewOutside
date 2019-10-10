@@ -8,8 +8,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
 import seng202.team3.model.Order;
+import seng202.team3.view.BusinessApp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,12 +50,22 @@ public class ViewOrderPopUp {
         window.showAndWait();
     }
 
+    private static ArrayList<MenuItem> appendRecipeToOrderedMenuItem(ArrayList<MenuItem> orderedItems) {
+        HashMap<String, MenuItem> menuItems = BusinessApp.getBusiness().getMenuManager().getMenuItem();
+        for (MenuItem orderedItem : orderedItems) {
+            HashMap<Ingredient, Float> recipe = menuItems.get(orderedItem.getId()).getIngredients();
+            orderedItem.getIngredients().putAll(recipe);
+        }
+        return orderedItems;
+    }
+
     /**
      * populates a given VBox with MenuItem Labels
      * @param vBox to populate
      * @param menuItems for population
      */
     private static void populateVBoxMenuItems(VBox vBox, ArrayList<MenuItem> menuItems) {
+        appendRecipeToOrderedMenuItem(menuItems);
         HashMap<MenuItem, Integer> menuItemsWithQuantities = getHashMapOfMenuItems(menuItems);
         for (Map.Entry<MenuItem, Integer> entry : menuItemsWithQuantities.entrySet()) {
             MenuItem menuItemToUse = entry.getKey();

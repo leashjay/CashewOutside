@@ -37,12 +37,14 @@ public class Truck {
     public Truck() {
     }
 
+
     /**
      * Constructor for Truck class
      * @param ingredientsXML path to ingredientsXML
      * @throws Exception
      */
     public Truck(String ingredientsXML) throws JAXBException {
+        // TODO delete this constructor if no one is using it.
         createTruckInventory(ingredientsXML);
         cashFloat = new HashMap<Integer, Integer>();
 
