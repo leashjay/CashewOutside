@@ -2,11 +2,9 @@ package seng202.team3.model;
 
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
-import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,13 +60,6 @@ public class MenuItem {
      */
     @XmlAttribute(name = "isGF")
     private ThreeValueLogic isGlutenFree;
-
-    private ArrayList<ItemType> itemTypes;
-
-    private UnitType foodType;
-
-    /** The price the business sells the item for */
-    private float salePrice;
 
     /** The number of servings the menu item has */
     @XmlAttribute(name = "serves")
@@ -135,7 +126,9 @@ public class MenuItem {
      * Returns cost which the business sells the item for
      * @return a float showing the cost the business sells the item for
      */
-    public float getSalePrice(){return totalCost;}
+    public float getSalePrice() {
+        return totalCost;
+    }
 
    public int getServings(){return numServings;}
 

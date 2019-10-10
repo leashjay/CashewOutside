@@ -34,7 +34,7 @@
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="4.5">
             <code>Cream</code>
             <name>Cream</name>
-            <quantity>470.0</quantity>
+            <quantity>500.0</quantity>
         </ingredient>
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="3.5">
             <code>RegMilk</code>
@@ -66,10 +66,10 @@
             <name>Chicken stock</name>
             <quantity>500.0</quantity>
         </ingredient>
-        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
+        <ingredient unit="GRAM" isVeg="NO" isVegan="YES" isgf="NO" cost="868.0">
             <code>Salt</code>
-            <name>Table salt</name>
-            <quantity>1500.0</quantity>
+            <name>Salt</name>
+            <quantity>500.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.2">
             <code>Lettuce</code>
@@ -109,7 +109,7 @@
         <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
             <code>Onion</code>
             <name>Diced onion</name>
-            <quantity>337.5</quantity>
+            <quantity>300.0</quantity>
         </ingredient>
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="15.9">
             <code>Brandy</code>
@@ -119,7 +119,7 @@
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="17.0">
             <code>Cassis</code>
             <name>Torlesse Cassis, 750ml</name>
-            <quantity>720.0</quantity>
+            <quantity>750.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.0">
             <code>Flour</code>
@@ -134,12 +134,12 @@
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="25.0">
             <code>Vodka</code>
             <name>Vodka, Ivan's special brew, 1l</name>
-            <quantity>470.0</quantity>
+            <quantity>500.0</quantity>
         </ingredient>
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.6">
             <code>Oil</code>
             <name>Canola oil</name>
-            <quantity>0.0</quantity>
+            <quantity>710.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.5">
             <code>Shrooms</code>
@@ -149,7 +149,7 @@
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.34">
             <code>OSauce</code>
             <name>Oyster Sauce</name>
-            <quantity>2000.0</quantity>
+            <quantity>500.0</quantity>
         </ingredient>
         <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="4.0">
             <code>Choc</code>

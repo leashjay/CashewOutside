@@ -38,11 +38,11 @@ public class Business {
      * @param suppliersXML   path to suppliersXML
      */
     public Business(String ingredientsXML, String menuXML, String suppliersXML, String salesXML, String employeeXML, String truckXML) throws JAXBException {
-        thisTruck = new Truck(ingredientsXML);
+        createTruck(truckXML);
+        thisTruck.createTruckInventory(ingredientsXML);
         createMenuManager(menuXML);
         createSupplierManager(suppliersXML);
         createSalesManager(salesXML);
-        //TODO Make this load from XML
         createEmployeeManager(employeeXML);
         lastOrderID = calculateLastOrderID();
 
@@ -129,6 +129,12 @@ public class Business {
         EmployeeLoader employeeLoader = new EmployeeLoader();
         employeeManager = employeeLoader.loadEmployeeData(filename);
     }
+
+    private void createTruck(String filename) throws JAXBException {
+        TruckLoader truckLoader = new TruckLoader();
+        thisTruck = truckLoader.loadTruckData(filename);
+    }
+
 
     /**
      * Export order history as XML file

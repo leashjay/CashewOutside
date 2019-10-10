@@ -89,6 +89,7 @@ public class BusinessApp extends Application {
                 alterXMLPathToOriginal();
             }
         }
+
     }
 
     /**
@@ -158,7 +159,7 @@ public class BusinessApp extends Application {
         menuXML = pathPrefix + "SampleMenu" + ".xml";
         suppliersXML = pathPrefix + "Suppliers" + ".xml";
         salesXML = pathPrefix + "Sales" + ".xml";
-        employeeXML = pathPrefix + "Employee" + ".xml";
+        employeeXML = pathPrefix + "Employees" + ".xml";
         truckXML = pathPrefix + "Truck" + ".xml";
     }
 
