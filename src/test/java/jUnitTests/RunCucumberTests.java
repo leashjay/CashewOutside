@@ -9,7 +9,7 @@ import static io.cucumber.junit.CucumberOptions.SnippetType;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty", "html:target/cucumber"},
         snippets = SnippetType.CAMELCASE,
-        glue = "jUnitTests/step_definitions",
+        glue = "step_definitions",
         features = "src/test/features")
 
 

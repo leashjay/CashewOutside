@@ -63,6 +63,7 @@ public class Truck {
         cashAccount += 500;
     }
 
+
     /**
      * Create truckInventory
      *
@@ -85,7 +86,8 @@ public class Truck {
     }
 
     /**
-     * Getter for cash float
+     * Getter for cash float, implementation for use of denominations.
+     * Not used with this prototype
      *
      * @return cashFloat
      */
@@ -94,11 +96,23 @@ public class Truck {
     }
 
     /** public static
-     * Getter for cash account
+     * Getter for cash account, cash account is the money held
+     * by each (the) truck and used for daily transactions
      * @return cashAccount
      */
     public float getCashAccount() {
         return cashAccount;
+    }
+
+
+    /**
+     * setting the value in the cash account held by the truck for
+     * daily operations
+     *
+     * @param newValue passed value to set account dollar value
+     */
+    public void setCashAccount(float newValue) {
+        cashAccount = newValue;
     }
 
 
