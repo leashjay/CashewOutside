@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import seng202.team3.model.SalesHandler;
 import seng202.team3.model.Truck;
 import seng202.team3.view.BusinessApp;
 
@@ -56,8 +55,6 @@ public class CashTabController {
         currentFloatField.getChildren().clear();
         Text text = new Text(Float.toString(truck.currentFloat));
         currentFloatField.getChildren().add(text);
-
-
     }
 
     public void endButtonPushed() {
