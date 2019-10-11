@@ -69,6 +69,7 @@ public class MenuItemTest {
         testItem.decreaseStock();
         Float finalQtt = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get("TSauce").getQuantity();
         assertEquals(initialQtt - 10f, finalQtt);
+
     }
 
 

@@ -166,7 +166,8 @@ public class MenuItem {
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            totalCost += ingredient.getCost() * entry.getValue();
+            Float cost = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
+            totalCost += cost * entry.getValue();
         }
         return totalCost;
     }
