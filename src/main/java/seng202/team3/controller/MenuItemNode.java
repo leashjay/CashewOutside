@@ -13,6 +13,8 @@ import seng202.team3.util.ThreeValueLogic;
  * Creates a GridPane and populates it with cool formatted stuff based on a given MenuItem.
  */
 public class MenuItemNode extends VBox {
+
+    final int height = 175;
     private MenuItem menuItem;
     private int quantity;
     private Label quantityLabel;
@@ -25,7 +27,7 @@ public class MenuItemNode extends VBox {
         this.quantity = 1;
         this.menuItem = menuItem;
         this.parent.increaseCurOrderByOne(this.menuItem); // defaulting the quantity to one
-        this.setPrefHeight(200);
+        this.setPrefHeight(height);
         this.setPrefWidth(100);
         makeNameArea(menuItem.getName());
         makeFlags();
@@ -51,7 +53,7 @@ public class MenuItemNode extends VBox {
         quantityLabel = new Label();
         Button incrButton = new Button("+");
         incrButton.setOnAction(e -> increaseCountByOne());
-        buttonHBox.setPrefHeight(60);
+        buttonHBox.setPrefHeight(height * 0.3);
         buttonHBox.getChildren().addAll(decrButton, quantityLabel, incrButton);
         this.getChildren().add(3, buttonHBox);
     }
@@ -61,7 +63,7 @@ public class MenuItemNode extends VBox {
         Label costLabel = new Label("Cost:");
         costValue = new Label();
 //        costLabel.setPrefHeight(40);
-        costHBox.setPrefHeight(40);
+        costHBox.setPrefHeight(height * 0.2);
         costHBox.getChildren().addAll(costLabel, costValue);
         this.getChildren().add(2, costHBox);
     }
@@ -71,7 +73,7 @@ public class MenuItemNode extends VBox {
      */
     private void makeFlags() {
         Label flagLabel = new Label();
-        flagLabel.setPrefHeight(60);
+        flagLabel.setPrefHeight(height * 0.3);
         flagLabel.setPrefWidth(100);
         String flagText = "";
         if (menuItem.isGlutenFree() == ThreeValueLogic.YES) {
@@ -97,7 +99,7 @@ public class MenuItemNode extends VBox {
         itemNameLabel.setStyle("-fx-text-alignment: center; -fx-wrap-text: true;");
         itemNameLabel.setAlignment(Pos.TOP_CENTER);
         itemNameLabel.setPrefWidth(200);
-        itemNameLabel.setPrefHeight(40);
+        itemNameLabel.setPrefHeight(height * 0.2);
         this.getChildren().add(0,itemNameLabel);
     }
 

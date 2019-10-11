@@ -3,12 +3,14 @@ package seng202.team3.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,6 +30,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class SalesController {
+
+    @FXML
+    private ScrollPane topScrollPane;
 
     @FXML
     private Button backButton;
@@ -201,6 +206,17 @@ public class SalesController {
             rowConstraints.setPrefHeight(this.rowHeight);
         }
     }
+
+    @FXML
+    public void horizontalScrollTopPane(ScrollEvent event) {
+        if (event.getDeltaX() == 0 && event.getDeltaY() != 0) {
+            topScrollPane.setHvalue(topScrollPane.getHvalue() - event.getDeltaY());
+        }
+        event.consume();
+    }
+
+
+
 
     /**
      * will not overwrite any current buttons.
