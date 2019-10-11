@@ -157,6 +157,21 @@ public class MenuItem {
         ingredients.remove(ingredientToRemove);
     }
 
+
+    /**
+     * Check if ingredient is in truck inventory (loaded from Business class)
+     *
+     * @param ingredient ingredient to be checked
+     * @return true if ingredient is in truck inventory, false otherwise
+     */
+    public boolean isIngredientInStock(Ingredient ingredient) {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        if (truckInventory.getIngredients().get(ingredient.getCode()) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     /**
      * Calculates the price it takes to create the given recipe
      * @return a float showing the price to create the given recipe
@@ -166,7 +181,12 @@ public class MenuItem {
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            Float cost = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
+            Float cost = 0f;
+            if (isIngredientInStock(ingredient)) {
+                cost = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
+            } else {
+                cost = ingredient.getCost();
+            }
             totalCost += cost * entry.getValue();
         }
         return totalCost;
@@ -191,7 +211,6 @@ public class MenuItem {
             if(ingredient.getIsGlutenFree() == ThreeValueLogic.NO){
                 isGlutenFree = ThreeValueLogic.NO;
             }
-
         }
         return isGlutenFree;
     }
