@@ -4,6 +4,7 @@ import seng202.team3.parsing.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -27,6 +28,7 @@ public class Business {
     /**List of employees in the database*/
     private EmployeeHandler employeeManager;
 
+    /**The ID of the last order the business has made*/
     private int lastOrderID;
 
 
@@ -49,8 +51,13 @@ public class Business {
     }
 
 
-    private int calculateLastOrderID() {
+    /**
+     * Calculates the ID of the most recent order
+     * @return an integer showing the ID of the most recent order.
+     */
+    public int calculateLastOrderID() {
         Set<Integer> orderIDs = this.salesManager.getOrdersHashMap().keySet();
+
         if (orderIDs.size() <= 0) {
             return 0; // default value
         }
@@ -101,9 +108,9 @@ public class Business {
     }
 
     /**
-     * Create supplierManager of type SupplierHandler class
-     * @param fileName path to suppliersXML
-     * @throws Exception
+     * Creates the instance of the supplier handler associated with the business
+     * @param fileName the name of the XML file we create the supplier manager with
+     * @throws JAXBException the exception thrown if there is a marshalling error with JAXB
      */
     public void createSupplierManager(String fileName) throws JAXBException {
         SuppliersLoader supplierLoad = new SuppliersLoader();
@@ -120,16 +127,31 @@ public class Business {
         menuManager = menuLoad.loadMenuData(fileName);
     }
 
+    /**
+     * Creates the sales manager associated with the business
+     * @param filename The name of the XML file we use to create the sales manager
+     * @throws JAXBException the exception thrown by JAXB if an error is encountered
+     */
     public void createSalesManager(String filename) throws JAXBException {
         SalesLoader salesLoader = new SalesLoader();
         salesManager = salesLoader.loadSalesData(filename);
     }
 
+    /**
+     * Creates the employee manager associated with the business
+     * @param filename the filename of the XML we are loading the employeemanagerfrom
+     * @throws JAXBException the exception thrown by JAXB if there is an error marshalling
+     */
     private void createEmployeeManager(String filename) throws JAXBException {
         EmployeeLoader employeeLoader = new EmployeeLoader();
         employeeManager = employeeLoader.loadEmployeeData(filename);
     }
 
+    /**
+     * Creates the truck instance associated with the business
+     * @param filename the filename of the XML we are loading the truck from
+     * @throws JAXBException the exception thrown by JAXB if there is an error marshalling.
+     */
     private void createTruck(String filename) throws JAXBException {
         TruckLoader truckLoader = new TruckLoader();
         thisTruck = truckLoader.loadTruckData(filename);
@@ -159,7 +181,7 @@ public class Business {
     /**
      * Export supplier data as XML file
      *
-     * @param file
+     * @param file the name of the XML file we export the supplier data to
      */
     public void exportSupplierAsXML(String file) throws JAXBException, IOException{
         SuppliersLoader suppliersLoader = new SuppliersLoader();
@@ -168,18 +190,30 @@ public class Business {
 
     /**
      * Export menu data as XML file
-     * @param file
+     * @param file the name of the XML file we export the menu data to
      */
     public void exportMenuAsXML(String file) throws JAXBException, IOException {
         MenuLoader menuLoader = new MenuLoader();
         menuLoader.exportMenuData(file, menuManager);
     }
 
+    /**
+     * Exports the Employee data as an XML file
+     * @param file the name of the XML file we export the Employee data to
+     * @throws JAXBException the exception thrown by JAXB if an error is encountered
+     * @throws IOException the exception thrown if an error is encountered
+     */
     public void exportEmployeeAsXML(String file) throws JAXBException, IOException {
         EmployeeLoader employeeLoader = new EmployeeLoader();
         employeeLoader.exportEmployeeData(file, employeeManager);
     }
 
+    /**
+     * Exports the Truck data as an XML file
+     * @param file the name of the XML file we export the truck data to
+     * @throws JAXBException the exception thrown by JAXB if an error is encountered
+     * @throws IOException the exception thrown if an error is encountered
+     */
     public void exportTruckAsXML(String file) throws JAXBException, IOException {
         TruckLoader truckLoader = new TruckLoader();
         truckLoader.exportTruckData(file, thisTruck);

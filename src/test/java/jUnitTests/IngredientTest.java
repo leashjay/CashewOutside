@@ -22,7 +22,7 @@ public class IngredientTest {
          flour = new Ingredient("6", "Flour", 12.1f, UnitType.GRAM, 10f);
          tomato = new Ingredient("7", "Tomato", 12.1f, UnitType.COUNT, 10f);
          coke = new Ingredient("8", "coke", 12f, UnitType.ML, 5f);
-         baklava = new Ingredient("9", "baklava", 13f, UnitType.UNKNOWN, 15f);
+         baklava = new Ingredient("9", "baklava", 13f, UnitType.UNKNOWN, 1f);
 
     }
 
@@ -181,12 +181,16 @@ public class IngredientTest {
     public void decreaseQuantityBelowZeroTest(){
         baklava.setQuantity(1f);
         baklava.decreaseQuantity(2f);
+        assertEquals(baklava.getQuantity(),0f);
     }
 
     /**
      * Test to see whether calculating the new average price of an item when receiving stock works as expected
+     * //TODO decide what we are doing with the set cost method
      */
-    public void setCostTest(){}
+    public void setCostTest(){
+
+    }
 
 
 
