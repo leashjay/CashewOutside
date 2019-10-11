@@ -59,7 +59,7 @@
         <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.7">
             <code>LemCan</code>
             <name>Lemonade, 300ml Can</name>
-            <quantity>30.0</quantity>
+            <quantity>29.0</quantity>
         </ingredient>
         <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="3.5">
             <code>CStock</code>

@@ -244,8 +244,12 @@ public class MenuItem {
             Ingredient ingredient = ingredientFloatEntry.getKey();
             Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
             Float amountRequired = ingredientFloatEntry.getValue();
-            if (truckIngredient.getQuantity() < amountRequired) {
+            if (truckIngredient == null) {
                 return false;
+            } else {
+                if (truckIngredient.getQuantity() < amountRequired) {
+                    return false;
+                }
             }
         }
         return true;

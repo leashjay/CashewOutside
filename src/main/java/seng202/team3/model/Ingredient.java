@@ -207,9 +207,9 @@ public class Ingredient {
     public UnitType convertToUnit(String unit) {
         UnitType newUnit = UnitType.UNKNOWN;
         if (unit.toUpperCase() == "GRAM") {
-            newUnit = UnitType.COUNT;
+            newUnit = UnitType.GRAM;
         } else if (unit.toUpperCase() == "ML") {
-            newUnit = UnitType.COUNT;
+            newUnit = UnitType.ML;
         } else if (unit.toUpperCase() == "COUNT") {
             newUnit = UnitType.COUNT;
         }

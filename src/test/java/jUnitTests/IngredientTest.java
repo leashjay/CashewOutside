@@ -8,6 +8,7 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 
 import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertFalse;
 
 public class IngredientTest {
 
@@ -40,6 +41,35 @@ public class IngredientTest {
         assertEquals(ingredient.getIsGlutenFree(), ThreeValueLogic.UNKNOWN);
         assertEquals(ingredient.getCost(), 10f);
     }
+
+    /**
+     * Tests isLowStock method
+     */
+    @Test
+    public void isLowStockTest() {
+        Ingredient highStockIngredient = new Ingredient("4", "Pasta", 12.1f, UnitType.COUNT, 10f);
+        assertFalse(highStockIngredient.isLowStock());
+
+        Ingredient lowStockIngredient = new Ingredient("4", "Pasta", 5.1f, UnitType.GRAM, 10f);
+        assertTrue(lowStockIngredient.isLowStock());
+    }
+
+    /**
+     * Tests converToUnit method
+     */
+    @Test
+    public void convertToUnitTest() {
+        Ingredient ingredient = new Ingredient("4", "Pasta", 12.1f, UnitType.COUNT, 10f);
+        UnitType newUnit = ingredient.convertToUnit("GRAM");
+        assertEquals(UnitType.GRAM, newUnit);
+
+        newUnit = ingredient.convertToUnit(("ML"));
+        assertEquals(UnitType.ML, newUnit);
+
+        newUnit = ingredient.convertToUnit("COUNT");
+        assertEquals(UnitType.COUNT, newUnit);
+    }
+
 
     /**
      * Tests setters and getters for an ingredient item

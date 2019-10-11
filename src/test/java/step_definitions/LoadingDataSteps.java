@@ -154,7 +154,7 @@ public class LoadingDataSteps {
         menuContents.clear();
         testMenu = testMenuLoader.loadMenuData(filename);
         menuContents = testMenu.getMenuItem();
-        throw new cucumber.api.PendingException();
+        //throw new cucumber.api.PendingException();
     }
 
     @Then("the menu items map is not empty")
@@ -165,7 +165,7 @@ public class LoadingDataSteps {
         //inventory = testMenuLoader.loadMenuData(filename);
         //this.inventory = inventory;
         // inventoryHashMap = this.inventory.getIngredients();
-        throw new cucumber.api.PendingException();
+        //throw new cucumber.api.PendingException();
     }
 
     @Given("a supplier {string} for an XML file containing suppliers")

@@ -32,7 +32,7 @@ public class Employee {
      * @return the salt used to generate the users password
      */
     public String getSalt(){
-        return salt;
+        return salt.trim();
     }
 
     /**

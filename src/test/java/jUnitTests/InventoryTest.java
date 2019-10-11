@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static junit.framework.TestCase.*;
 
-public class InventoryTests {
+public class InventoryTest {
 
     private HashMap<String, Ingredient> inventoryHashMap;
     private Inventory inventory;
@@ -65,6 +65,27 @@ public class InventoryTests {
             }
         }
     }
+
+    /**
+     * Tests compareAndAddIngredint method
+     */
+    @Test
+    public void compareAndAddIngredientTest() {
+        inventory.getIngredients().put(BBun.getCode(), BBun);
+        inventory.getIngredients().put(Cheese.getCode(), Cheese);
+        inventory.getIngredients().put(TrimMilk.getCode(), TrimMilk);
+
+        HashMap<String, Ingredient> newIngredients = new HashMap<String, Ingredient>();
+        newIngredients.put(BBun.getCode(), BBun);
+        newIngredients.put(Cheese.getCode(), Cheese);
+        newIngredients.put(TrimMilk.getCode(), TrimMilk);
+
+        inventory.compareAndAddIngredient(newIngredients);
+
+        assertEquals(18f, inventory.getIngredients().get(TrimMilk.getCode()).getQuantity());
+
+    }
+
 
     /**
      * This tests the add and remove stock methods

@@ -13,6 +13,6 @@ import static io.cucumber.junit.CucumberOptions.SnippetType;
         features = "src/test/features")
 
 
-public class RunCucumberTests {
+public class RunCucumberTest {
 
 }
