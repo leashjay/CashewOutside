@@ -146,10 +146,10 @@ public class SalesHandler {
      * customer pays for an order
      * @param orderId the order to pay for
      */
-    public void customerPays(int orderId) {
-        // TODO implement this method fully.
+    public float customerPays(float amountPaid, int orderId) {
         float price = this.getOrder(orderId).getTotalCost();
         BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
+        return calculateChange(amountPaid, orderId);
     }
 
     /**\
@@ -163,7 +163,6 @@ public class SalesHandler {
     }
 
     public float calculateChange(float amountPaid, int orderId) {
-        // TODO not allow negative values? depends on what is calling it.
         Order order = orders.get(orderId);
         return amountPaid - order.getTotalCost();
     }
