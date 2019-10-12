@@ -63,11 +63,15 @@ public class Menu {
         this.menuContent = menuContent;
     }
 
+    public MenuItem getMenuItem(String id){
+        return menuContent.get(id);
+    }
+
     /**
      * Getter for list of menu item
      * @return menuContent
      */
-    public HashMap<String, MenuItem> getMenuItem() {
+    public HashMap<String, MenuItem> filterMenuItems() {
         return menuContent;
     }
 
@@ -76,7 +80,7 @@ public class Menu {
      * @param filterSet only return items with this given
      * @return filteredMenu the MenuItems that have an ItemType in the given filterSet
      */
-    public HashMap<String, MenuItem> getMenuItem(Set<ItemType> filterSet) {
+    public HashMap<String, MenuItem> filterMenuItems(Set<ItemType> filterSet) {
         // The current way this is implemented is slow and should be implemented better.
         HashMap<String, MenuItem> filteredMenuItems = new HashMap<>();
         for (MenuItem menuItem: this.menuContent.values()) {
@@ -151,7 +155,7 @@ public class Menu {
         menuLoader = new MenuLoader();
         Menu menu = menuLoader.loadMenuData(file);
         if (menu != null) {
-            HashMap<String, MenuItem> newMenuItems = menu.getMenuItem();
+            HashMap<String, MenuItem> newMenuItems = menu.filterMenuItems();
             menuContent.putAll(newMenuItems);
         }
     }

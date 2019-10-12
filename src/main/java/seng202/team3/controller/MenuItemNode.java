@@ -42,7 +42,7 @@ public class MenuItemNode extends VBox {
      */
     private void updateLabels() {
         this.quantityLabel.setText(String.valueOf(quantity));
-        this.costValue.setText(String.format("$%.2f", (menuItem.getSalePrice() * quantity)));
+        this.costValue.setText(String.format("$%.2f", (menuItem.calculateSalePrice() * quantity)));
         this.parent.updateLabels();
     }
 

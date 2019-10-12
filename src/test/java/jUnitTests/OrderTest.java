@@ -53,7 +53,7 @@ public class OrderTest {
         //Setup costs
         cost = 0;
         for (int i = 0; i < menuItems.size(); i++) {
-            cost += menuItems.get(i).getSalePrice();
+            cost += menuItems.get(i).calculateSalePrice();
         }
 
     }

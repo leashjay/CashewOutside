@@ -35,6 +35,8 @@ public class MenuItem {
     @XmlElement(name = "cost")
     private float totalCost;
 
+    private float salePrice;
+
     /**
      * List of ingredients and their quantities needed to make the menu item
      */
@@ -143,9 +145,17 @@ public class MenuItem {
      *
      * @return a float showing the cost the business sells the item for
      */
-    public float getSalePrice() {
-        totalCost = getCostPrice();
+    public float calculateSalePrice() {
+        totalCost = getCostPriceFromIngredients();
         return totalCost * markup;
+    }
+
+    /**
+     * Returns the sales price of an item the business sells
+     * @return the sales price of a menu item
+     */
+    public float getSalePrice(){
+        return salePrice;
     }
 
 
@@ -192,7 +202,7 @@ public class MenuItem {
      * Calculates the price it takes to create the given recipe
      * @return a float showing the price to create the given recipe
      */
-    public float getCostPrice() {
+    public float getCostPriceFromIngredients() {
         totalCost = 0;
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
@@ -209,7 +219,7 @@ public class MenuItem {
     }
 
     public void setSalePrice(float newPrice) {
-        this.totalCost = newPrice;
+        this.salePrice = newPrice;
     }
 
     /**
@@ -250,6 +260,14 @@ public class MenuItem {
             }
         }
         return isVegetarian;
+    }
+
+    /**
+     * Method to set the new markup of a menu Item
+     * @param newMarkup a float showing the decimal value we use for markup e.g 1.1 for 10% markup
+     */
+    public void setMarkUp(float newMarkup){
+        markup = newMarkup;
     }
 
     /**

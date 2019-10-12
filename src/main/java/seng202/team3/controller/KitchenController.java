@@ -83,7 +83,7 @@ public class KitchenController {
             if (order.getStatus() == OrderStatus.QUEUED) {
 
                 for (MenuItem item : order.getOrderedItems()) {
-                    MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
+                    MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().filterMenuItems().get(item.getId());
                     if (!menuItems.contains(itemReal)) {
                         menuItems.add(itemReal);
                     }

@@ -68,7 +68,7 @@ public class ViewOrderPopUp {
     }
 
     private static ArrayList<MenuItem> appendRecipeToOrderedMenuItem(ArrayList<MenuItem> orderedItems) {
-        HashMap<String, MenuItem> menuItems = BusinessApp.getBusiness().getMenuManager().getMenuItem();
+        HashMap<String, MenuItem> menuItems = BusinessApp.getBusiness().getMenuManager().filterMenuItems();
         for (MenuItem orderedItem : orderedItems) {
             HashMap<Ingredient, Float> recipe = menuItems.get(orderedItem.getId()).getIngredients();
             orderedItem.getIngredients().putAll(recipe);
@@ -88,7 +88,7 @@ public class ViewOrderPopUp {
             MenuItem menuItemToUse = entry.getKey();
             Integer quantity = entry.getValue();
             Label newMenuItemLabel = new Label();
-            newMenuItemLabel.setText(String.format("%s: %d, $%.2f", menuItemToUse.getName(), quantity, + quantity * menuItemToUse.getSalePrice()));
+            newMenuItemLabel.setText(String.format("%s: %d, $%.2f", menuItemToUse.getName(), quantity, + quantity * menuItemToUse.calculateSalePrice()));
             vBox.getChildren().add(newMenuItemLabel);
         }
     }
