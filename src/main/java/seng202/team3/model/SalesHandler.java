@@ -146,13 +146,15 @@ public class SalesHandler {
 
     /**
      * customer pays for an order
+     * @param amountPaid the amount of money the customer pays
      * @param orderId the order to pay for
+     * @param truck the truck that takes the order
      */
-    public float customerPays(float amountPaid, int orderId) {
+    public float customerPays(float amountPaid, int orderId, Truck truck) {
         Order customerOrder = this.getOrder(orderId);
         float price = customerOrder.getTotalCost();
         // TODO change below line to a truck field for nicer testing
-        BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
+        truck.increaseCashFloat(price);
         return calculateChange(amountPaid, orderId);
     }
 

@@ -23,7 +23,7 @@ public class Truck {
     private Inventory truckInventory;
 
     @XmlElement(name = "cashAccount")
-    private double cashAccount;
+    private float cashAccount;
 
     /**
      * Constructor for a truck the business has
@@ -31,6 +31,9 @@ public class Truck {
     public Truck() {
     }
 
+    public Truck(String xmlFile){
+
+    }
 
 
     /**
@@ -59,7 +62,7 @@ public class Truck {
      * by each (the) truck and used for daily transactions
      * @return cashAccount
      */
-    public double getCashAccount() {
+    public float getCashAccount() {
         return cashAccount;
     }
 
@@ -70,7 +73,7 @@ public class Truck {
      *
      * @param newValue passed value to set account dollar value
      */
-    public void setCashAccount(double newValue) {
+    public void setCashAccount(float newValue) {
         cashAccount = newValue;
     }
 
