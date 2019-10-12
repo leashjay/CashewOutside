@@ -1,16 +1,18 @@
 package seng202.team3.util;
 
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Optional;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Optional;
 
 
-/*Utility class to help with encrypting and checking passwords*/
+/**
+ * Utility class to help with encrypting and checking passwords
+ **/
 public class PasswordUtils {
 
     //The number of times we will preform the hashing algorithm

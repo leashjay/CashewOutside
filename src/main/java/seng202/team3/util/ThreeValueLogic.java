@@ -8,8 +8,15 @@ public enum ThreeValueLogic {
     NO("No"),
     UNKNOWN("Unknown");
 
+    /**
+     * Name of ThreeValueLogic
+     **/
     private final String name;
 
+    /**
+     * Return ThreeValueLogic string
+     * @param s ThreeValueLogic String
+     */
     ThreeValueLogic(String s) {
         name = s;
     }

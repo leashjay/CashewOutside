@@ -8,13 +8,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Convert list of employee to HashMap<String, Employee> and vice versa
+ */
 public class EmployeeAdapter extends XmlAdapter<Employees, Map<String, Employee>> {
 
     /**
-     * Converting array of ingredients into HashMap when JAXB unmarshal is called
+     * Converting array of employees into HashMap when JAXB unmarshal is called
      *
-     * @param value array of ingredients from wrapper class
-     * @return HashMap of ingredients
+     * @param value array of employees from wrapper class
+     * @return HashMap of employees
      */
     @Override
     public Map<String, Employee> unmarshal(Employees value) throws Exception {
@@ -25,10 +28,10 @@ public class EmployeeAdapter extends XmlAdapter<Employees, Map<String, Employee>
     }
 
     /**
-     * Converting HashMap of ingredients into HashMap when JAXB marshal is called
+     * Converting HashMap of employees into array when JAXB marshal is called
      *
-     * @param map HashMap of ingredients
-     * @return Array of ingredients
+     * @param map HashMap of employees
+     * @return Array of employees
      */
     @Override
     public Employees marshal(Map<String, Employee> map) throws Exception {
