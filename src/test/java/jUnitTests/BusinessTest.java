@@ -45,7 +45,7 @@ public class BusinessTest {
     @Test
     public void checkMenuItemAttribute() {
         testMenu = testBusiness.getMenuManager();
-        MenuItem beefBurger = testMenu.getMenuItem().get("BB1");
+        MenuItem beefBurger = testMenu.filterMenuItems().get("BB1");
         float quantityNeeded = 0;
         for (Ingredient ing: beefBurger.getIngredients().keySet()) {
             if (ing.getCode().equals("Onion")) {

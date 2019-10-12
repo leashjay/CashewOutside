@@ -35,7 +35,7 @@ public class MenuLoaderTest {
         int numExpected = 6;
         testLoader = new MenuLoader();
         testMenu = testLoader.loadMenuData(fName);
-        menuContent = testMenu.getMenuItem();
+        menuContent = testMenu.filterMenuItems();
 
         assertEquals("All XML ingredients record should be added", numExpected, menuContent.size());
     }
@@ -78,7 +78,7 @@ public class MenuLoaderTest {
         assertEquals("Reset list of menu items", 0, menuContent.size());
 
         testMenu = testLoader.loadMenuData("./src/main/resources/data/testdata/testExportMenu.xml");
-        menuContent = testMenu.getMenuItem();
+        menuContent = testMenu.filterMenuItems();
         assertEquals("All XML ingredients record should be added", 7, menuContent.size());
     }
 }

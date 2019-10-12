@@ -135,7 +135,7 @@ public class InputValidationHelper {
     public static boolean checkMenuItemValidId(TextField textField, Text errorText) {
         String inputId = textField.getText();
 
-        if (BusinessApp.getBusiness().getMenuManager().getMenuItem().containsKey(inputId)) {
+        if (BusinessApp.getBusiness().getMenuManager().filterMenuItems().containsKey(inputId)) {
             errorText.setText("Id entered is already registered in database. \n Try another id");
             errorText.setVisible(true);
             return false;

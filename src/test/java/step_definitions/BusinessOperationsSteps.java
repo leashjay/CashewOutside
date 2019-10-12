@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import seng202.team3.model.*;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.MenuType;
 import seng202.team3.util.UnitType;
 import static junit.framework.TestCase.assertEquals;
 
@@ -17,6 +18,8 @@ public class BusinessOperationsSteps {
     SalesHandler salesHandler = new SalesHandler();
     float cashAdded;
     Order friedRiceOrder;
+    Menu menu = new Menu("Default menu", "the default menu", MenuType.SUMMER, new HashMap<String, MenuItem>());
+    MenuItem hotChocolate;
 
 
 
@@ -44,14 +47,13 @@ public class BusinessOperationsSteps {
 
     @Then("the cash floats reflects the correct total")
     public void theCashFloatsReflectsTheCorrectTotal() {
-        // Write code here that turns the phrase above into concrete actions
         assertEquals(truck.getCashAccount(), cashAdded + friedRiceOrder.getTotalCost());
     }
 
-    @Given("The business opens the day with a ${double} float")
-    public void theBusinessOpensTheDayWithA$Float(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("The business opens the day with a ${float} float")
+    public void theBusinessOpensTheDayWithA$Float(Float cashAmount) {
+        cashAdded = cashAmount;
+        truck.setCashAccount(cashAmount);
     }
 
     @When("several orders are taken during the day")
@@ -69,19 +71,27 @@ public class BusinessOperationsSteps {
     @Given("The business has a hot chocolate on the menu")
     public void theBusinessHasAHotChocolateOnTheMenu() {
         // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Ingredient milk = new Ingredient("1", "Milk", 1000f, UnitType.ML, 0.1f);
+        Ingredient milo = new Ingredient("2", "Milo", 1000f, UnitType.GRAM, 0.1f);
+        HashMap<Ingredient, Float>hotChocolateIngredients = new HashMap<>();
+        hotChocolateIngredients.put(milk, 200f);
+        hotChocolateIngredients.put(milo, 10f);
+        hotChocolate = new MenuItem("2", "Hot Chocolate", hotChocolateIngredients, ItemType.BEVERAGE);
+        hotChocolate.setSalePrice(2);
+        hotChocolate.setMarkUp(1);
+        menu.addMenuItem(hotChocolate);
     }
 
-    @When("the price gets amended to ${double}")
-    public void thePriceGetsAmendedTo$(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("the price gets amended to ${float}")
+    public void thePriceGetsAmendedTo$(float newSalePrice) {
+        hotChocolate.setSalePrice(newSalePrice);
     }
 
-    @Then("the new cost of a hot chocolate is ${double}")
-    public void theNewCostOfAHotChocolateIs$(Double double1) {
+    @Then("the new cost of a hot chocolate is ${float}")
+    public void theNewCostOfAHotChocolateIs$(Float newSalePrice) {
         // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        System.out.println(hotChocolate.calculateSalePrice());
+        assertEquals(menu.getMenuItem(hotChocolate.getId()).getSalePrice(), newSalePrice);
     }
 
 
