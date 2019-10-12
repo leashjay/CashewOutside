@@ -42,7 +42,3 @@ Feature: Placing an order features
     When  another order is made
     Then there are two orders queued
 
-  Scenario: A menuitem cannot be added if it has no ingredients
-    Given a menu item
-    When there is no inventory
-    Then the order cannot be added
