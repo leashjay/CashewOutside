@@ -469,6 +469,7 @@ public class SalesController {
      * checks that fields are valid then adds the order to the Sales Handler (Business.SalesManager)
      */
     public void confirmCurrentOrder() throws JAXBException, IOException {
+        float amountPaid = 0;
         updateLabels(); // ensures info is up to date for the user
         String curOrderName = this.currentOrderNameTextField.getText();
         String curOrderPayment = this.payTextField.getText();
@@ -491,7 +492,8 @@ public class SalesController {
 
         // checking the amount the customer pays is valid
         if (!curOrderPayment.equals("") && StringChecking.isTwoDPFLoat(curOrderPayment)) {
-            change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
+            amountPaid = Float.parseFloat(curOrderPayment);
+            change = SalesHandler.getChange(amountPaid, this.curOrder.getTotalCost());
             if (change < 0) {
                 successfulOrder = false;
                 this.payErrorLabel.setVisible(true);
@@ -509,6 +511,7 @@ public class SalesController {
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
+                this.salesManager.customerPays(amountPaid, curOrder.getOrderId());
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();

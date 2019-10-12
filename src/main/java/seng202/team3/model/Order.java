@@ -227,6 +227,8 @@ public class Order {
         this.orderStatus = newStatus;
     }
 
+    public void refund() {}
+
     /**
      * calculates the cost of an order from a given list of MenuItems
      * @param itemsToCalculate the MenuItems
