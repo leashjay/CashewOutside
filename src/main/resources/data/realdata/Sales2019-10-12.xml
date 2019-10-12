@@ -4,7 +4,7 @@
         <!ENTITY version "V0.01 (C) CashewOutside">
         <!ELEMENT sales (orders)>
         <!ELEMENT orders (order*)>
-        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, itemsOrdered*, flagsChecked)>
+        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>
         <!ATTLIST order
                 dateOrdered CDATA #REQUIRED
                 timeOrdered CDATA #REQUIRED
@@ -16,6 +16,7 @@
         <!ELEMENT customerName (#PCDATA)>
         <!ELEMENT orderStatus (#PCDATA)>
         <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT costAtTimeOfPayment (#PCDATA)>
         <!ELEMENT itemsOrdered (id, name)>
         <!ELEMENT flagsChecked (#PCDATA)>
         <!ELEMENT id (#PCDATA)>
@@ -28,6 +29,7 @@
          <customerName>Agnes</customerName>
          <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
+          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>
             <id>Lem</id>
             <name>LemCan</name>
@@ -39,6 +41,7 @@
          <customerName>Ooo a</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>3382.0</orderCost>
+          <costAtTimeOfPayment>3382.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -66,6 +69,7 @@
          <customerName>This is IT</customerName>
          <orderStatus>QUEUED</orderStatus>
          <orderCost>6244.0</orderCost>
+          <costAtTimeOfPayment>6244.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>BB1</id>
             <name>Beefburger</name>
@@ -93,6 +97,7 @@
          <customerName>JErome</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>6245.0</orderCost>
+          <costAtTimeOfPayment>6245.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -124,6 +129,7 @@
          <customerName>Hunter</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>721.0</orderCost>
+          <costAtTimeOfPayment>721.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>BB1</id>
             <name>Beefburger</name>
@@ -151,6 +157,7 @@
          <customerName>hooha</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
+          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -162,6 +169,7 @@
          <customerName>hahoo</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
+          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -173,6 +181,7 @@
          <customerName>hoo</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
+          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -184,6 +193,7 @@
          <customerName>long dong duk</customerName>
          <orderStatus>QUEUED</orderStatus>
          <orderCost>220.0</orderCost>
+          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -195,6 +205,7 @@
          <customerName>dong</customerName>
          <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
+          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>CF</id>
             <name>Chicken fried rice</name>
@@ -206,6 +217,7 @@
          <customerName>sads</customerName>
          <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
+          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>
             <id>Lem</id>
             <name>LemCan</name>
@@ -217,6 +229,7 @@
          <customerName>Yoyoma</customerName>
          <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
+          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>
             <id>Lem</id>
             <name>LemCan</name>
