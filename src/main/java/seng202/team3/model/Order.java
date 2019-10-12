@@ -78,15 +78,13 @@ public class Order {
     /**
      * decreases the stock level according to the items in the Order
      */
-    public boolean decreaseStock() {
+    public void decreaseStock() {
         if (!enoughStock()) {
-            return false;
+            throw new Error("Not enough stock");
         }
-
         for (MenuItem menuItem : this.itemsOrdered) {
             menuItem.decreaseStock();
         }
-        return true;
     }
 
     /**
