@@ -35,12 +35,19 @@ public class CashTabController {
     @FXML
     public Button plusButton;
 
+    @FXML
+    public TextFlow dailyTake;
+
 
 
     @FXML
     public Button subtractButton;
 
     private Truck truck = BusinessApp.getBusiness().getTruck();
+
+    private float startFloat;
+
+    private float endFloat;
 
     /**
      * Initialises all buttons etc. in the cashTab. It is called automatically y the fxml loader
@@ -61,6 +68,7 @@ public class CashTabController {
      * Activates when the startButton is pressed, and disables/enables all the relevant fields/buttons
      */
     public void startButtonPushed() {
+        startFloat = truck.getCashAccount();
         plusButton.setDisable(false);
         subtractButton.setDisable(false);
         startButton.setDisable(true);
@@ -70,6 +78,8 @@ public class CashTabController {
         currentFloatField.getChildren().clear();
         Text text = new Text(Float.toString(truck.getCashAccount()));
         currentFloatField.getChildren().add(text);
+        dailyTake.getChildren().clear();
+
 
     }
 
@@ -77,6 +87,7 @@ public class CashTabController {
      * Activates when the endButton is pressed, and disables/enables all the relevant fields/buttons
      */
     public void endButtonPushed() {
+        endFloat = truck.getCashAccount();
         addText.setVisible(false);
         subtractText.setVisible(false);
         endButton.setDisable(true);
@@ -85,6 +96,9 @@ public class CashTabController {
         startButton.setDisable(false);
         addFloatField.setDisable(true);
         withdrawFloatField.setDisable(true);
+        Text text = new Text(Float.toString(endFloat - startFloat));
+        dailyTake.getChildren().clear();
+        dailyTake.getChildren().add(text);
     }
 
     /**

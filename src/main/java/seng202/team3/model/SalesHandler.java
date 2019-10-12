@@ -20,25 +20,21 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.NONE)
 public class SalesHandler {
     /**
+     * List of orders in database
+     **/
+    public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
+    /**
      * SalesLoader object to import/export method
      */
     private SalesLoader salesLoader;
 
-    public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
-    private float cashAccount;
 
     /**
      * The orders that are to be displayed in the kitchen window
      */
     public HashMap<Integer, Order> displayOrders = new HashMap<>(); // Orders keyed to their orderId
 
-
-/*    @XmlElement(name = "cashAccount")
-    public float getCashAccountFromTruck() {
-        cashAccount = Truck.cashAccount;
-        return cashAccount;
-    }*/
 
     /**
      * Used for JAXB custom serialization
@@ -64,12 +60,30 @@ public class SalesHandler {
         }
     }
 
+    /**
+     * Getter for list of orders in database
+     * @return orders
+     */
     public HashMap<Integer, Order> getOrdersHashMap() {
         return this.orders;
     }
 
+    /**
+     * Getter for orders that are to be displayed in kitchen window
+     * @return displayOrders
+     */
     public HashMap<Integer, Order> getDisplayOrdersHashMap() {
         return this.displayOrders;
+    }
+
+    /**
+     * Get order
+     *
+     * @param id order id
+     * @return order
+     */
+    public Order getOrder(Integer id) {
+        return this.orders.get(id);
     }
 
     /**
@@ -87,7 +101,7 @@ public class SalesHandler {
     }
 
     /**
-     *
+     * Add order to list of orders
      * @param orderToAdd the Order to be added to the orders HashMap
      */
     public void addOrder(Order orderToAdd) {
@@ -106,14 +120,32 @@ public class SalesHandler {
      * @return orders
      */
     public HashMap<Integer, Order> getOrderHashMap() {
-        return orders;}
+        return orders;
+    }
+
+    /**
+     * Remove order form list of orders
+     * @param idToRemove order to be removed
+     */
     public void removeOrder(Integer idToRemove) {
         this.orders.remove(idToRemove);
     }
+
+    /**
+     * Remove order from list of orders displayed in kitchen window
+     * @param idToRemove order to be removed
+     */
     public void removeDisplayOrder(Integer idToRemove) {
         this.displayOrders.remove(idToRemove);
     }
 
+    /**
+     * Refund order by returning cost of order to be refunded
+     * without changing the stock level
+     * @param idToRefund order to be refunded
+     * @return cost of order to be refunded
+     * @throws Error message indicating order could not be refunded
+     */
     public float refundOrder(Integer idToRefund) throws Error {
         Order orderToRefund = this.orders.get(idToRefund);
         boolean refundSuccess = processRefund(orderToRefund);
@@ -125,11 +157,12 @@ public class SalesHandler {
         return orderToRefund.getTotalCost();
     }
 
-
-    public Order getOrder(Integer id) {
-        return this.orders.get(id);
-    }
-
+    /**
+     * Helper method to refundOrder
+     * returns true if order can be refunded and false otherwise
+     * @param orderToProcess order to be refunded
+     * @return
+     */
     private boolean processRefund(Order orderToProcess) {
         boolean success = true;
         float cost = orderToProcess.getTotalCost();

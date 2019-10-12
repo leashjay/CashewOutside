@@ -24,24 +24,24 @@
         ]>
 <sales>
    <orders>
-       <order>
+      <order>
          <orderId>1</orderId>
          <customerName></customerName>
          <orderStatus>COMPLETE</orderStatus>
-           <orderCost>NaN</orderCost>
-           <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <orderCost>NaN</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order>
+      <order>
          <orderId>2</orderId>
          <customerName></customerName>
          <orderStatus>COOKING</orderStatus>
-           <orderCost>NaN</orderCost>
-           <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <orderCost>NaN</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>
