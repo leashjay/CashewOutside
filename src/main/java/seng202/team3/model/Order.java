@@ -41,6 +41,9 @@ public class Order {
     @XmlElement(name = "orderCost")
     private float orderCost;
 
+    @XmlElement(name = "costAtTimeOfPayment")
+    private float costAtTimeOfPayment = -1;
+
     @XmlElement(name = "itemsOrdered")
     private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
 
@@ -56,7 +59,7 @@ public class Order {
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
-    private float costAtTimeOfPayment = -1;
+
 
 
     /**
@@ -66,13 +69,7 @@ public class Order {
      * @generated
      */
     public Order() {
-        //TODO change timeOrdered to be set when order is ordered.
         super();
-
-        //this.orderStatus = OrderStatus.QUEUED;
-        //TODO remove these two following lines, while not breaking functionality ;)
-        //setTime(LocalTime.now());
-        //dateOrdered = LocalDate.now();
     }
 
     /**
@@ -113,10 +110,24 @@ public class Order {
     }
 
     /**
+     * calculates the cost of an order from a given list of MenuItems
+     *
+     * @param itemsToCalculate the MenuItems
+     * @return the total cost            if (stockDecreasedSuccessfully) {
+     */
+    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
+        float cost = 0;
+        for (MenuItem item : itemsToCalculate) {
+            cost += item.getSalePrice();
+        }
+        return cost;
+    }
+
+    /**
      * Getter for totalCost, if the order has been paid for then
      * returns the cost of the order at the time of payment
      *
-     * @return totalCost
+     * @return totalCostcostA
      */
     public float getTotalCost() {
         if (this.costAtTimeOfPayment != -1) {
@@ -124,6 +135,7 @@ public class Order {
         }
         return orderCost;
     }
+
 
     public int getOrderId() {
         // TODO throw an error if no orderId
@@ -234,17 +246,11 @@ public class Order {
     public void refund() {}
 
     /**
-     * calculates the cost of an order from a given list of MenuItems
-     * @param itemsToCalculate the MenuItems
-     * @return the total cost
+     * Getter for costAtTimeOfPayment
+     * @return costAtTimeOfPayment
      */
-    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
-        float cost = 0;
-        for (MenuItem item : itemsToCalculate) {
-            cost += item.getSalePrice();
-        }
-        return cost;
-    }
+    public float getCostAtTimeOfPayment() {
+        return costAtTimeOfPayment;}
     public ArrayList<MenuItem> getOrderedItems() {
         return this.itemsOrdered;
     }
