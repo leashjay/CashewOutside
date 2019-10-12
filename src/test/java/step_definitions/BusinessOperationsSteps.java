@@ -15,13 +15,13 @@ public class BusinessOperationsSteps {
 
     Truck truck = new Truck();
     SalesHandler salesHandler = new SalesHandler();
-    Double cashAdded;
+    float cashAdded;
     Order friedRiceOrder;
 
 
 
-    @Given("The business adds ${double} to the starting float")
-    public void theBusinessAdds$ToTheStartingFloat(Double cashAmount) {
+    @Given("The business adds ${float} to the starting float")
+    public void theBusinessAdds$ToTheStartingFloat(float cashAmount) {
         cashAdded = cashAmount;
         truck.setCashAccount(cashAmount);
 
@@ -36,15 +36,16 @@ public class BusinessOperationsSteps {
         friedRiceIngredients.put(rice, 200f);
         MenuItem friedRice = new MenuItem("1", "Fried rice", friedRiceIngredients, ItemType.MAIN);
         friedRiceOrder.addToOrder(friedRice);
+        friedRiceOrder.setOrderId(1);
         salesHandler.addOrder(friedRiceOrder);
-        
+        salesHandler.customerPays(friedRiceOrder.getTotalCost(), 1, truck);
 
     }
 
     @Then("the cash floats reflects the correct total")
     public void theCashFloatsReflectsTheCorrectTotal() {
         // Write code here that turns the phrase above into concrete actions
-        assertEquals(truck.getCashAccount(), cashAdded - friedRiceOrder.getTotalCost());
+        assertEquals(truck.getCashAccount(), cashAdded + friedRiceOrder.getTotalCost());
     }
 
     @Given("The business opens the day with a ${double} float")
