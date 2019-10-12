@@ -121,20 +121,21 @@ public class Truck {
      * @param totalAmountOfIncrease the total amount of money in dollars.cents
      */
     public void increaseCashFloat(float totalAmountOfIncrease) {
-        int increaseInCents = (int) (totalAmountOfIncrease * 1);
-        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
-        Collections.sort(denoms); // sorts the denoms from smallest to largest
-        Collections.reverse(denoms);
-        // takes the biggest of each denom until it no longer can.
-        for (int denom : denoms) {
-            while (denom >= increaseInCents) {
-                cashFloat.put(denom, cashFloat.get(denom) + 1);
-                increaseInCents -= denom;
-            }
-        }
-        // always make the customer pay extra when using cash
-        if (increaseInCents > 0 && increaseInCents < 10) {
-            cashFloat.put(10, cashFloat.get(10) + 1);
-        }
+        cashAccount += totalAmountOfIncrease;
+//        int increaseInCents = (int) (totalAmountOfIncrease * 1);
+//        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
+//        Collections.sort(denoms); // sorts the denoms from smallest to largest
+//        Collections.reverse(denoms);
+//        // takes the biggest of each denom until it no longer can.
+//        for (int denom : denoms) {
+//            while (denom >= increaseInCents) {
+//                cashFloat.put(denom, cashFloat.get(denom) + 1);
+//                increaseInCents -= denom;
+//            }
+//        }
+//        // always make the customer pay extra when using cash
+//        if (increaseInCents > 0 && increaseInCents < 10) {
+//            cashFloat.put(10, cashFloat.get(10) + 1);
+//        }
     }
 }
