@@ -41,7 +41,7 @@ Feature: Menu Management
     When a new menu item is added
     Then it is available in the application
 
-  Scenario:
-    Given
-    When
-    Then
+  Scenario: A menuitem cannot be added if it has no ingredients
+    Given a testable menu item
+    When there is no inventory
+    Then the order cannot be added

@@ -3,10 +3,7 @@ package step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import seng202.team3.model.Ingredient;
-import seng202.team3.model.Inventory;
-import seng202.team3.model.MenuItem;
-import seng202.team3.model.Order;
+import seng202.team3.model.*;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
@@ -21,6 +18,7 @@ import static org.junit.Assert.assertFalse;
 public class MenuManagementSteps {
     Inventory testInventory;
     Ingredient choc;
+    Menu testMenu;
     Ingredient regMilk;
     MenuItem chocMilk;
     Order testOrder;
@@ -185,6 +183,34 @@ public class MenuManagementSteps {
     public void itIsAvailableInTheApplication() {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
+    }
+
+    @Given("a testable menu item")
+    public void aTestableMenuItem() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("there is no inventory")
+    public void thereIsNoInventory() {
+        testInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        testInventory.getIngredients().get("LemCan").setQuantity(0f);
+    }
+
+    @Then("the order cannot be added")
+    public void theOrderCannotBeAdded() {
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testOrder = new Order();
+        testOrder.setToNextID();
+        testOrder.addToOrder(testMenu.getMenuItem().get("Lem"));
+        String errorMessage = "";
+        try {
+            testOrder.confirmOrder();
+        } catch (Exception e) {
+            errorMessage = e.getMessage();
+        }
+
+        assertTrue(errorMessage.length() != 0);
     }
 
 }

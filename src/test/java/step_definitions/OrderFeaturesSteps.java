@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import seng202.team3.model.*;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.OrderStatus;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
@@ -12,6 +13,7 @@ import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class OrderFeaturesSteps {
 
@@ -26,6 +28,7 @@ public class OrderFeaturesSteps {
     private MenuItem imaginaryBurger;
     private MenuItem iMenuItem;
     private Order testOrder;
+    private Order testOrder1;
     private SalesHandler testSalesHandler;
     private float quantity1;
     private float quantity2;
@@ -69,7 +72,7 @@ public class OrderFeaturesSteps {
         Ingredient ionion = new Ingredient("iOnion", "Diced onion", 50.0f, UnitType.GRAM, 0.10f);
         Ingredient ilettuce = new Ingredient("iLettuce", "Sliced Iceberg lettuce", 15.0f, UnitType.GRAM, 0.10f);
 
-        isauce.setCost(0.10f);
+        isauce.setCost(0.10f);// Write code here that turns the phrase above into concrete actions
         ionion.setCost(0.30f);
         ilettuce.setCost(0.10f);
 
@@ -252,50 +255,61 @@ public class OrderFeaturesSteps {
 
     @Given("an order is cancelled by customer")
     public void anOrderIsCancelledByCustomer() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testOrder = new Order();
+        testOrder.setToNextID();
+        iMenuItem = testMenu.getMenuItem().get("Lem");
+        testOrder.addToOrder(iMenuItem);
+        testSalesHandler.addOrder(testOrder);
+        inventory = BusinessApp.getBusiness().getTruck().getInventory();
+
+        initialCashFloat = BusinessApp.getBusiness().getTruck().getCashAccount();
+        initialLemCanQtt = inventory.getIngredients().get("LemCan").getQuantity();
+
+
     }
 
     @When("the refund is made")
     public void theRefundIsMade() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(testOrder.getTotalCost(), testSalesHandler.refundOrder(testOrder.getOrderId()));
     }
 
     @Then("the cash float reflects the transaction and the inventory stock levels remains unchanged")
     public void theCashFloatReflectsTheTransactionAndTheInventoryStockLevelsRemainsUnchanged() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(initialCashFloat - testOrder.getTotalCost(), BusinessApp.getBusiness().getTruck().getCashAccount());
+
+        assertEquals(initialLemCanQtt, inventory.getIngredients().get("LemCan").getQuantity());
     }
 
 
     @Given("an order is made")
     public void anOrderIsMade() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testOrder = new Order();
+        testOrder.setToNextID();
+        testOrder.addToOrder(testMenu.getMenuItem().get("Lem"));
+        testOrder.confirmOrder();
+        testSalesHandler.addOrder(testOrder);
+
+        assertTrue(testSalesHandler.getOrderHashMap().containsKey(testOrder.getOrderId()));
     }
 
     @When("another order is made")
     public void anotherOrderIsMade() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        testOrder1 = new Order();
+        testOrder1.setToNextID();
+        testOrder1.addToOrder(testMenu.getMenuItem().get("Lem"));
+        testOrder1.confirmOrder();
+        testSalesHandler.addOrder(testOrder1);
+
+        assertTrue(testSalesHandler.getOrderHashMap().containsKey(testOrder1.getOrderId()));
     }
 
     @Then("there are two orders queued")
     public void thereAreTwoOrdersQueued() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(OrderStatus.QUEUED, testSalesHandler.getOrder(testOrder.getOrderId()).getStatus());
+        assertEquals(OrderStatus.QUEUED, testSalesHandler.getOrder(testOrder1.getOrderId()).getStatus());
     }
 
-    @When("there is no inventory")
-    public void thereIsNoInventory() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
-    @Then("the order cannot be added")
-    public void theOrderCannotBeAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 }
