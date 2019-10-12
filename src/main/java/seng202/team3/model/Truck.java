@@ -22,14 +22,15 @@ public class Truck {
      */
     private Inventory truckInventory;
 
+    /** Cash float in business */
     @XmlElement(name = "cashAccount")
     private float cashAccount;
 
     /**
-     * Constructor for a truck the business has
+     * No-arg constructor for JAXB
      */
-    public Truck() {
-    }
+    public Truck() { }
+
 
     public Truck(String xmlFile){
 
@@ -57,6 +58,7 @@ public class Truck {
         return truckInventory;
     }
 
+
     /** public static
      * Getter for cash account, cash account is the money held
      * by each (the) truck and used for daily transactions
@@ -79,26 +81,11 @@ public class Truck {
 
 
     /**
-     * uses a greedy algorithm to increase the Truck's cashFloat
+     * Increase Truck's cash Float
      * @param totalAmountOfIncrease the total amount of money in dollars.cents
      */
     public void increaseCashFloat(float totalAmountOfIncrease) {
         cashAccount += totalAmountOfIncrease;
-//        int increaseInCents = (int) (totalAmountOfIncrease * 1);
-//        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
-//        Collections.sort(denoms); // sorts the denoms from smallest to largest
-//        Collections.reverse(denoms);
-//        // takes the biggest of each denom until it no longer can.
-//        for (int denom : denoms) {
-//            while (denom >= increaseInCents) {
-//                cashFloat.put(denom, cashFloat.get(denom) + 1);
-//                increaseInCents -= denom;
-//            }
-//        }
-//        // always make the customer pay extra when using cash
-//        if (increaseInCents > 0 && increaseInCents < 10) {
-//            cashFloat.put(10, cashFloat.get(10) + 1);
-//        }
     }
 
     /**
@@ -113,6 +100,11 @@ public class Truck {
         }
     }
 
+    /**
+     * Check if cash float is capable to decrease a certain amount of cash
+     * @param decreaseAmount certain amount of cash to be decreased
+     * @return true if cash float is enough, false otherwise
+     */
     public boolean hasEnoughCash(float decreaseAmount) {
         return decreaseAmount <= cashAccount;
     }
