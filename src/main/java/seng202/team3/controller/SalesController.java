@@ -334,38 +334,42 @@ public class SalesController {
         for (Map.Entry<String, MenuItem> entry : chosenHashMap.entrySet()) {
             if (gf.isSelected()) {
                 gfSelected = true;
-                if (entry.getValue().isGlutenFree() == ThreeValueLogic.YES) {
-                    filteredItems.put(entry.getKey(), entry.getValue());
+                if (entry.getValue().isGlutenFree() == ThreeValueLogic.NO) {
+                    if (filteredItems.containsKey(entry.getKey()) == false) {
+                        filteredItems.put(entry.getKey(), entry.getValue());
+                    }
                 }
             } else {
                 gfSelected = false;
             }
             if (vegan.isSelected()) {
                 veganSelected = true;
-                if (entry.getValue().isVegan() == ThreeValueLogic.YES) {
-                    filteredItems.put(entry.getKey(), entry.getValue());
+                if (entry.getValue().isVegan() == ThreeValueLogic.NO) {
+                    if (filteredItems.containsKey(entry.getKey()) == false) {
+                        filteredItems.put(entry.getKey(), entry.getValue());
+                    }
                 }
             } else {
                 veganSelected = false;
             }
             if (vegetarian.isSelected()) {
                 vegetarianSelected = true;
-                if (entry.getValue().isVegetarian() == ThreeValueLogic.YES) {
-                    filteredItems.put(entry.getKey(), entry.getValue());
+                if (entry.getValue().isVegetarian() == ThreeValueLogic.NO) {
+                    if (filteredItems.containsKey(entry.getKey()) == false) {
+                        filteredItems.put(entry.getKey(), entry.getValue());
+                    }
                 }
             } else {
                 vegetarianSelected = false;
             }
-            if (vegetarian.isSelected() == false && vegan.isSelected() == false && gf.isSelected() == false) {
-                filteredItems = chosenHashMap;
-            }
         }
+        chosenHashMap.keySet().removeAll(filteredItems.keySet());
         if (grid == drinkItemGrid) {
             drinkItemGrid.getChildren().clear();
-            addMenuItemButtonsToGridPane(filteredItems, drinkItemGrid);
+            addMenuItemButtonsToGridPane(chosenHashMap, drinkItemGrid);
         } else if (grid == foodItemGrid) {
             foodItemGrid.getChildren().clear();
-            addMenuItemButtonsToGridPane(filteredItems, foodItemGrid);
+            addMenuItemButtonsToGridPane(chosenHashMap, foodItemGrid);
         }
     }
 
