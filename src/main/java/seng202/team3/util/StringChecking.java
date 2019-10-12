@@ -18,14 +18,14 @@ public final class StringChecking {
      * method to check if the string is a valid positive float
      */
     public static boolean isFloat(String stringToCheck) {
-        return stringToCheck.matches("[+]?([0-9]*[.])?[0-9]+");
+        return stringToCheck.matches("^[+]?([0-9]*[.])?[0-9]*$") && !stringToCheck.equals(".") && !stringToCheck.isEmpty() && !stringToCheck.equals("+");
     }
 
     /**
      * method to check if the string is a valid positive float up to two decimal places
      */
     public static boolean isTwoDPFloat(String stringToCheck) {
-        return stringToCheck.matches("[+]?([0-9]*[.])?[0-9]?[0-9]?") && !stringToCheck.equals(".");
+        return stringToCheck.matches("^[+]?([0-9]*[.])?[0-9]?[0-9]?$") && !stringToCheck.equals(".") && !stringToCheck.isEmpty() && !stringToCheck.equals("+");
     }
 
     /**
