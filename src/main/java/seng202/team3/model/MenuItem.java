@@ -257,6 +257,50 @@ public class MenuItem {
         return isVegan;
     }
 
+    /**
+     * Get HashMap of ingredient and their corresponding quantity in inventory
+     *
+     * @param inventory truck Inventory
+     * @return
+     */
+    public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
+        HashMap<String, Float> quantities = new HashMap<String, Float>();
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            if (inventory.getIngredients().containsKey(entry.getKey().getCode())) {
+                quantities.put(entry.getKey().getCode(), inventory.getIngredients().get(entry.getKey().getCode()).getQuantity());
+            } else {
+                quantities.put(entry.getKey().getCode(), 0f);
+            }
+        }
+        return quantities;
+    }
+
+    /**
+     * Calculate serving size of menu item with the stock that we have right now.
+     *
+     * @param inventory
+     */
+    public void calculateServing(Inventory inventory) {
+        numServings = 0;
+        Float quantityInStock = 100f;
+        Boolean firstPass = false;
+
+        HashMap<String, Float> quantities = getIngredientWithQuantityInStock(inventory);
+
+        while (!quantities.values().contains(0f)) {
+            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+                String entryCode = entry.getKey().getCode();
+                if (quantities.get(entryCode) == 0f) {
+                    numServings = 0;
+                    break;
+                } else {
+                    quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
+                }
+            }
+            numServings += 1;
+        }
+    }
+
 
     /**
      * checks if the trucks inventory of ingredients have enough quantity (stock)

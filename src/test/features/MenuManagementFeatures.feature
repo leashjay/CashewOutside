@@ -14,7 +14,7 @@ Feature: Menu Management
   Scenario: When stock is low
     Given choc milk and no stock
     When an order is placed for chocolate milk
-    Then the menu item serving count is 0 and adding to an order exceptions are handled
+    Then the menu item serving count is 0
 
   Scenario: A customer has an intolerance
     Given When an order is made for a menu item
