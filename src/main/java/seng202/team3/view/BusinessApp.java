@@ -67,6 +67,11 @@ public class BusinessApp extends Application {
         }
     }
 
+    /**
+     * Check if application is able to load today's XML file
+     * if not application will load yesterday's XML file
+     * Backup plan to load default XML file
+     */
     public static void checkBusinessDay() {
         dateOperation = LocalDate.now();
         alterXMLPath();
@@ -133,7 +138,7 @@ public class BusinessApp extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
-    /**suppleirsXML
+    /**
      * Load kitchen page
      */
     public static void loadKitchenPage() throws IOException {
@@ -143,7 +148,7 @@ public class BusinessApp extends Application {
     }
 
     /**
-     * alter XML path to only export data accumulated until a certain date
+     * alter XML path to XML filename with the current date of operation
      */
     public static void alterXMLPath() {
         ingredientsXML = pathPrefix + "Ingredients" + dateOperation.toString() + ".xml";
@@ -154,6 +159,9 @@ public class BusinessApp extends Application {
         truckXML = pathPrefix + "Truck" + dateOperation.toString() + ".xml";
     }
 
+    /**
+     * alter XML path to default XML filename
+     */
     public static void alterXMLPathToOriginal() {
         ingredientsXML = pathPrefix + "Ingredients" + ".xml";
         menuXML = pathPrefix + "SampleMenu" + ".xml";
