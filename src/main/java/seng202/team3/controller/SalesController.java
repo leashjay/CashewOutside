@@ -508,7 +508,7 @@ public class SalesController {
         }
 
         // checking the amount the customer pays is valid
-        if (!curOrderPayment.equals("") && StringChecking.isTwoDPFLoat(curOrderPayment)) {
+        if (!curOrderPayment.equals("") && StringChecking.isTwoDPFloat(curOrderPayment)) {
             amountPaid = Float.parseFloat(curOrderPayment);
             change = SalesHandler.getChange(amountPaid, this.curOrder.getTotalCost());
             if (change < 0) {

@@ -24,7 +24,7 @@ public final class StringChecking {
     /**
      * method to check if the string is a valid positive float up to two decimal places
      */
-    public static boolean isTwoDPFLoat(String stringToCheck) {
+    public static boolean isTwoDPFloat(String stringToCheck) {
         return stringToCheck.matches("[+]?([0-9]*[.])?[0-9]?[0-9]?") && !stringToCheck.equals(".");
     }
 
