@@ -255,4 +255,33 @@ public class OrderFeaturesSteps {
     }
 
 
+    @Given("an order is made")
+    public void anOrderIsMade() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("another order is made")
+    public void anotherOrderIsMade() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("there are two orders queued")
+    public void thereAreTwoOrdersQueued() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("there is no inventory")
+    public void thereIsNoInventory() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the order cannot be added")
+    public void theOrderCannotBeAdded() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
 }

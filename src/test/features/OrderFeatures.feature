@@ -36,3 +36,13 @@ Feature: Placing an order features
     Given an order is cancelled by customer
     When the refund is made
     Then the cash float reflects the transaction and the inventory stock levels remains unchanged
+
+  Scenario: A customer makes more than one order
+    Given an order is made
+    When  another order is made
+    Then there are two orders queued
+
+  Scenario: A menuitem cannot be added if it has no ingredients
+    Given a menu item
+    When there is no inventory
+    Then the order cannot be added

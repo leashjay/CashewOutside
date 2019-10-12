@@ -133,5 +133,59 @@ public class MenuManagementSteps {
         assertEquals(ThreeValueLogic.YES, testOrder.getOrderedItems().get(0).isVegetarian());
     }
 
+    @Given("a menu item")
+    public void aMenuItem() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("the user wants to delete it")
+    public void theUserWantsToDeleteIt() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the menu item can be deleted and is no longer present AND exceptions are handled")
+    public void theMenuItemCanBeDeletedAndIsNoLongerPresentANDExceptionsAreHandled() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("a recipe")
+    public void aRecipe() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("an ingredient is added")
+    public void anIngredientIsAdded() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("the ingredient is found in the recipe")
+    public void theIngredientIsFoundInTheRecipe() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Given("A business")
+    public void aBusiness() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("a new menu item is added")
+    public void aNewMenuItemIsAdded() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @Then("it is available in the application")
+    public void itIsAvailableInTheApplication() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
 
 }
+
