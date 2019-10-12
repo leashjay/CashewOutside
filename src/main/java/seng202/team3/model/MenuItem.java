@@ -210,10 +210,6 @@ public class MenuItem {
         return totalCost;
     }
 
-    public void setSalePrice(float newPrice) {
-        this.totalCost = newPrice;
-    }
-
     //TODO Possibly change this into a singular method with parameters
 
     /**

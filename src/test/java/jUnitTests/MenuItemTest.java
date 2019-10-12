@@ -59,6 +59,7 @@ public class MenuItemTest {
         assertFalse(friedRice.hasEnoughStock());
     }
 
+
     @Test
     public void decreaseStockTest() {
         Ingredient tsauce = new Ingredient("TSauce", "Tomato Sauce", 1500, UnitType.ML, 1.8f);
@@ -82,6 +83,16 @@ public class MenuItemTest {
        assertEquals(friedRice.getCostPrice(), 1.2f);
        friedRice.addIngredientToRecipe(egg, 1f);
        assertEquals(friedRice.getCostPrice(), 2.2f);
+    }
+
+    /**
+     * Checks if the method to retrieve the amount of an ingredient in a menu item is working
+     */
+    @Test
+    public void getRecipeQuantityTest() {
+        assertEquals(friedRice.getRecipeQuantity(carrot), 50f);
+        friedRiceIngredients.put(carrot, 60f);
+        assertEquals(friedRice.getRecipeQuantity(carrot), 60f);
     }
 
 
