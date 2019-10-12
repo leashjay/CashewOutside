@@ -23,7 +23,9 @@ public class MenuItem {
     @XmlElement(name = "id")
     private String id;
 
-    /** Full name for menu item */
+    /**
+     * Full name for menu item
+     */
     @XmlElement(name = "name")
     private String name;
 
@@ -33,11 +35,15 @@ public class MenuItem {
     @XmlElement(name = "cost")
     private float totalCost;
 
-    /** List of ingredients and their quantities needed to make the menu item */
+    /**
+     * List of ingredients and their quantities needed to make the menu item
+     */
     @XmlElement
     private HashMap<Ingredient, Float> ingredients = new HashMap<>();
 
-    /** Type of cuisine */
+    /**
+     * Type of cuisine
+     */
     @XmlAttribute(name = "type")
     private ItemType type;
 
@@ -61,7 +67,9 @@ public class MenuItem {
     @XmlAttribute(name = "isGF")
     private ThreeValueLogic isGlutenFree;
 
-    /** The number of servings the menu item has */
+    /**
+     * The number of servings the menu item has
+     */
     @XmlAttribute(name = "serves")
     private int numServings;
 
@@ -78,10 +86,11 @@ public class MenuItem {
 
     /**
      * Constructor for MenuItem class
-     * @param id A short description of the menu item
-     * @param name a long description of the menu item
+     *
+     * @param id          A short description of the menu item
+     * @param name        a long description of the menu item
      * @param ingredients A hashset of the ingredients in the menu item and their quantities
-     * @param type Shows what type the menu item is e.g, beverage, snack, main...
+     * @param type        Shows what type the menu item is e.g, beverage, snack, main...
      */
     public MenuItem(String id, String name, HashMap<Ingredient, Float> ingredients, ItemType type) {
         this.id = id;
@@ -94,6 +103,7 @@ public class MenuItem {
 
     /**
      * Getter for menu item id
+     *
      * @return id
      */
     public String getId() {
@@ -111,6 +121,7 @@ public class MenuItem {
 
     /**
      * Getter for list of ingredients
+     *
      * @return ingredients
      */
     public HashMap<Ingredient, Float> getIngredients() {
@@ -129,6 +140,7 @@ public class MenuItem {
 
     /**
      * Returns cost which the business sells the item for
+     *
      * @return a float showing the cost the business sells the item for
      */
     public float getSalePrice() {
@@ -137,13 +149,16 @@ public class MenuItem {
     }
 
 
-   public int getServings(){return numServings;}
+    public int getServings() {
+        return numServings;
+    }
 
 
     /**
      * Adds the given ingredient to the recipe
+     *
      * @param ingredient the ingredient to be added
-     * @param quantity the quantity of that ingredient to be added
+     * @param quantity   the quantity of that ingredient to be added
      */
     public void addIngredientToRecipe(Ingredient ingredient, Float quantity) {
         ingredients.put(ingredient, quantity);
@@ -151,6 +166,7 @@ public class MenuItem {
 
     /**
      * Removes an ingredient from the recipe
+     *
      * @param ingredientToRemove The ingredient to be removed from the recipe
      */
     public void removeIngredientFromRecipe(Ingredient ingredientToRemove) {
@@ -172,8 +188,10 @@ public class MenuItem {
             return true;
         }
     }
+
     /**
      * Calculates the price it takes to create the given recipe
+     *
      * @return a float showing the price to create the given recipe
      */
     public float getCostPrice() {
@@ -197,11 +215,13 @@ public class MenuItem {
     }
 
     //TODO Possibly change this into a singular method with parameters
+
     /**
      * Method to check if a menu item is gluten free
+     *
      * @return Three value logic showing if the menu item is gluten free
      */
-    public ThreeValueLogic isGlutenFree(){
+    public ThreeValueLogic isGlutenFree() {
         isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
@@ -219,9 +239,10 @@ public class MenuItem {
 
     /**
      * Method to check if a menu item is vegetarian
+     *
      * @return Three value logic showing if the menu item is vegetarian
      */
-    public ThreeValueLogic isVegetarian(){
+    public ThreeValueLogic isVegetarian() {
         isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
@@ -239,9 +260,10 @@ public class MenuItem {
 
     /**
      * Three value logic showing if the menu item is Vegan
+     *
      * @return
      */
-    public ThreeValueLogic isVegan(){
+    public ThreeValueLogic isVegan() {
         isVegan = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
@@ -257,9 +279,54 @@ public class MenuItem {
         return isVegan;
     }
 
+    /**
+     * Get HashMap of ingredient and their corresponding quantity in inventory
+     *
+     * @param inventory truck Inventory
+     * @return
+     */
+    public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
+        HashMap<String, Float> quantities = new HashMap<String, Float>();
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            if (inventory.getIngredients().containsKey(entry.getKey().getCode())) {
+                quantities.put(entry.getKey().getCode(), inventory.getIngredients().get(entry.getKey().getCode()).getQuantity());
+            } else {
+                quantities.put(entry.getKey().getCode(), 0f);
+            }
+        }
+        return quantities;
+    }
+
+    /**
+     * Calculate serving size of menu item with the stock that we have right now.
+     *
+     * @param inventory
+     */
+    public void calculateServing(Inventory inventory) {
+        numServings = 0;
+        Float quantityInStock = 100f;
+        Boolean firstPass = false;
+
+        HashMap<String, Float> quantities = getIngredientWithQuantityInStock(inventory);
+
+        while (!quantities.values().contains(0f)) {
+            for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+                String entryCode = entry.getKey().getCode();
+                if (quantities.get(entryCode) == 0f) {
+                    numServings = 0;
+                    break;
+                } else {
+                    quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
+                }
+            }
+            numServings += 1;
+        }
+    }
+
 
     /**
      * checks if the trucks inventory of ingredients have enough quantity (stock)
+     *
      * @return has enough stock
      */
     public boolean hasEnoughStock() {
@@ -291,4 +358,25 @@ public class MenuItem {
             truckIngredient.decreaseQuantity(amountRequired);
         }
     }
+
+
+    /**
+     * returns the quantity of an ingredient required in a recipe
+     *
+     * @param searchedIngredient the ingredient which you would like the recipes quantity requirement
+     * @return the quantity of the searched ingredient
+     */
+    public float getRecipeQuantity(Ingredient searchedIngredient) {
+        float amountRequired = 0.0f;
+        for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
+            Ingredient ingredient = ingredientFloatEntry.getKey();
+            if (searchedIngredient.getCode() == ingredient.getCode()) {
+                amountRequired = ingredientFloatEntry.getValue();
+                return amountRequired;
+
+            }
+        }
+        return amountRequired;
+    }
 }
+

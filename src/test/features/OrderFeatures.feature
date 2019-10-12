@@ -14,8 +14,8 @@ Feature: Placing an order features
 
   Scenario: Correct change can be given for an order of coq au van
     Given the customer places an order for coq au van
-    When the customer pays $40.00
-    Then the correct change of $20.00 is calculated and the inventory stock levels are reduced accordingl
+    When the customer pays $40.00 and is given correct change
+    Then the correct change of $18.70 is calculated and the inventory stock levels are reduced accordingly
 
   Scenario: Correct change can be given for an baby face
     Given the customer places an order for baby face
