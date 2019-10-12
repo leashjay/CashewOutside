@@ -5,14 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import seng202.team3.model.SalesHandler;
 import seng202.team3.model.Truck;
 import seng202.team3.view.BusinessApp;
 
 public class CashTabController {
-
-    @FXML
-    public TextField startFloatField;
 
     @FXML
     public TextFlow endFloatField;
@@ -51,18 +47,14 @@ public class CashTabController {
     }
 
     public void startButtonPushed() {
-        startFloat = Float.parseFloat(startFloatField.getText());
         plusButton.setDisable(false);
         subtractButton.setDisable(false);
         startButton.setDisable(true);
         endButton.setDisable(false);
-        startFloatField.setDisable(true);
         truck.currentFloat += startFloat;
         currentFloatField.getChildren().clear();
         Text text = new Text(Float.toString(truck.currentFloat));
         currentFloatField.getChildren().add(text);
-
-
     }
 
     public void endButtonPushed() {
@@ -73,8 +65,6 @@ public class CashTabController {
         plusButton.setDisable(true);
         subtractButton.setDisable(true);
         startButton.setDisable(false);
-        startFloatField.setDisable(false);
-        startFloatField.clear();
 
     }
 

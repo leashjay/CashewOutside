@@ -21,7 +21,6 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox style="-fx-background-color: #3F51B5;" HBox.hgrow="ALWAYS" />
                   <VBox prefWidth="100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
@@ -35,35 +34,59 @@
                         <DropShadow />
                      </effect>
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #3F51B5;" text="Login Required">
+                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #1976D2;" text="Login Required">
                            <font>
                               <Font name="System Bold" size="66.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="75.0" />
+                              <Insets bottom="50.0" />
                            </VBox.margin>
                         </Text>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="600.0">
+                        <VBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #1976D2;" text="Username">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="600.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <TextField fx:id="userNameTextField" promptText="Enter username here" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
                            <VBox.margin>
-                              <Insets left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="30.0" left="100.0" right="100.0" />
                            </VBox.margin>
+                        </VBox>
+                        <VBox>
                            <children>
-                              <TextField fx:id="userNameTextField" promptText="Username" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="30.0" left="100.0" right="100.0" top="10.0" />
-                                 </HBox.margin>
-                              </TextField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #1976D2;" text="Password">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="600.0">
+                                 <children>
+                                    <PasswordField fx:id="passwordPasswordField" promptText="Enter password here" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </PasswordField>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxWidth="-Infinity" prefWidth="600.0">
-                           <children>
-                              <PasswordField fx:id="passwordPasswordField" promptText="Password" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="20.0" left="100.0" right="100.0" />
-                                 </HBox.margin>
-                              </PasswordField>
-                           </children>
-                        </HBox>
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="100.0" right="100.0" />
+                           </VBox.margin>
+                        </VBox>
                         <VBox alignment="TOP_CENTER">
                            <children>
                               <HBox>
@@ -82,7 +105,7 @@
                               <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR!" visible="false" />
                            </children>
                            <VBox.margin>
-                              <Insets left="110.0" right="110.0" />
+                              <Insets left="100.0" right="100.0" />
                            </VBox.margin>
                         </VBox>
                         <Button fx:id="bypassLoginButton" mnemonicParsing="false" onAction="#bypassLogin" text="BYPASS LOGIN" />
@@ -90,6 +113,9 @@
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="35.0" />
                      </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </VBox>
                </children>
             </VBox>

@@ -8,14 +8,14 @@ Feature: Placing an order features
     And a database of sales "orders" to hold all orders made
 
   Scenario: Order totals correctly
-    Given a beefburger is added to an order
+    Given an imaginary burger is added to an order
     When the order is created
-    Then the correct order total is calculated as $22.00
+    Then the correct order total is calculated as $18.70
 
   Scenario: Correct change can be given for an order of coq au van
     Given the customer places an order for coq au van
     When the customer pays $40.00
-    Then the correct change of $20.00 is calculated and the inventory stock levels are reduced accordingly
+    Then the correct change of $20.00 is calculated and the inventory stock levels are reduced accordingl
 
   Scenario: Correct change can be given for an baby face
     Given the customer places an order for baby face

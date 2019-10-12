@@ -62,10 +62,13 @@ public class EmployeeLoader {
             InputStream inputStream = new FileInputStream(new File(fileName));
             employeeHandler = (EmployeeHandler) unmarshaller.unmarshal(inputStream);
         } catch (ParserConfigurationException pce) {
+            System.out.println(pce.getMessage());
             AddXMLController.errorMessageList.add(pce.getMessage());
         } catch (SAXException spe) {
+            System.out.println(spe.getMessage());
             AddXMLController.errorMessageList.add(spe.getMessage());
         } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
             AddXMLController.errorMessageList.add(ioe.getMessage());
         }
         return employeeHandler;

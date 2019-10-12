@@ -3,12 +3,14 @@ package seng202.team3.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,6 +30,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class SalesController {
+
+    @FXML
+    private ScrollPane topScrollPane;
 
     @FXML
     private Button backButton;
@@ -202,6 +207,17 @@ public class SalesController {
         }
     }
 
+    @FXML
+    public void horizontalScrollTopPane(ScrollEvent event) {
+        if (event.getDeltaX() == 0 && event.getDeltaY() != 0) {
+            topScrollPane.setHvalue(topScrollPane.getHvalue() - event.getDeltaY());
+        }
+        event.consume();
+    }
+
+
+
+
     /**
      * will not overwrite any current buttons.
      * @param menuItems the MenuItems the buttons will add to the Order
@@ -282,11 +298,13 @@ public class SalesController {
             Ingredient ingredient = ingredientFloatEntry.getKey();
             Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
             Float amountRequired = ingredientFloatEntry.getValue();
-            if (truckIngredient.getQuantity() != null)  {
-                truckIngredient.setQuantity(0);
-            }
-            if (truckIngredient.getQuantity() < amountRequired) {
-                return false;
+            if (truckIngredient != null) {
+                if (truckIngredient.getQuantity() == null)  {
+                    truckIngredient.setQuantity(0);
+                }
+                if (truckIngredient.getQuantity() < amountRequired) {
+                    return false;
+                }
             }
         }
         return true;
@@ -451,6 +469,7 @@ public class SalesController {
      * checks that fields are valid then adds the order to the Sales Handler (Business.SalesManager)
      */
     public void confirmCurrentOrder() throws JAXBException, IOException {
+        float amountPaid = 0;
         updateLabels(); // ensures info is up to date for the user
         String curOrderName = this.currentOrderNameTextField.getText();
         String curOrderPayment = this.payTextField.getText();
@@ -473,7 +492,8 @@ public class SalesController {
 
         // checking the amount the customer pays is valid
         if (!curOrderPayment.equals("") && StringChecking.isTwoDPFLoat(curOrderPayment)) {
-            change = SalesHandler.getChange(Float.parseFloat(curOrderPayment), this.curOrder.getTotalCost());
+            amountPaid = Float.parseFloat(curOrderPayment);
+            change = SalesHandler.getChange(amountPaid, this.curOrder.getTotalCost());
             if (change < 0) {
                 successfulOrder = false;
                 this.payErrorLabel.setVisible(true);
@@ -491,6 +511,7 @@ public class SalesController {
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
+                this.salesManager.customerPays(amountPaid, curOrder.getOrderId());
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();

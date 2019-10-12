@@ -62,6 +62,7 @@ public class ManuallyAddSupplierController {
     @FXML
     Text urlErrorText;
 
+    private boolean editing = false;
 
     /**
      * Method called to setup intial GUI of the form.
@@ -77,15 +78,36 @@ public class ManuallyAddSupplierController {
     }
 
     /**
+     * Sets the values of the form to relate to the supplier we are editing
+     * @param supplierToEdit the supplier we are editing
+     */
+    public void setParameters(Supplier supplierToEdit) {
+        editing = true;
+        idTextField.setText(supplierToEdit.getSid());
+        idTextField.setDisable(true);
+        nameTextField.setText(supplierToEdit.getName());
+        addressTextField.setText(supplierToEdit.getAddress());
+        emailTextField.setText(supplierToEdit.getEmail());
+        phoneTextField.setText(supplierToEdit.getPhoneNumber());
+        phoneTypeChoiceBox.setValue(supplierToEdit.getPhoneType());
+        urlTextField.setText(supplierToEdit.getUrl());
+
+    }
+
+    /**
      * Checks the validity of input entered into the form.
      * @return true of the form has errors, false if the form is error free.
      */
     private boolean checkForErrors(){
         boolean hasError = false;
 
-        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkSupplierValidId(idTextField, idErrorText) == false) {
-            hasError = true;
+
+        if(!editing){
+            if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkSupplierValidId(idTextField, idErrorText) == false) {
+                hasError = true;
+            }
         }
+
         if(InputValidationHelper.checkEmpty(nameTextField, nameErrorText)){
             hasError = true;
         }

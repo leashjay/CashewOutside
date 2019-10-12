@@ -146,15 +146,16 @@ public class SalesHandler {
      * customer pays for an order
      * @param orderId the order to pay for
      */
-    public void customerPays(int orderId) {
-        // TODO implement this method fully.
+    public float customerPays(float amountPaid, int orderId) {
         float price = this.getOrder(orderId).getTotalCost();
         BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
+        return calculateChange(amountPaid, orderId);
     }
 
     /**\
      * small method to get the amount of change
-     * @param amountPaid the amount of money paid by the customer
+     * @param amountPaid the amount of money pai// Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException()d by the customer
      * @param orderCost the cost of the order
      * @return change - can be negative (error checking not handled here)
      */
@@ -162,8 +163,7 @@ public class SalesHandler {
         return amountPaid - orderCost;
     }
 
-    public float calculateChange(float amountPaid, int orderId) {
-        // TODO not allow negative values? depends on what is calling it.
+    private float calculateChange(float amountPaid, int orderId) {
         Order order = orders.get(orderId);
         return amountPaid - order.getTotalCost();
     }

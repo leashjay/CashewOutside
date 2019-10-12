@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManuallyAddIngredientController">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="350.0">
+      <GridPane prefHeight="500.0" prefWidth="350.0" stylesheets="@../gui/styles.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,9 +35,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Ingredient" GridPane.columnSpan="3" GridPane.halignment="LEFT">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="Ingredient" GridPane.columnSpan="3" GridPane.halignment="LEFT">
                <font>
                   <Font size="30.0" />
                </font>
@@ -45,7 +46,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="ID" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -53,7 +54,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="Name" GridPane.columnSpan="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -61,7 +62,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unit type" GridPane.columnSpan="2" GridPane.rowIndex="5">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="Unit type" GridPane.columnSpan="2" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -69,7 +70,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cost per unit" GridPane.columnSpan="2" GridPane.rowIndex="9">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="Cost per unit" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <GridPane.margin>
                   <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -77,16 +78,16 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <CheckBox fx:id="glutenFreeCheckBox" mnemonicParsing="false" text="Gluten Free" GridPane.halignment="LEFT" GridPane.rowIndex="11">
+            <CheckBox fx:id="glutenFreeCheckBox" mnemonicParsing="false" style="-fx-text-fill: #1976d2;" text="Gluten Free" GridPane.halignment="LEFT" GridPane.rowIndex="11">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="vegetarianCheckBox" mnemonicParsing="false" text="Vegetarian" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <CheckBox fx:id="vegetarianCheckBox" mnemonicParsing="false" style="-fx-text-fill: #1976d2;" text="Vegetarian" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></CheckBox>
-            <CheckBox fx:id="veganCheckBox" mnemonicParsing="false" text="Vegan" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <CheckBox fx:id="veganCheckBox" mnemonicParsing="false" style="-fx-text-fill: #1976d2;" text="Vegan" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
                <padding>
                   <Insets right="20.0" />
                </padding>
@@ -98,7 +99,7 @@
             </ChoiceBox>
             <Button fx:id="addIngredientButton" alignment="CENTER" mnemonicParsing="false" onAction="#addIngredient" text="Add" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
                <GridPane.margin>
-                  <Insets right="20.0" />
+                  <Insets right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
@@ -128,7 +129,7 @@
                   <Text fx:id="costErrorText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Please enter a number" visible="false" />
                </children>
             </VBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" GridPane.rowIndex="7">
+            <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background: #2196F3;" text="Quantity" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>

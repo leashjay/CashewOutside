@@ -5,11 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -105,6 +104,31 @@ public class IngredientTabController {
      * Method called to set up tableview and other GUI components when control is initialized.
      */
     public void initialize() {
+
+        ingredientTable.setRowFactory(row -> new TableRow<Ingredient>(){
+            @Override
+            public void updateItem(Ingredient ingredient, boolean empty){
+                super.updateItem(ingredient, empty);
+
+                if (ingredient == null || empty) {
+                    setStyle("");
+                } else {
+                    //Now 'item' has all the info of the Person in this row
+                    if (ingredient.isLowStock()) {
+                        //We apply now the changes in all the cells of the row
+                        for (int i = 0; i < getChildren().size(); i++) {
+                            ((Labeled) getChildren().get(i)).setTextFill(Color.RED);
+                        }
+                    } else{
+                            for(int i=0; i<getChildren().size();i++){
+                                ((Labeled) getChildren().get(i)).setTextFill(Color.BLACK);;
+                            }
+                        }
+                    }
+
+            }
+        });
+
         idCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("Quantity"));

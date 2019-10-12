@@ -2,11 +2,9 @@ package seng202.team3.model;
 
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
-import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,17 +61,14 @@ public class MenuItem {
     @XmlAttribute(name = "isGF")
     private ThreeValueLogic isGlutenFree;
 
-    private ArrayList<ItemType> itemTypes;
-
-    private UnitType foodType;
-
-    /** The price the business sells the item for */
-    private float salePrice;
-
     /** The number of servings the menu item has */
     @XmlAttribute(name = "serves")
     private int numServings;
 
+    /**
+     * Markup to calculate sales price
+     */
+    private float markup = (float) 1.1;
 
     /**
      * No arg constructor for JAXB
@@ -94,6 +89,7 @@ public class MenuItem {
         this.ingredients = ingredients;
         this.type = type;
         this.numServings = 1;
+        this.markup = (float) 1.1;
     }
 
     /**
@@ -135,9 +131,14 @@ public class MenuItem {
      * Returns cost which the business sells the item for
      * @return a float showing the cost the business sells the item for
      */
-    public float getSalePrice(){return totalCost;}
+    public float getSalePrice() {
+        totalCost = getCostPrice();
+        return totalCost * markup;
+    }
+
 
    public int getServings(){return numServings;}
+
 
     /**
      * Adds the given ingredient to the recipe
@@ -156,6 +157,21 @@ public class MenuItem {
         ingredients.remove(ingredientToRemove);
     }
 
+
+    /**
+     * Check if ingredient is in truck inventory (loaded from Business class)
+     *
+     * @param ingredient ingredient to be checked
+     * @return true if ingredient is in truck inventory, false otherwise
+     */
+    public boolean isIngredientInStock(Ingredient ingredient) {
+        Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
+        if (truckInventory.getIngredients().get(ingredient.getCode()) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     /**
      * Calculates the price it takes to create the given recipe
      * @return a float showing the price to create the given recipe
@@ -165,9 +181,14 @@ public class MenuItem {
 
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            totalCost += ingredient.getCost() * entry.getValue();
+            Float cost = 0f;
+            if (isIngredientInStock(ingredient)) {
+                cost = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
+            } else {
+                cost = ingredient.getCost();
+            }
+            totalCost += (cost * entry.getValue());
         }
-
         return totalCost;
     }
 
@@ -184,13 +205,14 @@ public class MenuItem {
         isGlutenFree = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isGlutenFree == ThreeValueLogic.YES && ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN){
+            if (ingredient.getIsGlutenFree() == ThreeValueLogic.YES) {
+                isGlutenFree = ThreeValueLogic.YES;
+            } else if (ingredient.getIsGlutenFree() == ThreeValueLogic.NO) {
+                isGlutenFree = ThreeValueLogic.NO;
+                break;
+            } else if (ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN) {
                 isGlutenFree = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsGlutenFree() == ThreeValueLogic.NO){
-                isGlutenFree = ThreeValueLogic.NO;
-            }
-
         }
         return isGlutenFree;
     }
@@ -203,13 +225,14 @@ public class MenuItem {
         isVegetarian = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isVegetarian == ThreeValueLogic.YES && ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN){
+            if (ingredient.getIsVegetarian() == ThreeValueLogic.YES) {
+                isVegetarian = ThreeValueLogic.YES;
+            } else if (ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
+                isVegetarian = ThreeValueLogic.NO;
+                break;
+            } else if (ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN) {
                 isVegetarian = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
-                isVegetarian = ThreeValueLogic.NO;
-            }
-
         }
         return isVegetarian;
     }
@@ -222,13 +245,14 @@ public class MenuItem {
         isVegan = ThreeValueLogic.YES;
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             Ingredient ingredient = entry.getKey();
-            if(isVegan == ThreeValueLogic.YES && ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN){
+            if (ingredient.getIsVegan() == ThreeValueLogic.YES) {
+                isVegan = ThreeValueLogic.YES;
+            } else if (ingredient.getIsVegan() == ThreeValueLogic.NO) {
+                isVegan = ThreeValueLogic.NO;
+                break;
+            } else if (ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN) {
                 isVegan = ThreeValueLogic.UNKNOWN;
             }
-            if(ingredient.getIsVegetarian() == ThreeValueLogic.NO){
-                isVegan = ThreeValueLogic.NO;
-            }
-
         }
         return isVegan;
     }
@@ -244,8 +268,12 @@ public class MenuItem {
             Ingredient ingredient = ingredientFloatEntry.getKey();
             Ingredient truckIngredient = truckInventory.getIngredients().get(ingredient.getCode());
             Float amountRequired = ingredientFloatEntry.getValue();
-            if (truckIngredient.getQuantity() < amountRequired) {
+            if (truckIngredient == null) {
                 return false;
+            } else {
+                if (truckIngredient.getQuantity() < amountRequired) {
+                    return false;
+                }
             }
         }
         return true;

@@ -61,7 +61,7 @@ public class Ingredient {
      * @param name the name of the ingredient
      * @param quantity quantity of ingredient in stock
      * @param unit the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
-     * @param cost cost of ingredient
+     * @param cost cost of ingredientBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
      */
     public Ingredient(String code, String name, float quantity, UnitType unit, float cost) {
         this.code = code;
@@ -199,12 +199,17 @@ public class Ingredient {
         unit = newUnit;
     }
 
+    /**
+     * Converts the given string representation of a unit type to the actual type.
+     * @param unit the string representation of the unit type of an ingredient
+     * @return the Unit type util value for that unit
+     */
     public UnitType convertToUnit(String unit) {
         UnitType newUnit = UnitType.UNKNOWN;
         if (unit.toUpperCase() == "GRAM") {
-            newUnit = UnitType.COUNT;
+            newUnit = UnitType.GRAM;
         } else if (unit.toUpperCase() == "ML") {
-            newUnit = UnitType.COUNT;
+            newUnit = UnitType.ML;
         } else if (unit.toUpperCase() == "COUNT") {
             newUnit = UnitType.COUNT;
         }
@@ -245,6 +250,11 @@ public class Ingredient {
         cost = calcCost;
     }
 
+    /**
+     * Calculates the average price of an ingredient based on the new cost price, current stock and the stock that was added.
+     * @param newCost the cost of the new ingredients we have received
+     * @param oldQuantity the amount of the ingredient we had previously
+     */
     public void setCost(float newCost, float oldQuantity) {
         Float calcCost = ((oldQuantity * newCost) + (getQuantity() * getCost())) / (getQuantity() + oldQuantity);
         cost = calcCost;
@@ -259,7 +269,7 @@ public class Ingredient {
     }
 
     /**
-     *
+     *Decreases the quantity of the ingredient by the specified amount
      * @param decreaseAmount amount to decrease the quantity of the Ingredient
      */
     public void decreaseQuantity(float decreaseAmount) {

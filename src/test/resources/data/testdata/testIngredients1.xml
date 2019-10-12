@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE inventory [
+        <!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT inventory (description, ingredients)>
+        <!ELEMENT ingredients ((ingredient*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT ingredient (code, name, quantity)>
+        <!ATTLIST ingredient
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                isVegan (YES|NO|UNKNOWN) "UNKNOWN"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA #REQUIRED
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+        ]>
+
+<inventory>
+    <description>Our ingredients in no particular order (incomplete).</description>
+    <ingredients>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="1.8">
+            <code>OSauce</code>
+            <name>Oyster sauce</name>
+            <quantity>500.0</quantity>
+        </ingredient>
+    </ingredients>
+</inventory>

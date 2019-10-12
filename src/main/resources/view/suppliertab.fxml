@@ -27,6 +27,7 @@
                       <TableColumn fx:id="phoneTypeCol" prefWidth="89.33331298828125" text="Phone Type" />
                       <TableColumn fx:id="urlCol" prefWidth="152.66668701171875" text="URL" />
                       <TableColumn fx:id="deleteButtonCol" prefWidth="118.0" text="Delete" />
+                      <TableColumn fx:id="editButtonCol" prefWidth="118.0" text="Edit" />
                   </columns>
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" top="10.0" />
@@ -34,7 +35,7 @@
               </TableView>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="addManuallyButton" mnemonicParsing="false" onAction="#openAddSupplierScreen" text="Add manually">
+                  <Button fx:id="addManuallyButton" mnemonicParsing="false" onAction="#openAddSuppliersScreen" text="Add manually">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin></Button>

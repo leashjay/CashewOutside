@@ -20,8 +20,7 @@ public class EmployeeHandler {
     @XmlJavaTypeAdapter(EmployeeAdapter.class)
     private HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
-    public EmployeeHandler(){
-
+    public EmployeeHandler() {
     }
 
     /**

@@ -54,4 +54,15 @@ public class BusinessTest {
         }
         assertEquals("Quantity of onion needed for BB1 is 50g", 50f, quantityNeeded);
     }
+
+    @Test
+    /**
+     * Tests the functionality of checking and getting the ID of next order the business will make
+     */
+    public void orderIdTest(){
+        int lastOrderId = testBusiness.getLastOrderID();
+        testBusiness.makeNextOrderID();
+        testBusiness.makeNextOrderID();
+        assertEquals(testBusiness.getLastOrderID(), lastOrderId + 2);
+    }
 }

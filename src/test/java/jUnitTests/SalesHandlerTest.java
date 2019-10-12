@@ -3,7 +3,9 @@ package jUnitTests;
 import org.junit.Test;
 import seng202.team3.model.Order;
 import seng202.team3.model.SalesHandler;
-import static junit.framework.TestCase.*;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertSame;
 
 public class SalesHandlerTest {
 
@@ -24,6 +26,7 @@ public class SalesHandlerTest {
             assertEquals("Order of same orderId already present in SalesHandler.orders", e.getMessage());
         }
     }
+
 
     @Test
     public void getChangeTest() {

@@ -37,12 +37,14 @@ public class Truck {
     public Truck() {
     }
 
+
     /**
      * Constructor for Truck class
      * @param ingredientsXML path to ingredientsXML
      * @throws Exception
      */
     public Truck(String ingredientsXML) throws JAXBException {
+        // TODO delete this constructor if no one is using it.
         createTruckInventory(ingredientsXML);
         cashFloat = new HashMap<Integer, Integer>();
 
@@ -61,6 +63,7 @@ public class Truck {
         cashAccount += 500;
     }
 
+
     /**
      * Create truckInventory
      *
@@ -72,6 +75,7 @@ public class Truck {
         truckInventory = inventoryLoad.loadIngredientsData(fileName);
     }
 
+
     /**
      * Getter for truck inventory
      *
@@ -82,7 +86,8 @@ public class Truck {
     }
 
     /**
-     * Getter for cash float
+     * Getter for cash float, implementation for use of denominations.
+     * Not used with this prototype
      *
      * @return cashFloat
      */
@@ -91,7 +96,8 @@ public class Truck {
     }
 
     /** public static
-     * Getter for cash account
+     * Getter for cash account, cash account is the money held
+     * by each (the) truck and used for daily transactions
      * @return cashAccount
      */
     public float getCashAccount() {
@@ -100,24 +106,36 @@ public class Truck {
 
 
     /**
+     * setting the value in the cash account held by the truck for
+     * daily operations
+     *
+     * @param newValue passed value to set account dollar value
+     */
+    public void setCashAccount(float newValue) {
+        cashAccount = newValue;
+    }
+
+
+    /**
      * uses a greedy algorithm to increase the Truck's cashFloat
      * @param totalAmountOfIncrease the total amount of money in dollars.cents
      */
     public void increaseCashFloat(float totalAmountOfIncrease) {
-        int increaseInCents = (int) (totalAmountOfIncrease * 1);
-        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
-        Collections.sort(denoms); // sorts the denoms from smallest to largest
-        Collections.reverse(denoms);
-        // takes the biggest of each denom until it no longer can.
-        for (int denom : denoms) {
-            while (denom >= increaseInCents) {
-                cashFloat.put(denom, cashFloat.get(denom) + 1);
-                increaseInCents -= denom;
-            }
-        }
-        // always make the customer pay extra when using cash
-        if (increaseInCents > 0 && increaseInCents < 10) {
-            cashFloat.put(10, cashFloat.get(10) + 1);
-        }
+        cashAccount += totalAmountOfIncrease;
+//        int increaseInCents = (int) (totalAmountOfIncrease * 1);
+//        ArrayList<Integer> denoms = new ArrayList<>(cashFloat.keySet());
+//        Collections.sort(denoms); // sorts the denoms from smallest to largest
+//        Collections.reverse(denoms);
+//        // takes the biggest of each denom until it no longer can.
+//        for (int denom : denoms) {
+//            while (denom >= increaseInCents) {
+//                cashFloat.put(denom, cashFloat.get(denom) + 1);
+//                increaseInCents -= denom;
+//            }
+//        }
+//        // always make the customer pay extra when using cash
+//        if (increaseInCents > 0 && increaseInCents < 10) {
+//            cashFloat.put(10, cashFloat.get(10) + 1);
+//        }
     }
 }

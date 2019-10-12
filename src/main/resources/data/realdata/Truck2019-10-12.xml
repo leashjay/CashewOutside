@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE truck [
+        <!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT truck (cashAccount)>
+        <!ELEMENT cashAccount (#PCDATA)>
+        ]>
+<truck>
+   <cashAccount>500.0</cashAccount>
+</truck>

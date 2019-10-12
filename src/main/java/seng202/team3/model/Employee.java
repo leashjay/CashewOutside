@@ -1,7 +1,5 @@
 package seng202.team3.model;
 
-import seng202.team3.util.PasswordUtils;
-
 import javax.xml.bind.annotation.*;
 
 /**
@@ -27,7 +25,6 @@ public class Employee {
      * Zero argument constructor for JAXB
      */
     public Employee() {
-
     }
 
     /**
@@ -35,7 +32,7 @@ public class Employee {
      * @return the salt used to generate the users password
      */
     public String getSalt(){
-        return salt;
+        return salt.trim();
     }
 
     /**
