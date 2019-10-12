@@ -10,6 +10,8 @@ import seng202.team3.util.UnitType;
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
+import static junit.framework.TestCase.assertEquals;
+
 public class OrderFeaturesSteps {
 
     private Truck testTruck;
@@ -67,35 +69,27 @@ public class OrderFeaturesSteps {
         this.testOrder = testOrder;
     }
 
-    @Given("a beefburger is added to an order")
-    public void aBeefburgerIsAddedToAnOrder() {
-        Ingredient tsauce = new Ingredient("TSauce", "Tomato sauce", 5.0f, UnitType.ML, 1.8f);
-        Ingredient onion = new Ingredient("Onion", "Diced onion", 100.0f, UnitType.GRAM, 0.10f);
-        Ingredient lettuce = new Ingredient("Lettuce", "Sliced Iceberg lettuce", 2.0f, UnitType.COUNT, 0.10f);
-        Ingredient beetroot = new Ingredient("Beetroot", "Beetroot slice", 3.0f, UnitType.COUNT, 0.10f);
-        Ingredient burgerbun = new Ingredient("BBun", "Hamburger bun", 3.0f, UnitType.COUNT, 0.50f);
-        Ingredient mayo = new Ingredient("Mayo", "Eater plain Mayonnaise", 10.0f, UnitType.ML, 0.10f);
-        Ingredient burgerpattie = new Ingredient("BPat", "Beef patty", 12.0f, UnitType.COUNT, 1.00f);
+    @Given("an imaginary burger is added to an order")
+    public void anImaginaryBurgerIsAddedToAnOrder() {
+        Ingredient isauce = new Ingredient("iSauce", "Tomato sauce", 5.0f, UnitType.ML, 1.8f);
+        Ingredient ionion = new Ingredient("iOnion", "Diced onion", 50.0f, UnitType.GRAM, 0.10f);
+        Ingredient ilettuce = new Ingredient("iLettuce", "Sliced Iceberg lettuce", 15.0f, UnitType.GRAM, 0.10f);
 
-        inventory.addIngredient(tsauce);
-        inventory.addIngredient(onion);
-        inventory.addIngredient(lettuce);
-        inventory.addIngredient(beetroot);
-        inventory.addIngredient(burgerbun);
-        inventory.addIngredient(mayo);
-        inventory.addIngredient(burgerpattie);
+        isauce.setCost(0.10f);
+        ionion.setCost(0.30f);
+        ilettuce.setCost(0.10f);
+
+        inventory.addIngredient(isauce);
+        inventory.addIngredient(ionion);
+        inventory.addIngredient(ilettuce);
 
         HashMap<Ingredient, Float> recipe = new HashMap<>();
 
-        beefburger = new MenuItem("BB1", "Beefburger", recipe, ItemType.MAIN);
+        beefburger = new MenuItem("iB1", "Imaginary Burger", recipe, ItemType.MAIN);
 
-        beefburger.addIngredientToRecipe(tsauce, 5.0f);
-        beefburger.addIngredientToRecipe(onion, 50.0f);
-        beefburger.addIngredientToRecipe(lettuce, 0.15f);
-        beefburger.addIngredientToRecipe(beetroot, 1.0f);
-        beefburger.addIngredientToRecipe(burgerbun, 1.0f);
-        beefburger.addIngredientToRecipe(mayo, 0.10f);
-        beefburger.addIngredientToRecipe(burgerpattie, 1.0f);
+        beefburger.addIngredientToRecipe(isauce, 5.0f);
+        beefburger.addIngredientToRecipe(ionion, 50.0f);
+        beefburger.addIngredientToRecipe(ilettuce, 15.0f);
 
         this.beefburger = beefburger;
     }
@@ -104,24 +98,54 @@ public class OrderFeaturesSteps {
     @When("the order is created")
     public void theOrderIsCreated() {
         testOrder.addToOrder(beefburger);
+        testSalesHandler.addOrder(testOrder);
+        assertEquals(1, testSalesHandler.getOrderHashMap().size());
     }
+
+
+    /*
+     * Calculation ((5.0*0.10) + (50.0 * 0.30) + (15.0*0.10) ) *1.25
+     * Markup = 10%
+     */
 
     @Then("the correct order total is calculated as ${double}")
     public void theCorrectOrderTotalIsCalculatedAs$(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(18.70f, testOrder.getTotalCost());
     }
 
     @Given("the customer places an order for coq au van")
     public void theCustomerPlacesAnOrderForCoqAuVan() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Ingredient ichicken = new Ingredient("iSauce", "Tomato sauce", 5.0f, UnitType.ML, 1.8f);
+        Ingredient iloaf = new Ingredient("iOnion", "Diced onion", 50.0f, UnitType.GRAM, 0.10f);
+        Ingredient isalt = new Ingredient("iLettuce", "Sliced Iceberg lettuce", 15.0f, UnitType.GRAM, 0.10f);
+
+        ichicken.setCost(0.10f);
+        iloaf.setCost(0.30f);
+        isalt.setCost(0.10f);
+
+        inventory.addIngredient(ichicken);
+        inventory.addIngredient(iloaf);
+        inventory.addIngredient(isalt);
+
+        HashMap<Ingredient, Float> recipe = new HashMap<>();
+
+        beefburger = new MenuItem("iB1", "Imaginary Burger", recipe, ItemType.MAIN);
+
+        beefburger.addIngredientToRecipe(ichicken, 5.0f);
+        beefburger.addIngredientToRecipe(iloaf, 50.0f);
+        beefburger.addIngredientToRecipe(isalt, 15.0f);
+
+        this.beefburger = beefburger;
+
+        testOrder.addToOrder(beefburger);
+        testSalesHandler.addOrder(testOrder);
+        assertEquals(1, testSalesHandler.getOrderHashMap().size());
     }
 
     @When("the customer pays ${double}")
     public void theCustomerPays$(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        //testSalesHandler.customerPays(testOrder.getOrderId());
+        //this feature isnt implemented
     }
 
     @Then("the correct change of ${double} is calculated and the inventory stock levels are reduced accordingly")
