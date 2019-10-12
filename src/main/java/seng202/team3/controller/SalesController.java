@@ -513,8 +513,8 @@ public class SalesController {
 
         // must be at end of method
         if (successfulOrder) {
-            boolean stockDecreasedSuccessfully = curOrder.decreaseStock();
-            if (stockDecreasedSuccessfully) {
+            boolean hasEnoughStock = curOrder.enoughStock();
+            if (hasEnoughStock) {
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
