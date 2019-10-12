@@ -33,6 +33,11 @@ public class OrderFeaturesSteps {
     private Ingredient testIngredient1;
     private Ingredient testIngredient2;
     private Ingredient testIngredient3;
+    private Float initialCashFloat;
+    private Float iMenuItemPrice;
+    private Float initialChocQtt;
+    private Float initialRegMilkQtt;
+    private Float initialLemCanQtt;
 
 
     @Given("a cash float")
@@ -152,33 +157,22 @@ public class OrderFeaturesSteps {
      */
     @Then("the correct change of ${double} is calculated and the inventory stock levels are reduced accordingly")
     public void theCorrectChangeOf$IsCalculatedAndTheInventoryStockLevelsAreReducedAccordingly(Double double1) {
-        assertEquals((quantity1 - 5.0f), (quantity1 - imaginaryBurger.getRecipeQuantity(testIngredient1)));
-        assertEquals((quantity2 - 50.0f), (quantity2 - imaginaryBurger.getRecipeQuantity(testIngredient2)));
-        assertEquals((quantity3 - 15.0f), (quantity3 - imaginaryBurger.getRecipeQuantity(testIngredient3)));
+        assertEquals((quantity1 - 5.0f), (quantity1 - imaginaryBurger.getRecipeQuantity(testIngredient1.getCode())));
+        assertEquals((quantity2 - 50.0f), (quantity2 - imaginaryBurger.getRecipeQuantity(testIngredient2.getCode())));
+        assertEquals((quantity3 - 15.0f), (quantity3 - imaginaryBurger.getRecipeQuantity(testIngredient3.getCode())));
 
     }
 
     @Given("the customer places an order for baby face")
     public void theCustomerPlacesAnOrderForBabyFace() {
-        Ingredient ibaby = new Ingredient("iBaby", "Baby Face", 10.0f, UnitType.ML, .90f);
-        //ibaby.setCost(0.10f);
-        inventory.addIngredient(ibaby);
-
-        HashMap<Ingredient, Float> recipe = new HashMap<>();
-
-        iMenuItem = new MenuItem("iBf", "iBaby Face", recipe, ItemType.MAIN);
-        iMenuItem.addIngredientToRecipe(ibaby, 5.0f);
-
-        this.iMenuItem = iMenuItem;
-        this.quantity1 = ibaby.getQuantity();
-        this.testIngredient1 = ibaby;
-
-        this.testTruck.setCashAccount(0);
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testSalesHandler = BusinessApp.getBusiness().getSalesHandler();
+        testOrder = new Order();
+        iMenuItem = testMenu.getMenuItem().get("BF");
         testOrder.addToOrder(iMenuItem);
+        testOrder.setToNextID();
         testSalesHandler.addOrder(testOrder);
-        assertEquals(1, testSalesHandler.getOrderHashMap().size());
-        this.testSalesHandler = testSalesHandler;
-        this.testOrder = testOrder;
+        System.out.println(testOrder.getOrderId());
     }
 
     /**
@@ -188,52 +182,72 @@ public class OrderFeaturesSteps {
      */
     @When("the customer pays ${double} for baby face")
     public void theCustomerPays$ForBabyFace(Double double1) {
-        assertEquals(5.05f, testSalesHandler.customerPays(10.00f, testOrder.getOrderId()), 0.01);
-
-        //BusinessApp.getBusiness().getTruck().getCashAccount();
-
-        assertEquals(4.95f, testTruck.getCashAccount(), 0.01);
+        iMenuItemPrice = iMenuItem.getSalePrice();
+        initialCashFloat = testTruck.getCashAccount();
+        assertEquals(10.00f - iMenuItemPrice, testSalesHandler.customerPays(10.00f, testOrder.getOrderId()), 0.01);
     }
 
     @Then("the baby face sale amount is added to the float")
     public void theBabyFaceCostIsAddedToTheFloat() {
-        assertEquals(4.95f, testTruck.getCashAccount(), 0.01);
+        assertEquals(initialCashFloat + iMenuItemPrice, testTruck.getCashAccount(), 0.01);
     }
 
-    @Given("the customer places an order for banana split")
-    public void theCustomerPlacesAnOrderForBananaSplit() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Given("the customer places an order for hot chocolate")
+    public void theCustomerPlaceAnOrderForHotChocolate() {
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testOrder = new Order();
+        testOrder.setToNextID();
+        iMenuItem = testMenu.getMenuItem().get("HotChoc");
+        testOrder.addToOrder(iMenuItem);
+        testSalesHandler.addOrder(testOrder);
+
     }
 
-    @When("the customer pays ${double} for b_split")
-    public void theCustomerPays$ForB_split(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("the customer pays ${double} for hot chocolate")
+    public void theCustomerPays$ForHotChocolate(Double double1) {
+        iMenuItemPrice = iMenuItem.getSalePrice();
+        inventory = BusinessApp.getBusiness().getTruck().getInventory();
+        initialChocQtt = inventory.getIngredients().get("Choc").getQuantity();
+        initialRegMilkQtt = inventory.getIngredients().get("RegMilk").getQuantity();
+
+        assertEquals(12.0f - iMenuItemPrice, testSalesHandler.customerPays(12.0f, testOrder.getOrderId()));
     }
 
     @Then("the inventory stock levels are reduced accordingly")
     public void theInventoryStockLevelsAreReducedAccordingly() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Float recipeChocQtt = iMenuItem.getRecipeQuantity("Choc");
+        Float recipeRegMilkQtt = iMenuItem.getRecipeQuantity("RegMilk");
+
+        assertEquals(initialChocQtt - recipeChocQtt, inventory.getIngredients().get("Choc").getQuantity());
+        assertEquals(initialRegMilkQtt - recipeRegMilkQtt, inventory.getIngredients().get("RegMilk").getQuantity());
     }
 
     @Given("an order is placed for {int} LemCans")
     public void anOrderIsPlacedForLemCans(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testOrder = new Order();
+        testOrder.setToNextID();
+        iMenuItem = testMenu.getMenuItem().get("Lem");
+        testOrder.addToOrder(iMenuItem);
+        testSalesHandler.addOrder(testOrder);
     }
 
     @When("${int} cash is handed over and a sale made")
     public void $CashIsHandedOverAndASaleMade(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        iMenuItemPrice = iMenuItem.getSalePrice();
+        inventory = BusinessApp.getBusiness().getTruck().getInventory();
+        initialLemCanQtt = inventory.getIngredients().get("LemCan").getQuantity();
+        initialCashFloat = BusinessApp.getBusiness().getTruck().getCashAccount();
+
+        assertEquals(5f - iMenuItemPrice, testSalesHandler.customerPays(5f, testOrder.getOrderId()));
     }
 
     @Then("the float shows the new correct total and the inventory stock levels are reduced accordingly")
     public void theFloatShowsTheNewCorrectTotalAndTheInventoryStockLevelsAreReducedAccordingly() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(initialCashFloat + iMenuItemPrice, BusinessApp.getBusiness().getTruck().getCashAccount());
+        Float recipeLemCanQtt = iMenuItem.getRecipeQuantity("LemCan");
+
+        assertEquals(initialLemCanQtt - recipeLemCanQtt, inventory.getIngredients().get("LemCan").getQuantity());
     }
 
     @Given("an order is cancelled by customer")

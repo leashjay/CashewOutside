@@ -363,14 +363,14 @@ public class MenuItem {
     /**
      * returns the quantity of an ingredient required in a recipe
      *
-     * @param searchedIngredient the ingredient which you would like the recipes quantity requirement
+     * @param searchedIngredientCode the ingredient which you would like the recipes quantity requirement
      * @return the quantity of the searched ingredient
      */
-    public float getRecipeQuantity(Ingredient searchedIngredient) {
+    public float getRecipeQuantity(String searchedIngredientCode) {
         float amountRequired = 0.0f;
         for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
             Ingredient ingredient = ingredientFloatEntry.getKey();
-            if (searchedIngredient.getCode() == ingredient.getCode()) {
+            if (searchedIngredientCode == ingredient.getCode()) {
                 amountRequired = ingredientFloatEntry.getValue();
                 return amountRequired;
 
