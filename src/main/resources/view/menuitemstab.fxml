@@ -9,7 +9,7 @@
    <children>
       <VBox prefHeight="800.0" prefWidth="1000.0">
          <children>
-             <TableView fx:id="menuItemsTable" prefHeight="650.0">
+             <TableView fx:id="menuItemsTable" prefHeight="574.0" prefWidth="990.0">
                  <columns>
                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
