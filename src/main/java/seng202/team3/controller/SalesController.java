@@ -208,10 +208,14 @@ public class SalesController {
         }
     }
 
+    /**
+     * makes the ScrollPane at the top of the screen scroll horizontally when scrolled on - Nice
+     * @param event the scroll event
+     */
     @FXML
     public void horizontalScrollTopPane(ScrollEvent event) {
         if (event.getDeltaX() == 0 && event.getDeltaY() != 0) {
-            topScrollPane.setHvalue(topScrollPane.getHvalue() - event.getDeltaY());
+            topScrollPane.setHvalue(topScrollPane.getHvalue() - (event.getDeltaY() / 100));
         }
         event.consume();
     }

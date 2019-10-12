@@ -14,7 +14,7 @@ import seng202.team3.util.ThreeValueLogic;
  */
 public class MenuItemNode extends VBox {
 
-    final int height = 175;
+    final int height = 170;
     private MenuItem menuItem;
     private int quantity;
     private Label quantityLabel;
