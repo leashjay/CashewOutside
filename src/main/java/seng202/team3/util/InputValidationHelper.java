@@ -124,10 +124,18 @@ public class InputValidationHelper {
     }
 
 
+    /**
+     * Check whether a menu item id is not equal to primary key of supplier database
+     * and if the id follows supplieridregex pattern
+     *
+     * @param textField menu item id text field
+     * @param errorText smenu item error text to be displayed if the id is invalid
+     * @return boolean showing whether or not id is valid
+     */
     public static boolean checkMenuItemValidId(TextField textField, Text errorText) {
         String inputId = textField.getText();
 
-        if (BusinessApp.getBusiness().getMenuManager().getMenuItem().containsKey(inputId)) {
+        if (BusinessApp.getBusiness().getMenuManager().filterMenuItems().containsKey(inputId)) {
             errorText.setText("Id entered is already registered in database. \n Try another id");
             errorText.setVisible(true);
             return false;

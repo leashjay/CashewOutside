@@ -137,7 +137,7 @@ public class Order {
     public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
         float cost = 0;
         for (MenuItem item : itemsToCalculate) {
-            cost += item.getSalePrice();
+            cost += item.calculateSalePrice();
         }
         return cost;
     }
@@ -260,7 +260,7 @@ public class Order {
         this.isVegFlag = getFlagAdding(this.isVegFlag, itemToAdd.isVegetarian());
         this.isVeganFlag = getFlagAdding(this.isVeganFlag, itemToAdd.isVegan());
         this.itemsOrdered.add(itemToAdd);
-        this.orderCost += itemToAdd.getSalePrice();
+        this.orderCost += itemToAdd.calculateSalePrice();
     }
 
     /**
@@ -309,7 +309,7 @@ public class Order {
             if (!flagsChecked) {
                 updateFlags();
             }
-            this.orderCost -= itemToRemove.getSalePrice();
+            this.orderCost -= itemToRemove.calculateSalePrice();
         }
     }
 

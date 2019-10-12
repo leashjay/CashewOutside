@@ -172,7 +172,7 @@ public class OrderFeaturesSteps {
         testMenu = BusinessApp.getBusiness().getMenuManager();
         testSalesHandler = BusinessApp.getBusiness().getSalesHandler();
         testOrder = new Order();
-        iMenuItem = testMenu.getMenuItem().get("BF");
+        iMenuItem = testMenu.filterMenuItems().get("BF");
         testOrder.addToOrder(iMenuItem);
         testOrder.setToNextID();
         testSalesHandler.addOrder(testOrder);
@@ -186,7 +186,7 @@ public class OrderFeaturesSteps {
      */
     @When("the customer pays ${double} for baby face")
     public void theCustomerPays$ForBabyFace(Double double1) {
-        iMenuItemPrice = iMenuItem.getSalePrice();
+        iMenuItemPrice = iMenuItem.calculateSalePrice();
         initialCashFloat = testTruck.getCashAccount();
         assertEquals(10.00f - iMenuItemPrice, testSalesHandler.customerPays(10.00f, testOrder.getOrderId(), testTruck), 0.01);
     }
@@ -201,7 +201,7 @@ public class OrderFeaturesSteps {
         testMenu = BusinessApp.getBusiness().getMenuManager();
         testOrder = new Order();
         testOrder.setToNextID();
-        iMenuItem = testMenu.getMenuItem().get("HotChoc");
+        iMenuItem = testMenu.filterMenuItems().get("HotChoc");
         testOrder.addToOrder(iMenuItem);
         testSalesHandler.addOrder(testOrder);
 
@@ -209,7 +209,7 @@ public class OrderFeaturesSteps {
 
     @When("the customer pays ${double} for hot chocolate")
     public void theCustomerPays$ForHotChocolate(Double double1) {
-        iMenuItemPrice = iMenuItem.getSalePrice();
+        iMenuItemPrice = iMenuItem.calculateSalePrice();
         inventory = BusinessApp.getBusiness().getTruck().getInventory();
         initialChocQtt = inventory.getIngredients().get("Choc").getQuantity();
         initialRegMilkQtt = inventory.getIngredients().get("RegMilk").getQuantity();
@@ -231,14 +231,14 @@ public class OrderFeaturesSteps {
         testMenu = BusinessApp.getBusiness().getMenuManager();
         testOrder = new Order();
         testOrder.setToNextID();
-        iMenuItem = testMenu.getMenuItem().get("Lem");
+        iMenuItem = testMenu.filterMenuItems().get("Lem");
         testOrder.addToOrder(iMenuItem);
         testSalesHandler.addOrder(testOrder);
     }
 
     @When("${int} cash is handed over and a sale made")
     public void $CashIsHandedOverAndASaleMade(Integer int1) {
-        iMenuItemPrice = iMenuItem.getSalePrice();
+        iMenuItemPrice = iMenuItem.calculateSalePrice();
         inventory = BusinessApp.getBusiness().getTruck().getInventory();
         initialLemCanQtt = inventory.getIngredients().get("LemCan").getQuantity();
         initialCashFloat = BusinessApp.getBusiness().getTruck().getCashAccount();
@@ -259,7 +259,7 @@ public class OrderFeaturesSteps {
         testMenu = BusinessApp.getBusiness().getMenuManager();
         testOrder = new Order();
         testOrder.setToNextID();
-        iMenuItem = testMenu.getMenuItem().get("Lem");
+        iMenuItem = testMenu.filterMenuItems().get("Lem");
         testOrder.addToOrder(iMenuItem);
         testSalesHandler.addOrder(testOrder);
         inventory = BusinessApp.getBusiness().getTruck().getInventory();
@@ -288,7 +288,7 @@ public class OrderFeaturesSteps {
         testMenu = BusinessApp.getBusiness().getMenuManager();
         testOrder = new Order();
         testOrder.setToNextID();
-        testOrder.addToOrder(testMenu.getMenuItem().get("Lem"));
+        testOrder.addToOrder(testMenu.filterMenuItems().get("Lem"));
         testOrder.confirmOrder();
         testSalesHandler.addOrder(testOrder);
 
@@ -299,7 +299,7 @@ public class OrderFeaturesSteps {
     public void anotherOrderIsMade() {
         testOrder1 = new Order();
         testOrder1.setToNextID();
-        testOrder1.addToOrder(testMenu.getMenuItem().get("Lem"));
+        testOrder1.addToOrder(testMenu.filterMenuItems().get("Lem"));
         testOrder1.confirmOrder();
         testSalesHandler.addOrder(testOrder1);
 

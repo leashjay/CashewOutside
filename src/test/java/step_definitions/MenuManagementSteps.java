@@ -151,7 +151,7 @@ public class MenuManagementSteps {
 
     @Then("the menu item can be deleted and is no longer present AND exceptions are handled")
     public void theMenuItemCanBeDeletedAndIsNoLongerPresentANDExceptionsAreHandled() {
-        assertFalse(testMenu.getMenuItem().containsKey("ChocM"));
+        assertFalse(testMenu.filterMenuItems().containsKey("ChocM"));
     }
 
     @Given("a recipe")
@@ -197,7 +197,7 @@ public class MenuManagementSteps {
 
     @Then("it is available in the application")
     public void itIsAvailableInTheApplication() {
-        assertTrue(testMenu.getMenuItem().containsKey("ChocM"));
+        assertTrue(testMenu.filterMenuItems().containsKey("ChocM"));
     }
 
     @Given("a testable menu item")
@@ -224,7 +224,7 @@ public class MenuManagementSteps {
     public void theOrderCannotBeAdded() {
         testOrder = new Order();
         testOrder.setToNextID();
-        testOrder.addToOrder(testMenu.getMenuItem().get("ChocM"));
+        testOrder.addToOrder(testMenu.filterMenuItems().get("ChocM"));
         String errorMessage = "";
         try {
             testOrder.confirmOrder();
