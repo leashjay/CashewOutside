@@ -187,7 +187,7 @@ public class MenuItem {
             } else {
                 cost = ingredient.getCost();
             }
-            totalCost += cost * entry.getValue();
+            totalCost += (cost * entry.getValue());
         }
         return totalCost;
     }

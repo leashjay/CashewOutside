@@ -146,7 +146,7 @@ public class SalesHandler {
      * customer pays for an order
      * @param orderId the order to pay for
      */
-    public void customerPays(int orderId) {
+    public void customerPays(float payment, int orderId) {
         // TODO implement this method fully.
         float price = this.getOrder(orderId).getTotalCost();
         BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
@@ -154,7 +154,8 @@ public class SalesHandler {
 
     /**\
      * small method to get the amount of change
-     * @param amountPaid the amount of money paid by the customer
+     * @param amountPaid the amount of money pai// Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException()d by the customer
      * @param orderCost the cost of the order
      * @return change - can be negative (error checking not handled here)
      */
