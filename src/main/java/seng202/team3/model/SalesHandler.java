@@ -162,7 +162,7 @@ public class SalesHandler {
         return amountPaid - orderCost;
     }
 
-    public float calculateChange(float amountPaid, int orderId) {
+    private float calculateChange(float amountPaid, int orderId) {
         Order order = orders.get(orderId);
         return amountPaid - order.getTotalCost();
     }
