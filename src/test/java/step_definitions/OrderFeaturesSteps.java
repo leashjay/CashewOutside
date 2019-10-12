@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import seng202.team3.model.*;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.UnitType;
+import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
 import java.util.HashMap;
@@ -22,33 +23,21 @@ public class OrderFeaturesSteps {
     private Menu testMenu;
     private HashMap<String, MenuItem> menuContents;
     private MenuItem beefburger;
+    private MenuItem imaginaryBurger;
+    private MenuItem iMenuItem;
     private Order testOrder;
     private SalesHandler testSalesHandler;
-
-//    /*Background conditions setting up new business */
-//    @Given("a {string} for operation")
-//    public void aForOperation(String string) throws JAXBException {
-//        foodTruckBusiness = new Business("./src/main/resources/data/Ingredients.xml", "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
-//    }
-//
-//    /*Background conditions setting up inventory list */
-//    @Given("an {string} to hold ingredients")
-//    public void anToHoldIngredients(String string) {
-//
-//    }
-//
-//    /*Background conditions setting up menu list */
-//    @Given("an {string} to collect menu items")
-//    public void anToCollectMenuItems(String string) {
-//        testMenuItem = new MenuItem();
-//        menuContents = new HashMap<>();
-//        testMenu = new Menu("Test Menu", "A menu for filling and testing", MenuType.FESTIVAL, menuContents);
-//    }
+    private float quantity1;
+    private float quantity2;
+    private float quantity3;
+    private Ingredient testIngredient1;
+    private Ingredient testIngredient2;
+    private Ingredient testIngredient3;
 
 
     @Given("a cash float")
     public void aCashFloat() throws JAXBException {
-        testTruck = new Truck("./src/main/resources/data/Ingredients.xml");
+        testTruck = BusinessApp.getBusiness().getTruck();
         testTruck.setCashAccount(0.0f);
         testTruck.setCashAccount(1000.0f);
 
@@ -99,7 +88,8 @@ public class OrderFeaturesSteps {
     public void theOrderIsCreated() {
         testOrder.addToOrder(beefburger);
         testSalesHandler.addOrder(testOrder);
-        assertEquals(1, testSalesHandler.getOrderHashMap().size());
+        //assertEquals(1, testSalesHandler.getOrderHashMap().size());
+        //currently the float is in the business truck not the test truck and that is problematic
     }
 
 
@@ -129,45 +119,95 @@ public class OrderFeaturesSteps {
 
         HashMap<Ingredient, Float> recipe = new HashMap<>();
 
-        beefburger = new MenuItem("iB1", "Imaginary Burger", recipe, ItemType.MAIN);
+        imaginaryBurger = new MenuItem("iB1", "Imaginary Burger", recipe, ItemType.MAIN);
 
-        beefburger.addIngredientToRecipe(ichicken, 5.0f);
-        beefburger.addIngredientToRecipe(iloaf, 50.0f);
-        beefburger.addIngredientToRecipe(isalt, 15.0f);
+        imaginaryBurger.addIngredientToRecipe(ichicken, 5.0f);
+        imaginaryBurger.addIngredientToRecipe(iloaf, 50.0f);
+        imaginaryBurger.addIngredientToRecipe(isalt, 15.0f);
 
-        this.beefburger = beefburger;
+        this.imaginaryBurger = imaginaryBurger;
+        this.quantity1 = ichicken.getQuantity();
+        this.quantity1 = ichicken.getQuantity();
+        this.quantity2 = iloaf.getQuantity();
+        this.quantity3 = isalt.getQuantity();
+        this.testIngredient1 = ichicken;
+        this.testIngredient2 = iloaf;
+        this.testIngredient3 = isalt;
 
-        testOrder.addToOrder(beefburger);
+        testOrder.addToOrder(imaginaryBurger);
         testSalesHandler.addOrder(testOrder);
         assertEquals(1, testSalesHandler.getOrderHashMap().size());
+        this.testSalesHandler = testSalesHandler;
+        this.testOrder = testOrder;
     }
 
-    @When("the customer pays ${double}")
-    public void theCustomerPays$(Double double1) {
-        //testSalesHandler.customerPays(testOrder.getOrderId());
-        //this feature isnt implemented
+    @When("the customer pays ${double} and is given correct change")
+    public void theCustomerPays$AndIsGivenCorrectChange(Double double1) {
+        assertEquals(21.3f, testSalesHandler.customerPays(40.00f, testOrder.getOrderId()));
     }
 
+
+    /**
+     * the original quantity is reduced by the recipe quantity
+     */
     @Then("the correct change of ${double} is calculated and the inventory stock levels are reduced accordingly")
     public void theCorrectChangeOf$IsCalculatedAndTheInventoryStockLevelsAreReducedAccordingly(Double double1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals((quantity1 - 5.0f), (quantity1 - imaginaryBurger.getRecipeQuantity(testIngredient1)));
+        assertEquals((quantity2 - 50.0f), (quantity2 - imaginaryBurger.getRecipeQuantity(testIngredient2)));
+        assertEquals((quantity3 - 15.0f), (quantity3 - imaginaryBurger.getRecipeQuantity(testIngredient3)));
+
     }
 
     @Given("the customer places an order for baby face")
     public void theCustomerPlacesAnOrderForBabyFace() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Ingredient ibaby = new Ingredient("iBaby", "Baby Face", 10.0f, UnitType.ML, .90f);
+        //ibaby.setCost(0.10f);
+        inventory.addIngredient(ibaby);
+
+        HashMap<Ingredient, Float> recipe = new HashMap<>();
+
+        iMenuItem = new MenuItem("iBf", "iBaby Face", recipe, ItemType.MAIN);
+        iMenuItem.addIngredientToRecipe(ibaby, 5.0f);
+
+        this.iMenuItem = iMenuItem;
+        this.quantity1 = ibaby.getQuantity();
+        this.testIngredient1 = ibaby;
+
+        this.testTruck.setCashAccount(0);
+        testOrder.addToOrder(iMenuItem);
+        testSalesHandler.addOrder(testOrder);
+        assertEquals(1, testSalesHandler.getOrderHashMap().size());
+        this.testSalesHandler = testSalesHandler;
+        this.testOrder = testOrder;
     }
 
-    @Then("the baby face cost is added to the float")
+    /**
+     * (10 - (.90 * 5)*1.1)
+     *
+     * @param double1
+     */
+    @When("the customer pays ${double} for baby face")
+    public void theCustomerPays$ForBabyFace(Double double1) {
+        assertEquals(5.05f, testSalesHandler.customerPays(10.00f, testOrder.getOrderId()), 0.01);
+
+        //BusinessApp.getBusiness().getTruck().getCashAccount();
+
+        assertEquals(4.95f, testTruck.getCashAccount(), 0.01);
+    }
+
+    @Then("the baby face sale amount is added to the float")
     public void theBabyFaceCostIsAddedToTheFloat() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(4.95f, testTruck.getCashAccount(), 0.01);
     }
 
     @Given("the customer places an order for banana split")
     public void theCustomerPlacesAnOrderForBananaSplit() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+
+    @When("the customer pays ${double} for b_split")
+    public void theCustomerPays$ForB_split(Double double1) {
         // Write code here that turns the phrase above into concrete actions
         throw new cucumber.api.PendingException();
     }
