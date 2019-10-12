@@ -214,8 +214,6 @@ public class MenuItem {
         this.totalCost = newPrice;
     }
 
-    //TODO Possibly change this into a singular method with parameters
-
     /**
      * Method to check if a menu item is gluten free
      *
@@ -283,7 +281,7 @@ public class MenuItem {
      * Get HashMap of ingredient and their corresponding quantity in inventory
      *
      * @param inventory truck Inventory
-     * @return
+     * @return a hashman of the ingredients with their corresponding stocks
      */
     public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
         HashMap<String, Float> quantities = new HashMap<String, Float>();
@@ -304,8 +302,6 @@ public class MenuItem {
      */
     public void calculateServing(Inventory inventory) {
         numServings = 0;
-        Float quantityInStock = 100f;
-        Boolean firstPass = false;
 
         HashMap<String, Float> quantities = getIngredientWithQuantityInStock(inventory);
 
