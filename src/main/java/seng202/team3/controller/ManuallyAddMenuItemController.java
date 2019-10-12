@@ -1,6 +1,8 @@
 package seng202.team3.controller;
 
+import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
@@ -54,7 +56,11 @@ public class ManuallyAddMenuItemController {
     @FXML
     private ChoiceBox<ItemType> itemTypeCheckBox;
 
-    private
+    @FXML
+    private Button addIngredientButton;
+
+    @FXML
+    private Text unitText;
 
     /**
      * current inventory of ingredients for the business and its corresponding
