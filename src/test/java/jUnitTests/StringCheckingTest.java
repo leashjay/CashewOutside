@@ -99,4 +99,19 @@ public class StringCheckingTest {
     public void isTwoDPFloatTestNotAFloat4() {
         assertFalse(StringChecking.isTwoDPFloat("1.000"));
     }
+
+    @Test
+    public void isTwoDPFloatTestNotAFloat5() {
+        assertFalse(StringChecking.isTwoDPFloat("+"));
+    }
+
+    @Test
+    public void isTwoDPFloatTestNotAFloat6() {
+        assertFalse(StringChecking.isTwoDPFloat("+."));
+    }
+
+    @Test
+    public void isEmailTest1() {
+
+    }
 }
