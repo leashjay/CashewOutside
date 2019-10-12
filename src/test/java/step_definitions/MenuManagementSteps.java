@@ -133,80 +133,102 @@ public class MenuManagementSteps {
 
     @Given("a menu item")
     public void aMenuItem() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        choc = new Ingredient("Choc", "Chocolate", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 2.5f, 250f);
+        regMilk = new Ingredient("RegMilk", "Regular Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 0.005f, 750f);
+        HashMap<Ingredient, Float> ingredients = new HashMap<Ingredient, Float>();
+        ingredients.put(choc, 50f);
+        ingredients.put(regMilk, 250f);
+
+        this.chocMilk = new MenuItem("ChocM", "Chocolate Milk", ingredients, ItemType.BEVERAGE);
+        this.testMenu = BusinessApp.getBusiness().getMenuManager();
+        testMenu.addMenuItem(chocMilk);
     }
 
     @When("the user wants to delete it")
     public void theUserWantsToDeleteIt() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        testMenu.removeMenuItem(chocMilk.getId());
     }
 
     @Then("the menu item can be deleted and is no longer present AND exceptions are handled")
     public void theMenuItemCanBeDeletedAndIsNoLongerPresentANDExceptionsAreHandled() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertFalse(testMenu.getMenuItem().containsKey("ChocM"));
     }
 
     @Given("a recipe")
     public void aRecipe() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        choc = new Ingredient("Choc", "Chocolate", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 2.5f, 250f);
+        regMilk = new Ingredient("RegMilk", "Regular Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 0.005f, 750f);
+        HashMap<Ingredient, Float> ingredients = new HashMap<Ingredient, Float>();
+        ingredients.put(choc, 50f);
+        ingredients.put(regMilk, 250f);
+
+        this.chocMilk = new MenuItem("ChocM", "Chocolate Milk", ingredients, ItemType.BEVERAGE);
+        assertTrue(chocMilk.getIngredients().size() != 0);
     }
 
     @When("an ingredient is added")
     public void anIngredientIsAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Ingredient newIng = new Ingredient("TrimMilk", "Trim Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 0.005f, 750f);
+
+        this.chocMilk.addIngredientToRecipe(newIng, 750f);
     }
 
     @Then("the ingredient is found in the recipe")
     public void theIngredientIsFoundInTheRecipe() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertTrue(chocMilk.getRecipeQuantity("TrimMilk") != 0f);
     }
 
     @Given("A business")
     public void aBusiness() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        this.testMenu = BusinessApp.getBusiness().getMenuManager();
     }
 
     @When("a new menu item is added")
     public void aNewMenuItemIsAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        choc = new Ingredient("Choc", "Chocolate", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 2.5f, 250f);
+        regMilk = new Ingredient("RegMilk", "Regular Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 0.005f, 750f);
+        HashMap<Ingredient, Float> ingredients = new HashMap<Ingredient, Float>();
+        ingredients.put(choc, 50f);
+        ingredients.put(regMilk, 250f);
+
+        this.chocMilk = new MenuItem("ChocM", "Chocolate Milk", ingredients, ItemType.BEVERAGE);
+        this.testMenu.addMenuItem(chocMilk);
     }
 
     @Then("it is available in the application")
     public void itIsAvailableInTheApplication() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertTrue(testMenu.getMenuItem().containsKey("ChocM"));
     }
 
     @Given("a testable menu item")
     public void aTestableMenuItem() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        choc = new Ingredient("Choc", "Chocolate", UnitType.GRAM, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 2.5f, 250f);
+        regMilk = new Ingredient("RegMilk", "Regular Milk", UnitType.ML, ThreeValueLogic.YES, ThreeValueLogic.YES, ThreeValueLogic.YES, 0.005f, 750f);
+        HashMap<Ingredient, Float> ingredients = new HashMap<Ingredient, Float>();
+        ingredients.put(choc, 50f);
+        ingredients.put(regMilk, 250f);
+
+        this.chocMilk = new MenuItem("ChocM", "Chocolate Milk", ingredients, ItemType.BEVERAGE);
+        testMenu = BusinessApp.getBusiness().getMenuManager();
+        testMenu.addMenuItem(chocMilk);
+
     }
 
     @When("there is no inventory")
     public void thereIsNoInventory() {
         testInventory = BusinessApp.getBusiness().getTruck().getInventory();
-        testInventory.getIngredients().get("LemCan").setQuantity(0f);
+        testInventory.getIngredients().get("Choc").setQuantity(0f);
     }
 
     @Then("the order cannot be added")
     public void theOrderCannotBeAdded() {
-        testMenu = BusinessApp.getBusiness().getMenuManager();
         testOrder = new Order();
         testOrder.setToNextID();
-        testOrder.addToOrder(testMenu.getMenuItem().get("Lem"));
+        testOrder.addToOrder(testMenu.getMenuItem().get("ChocM"));
         String errorMessage = "";
         try {
             testOrder.confirmOrder();
-        } catch (Exception e) {
+        } catch (Error e) {
             errorMessage = e.getMessage();
         }
 
