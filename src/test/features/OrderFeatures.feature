@@ -19,12 +19,12 @@ Feature: Placing an order features
 
   Scenario: Correct change can be given for an baby face
     Given the customer places an order for baby face
-    When the customer pays $36.00
-    Then the baby face cost is added to the float
+    When the customer pays $40.00 for baby face
+    Then the baby face sale amount is added to the float
 
-  Scenario: Correct change can be given for an order of banana split
-    Given the customer places an order for banana split
-    When the customer pays $12.00
+  Scenario: Correct change can be given for an order of hot chocolate
+    Given the customer places an order for hot chocolate
+    When the customer pays $12.00 for hot chocolate
     Then the inventory stock levels are reduced accordingly
 
   Scenario: Sales update stock level and float
@@ -36,3 +36,9 @@ Feature: Placing an order features
     Given an order is cancelled by customer
     When the refund is made
     Then the cash float reflects the transaction and the inventory stock levels remains unchanged
+
+  Scenario: A customer makes more than one order
+    Given an order is made
+    When  another order is made
+    Then there are two orders queued
+

@@ -41,6 +41,9 @@ public class Order {
     @XmlElement(name = "orderCost")
     private float orderCost;
 
+    @XmlElement(name = "costAtTimeOfPayment")
+    private float costAtTimeOfPayment = -1;
+
     @XmlElement(name = "itemsOrdered")
     private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
 
@@ -57,6 +60,8 @@ public class Order {
     private boolean flagsChecked = true;
 
 
+
+
     /**
      * <!-- begin-user-doc -->
      * <!--  end-user-doc  -->
@@ -64,27 +69,19 @@ public class Order {
      * @generated
      */
     public Order() {
-        //TODO change timeOrdered to be set when order is ordered.
         super();
-
-        //this.orderStatus = OrderStatus.QUEUED;
-        //TODO remove these two following lines, while not breaking functionality ;)
-        //setTime(LocalTime.now());
-        //dateOrdered = LocalDate.now();
     }
 
     /**
      * decreases the stock level according to the items in the Order
      */
-    public boolean decreaseStock() {
+    public void decreaseStock() {
         if (!enoughStock()) {
-            return false;
+            throw new Error("Not enough stock");
         }
-
         for (MenuItem menuItem : this.itemsOrdered) {
             menuItem.decreaseStock();
         }
-        return true;
     }
 
     /**
@@ -113,13 +110,32 @@ public class Order {
     }
 
     /**
-     * Getter for totalCost
+     * calculates the cost of an order from a given list of MenuItems
      *
-     * @return totalCost
+     * @param itemsToCalculate the MenuItems
+     * @return the total cost            if (stockDecreasedSuccessfully) {
+     */
+    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
+        float cost = 0;
+        for (MenuItem item : itemsToCalculate) {
+            cost += item.getSalePrice();
+        }
+        return cost;
+    }
+
+    /**
+     * Getter for totalCost, if the order has been paid for then
+     * returns the cost of the order at the time of payment
+     *
+     * @return totalCostcostA
      */
     public float getTotalCost() {
+        if (this.costAtTimeOfPayment != -1) {
+            return this.costAtTimeOfPayment;
+        }
         return orderCost;
     }
+
 
     public int getOrderId() {
         // TODO throw an error if no orderId
@@ -230,17 +246,11 @@ public class Order {
     public void refund() {}
 
     /**
-     * calculates the cost of an order from a given list of MenuItems
-     * @param itemsToCalculate the MenuItems
-     * @return the total cost
+     * Getter for costAtTimeOfPayment
+     * @return costAtTimeOfPayment
      */
-    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
-        float cost = 0;
-        for (MenuItem item : itemsToCalculate) {
-            cost += item.getSalePrice();
-        }
-        return cost;
-    }
+    public float getCostAtTimeOfPayment() {
+        return costAtTimeOfPayment;}
     public ArrayList<MenuItem> getOrderedItems() {
         return this.itemsOrdered;
     }
@@ -261,10 +271,30 @@ public class Order {
 
     public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
 
+    /**
+     * Confirms the Order, setting relevant values for right now.
+     * And decreases the stock.
+     */
     public void confirmOrder() {
         this.setTime(LocalTime.now());
         this.setDate(LocalDate.now());
         this.changeStatus(OrderStatus.QUEUED);
+        this.setPaidCost(this.orderCost);
+        this.decreaseStock();
+    }
+
+    /**
+     * Used for refunding, and displaying the amount the customer paid for the order at time of payment.
+     * It is important to have this value separate from the calculated cost according to its menuItems.
+     * I.e. if the price paid was discounted or the cost of anything has changed between now and then.
+     * @param costAtTimeOfPayment
+     */
+    public void setPaidCost(float costAtTimeOfPayment) {
+        this.costAtTimeOfPayment = costAtTimeOfPayment;
+    }
+
+    public boolean canBeRefunded() {
+        return this.orderStatus != OrderStatus.REFUNDED;
     }
 }
 

@@ -57,17 +57,4 @@ public class EmployeeHandler {
         return employees.containsKey(username);
     }
 
-    /**
-     * Method to create a test employee to check the login system before
-     * we use XML parsing for that.
-     */
-//    public void createTestEmployee(){
-//        String userName = "Manager";
-//        String password = "password";
-//        boolean hasAdminAccess = true;
-//        Employee newEmployee = new Employee(userName, password, hasAdminAccess);
-//        addEmployee(newEmployee);
-//    }
-
-
 }

@@ -210,7 +210,9 @@ public class MenuItem {
         return totalCost;
     }
 
-    //TODO Possibly change this into a singular method with parameters
+    public void setSalePrice(float newPrice) {
+        this.totalCost = newPrice;
+    }
 
     /**
      * Method to check if a menu item is gluten free
@@ -279,7 +281,7 @@ public class MenuItem {
      * Get HashMap of ingredient and their corresponding quantity in inventory
      *
      * @param inventory truck Inventory
-     * @return
+     * @return a hashman of the ingredients with their corresponding stocks
      */
     public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
         HashMap<String, Float> quantities = new HashMap<String, Float>();
@@ -300,8 +302,6 @@ public class MenuItem {
      */
     public void calculateServing(Inventory inventory) {
         numServings = 0;
-        Float quantityInStock = 100f;
-        Boolean firstPass = false;
 
         HashMap<String, Float> quantities = getIngredientWithQuantityInStock(inventory);
 
@@ -359,14 +359,14 @@ public class MenuItem {
     /**
      * returns the quantity of an ingredient required in a recipe
      *
-     * @param searchedIngredient the ingredient which you would like the recipes quantity requirement
+     * @param searchedIngredientCode the ingredient which you would like the recipes quantity requirement
      * @return the quantity of the searched ingredient
      */
-    public float getRecipeQuantity(Ingredient searchedIngredient) {
+    public float getRecipeQuantity(String searchedIngredientCode) {
         float amountRequired = 0.0f;
         for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
             Ingredient ingredient = ingredientFloatEntry.getKey();
-            if (searchedIngredient.getCode() == ingredient.getCode()) {
+            if (searchedIngredientCode == ingredient.getCode()) {
                 amountRequired = ingredientFloatEntry.getValue();
                 return amountRequired;
 

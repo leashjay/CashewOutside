@@ -28,7 +28,6 @@ public class SalesHandler {
 
     private float cashAccount;
 
-
     /**
      * The orders that are to be displayed in the kitchen window
      */
@@ -115,7 +114,7 @@ public class SalesHandler {
         this.displayOrders.remove(idToRemove);
     }
 
-    public void refundOrder(Integer idToRefund) throws Error {
+    public float refundOrder(Integer idToRefund) throws Error {
         Order orderToRefund = this.orders.get(idToRefund);
         boolean refundSuccess = processRefund(orderToRefund);
         if (refundSuccess) {
@@ -123,6 +122,7 @@ public class SalesHandler {
         } else {
             throw new Error("Order unable to be Refunded.");
         }
+        return orderToRefund.getTotalCost();
     }
 
 
@@ -131,12 +131,14 @@ public class SalesHandler {
     }
 
     private boolean processRefund(Order orderToProcess) {
-        // TODO ask team about how our money system works.
-        // Unsure what could be involved in processing the refund...
-        boolean success = false;
-        if (orderToProcess.getStatus() != OrderStatus.REFUNDED) {
-            // confirmRefund();
-            success = true; // placeholder
+        boolean success = true;
+        float cost = orderToProcess.getTotalCost();
+        success = BusinessApp.getBusiness().getTruck().hasEnoughCash(cost);
+        if (success && orderToProcess.canBeRefunded()) {
+            BusinessApp.getBusiness().getTruck().decreaseCashFloat(cost);
+            orderToProcess.refund();
+        } else {
+            success = false;
         }
 
         return success;
@@ -147,15 +149,16 @@ public class SalesHandler {
      * @param orderId the order to pay for
      */
     public float customerPays(float amountPaid, int orderId) {
-        float price = this.getOrder(orderId).getTotalCost();
+        Order customerOrder = this.getOrder(orderId);
+        float price = customerOrder.getTotalCost();
+        // TODO change below line to a truck field for nicer testing
         BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
         return calculateChange(amountPaid, orderId);
     }
 
     /**\
      * small method to get the amount of change
-     * @param amountPaid the amount of money pai// Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException()d by the customer
+     * @param amountPaid the amount of money paid by the customer
      * @param orderCost the cost of the order
      * @return change - can be negative (error checking not handled here)
      */

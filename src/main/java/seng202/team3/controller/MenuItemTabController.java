@@ -95,8 +95,8 @@ public class MenuItemTabController {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
         servingsCol.setCellValueFactory(new PropertyValueFactory<>("Servings"));
-        costPriceCol.setCellValueFactory(new PropertyValueFactory<>("SalePrice"));
-        salePriceCol.setCellValueFactory(new PropertyValueFactory<>("CostPrice"));
+        salePriceCol.setCellValueFactory(new PropertyValueFactory<>("SalePrice"));
+        costPriceCol.setCellValueFactory(new PropertyValueFactory<>("CostPrice"));
 
         ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
             //TODO implement logic for showing ingredients in menu item

@@ -136,4 +136,20 @@ public class Truck {
 //            cashFloat.put(10, cashFloat.get(10) + 1);
 //        }
     }
+
+    /**
+     * decreases the cashAccount by the given amount if possible
+     * @param decreaseAmount the amount to decrease the cashAccount by
+     */
+    public void decreaseCashFloat(float decreaseAmount) {
+        if (this.hasEnoughCash(decreaseAmount)) {
+            cashAccount -= decreaseAmount;
+        } else {
+            throw new Error("Not enough cash in truck");
+        }
+    }
+
+    public boolean hasEnoughCash(float decreaseAmount) {
+        return decreaseAmount <= cashAccount;
+    }
 }

@@ -81,15 +81,19 @@ public class KitchenController {
         menuItems = new ArrayList<>();
         for (Order order: orders) {
             if (order.getStatus() == OrderStatus.QUEUED) {
+
                 for (MenuItem item : order.getOrderedItems()) {
                     MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
                     if (!menuItems.contains(itemReal)) {
                         menuItems.add(itemReal);
                     }
                 }
+
+
             }
+                }
+
         }
-    }
 
     /**
      * Puts the order numbers into the combo box
@@ -108,6 +112,8 @@ public class KitchenController {
      * *IMPORTANT*
      * This method is called automatically by the FXMLLoader
      */
+
+
     public void initialize() {
         addOrderToGridPane();
         createMenuItemsArray();

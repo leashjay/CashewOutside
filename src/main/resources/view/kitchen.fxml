@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.KitchenController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            fx:controller="seng202.team3.controller.KitchenController">
    <center>
       <HBox>
          <children>
@@ -29,7 +21,10 @@
                         <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="26.0" prefWidth="113.0" stylesheets="@../gui/styles.css" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                         <Button fx:id="backButton" minHeight="50.0" minWidth="75.0" mnemonicParsing="false"
+                                 onAction="#backButtonPressed" prefHeight="50.0" prefWidth="75.0"
+                                 stylesheets="@../gui/styles.css" text="Exit" GridPane.columnIndex="1"
+                                 GridPane.rowIndex="1"/>
                         <Label prefHeight="44.0" prefWidth="245.0" text="Orders" GridPane.rowIndex="1">
                            <font>
                               <Font size="22.0" />
@@ -45,6 +40,9 @@
                            </rowConstraints>
                         </GridPane>
                      </content>
+                      <VBox.margin>
+                          <Insets top="10.0"/>
+                      </VBox.margin>
                   </ScrollPane>
                   <GridPane prefHeight="105.0" prefWidth="1000.0">
                      <columnConstraints>

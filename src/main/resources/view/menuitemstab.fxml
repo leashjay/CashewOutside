@@ -9,7 +9,7 @@
    <children>
       <VBox prefHeight="800.0" prefWidth="1000.0">
          <children>
-             <TableView fx:id="menuItemsTable" prefHeight="650.0">
+             <TableView fx:id="menuItemsTable" prefHeight="574.0" prefWidth="990.0">
                  <columns>
                      <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
                      <TableColumn fx:id="nameCol" prefWidth="100.0" text="Name" />
@@ -25,19 +25,24 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
              </TableView>
-             <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddMenuItemXMLScreen" text="Add from XML">
-                 <opaqueInsets>
-                     <Insets />
-                 </opaqueInsets>
-                 <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                 </VBox.margin>
-             </Button>
-             <Button fx:id="exportAsXMLButton" mnemonicParsing="false" onAction="#exportMenuXML" text="Export">
-                 <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                 </VBox.margin>
-             </Button>
+             <HBox prefHeight="100.0" prefWidth="200.0">
+                 <children>
+                     <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddMenuItemXMLScreen"
+                             text="Add from XML">
+                         <opaqueInsets>
+                             <Insets/>
+                         </opaqueInsets>
+                         <HBox.margin>
+                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                         </HBox.margin>
+                     </Button>
+                     <Button fx:id="exportAsXMLButton" mnemonicParsing="false" onAction="#exportMenuXML" text="Export">
+                         <HBox.margin>
+                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                         </HBox.margin>
+                     </Button>
+                 </children>
+             </HBox>
          </children>
       </VBox>
    </children>
