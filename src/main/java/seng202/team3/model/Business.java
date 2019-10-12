@@ -4,7 +4,6 @@ import seng202.team3.parsing.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -125,6 +124,7 @@ public class Business {
     public void createMenuManager(String fileName) throws JAXBException {
         MenuLoader menuLoad = new MenuLoader();
         menuManager = menuLoad.loadMenuData(fileName);
+        menuManager.calculateServingForMenuItems(thisTruck.getInventory());
     }
 
     /**

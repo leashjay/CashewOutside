@@ -3,7 +3,6 @@ package seng202.team3.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -515,6 +514,7 @@ public class SalesController {
         if (successfulOrder) {
             boolean stockDecreasedSuccessfully = curOrder.decreaseStock();
             if (stockDecreasedSuccessfully) {
+                BusinessApp.getBusiness().getMenuManager().calculateServingForMenuItems(BusinessApp.getBusiness().getTruck().getInventory());
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
