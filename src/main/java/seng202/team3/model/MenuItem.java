@@ -361,7 +361,7 @@ public class MenuItem {
 
 
     /**
-     * returns the quantity of an ingredient required in a receipe
+     * returns the quantity of an ingredient required in a recipe
      *
      * @param searchedIngredient the ingredient which you would like the recipes quantity requirement
      * @return the quantity of the searched ingredient
@@ -370,10 +370,10 @@ public class MenuItem {
         float amountRequired = 0.0f;
         for (Map.Entry<Ingredient, Float> ingredientFloatEntry : this.ingredients.entrySet()) {
             Ingredient ingredient = ingredientFloatEntry.getKey();
-            if (searchedIngredient == ingredient) {
+            if (searchedIngredient.getCode() == ingredient.getCode()) {
                 amountRequired = ingredientFloatEntry.getValue();
-            } else {
-                amountRequired = 0.00f;
+                return amountRequired;
+
             }
         }
         return amountRequired;
