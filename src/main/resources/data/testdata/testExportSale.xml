@@ -25,9 +25,9 @@
 <sales>
    <orders>
       <order>
+         <orderStatus>COMPLETE</orderStatus>
          <orderId>1</orderId>
          <customerName></customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>NaN</orderCost>
          <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -37,9 +37,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order>
+         <orderStatus>COOKING</orderStatus>
          <orderId>2</orderId>
          <customerName></customerName>
-         <orderStatus>COOKING</orderStatus>
          <orderCost>NaN</orderCost>
          <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>

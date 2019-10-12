@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="seng202.team3.controller.ManagementController">
+
+<AnchorPane minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.ManagementController">
 
     <children>
         <TabPane maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../gui/styles.css" tabClosingPolicy="UNAVAILABLE">
@@ -18,14 +20,12 @@
             <Tab fx:id="menusTab" text="Menu Items">
                 <fx:include source="menuitemstab.fxml" />
             </Tab>
-                <Tab fx:id="analysisTab" text="Cash Handling">
+                <Tab fx:id="analysisTab" text="Cash Float">
                     <fx:include source="cashtab.fxml" />
                 </Tab>
             </tabs>
         </TabPane>
-        <Button fx:id="backButton" layoutX="887.0" layoutY="6.0" minHeight="50.0" minWidth="75.0"
-                mnemonicParsing="false" onAction="#returnToMainScreen" prefHeight="50.0" prefWidth="75.0"
-                stylesheets="@../gui/styles.css" text="Exit"/>
+        <Button fx:id="backButton" layoutX="887.0" layoutY="6.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#returnToMainScreen" prefHeight="50.0" prefWidth="75.0" stylesheets="@../gui/styles.css" text="Exit" />
 
     </children>
    <opaqueInsets>

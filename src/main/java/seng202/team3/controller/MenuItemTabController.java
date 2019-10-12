@@ -113,7 +113,7 @@ public class MenuItemTabController {
         });
 
         ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
-            //TODO implement logic for showing ingredients in menu item
+            ViewIngredientsController.display(MenuItem);
         }));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", menuItem ->         {
