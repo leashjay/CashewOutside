@@ -4,7 +4,7 @@
         <!ENTITY version "V0.01 (C) CashewOutside">
         <!ELEMENT sales (orders)>
         <!ELEMENT orders (order*)>
-        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, itemsOrdered*, flagsChecked)>
+        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>
         <!ATTLIST order
                 dateOrdered CDATA #REQUIRED
                 timeOrdered CDATA #REQUIRED
@@ -16,6 +16,7 @@
         <!ELEMENT customerName (#PCDATA)>
         <!ELEMENT orderStatus (#PCDATA)>
         <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT costAtTimeOfPayment (#PCDATA)>
         <!ELEMENT itemsOrdered (id, name)>
         <!ELEMENT flagsChecked (#PCDATA)>
         <!ELEMENT id (#PCDATA)>
@@ -23,22 +24,24 @@
         ]>
 <sales>
    <orders>
-       <order>
+      <order>
          <orderId>1</orderId>
          <customerName></customerName>
          <orderStatus>COMPLETE</orderStatus>
-           <orderCost>NaN</orderCost>
+         <orderCost>NaN</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>
          </itemsOrdered>
          <flagsChecked>true</flagsChecked>
       </order>
-       <order>
+      <order>
          <orderId>2</orderId>
          <customerName></customerName>
          <orderStatus>COOKING</orderStatus>
-           <orderCost>NaN</orderCost>
+         <orderCost>NaN</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
             <name>A korean cuisine</name>

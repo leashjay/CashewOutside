@@ -19,6 +19,7 @@ import static junit.framework.TestCase.*;
 
 public class OrderTest {
 
+    Ingredient egg;
     Business business;
     MenuItem menuItem;
     MenuItem itemToRemove;
@@ -37,7 +38,7 @@ public class OrderTest {
         Ingredient rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
         Ingredient carrot = new Ingredient("2", "Carrot", 2f, UnitType.COUNT, 0.01f);
         Ingredient peas = new Ingredient("3", "Peas", 3f, UnitType.GRAM, 0.01f);
-        Ingredient egg = new Ingredient("4", "Rice", 4f, UnitType.GRAM, 1f);
+        egg = new Ingredient("4", "Rice", 4f, UnitType.GRAM, 1f);
         ingredients.put(rice, 1f);
         ingredients.put(carrot, 1f);
         ingredients.put(peas, 1f);

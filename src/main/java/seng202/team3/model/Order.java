@@ -21,70 +21,75 @@ import java.util.ArrayList;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Order {
     // TODO make Order Observable so Sales is dynamically updated when MenuItems are added etc.
+    /**
+     * Order status of the order (uses OrderStatus enum)
+     **/
+    @XmlElement(name = "orderStatus")
+    public OrderStatus orderStatus;
+    /**
+     * Date of order made
+     **/
     @XmlAttribute(name = "dateOrdered")
     @XmlJavaTypeAdapter(DateAdapter.class)
     private LocalDate dateOrdered;
-
+    /** Time of order made **/
     @XmlAttribute(name = "timeOrdered")
     @XmlJavaTypeAdapter(TimeAdapter.class)
     private LocalTime timeOrdered;
-
+    /** Order id **/
     @XmlElement(name = "orderId")
     private int orderId; // should be unique across multiple orders
-
+    /** Name of customer who made the order **/
     @XmlElement(name = "customerName")
     private String name = "";
-
-    @XmlElement(name = "orderStatus")
-    public OrderStatus orderStatus;
-
+    /** Total order cost **/
     @XmlElement(name = "orderCost")
     private float orderCost;
 
+    /** Total order cost at time of payment **/
+    @XmlElement(name = "costAtTimeOfPayment")
+    private float costAtTimeOfPayment = -1;
+
+    /** Menu items ordered **/
     @XmlElement(name = "itemsOrdered")
     private ArrayList<MenuItem> itemsOrdered = new ArrayList<>();
 
+    /** isGFFlag for order **/
     @XmlAttribute(name = "isGFFlag")
     private ThreeValueLogic isGFFlag = ThreeValueLogic.YES;
 
+    /** isVegFlag for order **/
     @XmlAttribute(name = "isVegFlag")
     private ThreeValueLogic isVegFlag = ThreeValueLogic.YES;
 
+    /** isVehanFlag for order **/
     @XmlAttribute(name = "isVeganFlag")
     private ThreeValueLogic isVeganFlag = ThreeValueLogic.YES;
 
+    /** Boolean to indicate if dietary flag of the order has been checked **/
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
 
     /**
-     * <!-- begin-user-doc -->
-     * <!--  end-user-doc  -->
-     *
-     * @generated
+     * No-arg constructor for JAXBN
      */
     public Order() {
-        //TODO change timeOrdered to be set when order is ordered.
         super();
-
-        //this.orderStatus = OrderStatus.QUEUED;
-        //TODO remove these two following lines, while not breaking functionality ;)
-        //setTime(LocalTime.now());
-        //dateOrdered = LocalDate.now();
     }
 
-    /**
-     * decreases the stock level according to the items in the Order
-     */
-    public boolean decreaseStock() {
-        if (!enoughStock()) {
-            return false;
-        }
 
+
+    /**
+     * Secreases the stock level according to the items in the Order
+     */
+    public void decreaseStock() {
+        if (!enoughStock()) {
+            throw new Error("Not enough stock");
+        }
         for (MenuItem menuItem : this.itemsOrdered) {
             menuItem.decreaseStock();
         }
-        return true;
     }
 
     /**
@@ -100,47 +105,155 @@ public class Order {
         return true;
     }
 
+    /**
+     * Set newly made order id to the next number to prevent overwriting past orders
+     */
     public void setToNextID() {
         this.orderId = BusinessApp.getBusiness().makeNextOrderID();
     }
 
+    /**
+     * Get time of order made
+     * @return timeOrdered
+     */
     public LocalTime getTime() {
         return this.timeOrdered;
     }
 
+    /**
+     * Set time of order made
+     * @param time of order made
+     */
     public void setTime(LocalTime time) {
         this.timeOrdered = time;
     }
 
     /**
-     * Getter for totalCost
+     * calculates the cost of an order from a given list of MenuItems
      *
-     * @return totalCost
+     * @param itemsToCalculate the MenuItems
+     * @return the total cost            if (stockDecreasedSuccessfully) {
+     */
+    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
+        float cost = 0;
+        for (MenuItem item : itemsToCalculate) {
+            cost += item.getSalePrice();
+        }
+        return cost;
+    }
+
+    /**
+     * Getter for totalCost, if the order has been paid for then
+     * returns the cost of the order at the time of payment
+     *
+     * @return totalCostcostA
      */
     public float getTotalCost() {
+        if (this.costAtTimeOfPayment != -1) {
+            return this.costAtTimeOfPayment;
+        }
         return orderCost;
     }
 
+
+    /**
+     * Getter for order id
+     * @return orderId
+     */
     public int getOrderId() {
         // TODO throw an error if no orderId
         return this.orderId;
     }
 
+    /**
+     * Setter for order Id
+     * @param newOrderId to be set
+     */
     public void setOrderId(int newOrderId) {
         this.orderId = newOrderId;
     }
 
+    /**
+     * Getter for costAtTimeOfPayment
+     *
+     * @return costAtTimeOfPayment
+     */
+    public float getCostAtTimeOfPayment() {
+        return costAtTimeOfPayment;
+    }
 
     /**
-     * <!-- begin-user-doc -->
+     * Getter for itemsOrdered size
+     *
+     * @return size of items ordered
+     */
+    public int getNumItems() {
+        return this.itemsOrdered.size();
+    }
+
+
+
+    /**
+     * Getter for list of menu items ordered
+     *
+     * @return itemsOrdered
+     */
+    public ArrayList<MenuItem> getOrderedItems() {
+        return this.itemsOrdered;
+    }
+
+    /**
+     * Getter for order status
+     *
+     * @return orderStatus
+     */
+    public OrderStatus getStatus() {
+        return this.orderStatus;
+    }
+
+    /**
+     * Getter for customer's name
+     *
+     * @return name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Setter for customer's name
+     *
+     * @param name customer's name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter for date of order made
+     *
+     * @return dateOrdered
+     */
+    public LocalDate getDate() {
+        return this.dateOrdered;
+    }
+
+
+    /**
+     * Setter for date of order made
+     *
+     * @param newDate date of order made
+     */
+    public void setDate(LocalDate newDate) {
+        this.dateOrdered = newDate; }
+
+
+
+    /**
      * Adds a given MenuItem to the itemsOrdered and it's cost to the orderCost.
      * The flags for isGF, isVeg and isVegan are also updated accordingly.
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
+     * @param itemToAdd menu item to be added
      */
-
     public void addToOrder(MenuItem itemToAdd) {
         // TODO implement me
         this.isGFFlag = getFlagAdding(this.isGFFlag, itemToAdd.isGlutenFree());
@@ -165,6 +278,13 @@ public class Order {
         }
     }
 
+    /**
+     * Helper of removeFromOrder
+     * Updates the flagFromOrder based on flagFromMenu
+     * @param flagFromOrder the flag that will be updated from the Order
+     * @param flagFromMenu the flag from the MenuItem to check against
+     * @return
+     */
     private ThreeValueLogic getFlagRemoving(ThreeValueLogic flagFromOrder, ThreeValueLogic flagFromMenu) {
         if (flagFromMenu == ThreeValueLogic.YES) {
             return flagFromOrder;
@@ -174,15 +294,11 @@ public class Order {
         }
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * Removes a given item from the itemsOrdered and removes it's cost, if it was present.
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
-     */
 
+    /**
+     * Removes a given item from the itemsOrdered and removes it's cost, if it was present.
+     * @param itemToRemove item to be removed
+     */
     public void removeFromOrder(MenuItem itemToRemove) {
         // TODO implement me
         boolean removalSuccess = this.itemsOrdered.remove(itemToRemove);
@@ -213,14 +329,10 @@ public class Order {
     }
 
     /**
-     * <!-- begin-user-doc -->
      * changes an order's status to the new status,
      * does not perform any error checking.
      * i.e. shouldn't go from COMPLETE to QUEUED
-     * <!--  end-user-doc  -->
-     *
-     * @generated
-     * @ordered
+     * @param newStatus
      */
     public void changeStatus(OrderStatus newStatus) {
         // TODO implement me
@@ -229,42 +341,35 @@ public class Order {
 
     public void refund() {}
 
+
     /**
-     * calculates the cost of an order from a given list of MenuItems
-     * @param itemsToCalculate the MenuItems
-     * @return the total cost
+     * Confirms the Order, setting relevant values for right now.
+     * And decreases the stock.
      */
-    public static float calculateOrder(ArrayList<MenuItem> itemsToCalculate) {
-        float cost = 0;
-        for (MenuItem item : itemsToCalculate) {
-            cost += item.getSalePrice();
-        }
-        return cost;
-    }
-    public ArrayList<MenuItem> getOrderedItems() {
-        return this.itemsOrdered;
-    }
-
-    public OrderStatus getStatus() {
-        return this.orderStatus;
-    }
-
-    public void setName(String name) { this.name = name; }
-
-    public String getName() { return this.name; }
-
-    public LocalDate getDate() { return this.dateOrdered; }
-
-    public int getNumItems() {
-        return this.itemsOrdered.size();
-    }
-
-    public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
-
     public void confirmOrder() {
         this.setTime(LocalTime.now());
         this.setDate(LocalDate.now());
         this.changeStatus(OrderStatus.QUEUED);
+        this.setPaidCost(this.orderCost);
+        this.decreaseStock();
+    }
+
+    /**
+     * Used for refunding, and displaying the amount the customer paid for the order at time of payment.
+     * It is important to have this value separate from the calculated cost according to its menuItems.
+     * I.e. if the price paid was discounted or the cost of anything has changed between now and then.
+     * @param costAtTimeOfPayment
+     */
+    public void setPaidCost(float costAtTimeOfPayment) {
+        this.costAtTimeOfPayment = costAtTimeOfPayment;
+    }
+
+    /**
+     * Check if order can be refunded
+     * @return true if order can be refunded, false otherwise
+     */
+    public boolean canBeRefunded() {
+        return this.orderStatus != OrderStatus.REFUNDED;
     }
 }
 

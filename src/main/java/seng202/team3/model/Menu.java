@@ -42,7 +42,6 @@ public class Menu {
      */
     private MenuLoader menuLoader;
 
-    private Boolean isActive;
 
     /**
      * No-arg constructor for JAXB
@@ -63,43 +62,6 @@ public class Menu {
         this.menuType = menuType;
         this.menuContent = menuContent;
     }
-
-    /**
-     * getter for isActive attribute
-     * @return isActive
-     */
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    /**
-     * sets isActive to true
-     * void
-     */
-    public void activate() {
-        isActive = true;
-    }
-
-
-    /**
-     * sets isActive to true
-     * void
-     */
-    public void deActivate() {
-        isActive = false;
-    }
-
-    /**
-     * flips boolean value for isActive (for gui button beside menu status
-     */
-    public void flipActive() {
-        if (isActive) {
-            activate();
-        } else {
-            deActivate();
-        }
-    }
-
 
     /**
      * Getter for list of menu item
@@ -125,6 +87,12 @@ public class Menu {
         return filteredMenuItems;
     }
 
+    /**
+     * Search menu items for the desired menu item
+     *
+     * @param item menu item to be searched
+     * @return true if found, false otherwise
+     */
     public Boolean searchMenuContent(MenuItem item) {
         if (menuContent.get(item.getId()) == item) {
             return true;
@@ -165,6 +133,10 @@ public class Menu {
         menuContent.put(addedMenuItem.getId(), addedMenuItem);
     }
 
+    /**
+     * Remove menu item from list of menu items
+     * @param menuItemID menu item id
+     */
     public void removeMenuItem(String menuItemID) {
         menuContent.remove(menuItemID);
     }
@@ -198,6 +170,17 @@ public class Menu {
             }
         }
         return itemsRemovedFrom;
+    }
+
+    /**
+     * Calculate number of servings for each menu items;
+     *
+     * @param inventory
+     */
+    public void calculateServingForMenuItems(Inventory inventory) {
+        for (Map.Entry<String, MenuItem> item : menuContent.entrySet()) {
+            item.getValue().calculateServing(inventory);
+        }
     }
 
 }

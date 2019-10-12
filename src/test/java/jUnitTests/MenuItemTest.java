@@ -3,6 +3,7 @@ package jUnitTests;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
+import seng202.team3.model.Inventory;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.UnitType;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class MenuItemTest {
 
@@ -83,6 +85,26 @@ public class MenuItemTest {
        friedRice.addIngredientToRecipe(egg, 1f);
        assertEquals(friedRice.getCostPrice(), 2.2f);
     }
+
+    @Test
+    /**
+     * Tests the functionality of calculating the sales price of an item based on its cost price and markup
+     */
+    public void getSalePriceTest(){
+        assertEquals(friedRice.getSalePrice(), 1.32f);
+    };
+
+
+    /**
+     * Tests checking the quantity of an ingredient within a recipe with expected and unexpected values.
+     */
+    @Test
+    public void ingredientQuantityInOrderTest(){
+        assertEquals(friedRice.getRecipeQuantity(peas.getCode()), 50f);
+        assertEquals(friedRice.getRecipeQuantity(egg.getCode()), 0f);
+    }
+
+
 
 
 }

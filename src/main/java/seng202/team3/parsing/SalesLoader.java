@@ -27,7 +27,7 @@ public class SalesLoader {
             "        <!ENTITY version \"V0.01 (C) CashewOutside\">\n" +
             "        <!ELEMENT sales (orders)>\n" +
             "        <!ELEMENT orders (order*)>\n" +
-            "        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, itemsOrdered*, flagsChecked)>\n" +
+            "        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>\n" +
             "        <!ATTLIST order\n" +
             "                dateOrdered CDATA #REQUIRED\n" +
             "                timeOrdered CDATA #REQUIRED\n" +
@@ -39,6 +39,7 @@ public class SalesLoader {
             "        <!ELEMENT customerName (#PCDATA)>\n" +
             "        <!ELEMENT orderStatus (#PCDATA)>\n" +
             "        <!ELEMENT orderCost (#PCDATA)>\n" +
+            "        <!ELEMENT costAtTimeOfPayment (#PCDATA)>\n" +
             "        <!ELEMENT itemsOrdered (id, name)>\n" +
             "        <!ELEMENT flagsChecked (#PCDATA)>\n" +
             "        <!ELEMENT id (#PCDATA)>\n" +
@@ -70,6 +71,7 @@ public class SalesLoader {
         order.addSubgraph("name");
         order.addSubgraph("orderStatus");
         order.addSubgraph("orderCost");
+        order.addSubgraph("costAtTimeOfPayment");
         order.addSubgraph("flagsChecked");
         Subgraph itemsOrdered = order.addSubgraph("itemsOrdered");
         itemsOrdered.addSubgraph("id");

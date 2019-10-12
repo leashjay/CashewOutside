@@ -37,12 +37,29 @@ public class ViewOrderPopUp {
 
         populateVBoxMenuItems(menuItemsVBox, order.getOrderedItems());
         menuItemsVBox.setAlignment(Pos.CENTER);
+        /**
+         * refund the order button and error handling
+         */
+        Button refundOrderButton = new Button("Refund");
+        refundOrderButton.setOnAction(e -> {
+            try {
+                float amountToRefund = BusinessApp.getBusiness().getSalesHandler().refundOrder(order.getOrderId());
+                String refundMessage = String.format("Order Refunded Successfully.\nPlease Give Customer: $%.2f", amountToRefund);
+                GenericStringAlert.display(refundMessage);
+            } catch (Error error) {
+                if (error.getMessage().equals("Order unable to be Refunded.")) {
+                    GenericStringAlert.display(error.getMessage());
+                } else {
+                    error.getStackTrace();
+                }
+            }
+        });
 
         Button closeButton = new Button("Ok");
         closeButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
-        layout.getChildren().setAll(itemsOrderedLabel, scrollPane, closeButton);
+        layout.getChildren().setAll(itemsOrderedLabel, scrollPane, refundOrderButton, closeButton);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);

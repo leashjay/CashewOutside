@@ -3,7 +3,6 @@ package seng202.team3.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -113,6 +112,7 @@ public class SalesController {
     private Order curOrder;
     private final float rowHeight = 150;
     private HashMap<MenuItem, MenuItemNode> currentOrderHBoxMenuItems = new HashMap<>();
+    private Truck truck;
 
 
     /**
@@ -135,6 +135,7 @@ public class SalesController {
         curOrder = new Order();
         curOrder.setToNextID();
         salesManager = business.getSalesHandler();
+        truck = business.getTruck();
         truckInventory = business.getTruck().getInventory();
         // declare what ItemTypes are assigned to which GridPane
         Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
@@ -310,6 +311,14 @@ public class SalesController {
         return true;
     }
 
+    /**
+     * Filters the menuItems in the sales screen by creating a new hashMap only containing menuItems that conform to what the CheckBoxes indicate
+     *
+     * @param gf The CheckBox used to filter out non-GlutenFree food
+     * @param vegan The CheckBox used to filter out non-Vegan food
+     * @param vegetarian The CheckBox used to filter out non-vegetarian food
+     * @param grid The GridPane that is being filtered ie. only the foodItemGrid or the drinkItemGrid
+     */
     public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian, GridPane grid) {
         Business business = BusinessApp.getBusiness();
 
@@ -505,13 +514,14 @@ public class SalesController {
 
         // must be at end of method
         if (successfulOrder) {
-            boolean stockDecreasedSuccessfully = curOrder.decreaseStock();
-            if (stockDecreasedSuccessfully) {
+            boolean hasEnoughStock = curOrder.enoughStock();
+            if (hasEnoughStock) {
+                BusinessApp.getBusiness().getMenuManager().calculateServingForMenuItems(BusinessApp.getBusiness().getTruck().getInventory());
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
-                this.salesManager.customerPays(amountPaid, curOrder.getOrderId());
+                this.salesManager.customerPays(amountPaid, curOrder.getOrderId(), truck);
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();

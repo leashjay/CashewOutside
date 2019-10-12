@@ -17,7 +17,7 @@ Feature: Business Operations
     When several orders are taken during the day
     Then the business closes the float and a earnings value can be calculated
 
-  Scenario: The businesswants to change the price of a hot chocolate
+  Scenario: The business wants to change the price of a hot chocolate
     Given The business has a hot chocolate on the menu
     When the price gets amended to $5.00
     Then the new cost of a hot chocolate is $5.00

@@ -90,6 +90,11 @@ public class SupplierOrder {
         return recievedDate;
     }
 
+    /**
+     * Get supplier order as string
+     *
+     * @return string of order info
+     */
     public String getOrderAsString(){
         String orderInfo = "Order has been made from " + supplier + "\n";
         for (Map.Entry<Ingredient, Float> entry : orderItems.entrySet()) {
