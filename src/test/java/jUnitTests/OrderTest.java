@@ -108,12 +108,4 @@ public class OrderTest {
         float calculatedCost = Order.calculateOrder(menuItems);
         assertEquals(cost, calculatedCost, 0.01);
     }
-
-    @Test
-    public void changeStockTest() {
-        assertEquals(egg.getQuantity(), 4f);
-        Order order = new Order();
-        order.addToOrder(menuItem);
-        assertFalse(order.decreaseStock());
-    }
 }
