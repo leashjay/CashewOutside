@@ -56,6 +56,8 @@ public class Order {
     @XmlElement(name = "flagsChecked")
     private boolean flagsChecked = true;
 
+    private float costAtTimeOfPayment = -1;
+
 
     /**
      * <!-- begin-user-doc -->
@@ -76,15 +78,13 @@ public class Order {
     /**
      * decreases the stock level according to the items in the Order
      */
-    public boolean decreaseStock() {
+    public void decreaseStock() {
         if (!enoughStock()) {
-            return false;
+            throw new Error("Not enough stock");
         }
-
         for (MenuItem menuItem : this.itemsOrdered) {
             menuItem.decreaseStock();
         }
-        return true;
     }
 
     /**
@@ -113,11 +113,15 @@ public class Order {
     }
 
     /**
-     * Getter for totalCost
+     * Getter for totalCost, if the order has been paid for then
+     * returns the cost of the order at the time of payment
      *
      * @return totalCost
      */
     public float getTotalCost() {
+        if (this.costAtTimeOfPayment != -1) {
+            return this.costAtTimeOfPayment;
+        }
         return orderCost;
     }
 
@@ -261,10 +265,30 @@ public class Order {
 
     public void setDate(LocalDate newDate) { this.dateOrdered = newDate; }
 
+    /**
+     * Confirms the Order, setting relevant values for right now.
+     * And decreases the stock.
+     */
     public void confirmOrder() {
         this.setTime(LocalTime.now());
         this.setDate(LocalDate.now());
         this.changeStatus(OrderStatus.QUEUED);
+        this.setPaidCost(this.orderCost);
+        this.decreaseStock();
+    }
+
+    /**
+     * Used for refunding, and displaying the amount the customer paid for the order at time of payment.
+     * It is important to have this value separate from the calculated cost according to its menuItems.
+     * I.e. if the price paid was discounted or the cost of anything has changed between now and then.
+     * @param costAtTimeOfPayment
+     */
+    public void setPaidCost(float costAtTimeOfPayment) {
+        this.costAtTimeOfPayment = costAtTimeOfPayment;
+    }
+
+    public boolean canBeRefunded() {
+        return this.orderStatus != OrderStatus.REFUNDED;
     }
 }
 

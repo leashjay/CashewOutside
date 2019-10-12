@@ -512,8 +512,8 @@ public class SalesController {
 
         // must be at end of method
         if (successfulOrder) {
-            boolean stockDecreasedSuccessfully = curOrder.decreaseStock();
-            if (stockDecreasedSuccessfully) {
+            boolean hasEnoughStock = curOrder.enoughStock();
+            if (hasEnoughStock) {
                 BusinessApp.getBusiness().getMenuManager().calculateServingForMenuItems(BusinessApp.getBusiness().getTruck().getInventory());
                 CustomerChangeAlert.display(change);
                 curOrder.setName(curOrderName);
