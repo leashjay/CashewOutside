@@ -310,6 +310,14 @@ public class SalesController {
         return true;
     }
 
+    /**
+     * Filters the menuItems in the sales screen by creating a new hashMap only containing menuItems that conform to what the CheckBoxes indicate
+     *
+     * @param gf The CheckBox used to filter out non-GlutenFree food
+     * @param vegan The CheckBox used to filter out non-Vegan food
+     * @param vegetarian The CheckBox used to filter out non-vegetarian food
+     * @param grid The GridPane that is being filtered ie. only the foodItemGrid or the drinkItemGrid
+     */
     public void filterItems(CheckBox gf, CheckBox vegan, CheckBox vegetarian, GridPane grid) {
         Business business = BusinessApp.getBusiness();
 

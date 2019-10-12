@@ -20,6 +20,11 @@ public class ConfirmDeletePopup {
 
     public static boolean delete = false;
 
+    /**
+     * Creates a window that asks the user to confirm whether they want to delete a certain object
+     *
+     * @param tab the tab in which an object is being deleted
+     */
     public static void display(Character tab) {
 
         delete = false;
@@ -78,12 +83,23 @@ public class ConfirmDeletePopup {
         window.showAndWait();
     }
 
+    /**
+     * Sets up a column in the given GridPane
+     *
+     * @param column An integer representing the column that is to be set up
+     * @param gridPane the GridPane that is being modified
+     */
     public static void setColumnConstraints(int column, GridPane gridPane) {
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setMinWidth(170);
         gridPane.getColumnConstraints().add(column, columnConstraints);
     }
 
+    /**
+     * A method to see what tab the item is being deleted from
+     *
+     * @param tab A character that indicates what tab the item is being deleted from
+     */
     public static void chooseTab(Character tab) {
         if (tab == 'S') {
             SupplierTabController.delete = true;
