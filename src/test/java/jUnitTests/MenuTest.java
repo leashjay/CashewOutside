@@ -55,14 +55,14 @@ public class MenuTest {
             assertEquals(notOnlyRice.getTitle(), "Not Only Rice");
             assertEquals(notOnlyRice.getDesc(), "More than rice");
             assertEquals(notOnlyRice.getMenuType(), MenuType.FESTIVAL);
-            assertEquals(notOnlyRice.getMenuItem(), menuContents);
+            assertEquals(notOnlyRice.filterMenuItems(), menuContents);
     }
 
     @Test
     public void menuManipulationTest() {
         notOnlyRice.addMenuItem(justWings);
         menuContents.put(justWings.getId(), justWings);
-        assertEquals(notOnlyRice.getMenuItem(), menuContents);
+        assertEquals(notOnlyRice.filterMenuItems(), menuContents);
     }
 
     /**
@@ -72,12 +72,12 @@ public class MenuTest {
     public void testAddMenuItemFromXML() throws JAXBException {
         Business testBusiness = new Business(BusinessApp.ingredientsXML, "./src/main/resources/data/SampleMenu.xml", BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
         Menu testMenu = testBusiness.getMenuManager();
-        assertEquals(6, testMenu.getMenuItem().size());
+        assertEquals(6, testMenu.filterMenuItems().size());
 
 
         testMenu.addMenuItemFromXML("./src/main/resources/data/testdata/testMenu1.xml");
-        assertEquals(7, testMenu.getMenuItem().size());
-        assertTrue(testMenu.getMenuItem().keySet().contains("KS1"));
+        assertEquals(7, testMenu.filterMenuItems().size());
+        assertTrue(testMenu.filterMenuItems().keySet().contains("KS1"));
     }
 
     @Test

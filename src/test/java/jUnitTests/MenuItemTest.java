@@ -3,7 +3,6 @@ package jUnitTests;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
-import seng202.team3.model.Inventory;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.UnitType;
@@ -81,9 +80,9 @@ public class MenuItemTest {
      */
     @Test
     public void calculateCostToMakeTest(){
-       assertEquals(friedRice.getCostPrice(), 1.2f);
+       assertEquals(friedRice.getCostPriceFromIngredients(), 1.2f);
        friedRice.addIngredientToRecipe(egg, 1f);
-       assertEquals(friedRice.getCostPrice(), 2.2f);
+       assertEquals(friedRice.getCostPriceFromIngredients(), 2.2f);
     }
 
     @Test
@@ -91,7 +90,7 @@ public class MenuItemTest {
      * Tests the functionality of calculating the sales price of an item based on its cost price and markup
      */
     public void getSalePriceTest(){
-        assertEquals(friedRice.getSalePrice(), 1.32f);
+        assertEquals(friedRice.calculateSalePrice(), 1.32f);
     };
 
 

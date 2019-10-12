@@ -142,8 +142,8 @@ public class SalesController {
         Set<ItemType> foodMenuItemTypes = Set.of(ItemType.MAIN, ItemType.ASIAN, ItemType.GRILL, ItemType.OTHER, ItemType.SNACK);
 
         // retrieve HashMaps of MenuItems to populate GridPanes
-        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().getMenuItem(foodMenuItemTypes);
-        HashMap<String, MenuItem> drinkMenuItems = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
+        HashMap<String, MenuItem> foodMenuItems = business.getMenuManager().filterMenuItems(foodMenuItemTypes);
+        HashMap<String, MenuItem> drinkMenuItems = business.getMenuManager().filterMenuItems(drinkMenuItemTypes);
 
         setUpGridPane(foodItemGrid);
         setUpGridPane(drinkItemGrid);
@@ -327,9 +327,9 @@ public class SalesController {
         HashMap<String, MenuItem> chosenHashMap = new HashMap<>();
 
         if (grid == foodItemGrid) {
-            chosenHashMap = business.getMenuManager().getMenuItem(foodMenuItemTypes);
+            chosenHashMap = business.getMenuManager().filterMenuItems(foodMenuItemTypes);
         } else {
-            chosenHashMap = business.getMenuManager().getMenuItem(drinkMenuItemTypes);
+            chosenHashMap = business.getMenuManager().filterMenuItems(drinkMenuItemTypes);
         }
 
         HashMap<String, MenuItem> filteredItems = new HashMap<>();

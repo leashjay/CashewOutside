@@ -1,5 +1,6 @@
 package seng202.team3.controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ import seng202.team3.view.BusinessApp;
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,8 +97,20 @@ public class MenuItemTabController {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
         servingsCol.setCellValueFactory(new PropertyValueFactory<>("Servings"));
-        salePriceCol.setCellValueFactory(new PropertyValueFactory<>("SalePrice"));
-        costPriceCol.setCellValueFactory(new PropertyValueFactory<>("CostPrice"));
+
+        salePriceCol.setCellValueFactory(cell -> {
+            MenuItem item = cell.getValue();
+            float salePrice = item.calculateSalePrice();
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+            return new SimpleStringProperty("$" + Double.valueOf(twoDForm.format(salePrice)));
+        });
+
+        costPriceCol.setCellValueFactory(cell -> {
+            MenuItem item = cell.getValue();
+            float costPrice = item.getCostPriceFromIngredients();
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+            return new SimpleStringProperty("$" + Double.valueOf(twoDForm.format(costPrice)));
+        });
 
         ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
             //TODO implement logic for showing ingredients in menu item
@@ -112,7 +126,7 @@ public class MenuItemTabController {
         }));
 
 
-        List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
+        List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().filterMenuItems().values());
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
 
     }
@@ -135,7 +149,7 @@ public class MenuItemTabController {
      * Updates the MenuItemTable with the most recent data in the menumanager.
      */
     public void updateMenuItemTable() {
-        List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().getMenuItem().values());
+        List<MenuItem> menuItems = new ArrayList<MenuItem>(BusinessApp.getBusiness().getMenuManager().filterMenuItems().values());
         menuItemsTable.setItems(FXCollections.observableArrayList(menuItems));
     }
 

@@ -153,7 +153,7 @@ public class LoadingDataSteps {
         testMenuLoader = new MenuLoader();
         menuContents.clear();
         testMenu = testMenuLoader.loadMenuData(filename);
-        menuContents = testMenu.getMenuItem();
+        menuContents = testMenu.filterMenuItems();
         //throw new cucumber.api.PendingException();
     }
 
