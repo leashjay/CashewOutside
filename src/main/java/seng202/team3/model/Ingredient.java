@@ -61,7 +61,7 @@ public class Ingredient {
      * @param name the name of the ingredient
      * @param quantity quantity of ingredient in stock
      * @param unit the unit type of the ingredient (GRAM, ML, COUNT, UNKNOWN)
-     * @param cost cost of ingredient
+     * @param cost cost of ingredientBusiness().getTruck().getInventory().getIngredients().get(ingredient.getCode()).getCost();
      */
     public Ingredient(String code, String name, float quantity, UnitType unit, float cost) {
         this.code = code;
