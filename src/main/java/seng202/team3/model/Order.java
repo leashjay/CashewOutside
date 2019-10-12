@@ -182,6 +182,16 @@ public class Order {
         return costAtTimeOfPayment;
     }
 
+    /**
+     * Getter for itemsOrdered size
+     *
+     * @return size of items ordered
+     */
+    public int getNumItems() {
+        return this.itemsOrdered.size();
+    }
+
+
 
     /**
      * Getter for list of menu items ordered

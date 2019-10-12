@@ -13,10 +13,13 @@ import java.io.*;
 
 import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
+/**
+ * Import and export employee details
+ */
 public class EmployeeLoader {
 
     /**
-     * DTD for inventory XML file
+     * DTD for employee XML file
      */
     private static final String XML_HEADER = "\n<!DOCTYPE employeehandler [\n" +
             "             <!ENTITY version \"V0.01 (C) CashewOutside 2019\">\n" +
@@ -37,23 +40,23 @@ public class EmployeeLoader {
     private JAXBContext context;
 
     /**
-     * Inventory to be mapped
+     * EmployeeHandler to be mapped
      */
     private EmployeeHandler employeeHandler;
 
 
     /**
-     * Constructor for InventoryLoader
+     * Constructor for EmployeeLoader
      */
     public EmployeeLoader() throws JAXBException {
         context = JAXBContext.newInstance(EmployeeHandler.class);
     }
 
     /**
-     * Import ingredients from ingredient XML file
+     * Import employees from employee XML file
      *
-     * @param fileName path to ingredient XML file
-     * @return instance of Inventory class
+     * @param fileName path to employee XML file
+     * @return instance of EmployeeHandler class
      */
     public EmployeeHandler loadEmployeeData(String fileName) throws JAXBException {
         try {
@@ -75,9 +78,9 @@ public class EmployeeLoader {
     }
 
     /**
-     * Export ingredients to ingredient XML file
+     * Export employeeHandler to employee XML file
      *
-     * @param fileName path to ingredient XML filese.printStackTrace();
+     * @param fileName path to employee XML file
      */
     public void exportEmployeeData(String fileName, EmployeeHandler employeeHandler) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();

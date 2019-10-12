@@ -14,6 +14,9 @@ import java.io.*;
 import static seng202.team3.parsing.XMLValidation.validateXMLFile;
 
 public class TruckLoader {
+    /**
+     * DTD for truck XML file
+     */
     private static final String XML_HEADER = "\n<!DOCTYPE truck [\n" +
             "        <!ENTITY version \"V0.01 (C) CashewOutside 2019\">\n" +
             "        <!ELEMENT truck (cashAccount)>\n" +
@@ -25,14 +28,22 @@ public class TruckLoader {
      */
     private JAXBContext context;
 
+    /**
+     * truck obejct to be mapped
+     */
     private Truck truckLoad;
 
+    /**
+     * Constructor for truckLoader
+     *
+     * @throws JAXBException
+     */
     public TruckLoader() throws JAXBException {
         context = JAXBContext.newInstance(Truck.class);
     }
 
     /**
-     * Import menu from truck XML file
+     * Import truck from truck XML file
      *
      * @param fileName path to truck XML file
      * @return instance of truck class
@@ -54,9 +65,9 @@ public class TruckLoader {
     }
 
     /**
-     * Export menu to truck XML file
+     * Export truck to truck XML file
      *
-     * @param fileName path to menu XML file
+     * @param fileName path to truck XML file
      */
     public void exportTruckData(String fileName, Truck truckLoad) throws IOException, JAXBException {
         Marshaller marshaller = context.createMarshaller();
