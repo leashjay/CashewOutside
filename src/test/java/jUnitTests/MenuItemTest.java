@@ -91,7 +91,7 @@ public class MenuItemTest {
      * Tests the functionality of calculating the sales price of an item based on its cost price and markup
      */
     public void getSalePriceTest(){
-        assertEquals(friedRice.getSalePrice(), 1.32);
+        assertEquals(friedRice.getSalePrice(), 1.32f);
     };
 
 
