@@ -19,7 +19,7 @@ Feature: Menu Management
   Scenario: A customer has an intolerance
     Given When an order is made for a menu item
     When an intolerance for gluten is flagged
-    Then an order exceptions are handled
+    Then check menu item attribute by filter
 
   Scenario: A customer is a vegetarian
     Given When an order is made for a vegetarian item

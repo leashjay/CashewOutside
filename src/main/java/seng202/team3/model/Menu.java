@@ -200,5 +200,16 @@ public class Menu {
         return itemsRemovedFrom;
     }
 
+    /**
+     * Calculate number of servings for each menu items;
+     *
+     * @param inventory
+     */
+    public void calculateServingForMenuItems(Inventory inventory) {
+        for (Map.Entry<String, MenuItem> item : menuContent.entrySet()) {
+            item.getValue().calculateServing(inventory);
+        }
+    }
+
 }
 
