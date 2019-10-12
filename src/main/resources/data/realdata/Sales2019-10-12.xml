@@ -25,9 +25,9 @@
 <sales>
    <orders>
       <order dateOrdered="2019-10-12" timeOrdered="00:08:55.900841400">
+          <orderStatus>QUEUED</orderStatus>
          <orderId>16</orderId>
          <customerName>Agnes</customerName>
-         <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>
@@ -37,9 +37,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.010091300">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>3</orderId>
          <customerName>Ooo a</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>3382.0</orderCost>
          <costAtTimeOfPayment>3382.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -65,9 +65,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.010091300">
+          <orderStatus>QUEUED</orderStatus>
          <orderId>4</orderId>
          <customerName>This is IT</customerName>
-         <orderStatus>QUEUED</orderStatus>
          <orderCost>6244.0</orderCost>
          <costAtTimeOfPayment>6244.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -93,9 +93,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.011089700">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>5</orderId>
          <customerName>JErome</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>6245.0</orderCost>
          <costAtTimeOfPayment>6245.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -125,9 +125,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.012086300">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>7</orderId>
          <customerName>Hunter</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>721.0</orderCost>
          <costAtTimeOfPayment>721.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -153,9 +153,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>9</orderId>
          <customerName>hooha</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -165,9 +165,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>10</orderId>
          <customerName>hahoo</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -177,9 +177,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>11</orderId>
          <customerName>hoo</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -189,9 +189,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.014080300">
+          <orderStatus>QUEUED</orderStatus>
          <orderId>12</orderId>
          <customerName>long dong duk</customerName>
-         <orderStatus>QUEUED</orderStatus>
          <orderCost>220.0</orderCost>
          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -201,9 +201,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.014080300">
+          <orderStatus>COMPLETE</orderStatus>
          <orderId>13</orderId>
          <customerName>dong</customerName>
-         <orderStatus>COMPLETE</orderStatus>
          <orderCost>220.0</orderCost>
          <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
          <itemsOrdered>
@@ -213,9 +213,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-11" timeOrdered="11:17:43.907265">
+          <orderStatus>QUEUED</orderStatus>
          <orderId>14</orderId>
          <customerName>sads</customerName>
-         <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>
@@ -225,9 +225,9 @@
          <flagsChecked>true</flagsChecked>
       </order>
       <order dateOrdered="2019-10-12" timeOrdered="00:07:27.305104600">
+          <orderStatus>QUEUED</orderStatus>
          <orderId>15</orderId>
          <customerName>Yoyoma</customerName>
-         <orderStatus>QUEUED</orderStatus>
          <orderCost>1.1</orderCost>
          <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
          <itemsOrdered>

@@ -112,6 +112,7 @@ public class SalesController {
     private Order curOrder;
     private final float rowHeight = 150;
     private HashMap<MenuItem, MenuItemNode> currentOrderHBoxMenuItems = new HashMap<>();
+    private Truck truck;
 
 
     /**
@@ -134,6 +135,7 @@ public class SalesController {
         curOrder = new Order();
         curOrder.setToNextID();
         salesManager = business.getSalesHandler();
+        truck = business.getTruck();
         truckInventory = business.getTruck().getInventory();
         // declare what ItemTypes are assigned to which GridPane
         Set<ItemType> drinkMenuItemTypes = Set.of(ItemType.BEVERAGE, ItemType.COCKTAIL);
@@ -523,7 +525,7 @@ public class SalesController {
                 curOrder.setName(curOrderName);
                 curOrder.confirmOrder();
                 this.salesManager.addOrder(curOrder);
-                this.salesManager.customerPays(amountPaid, curOrder.getOrderId());
+                this.salesManager.customerPays(amountPaid, curOrder.getOrderId(), truck);
                 this.currentOrderNameTextField.setText("");
                 this.payTextField.setText("");
                 newCurrentOrder();

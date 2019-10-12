@@ -57,21 +57,6 @@ public class MenuList {
         return menuArrayList;
     }
 
-    /**
-     * gets all Menus that are active ie all menus that are in stock
-     * NOTE: not yet fully implemented
-     * @return activeMenus
-     */
-    public ArrayList<Menu> getActiveMenus() {
-        for (int i = 0; i < menuArrayList.size(); i++) {
-            Menu current = menuArrayList.get(i);
-            if (current.getActive()) {
-                activeMenus.add(current);
-            }
-        }
-        return activeMenus;
-    }
-
 
     /**
      * gets all Menus designed for catering in Winter
