@@ -27,8 +27,6 @@ public class SalesHandler {
     public HashMap<Integer, Order> orders = new HashMap<>(); // Orders keyed to their orderId
 
     private float cashAccount;
-    private Truck businessTruck = BusinessApp.getBusiness().getTruck();
-
 
     /**
      * The orders that are to be displayed in the kitchen window
@@ -135,9 +133,9 @@ public class SalesHandler {
     private boolean processRefund(Order orderToProcess) {
         boolean success = true;
         float cost = orderToProcess.getTotalCost();
-        success = businessTruck.hasEnoughCash(cost);
+        success = BusinessApp.getBusiness().getTruck().hasEnoughCash(cost);
         if (success && orderToProcess.canBeRefunded()) {
-            businessTruck.decreaseCashFloat(cost);
+            BusinessApp.getBusiness().getTruck().decreaseCashFloat(cost);
             orderToProcess.refund();
         } else {
             success = false;
@@ -154,7 +152,7 @@ public class SalesHandler {
         Order customerOrder = this.getOrder(orderId);
         float price = customerOrder.getTotalCost();
         // TODO change below line to a truck field for nicer testing
-        businessTruck.increaseCashFloat(price);
+        BusinessApp.getBusiness().getTruck().increaseCashFloat(price);
         return calculateChange(amountPaid, orderId);
     }
 
