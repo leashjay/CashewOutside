@@ -122,7 +122,7 @@
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.012086300">
          <orderId>7</orderId>
          <customerName>Hunter</customerName>
-         <orderStatus>QUEUED</orderStatus>
+         <orderStatus>COMPLETE</orderStatus>
          <orderCost>721.0</orderCost>
          <itemsOrdered>
             <id>BB1</id>

@@ -80,10 +80,12 @@ public class KitchenController {
         List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         menuItems = new ArrayList<>();
         for (Order order: orders) {
-            for (MenuItem item: order.getOrderedItems()) {
-                MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
-                if (!menuItems.contains(itemReal)) {
-                    menuItems.add(itemReal);
+            if (order.getStatus() == OrderStatus.QUEUED) {
+                for (MenuItem item : order.getOrderedItems()) {
+                    MenuItem itemReal = BusinessApp.getBusiness().getMenuManager().getMenuItem().get(item.getId());
+                    if (!menuItems.contains(itemReal)) {
+                        menuItems.add(itemReal);
+                    }
                 }
             }
         }
@@ -95,7 +97,9 @@ public class KitchenController {
     public void createOrderComboBox() {
         List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
         for (Order order: orders) {
-            removeOrderCombo.getItems().add(order.getOrderId());
+            if (order.getStatus() == OrderStatus.QUEUED) {
+                removeOrderCombo.getItems().add(order.getOrderId());
+            }
         }
     }
 
@@ -203,50 +207,52 @@ public class KitchenController {
         int column = 0;
 
         for (Order order : orders) {
+            if (order.getStatus() == OrderStatus.QUEUED) {
 
-            TextFlow text = new TextFlow();
-            text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
-            text.setPrefHeight(200);
-            text.setPrefWidth(150);
+                TextFlow text = new TextFlow();
+                text.setStyle("-fx-border-color: FloralWhite;-fx-background-color: #1976D2;");
+                text.setPrefHeight(200);
+                text.setPrefWidth(150);
 
-            Text text1 = new Text("        Order: " + order.getOrderId());
-            text1.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
-            text1.setFill(Color.FLORALWHITE);
-            text.getChildren().add(text1);
+                Text text1 = new Text("        Order: " + order.getOrderId());
+                text1.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+                text1.setFill(Color.FLORALWHITE);
+                text.getChildren().add(text1);
 
-            Text text4 = new Text("\n               Order Taken " + order.getTime().format(dtf));
-            text4.setStyle("-fx-font: 10 arial;");
-            text4.setFill(Color.FLORALWHITE);
-            text.getChildren().add(text4);
+                Text text4 = new Text("\n               Order Taken " + order.getTime().format(dtf));
+                text4.setStyle("-fx-font: 10 arial;");
+                text4.setFill(Color.FLORALWHITE);
+                text.getChildren().add(text4);
 
-            Text text2 = new Text("\n\n          ITEM ");
-            text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
-            text2.setFill(Color.FLORALWHITE);
-            text.getChildren().add(text2);
+                Text text2 = new Text("\n\n          ITEM ");
+                text2.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
+                text2.setFill(Color.FLORALWHITE);
+                text.getChildren().add(text2);
 
 
-            HashMap<MenuItem, Float> menuItems = new HashMap<>();
-            for (MenuItem testIngredient: order.getOrderedItems()) {
-                if (menuItems.containsKey(testIngredient)) {
-                    menuItems.put(testIngredient, menuItems.get(testIngredient) + 1);
-                } else {
-                    menuItems.put(testIngredient, (float) 1);
+                HashMap<MenuItem, Float> menuItems = new HashMap<>();
+                for (MenuItem testIngredient : order.getOrderedItems()) {
+                    if (menuItems.containsKey(testIngredient)) {
+                        menuItems.put(testIngredient, menuItems.get(testIngredient) + 1);
+                    } else {
+                        menuItems.put(testIngredient, (float) 1);
+                    }
                 }
-            }
 
-            for (Map.Entry<MenuItem, Float> entry : menuItems.entrySet()) {
-                Text text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getName());
-                text3.setFill(Color.FLORALWHITE);
-                text.getChildren().add(text3);
-            }
+                for (Map.Entry<MenuItem, Float> entry : menuItems.entrySet()) {
+                    Text text3 = new Text("\n\n  x" + entry.getValue() + "   " + entry.getKey().getName());
+                    text3.setFill(Color.FLORALWHITE);
+                    text.getChildren().add(text3);
+                }
 
-            orderGridPane.add(text, column, row);
-            if (column > numColumnsAtStart) {
-                ColumnConstraints columnConstraints = new ColumnConstraints();
-                columnConstraints.setPrefWidth(150);
-                orderGridPane.getColumnConstraints().add(columnConstraints);
+                orderGridPane.add(text, column, row);
+                if (column > numColumnsAtStart) {
+                    ColumnConstraints columnConstraints = new ColumnConstraints();
+                    columnConstraints.setPrefWidth(150);
+                    orderGridPane.getColumnConstraints().add(columnConstraints);
+                }
+                column++;
             }
-            column++;
         }
 
     }
