@@ -36,11 +36,12 @@ public class OrderFeaturesSteps {
     private Ingredient testIngredient1;
     private Ingredient testIngredient2;
     private Ingredient testIngredient3;
-    private Float initialCashFloat;
+    private double initialCashFloat;
     private Float iMenuItemPrice;
     private Float initialChocQtt;
     private Float initialRegMilkQtt;
     private Float initialLemCanQtt;
+    private Truck truck = new Truck();
 
 
     @Given("a cash float")
@@ -151,7 +152,7 @@ public class OrderFeaturesSteps {
 
     @When("the customer pays ${double} and is given correct change")
     public void theCustomerPays$AndIsGivenCorrectChange(Double double1) {
-        assertEquals(21.3f, testSalesHandler.customerPays(40.00f, testOrder.getOrderId()));
+        assertEquals(21.3f, testSalesHandler.customerPays(40.00f, testOrder.getOrderId(), testTruck));
     }
 
 
@@ -187,7 +188,7 @@ public class OrderFeaturesSteps {
     public void theCustomerPays$ForBabyFace(Double double1) {
         iMenuItemPrice = iMenuItem.getSalePrice();
         initialCashFloat = testTruck.getCashAccount();
-        assertEquals(10.00f - iMenuItemPrice, testSalesHandler.customerPays(10.00f, testOrder.getOrderId()), 0.01);
+        assertEquals(10.00f - iMenuItemPrice, testSalesHandler.customerPays(10.00f, testOrder.getOrderId(), testTruck), 0.01);
     }
 
     @Then("the baby face sale amount is added to the float")
@@ -213,7 +214,7 @@ public class OrderFeaturesSteps {
         initialChocQtt = inventory.getIngredients().get("Choc").getQuantity();
         initialRegMilkQtt = inventory.getIngredients().get("RegMilk").getQuantity();
 
-        assertEquals(12.0f - iMenuItemPrice, testSalesHandler.customerPays(12.0f, testOrder.getOrderId()));
+        assertEquals(12.0f - iMenuItemPrice, testSalesHandler.customerPays(12.0f, testOrder.getOrderId(), testTruck));
     }
 
     @Then("the inventory stock levels are reduced accordingly")
@@ -242,12 +243,12 @@ public class OrderFeaturesSteps {
         initialLemCanQtt = inventory.getIngredients().get("LemCan").getQuantity();
         initialCashFloat = BusinessApp.getBusiness().getTruck().getCashAccount();
 
-        assertEquals(5f - iMenuItemPrice, testSalesHandler.customerPays(5f, testOrder.getOrderId()));
+        assertEquals(5f - iMenuItemPrice, testSalesHandler.customerPays(5f, testOrder.getOrderId(), BusinessApp.getBusiness().getTruck()));
     }
 
     @Then("the float shows the new correct total and the inventory stock levels are reduced accordingly")
     public void theFloatShowsTheNewCorrectTotalAndTheInventoryStockLevelsAreReducedAccordingly() {
-        assertEquals(initialCashFloat + iMenuItemPrice, BusinessApp.getBusiness().getTruck().getCashAccount());
+        assertEquals(initialCashFloat + iMenuItemPrice, BusinessApp.getBusiness().getTruck().getCashAccount(), 0.01);
         Float recipeLemCanQtt = iMenuItem.getRecipeQuantity("LemCan");
 
         assertEquals(initialLemCanQtt - recipeLemCanQtt, inventory.getIngredients().get("LemCan").getQuantity());
@@ -276,7 +277,7 @@ public class OrderFeaturesSteps {
 
     @Then("the cash float reflects the transaction and the inventory stock levels remains unchanged")
     public void theCashFloatReflectsTheTransactionAndTheInventoryStockLevelsRemainsUnchanged() {
-        assertEquals(initialCashFloat - testOrder.getTotalCost(), BusinessApp.getBusiness().getTruck().getCashAccount());
+        assertEquals(initialCashFloat - testOrder.getTotalCost(), BusinessApp.getBusiness().getTruck().getCashAccount(), 0.01);
 
         assertEquals(initialLemCanQtt, inventory.getIngredients().get("LemCan").getQuantity());
     }
