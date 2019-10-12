@@ -176,7 +176,6 @@ public class MenuItem {
 
     /**
      * Check if ingredient is in truck inventory (loaded from Business class)
-     *
      * @param ingredient ingredient to be checked
      * @return true if ingredient is in truck inventory, false otherwise
      */
@@ -191,7 +190,6 @@ public class MenuItem {
 
     /**
      * Calculates the price it takes to create the given recipe
-     *
      * @return a float showing the price to create the given recipe
      */
     public float getCostPrice() {
@@ -216,7 +214,6 @@ public class MenuItem {
 
     /**
      * Method to check if a menu item is gluten free
-     *
      * @return Three value logic showing if the menu item is gluten free
      */
     public ThreeValueLogic isGlutenFree() {
@@ -237,7 +234,6 @@ public class MenuItem {
 
     /**
      * Method to check if a menu item is vegetarian
-     *
      * @return Three value logic showing if the menu item is vegetarian
      */
     public ThreeValueLogic isVegetarian() {
@@ -258,8 +254,7 @@ public class MenuItem {
 
     /**
      * Three value logic showing if the menu item is Vegan
-     *
-     * @return
+     * @return whether the ingredient is vegan using three value logic
      */
     public ThreeValueLogic isVegan() {
         isVegan = ThreeValueLogic.YES;
@@ -281,7 +276,7 @@ public class MenuItem {
      * Get HashMap of ingredient and their corresponding quantity in inventory
      *
      * @param inventory truck Inventory
-     * @return a hashman of the ingredients with their corresponding stocks
+     * @return a hashmap of the ingredients with their corresponding stocks
      */
     public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
         HashMap<String, Float> quantities = new HashMap<String, Float>();
@@ -297,8 +292,7 @@ public class MenuItem {
 
     /**
      * Calculate serving size of menu item with the stock that we have right now.
-     *
-     * @param inventory
+     * @param inventory the inventory of the business
      */
     public void calculateServing(Inventory inventory) {
         numServings = 0;
