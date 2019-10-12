@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="seng202.team3.controller.SalesController">
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.SalesController">
     <top>
         <HBox prefHeight="175.0" BorderPane.alignment="CENTER">
             <children>
@@ -38,19 +51,16 @@
                         </Label>
                     </children>
                 </VBox>
-                <ScrollPane hbarPolicy="ALWAYS" prefHeight="218.0" prefWidth="711.0" vbarPolicy="NEVER"
-                            HBox.hgrow="ALWAYS">
+                <ScrollPane fx:id="topScrollPane" hbarPolicy="ALWAYS" onScroll="#horizontalScrollTopPane" prefHeight="175.0" vbarPolicy="NEVER" vmax="0.0" HBox.hgrow="ALWAYS">
                     <content>
-                        <HBox fx:id="currentOrderHBox" prefHeight="200.0"/>
+                        <HBox fx:id="currentOrderHBox" snapToPixel="false" />
                     </content>
                     <padding>
-                        <Insets left="50.0" right="50.0" top="5.0"/>
+                        <Insets left="50.0" right="50.0" top="5.0" />
                     </padding>
                 </ScrollPane>
 
-                <Button id="backButton" fx:id="backButton" minHeight="50.0" minWidth="75.0" mnemonicParsing="false"
-                        onAction="#backButtonPressed" prefHeight="50.0" prefWidth="75.0"
-                        stylesheets="@../gui/styles.css" text="Exit">
+                <Button id="backButton" fx:id="backButton" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="50.0" prefWidth="75.0" stylesheets="@../gui/styles.css" text="Exit">
                     <HBox.margin>
                         <Insets left="50.0" right="50.0" top="50.0" />
                     </HBox.margin>
