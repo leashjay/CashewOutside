@@ -18,24 +18,24 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static String ingredientsXML = "./src/main/resources/data/realdata/Ingredients.xml";
+    public static String ingredientsXML = "./resources/realdata/Ingredients.xml";
 
     /** Source menu XML file to load data from */
-    public static String menuXML = "./src/main/resources/data/realdata/SampleMenu.xml";
+    public static String menuXML = "./resources/realdata/SampleMenu.xml";
 
     /** Source supplier XML file to load data from */
-    public static String suppliersXML = "./src/main/resources/data/realdata/Suppliers.xml";
+    public static String suppliersXML = "./resources/realdata/Suppliers.xml";
 
     /** Source sales XML file to load data from */
-    public static String salesXML = "./src/main/resources/data/realdata/Sales.xml";
+    public static String salesXML = "./resources/realdata/Sales.xml";
 
     /** Source employee XML file to load data from */
-    public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
+    public static String employeeXML = "./resources/realdata/Employees.xml";
 
     /**
      * Source truck XML file to load data from
      */
-    public static String truckXML = "./src/main/resources/data/realdata/Truck.xml";
+    public static String truckXML = "./resources/realdata/Truck.xml";
 
     /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
@@ -51,7 +51,7 @@ public class BusinessApp extends Application {
     /**
      * XML path prefix
      */
-    private static String pathPrefix = "./src/main/resources/data/realdata/";
+    private static String pathPrefix = "./resources/realdata/";
 
     private static ArrayList<File> fileArrayList;
 
