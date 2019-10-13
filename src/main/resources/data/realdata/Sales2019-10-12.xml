@@ -24,18 +24,6 @@
         ]>
 <sales>
    <orders>
-      <order dateOrdered="2019-10-12" timeOrdered="00:08:55.900841400">
-         <orderStatus>REFUNDED</orderStatus>
-         <orderId>16</orderId>
-         <customerName>Agnes</customerName>
-         <orderCost>1.1</orderCost>
-         <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
-         <itemsOrdered>
-            <id>Lem</id>
-            <name>LemCan</name>
-         </itemsOrdered>
-         <flagsChecked>true</flagsChecked>
-      </order>
       <order dateOrdered="2019-10-09" timeOrdered="20:55:40.010091300">
          <orderStatus>COMPLETE</orderStatus>
          <orderId>3</orderId>
@@ -234,7 +222,47 @@
             <id>Lem</id>
             <name>LemCan</name>
          </itemsOrdered>
-         <flagsChecked>true</flagsChecked>
+          <flagsChecked>true</flagsChecked>
       </order>
+       <order dateOrdered="2019-10-12" timeOrdered="00:08:55.900841400">
+           <orderStatus>REFUNDED</orderStatus>
+           <orderId>16</orderId>
+           <customerName>Agnes</customerName>
+           <orderCost>1.1</orderCost>
+           <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
+           <itemsOrdered>
+               <id>Lem</id>
+               <name>LemCan</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
+       <order dateOrdered="2019-10-13" timeOrdered="16:44:48.534312">
+           <orderStatus>QUEUED</orderStatus>
+           <orderId>18</orderId>
+           <customerName>Karen</customerName>
+           <orderCost>23.175901</orderCost>
+           <costAtTimeOfPayment>23.175901</costAtTimeOfPayment>
+           <itemsOrdered>
+               <id>BF</id>
+               <name>Baby face</name>
+           </itemsOrdered>
+           <itemsOrdered>
+               <id>Lem</id>
+               <name>LemCan</name>
+           </itemsOrdered>
+           <itemsOrdered>
+               <id>HotChoc</id>
+               <name>Hot Chocolate</name>
+           </itemsOrdered>
+           <itemsOrdered>
+               <id>BB1</id>
+               <name>Beefburger</name>
+           </itemsOrdered>
+           <itemsOrdered>
+               <id>CF</id>
+               <name>Chicken fried rice</name>
+           </itemsOrdered>
+           <flagsChecked>true</flagsChecked>
+       </order>
    </orders>
 </sales>

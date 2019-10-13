@@ -139,7 +139,7 @@ public class IngredientTabController {
         costPerUnitCol.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", ingredient ->         {
-            ConfirmDeletePopup.display('I');
+            ConfirmDeletePopup.display('I', "Are you sure you want to delete this?");
             if (delete == true) {
                 delete = false;
                 inventory.removeIngredient(ingredient.getCode());

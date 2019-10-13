@@ -19,13 +19,14 @@ import javafx.stage.Stage;
 public class ConfirmDeletePopup {
 
     public static boolean delete = false;
+    public static Text text;
 
     /**
      * Creates a window that asks the user to confirm whether they want to delete a certain object
      *
      * @param tab the tab in which an object is being deleted
      */
-    public static void display(Character tab) {
+    public static void display(Character tab, String message) {
 
         delete = false;
 
@@ -50,7 +51,7 @@ public class ConfirmDeletePopup {
         scrollPane.setContent(cashFloatVBox);
 
         TextFlow textflow = new TextFlow();
-        Text text = new Text("\n\n    Are you sure you want to delete this?");
+        text = new Text("\n\n    " + message);
         text.setStyle("-fx-font: 14 arial;-fx-font-weight: bold;");
         textflow.getChildren().add(text);
         textflow.setTextAlignment(TextAlignment.CENTER);
@@ -108,5 +109,9 @@ public class ConfirmDeletePopup {
         } else if (tab == 'I') {
             IngredientTabController.delete = true;
         }
+    }
+
+    public static void changeText(String message) {
+        text = new Text("\n\n    " + message);
     }
 }
