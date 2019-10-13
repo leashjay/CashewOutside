@@ -30,8 +30,8 @@
                                 <TableColumn fx:id="phoneNumberCol" prefWidth="120.0" text="Phone Number"/>
                                 <TableColumn fx:id="phoneTypeCol" prefWidth="75.0" text="Phone Type"/>
                                 <TableColumn fx:id="urlCol" prefWidth="120.0" text="URL"/>
-                                <TableColumn fx:id="deleteButtonCol" prefWidth="100.0" text="Delete"/>
                                 <TableColumn fx:id="editButtonCol" prefWidth="100.0" text="Edit"/>
+                                <TableColumn fx:id="deleteButtonCol" prefWidth="100.0" text="Delete"/>
                             </columns>
                             <GridPane.margin>
                                 <Insets left="5.0"/>
