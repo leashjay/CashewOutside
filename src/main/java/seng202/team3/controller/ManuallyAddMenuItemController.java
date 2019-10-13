@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
+import seng202.team3.model.MenuItem;
 import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
@@ -74,6 +75,20 @@ public class ManuallyAddMenuItemController {
     @FXML
     private Text isVeganText;
 
+    private MenuItem menuItem;
+
+    private boolean editing = false;
+
+    public void setParameters(MenuItem menuItemToEdit){
+        editing = true;
+        menuItem = menuItemToEdit;
+        menuItemNameTextField.setText(menuItemToEdit.getName());
+        idTextField.setText(menuItemToEdit.getId());
+        itemTypeCheckBox.setValue(menuItemToEdit.getType());
+        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
+
+    }
+
     @FXML
     private Text costString;
 
@@ -99,7 +114,6 @@ public class ManuallyAddMenuItemController {
      */
     private float cost;
 
-
     public void initialize() {
         Set<String> possibleKeys = truckInventory.getIngredients().keySet();
         TextFields.bindAutoCompletion(ingredientKey, possibleKeys);
@@ -112,10 +126,19 @@ public class ManuallyAddMenuItemController {
         itemTypeCheckBox.getItems().add(ItemType.OTHER);
         itemTypeCheckBox.getItems().add(ItemType.SNACK);
 
-        markupPercent.setText("120");
+        markupPercent.setText("1.1");
+        if (editing) {
+            cost = menuItem.getCostPriceFromIngredients();
+            updateCostString();
+        }
+    }
+
+    public void calculateServings() {
+
     }
 
     public void updateUnitText() {
+        System.out.println("in");
         if(stock.containsKey(ingredientKey.getId())) {
             Ingredient ingredient = stock.get(ingredientKey.getText());
             UnitType unit = ingredient.getUnit();
@@ -135,7 +158,14 @@ public class ManuallyAddMenuItemController {
             }
         } else {
             unitText.setText("");
+            System.out.println("not reading");
         }
+    }
+
+    public void updateCostString() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String numberAsString = decimalFormat.format(cost);
+        costString.setText("$" + numberAsString);
     }
 
 
@@ -167,9 +197,7 @@ public class ManuallyAddMenuItemController {
 
             //setting cost string
             cost += quantity * ingredient.getCost();
-            DecimalFormat decimalFormat = new DecimalFormat("#.00");
-            String numberAsString = decimalFormat.format(cost);
-            costString.setText("$" + numberAsString);
+            updateCostString();
 
             ingredients.put(ingredient, quantity);
 
