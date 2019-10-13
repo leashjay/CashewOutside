@@ -34,7 +34,7 @@ public class BusinessTest {
         testInventory = testBusiness.getTruck().getInventory();
         onion = testInventory.getIngredients().get("Onion");
 
-        assertEquals("Quantity of onion in stock = 12.5g", 12.5f, onion.getQuantity());
+        assertEquals("Quantity of onion in stock = 12.5g", 300f, onion.getQuantity());
         assertEquals("Cost of onion in stock = NZD 0.5 ", 0.5f, onion.getCost());
         assertEquals("Onion is Vegetarian", ThreeValueLogic.YES, onion.getIsVegetarian());
     }

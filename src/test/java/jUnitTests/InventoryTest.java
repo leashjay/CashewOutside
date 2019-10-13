@@ -151,7 +151,7 @@ public class InventoryTest {
     public void testAddIngredientFromXML() throws JAXBException {
         Business testBusiness = new Business("./src/main/resources/data/Ingredients.xml", BusinessApp.menuXML, BusinessApp.suppliersXML, BusinessApp.salesXML, BusinessApp.employeeXML, BusinessApp.truckXML);
         Inventory testInventory = testBusiness.getTruck().getInventory();
-        assertEquals(30, testInventory.getIngredients().size());
+        assertEquals(31, testInventory.getIngredients().size());
 
 
         testInventory.addIngredientsFromXML("./src/main/resources/data/testdata/testIngredients1.xml");

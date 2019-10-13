@@ -28,7 +28,7 @@ public class InventoryLoaderTest {
     @Before
     public void testLoadIngredientsXML() throws Exception {
         fName = "./src/main/resources/data/Ingredients.xml";
-        int numExpected = 30;
+        int numExpected = 31;
         String pathName = "";
         testLoader = new InventoryLoader();
         testInventory = testLoader.loadIngredientsData(fName);
@@ -81,7 +81,7 @@ public class InventoryLoaderTest {
 
         testInventory = testLoader.loadIngredientsData("./src/main/resources/data/testdata/testExportIngredients.xml");
         ingredients = testInventory.getIngredients();
-        assertEquals("All XML ingredients record should be added", 31, ingredients.size());
+        assertEquals("All XML ingredients record should be added", 32, ingredients.size());
     }
 
 
