@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sales [
+        <!ENTITY version "V0.01 (C) CashewOutside">
+        <!ELEMENT sales (orders)>
+        <!ELEMENT orders (order*)>
+        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>
+        <!ATTLIST order
+                dateOrdered CDATA #REQUIRED
+                timeOrdered CDATA #REQUIRED
+                isGF (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                >
+        <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT customerName (#PCDATA)>
+        <!ELEMENT orderStatus (#PCDATA)>
+        <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT costAtTimeOfPayment (#PCDATA)>
+        <!ELEMENT itemsOrdered (id, name)>
+        <!ELEMENT flagsChecked (#PCDATA)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        ]>
+<sales>
+   <orders>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.621942">
+         <orderStatus>QUEUED</orderStatus>
+         <orderId>3</orderId>
+         <customerName>Ooo a</customerName>
+         <orderCost>3382.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>Lem</id>
+            <name>LemCan</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.624432">
+         <orderStatus>QUEUED</orderStatus>
+         <orderId>4</orderId>
+         <customerName>This is IT</customerName>
+         <orderCost>6244.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.626024">
+         <orderStatus>COMPLETE</orderStatus>
+         <orderId>5</orderId>
+         <customerName>JErome</customerName>
+         <orderCost>6245.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CAV</id>
+            <name>Coq au van</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>Lem</id>
+            <name>LemCan</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627116">
+         <orderStatus>QUEUED</orderStatus>
+         <orderId>7</orderId>
+         <customerName>Hunter</customerName>
+         <orderCost>721.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>BB1</id>
+            <name>Beefburger</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>HotChoc</id>
+            <name>Hot Chocolate</name>
+         </itemsOrdered>
+         <itemsOrdered>
+            <id>Lem</id>
+            <name>LemCan</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627906">
+         <orderStatus>COMPLETE</orderStatus>
+         <orderId>9</orderId>
+         <customerName>hooha</customerName>
+         <orderCost>220.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628281">
+         <orderStatus>COMPLETE</orderStatus>
+         <orderId>10</orderId>
+         <customerName>hahoo</customerName>
+         <orderCost>220.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628647">
+         <orderStatus>COMPLETE</orderStatus>
+         <orderId>11</orderId>
+         <customerName>hoo</customerName>
+         <orderCost>220.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:16.629033">
+         <orderStatus>QUEUED</orderStatus>
+         <orderId>12</orderId>
+         <customerName>long dong duk</customerName>
+         <orderCost>220.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+      <order dateOrdered="2019-10-04" timeOrdered="19:40:45.481434">
+         <orderStatus>QUEUED</orderStatus>
+         <orderId>13</orderId>
+         <customerName>dong</customerName>
+         <orderCost>220.0</orderCost>
+         <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
+         <itemsOrdered>
+            <id>CF</id>
+            <name>Chicken fried rice</name>
+         </itemsOrdered>
+         <flagsChecked>true</flagsChecked>
+      </order>
+   </orders>
+</sales>

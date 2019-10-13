@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.MenuItem;
 import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.util.UnitType;
 
 import java.text.DecimalFormat;
 
@@ -15,13 +16,32 @@ public class IngredientNode extends VBox {
     final int height = 90;
     private Ingredient ingredient;
     private float quantity;
-    private Label quantityLabel;
     private ManuallyAddMenuItemController parent;
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public float getQuantity() {
+        return quantity;
+    }
+
 
     public IngredientNode(Ingredient ingredient, ManuallyAddMenuItemController parent) {
         super();
         this.parent = parent;
         this.quantity = this.parent.getQuantityText();
+        this.ingredient = ingredient;
+        this.setPrefHeight(height);
+        this.setPrefWidth(100);
+        makeLabels(ingredient.getName(), this.quantity);
+        setUpDelButton();
+    }
+
+    public IngredientNode(Ingredient ingredient, float quantity) {
+        super();
+        this.parent = parent;
+        this.quantity = quantity;
         this.ingredient = ingredient;
         this.setPrefHeight(height);
         this.setPrefWidth(100);
@@ -38,10 +58,26 @@ public class IngredientNode extends VBox {
         itemNameLabel.setPrefHeight(height * 0.3);
         this.getChildren().add(0,itemNameLabel);
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#");
+        String unitText = "";
+        UnitType unit = ingredient.getUnit();
+        switch (unit) {
+            case GRAM:
+                unitText = "g";
+                break;
+            case ML:
+                unitText = "mL";
+                break;
+            case COUNT:
+                unitText = " units";
+                break;
+            case UNKNOWN:
+                unitText = "";
+                break;
+        }
         String quantityString = decimalFormat.format(quantity);
         Label quantityLabel = new Label();
-        quantityLabel.setText(quantityString);
+        quantityLabel.setText(quantityString + unitText);
         quantityLabel.setStyle("-fx-text-alignment: center; -fx-wrap-text: true;");
         quantityLabel.setAlignment(Pos.TOP_CENTER);
         quantityLabel.setPrefWidth(100);
@@ -51,15 +87,16 @@ public class IngredientNode extends VBox {
 
     private void setUpDelButton() {
         Button delButton = new Button("Delete");
-        delButton.setOnAction(e -> rmvIngredient());
-        quantityLabel.setAlignment(Pos.BOTTOM_CENTER);
-        quantityLabel.setPrefWidth(100);
+        System.out.println("1");
+        delButton.setOnAction(e -> this.parent.removeIngredient(this));
+        System.out.println("2");
+        delButton.setAlignment(Pos.BOTTOM_CENTER);
+        System.out.println("3");
+        delButton.setPrefWidth(100);
+        System.out.println("4");
         delButton.setPrefHeight(height * 0.33);
+        System.out.println("5");
         this.getChildren().add(2, delButton);
     }
 
-    private void rmvIngredient() {
-        parent.removeIngredient();
-        this.getChildren().remove(parent.getScrollHBox());
-    }
 }

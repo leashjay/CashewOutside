@@ -69,15 +69,21 @@ public class ManuallyAddMenuItemController {
 
     @FXML
     private Text isGlutenFreeText;
+    private boolean isGF;
+    private int noGF = 0;
 
     @FXML
     private Text isVegetarianText;
+    private boolean isVege;
+    private int noVege = 0;
 
     @FXML
     private Text isVeganText;
+    private boolean isVegan;
+    private int noVegan = 0;
 
     @FXML
-    private Text costString;
+    private Text priceString;
 
     @FXML
     private HBox scrollHBox;
@@ -104,9 +110,15 @@ public class ManuallyAddMenuItemController {
     private HashMap<Ingredient, Float> ingredients = new HashMap<>();
 
     /**
-     * cost of the menu item
+     * @param cost is cost of the menu item
+     * @param price is the price the customer pays for the menu item
      */
     private float cost;
+    private float price;
+
+    public float getMarkup() {
+        return Float.parseFloat(markupPercent.getText());
+    }
 
     public HBox getScrollHBox() {
         return scrollHBox;
@@ -137,21 +149,28 @@ public class ManuallyAddMenuItemController {
         itemTypeCheckBox.getItems().add(ItemType.COCKTAIL);
         itemTypeCheckBox.getItems().add(ItemType.OTHER);
         itemTypeCheckBox.getItems().add(ItemType.SNACK);
+        itemTypeCheckBox.setValue(ItemType.OTHER);
 
         markupPercent.setText("1.1");
         if (editing) {
             cost = menuItem.getCostPriceFromIngredients();
-            updateCostString();
+            updatePriceString();
         }
     }
 
-    public void calculateServings() {
-
+    public int calculateServings() {
+        int minServings = 999999999;
+        for (Ingredient ingredient: ingredients.keySet()){
+            if(ingredient.getQuantity() / ingredients.get(ingredient) < minServings) {
+                minServings = Math.round(ingredient.getQuantity() / ingredients.get(ingredient));
+            }
+        }
+        return minServings;
     }
 
     public void updateUnitText() {
         System.out.println("in");
-        if(stock.containsKey(ingredientKey.getId())) {
+        if(stock.containsKey(ingredientKey.getText())) {
             Ingredient ingredient = stock.get(ingredientKey.getText());
             UnitType unit = ingredient.getUnit();
             switch (unit) {
@@ -174,14 +193,53 @@ public class ManuallyAddMenuItemController {
         }
     }
 
-    public void updateCostString() {
+    public void updatePriceString() {
+        price = cost * getMarkup();
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        String numberAsString = decimalFormat.format(cost);
-        costString.setText("$" + numberAsString);
+        String numberAsString = decimalFormat.format(price);
+        priceString.setText("$" + numberAsString);
     }
 
-    public void removeIngredient() {
-        return;
+    public void removeIngredient(IngredientNode node) {
+        checkFlags(node);
+        cost -= node.getQuantity() * node.getIngredient().getCost();
+        updatePriceString();
+        ingredients.remove(node.getIngredient());
+        this.scrollHBox.getChildren().remove(node);
+    }
+
+    public void checkFlags(IngredientNode node) {
+        if (node.getIngredient().getIsGlutenFree() == ThreeValueLogic.NO) {
+            noGF -= 1;
+            if (noGF == 0) {
+                isGF = true;
+                isGlutenFreeText.setVisible(true);
+            } else if(noGF < 0) {
+                noGF = 0;
+            }
+        }
+        if (node.getIngredient().getIsVegan() == ThreeValueLogic.NO) {
+            noVegan -= 1;
+            if (noVegan == 0) {
+                isVegan = true;
+                isVeganText.setVisible(true);
+            } else if(noVegan < 0) {
+                noVegan = 0;
+            }
+        }
+        if (node.getIngredient().getIsVegetarian() == ThreeValueLogic.NO) {
+            noVege -= 1;
+            if (noVege == 0) {
+                isVege = true;
+                isVegetarianText.setVisible(true);
+            } else if(noVege < 0) {
+                noVege = 0;
+            }
+        }
+    }
+
+    public void addIngredientNode(Ingredient ingredient, ManuallyAddMenuItemController parent) {
+        getScrollHBox().getChildren().add(new IngredientNode(ingredient, parent));
     }
 
 
@@ -190,7 +248,7 @@ public class ManuallyAddMenuItemController {
         if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
             return;
         }
-        if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
+        if (!InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
             return;
         }
         float quantity = getQuantityText();
@@ -200,22 +258,13 @@ public class ManuallyAddMenuItemController {
         if (stock.containsKey(id)) {
             ingredient = stock.get(id);
 
-            //set flags
-            if (ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN || ingredient.getIsGlutenFree() == ThreeValueLogic.NO) {
-                isGlutenFreeText.setVisible(false);
-            }
-            if (ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegan() == ThreeValueLogic.NO) {
-                isVeganText.setVisible(false);
-            }
-            if (ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
-                isVegetarianText.setVisible(false);
-            }
+            setFlagsOnAdd(ingredient);
+            addIngredientNode(ingredient, this);
 
             //setting cost string
             cost += quantity * ingredient.getCost();
-            updateCostString();
+            updatePriceString();
 
-            ingredients.put(ingredient, quantity);
 
         } else {
             ingredientKeyErrorText.setVisible(true);
@@ -227,8 +276,37 @@ public class ManuallyAddMenuItemController {
         ingredientQuantity.setText("");
     }
 
+    public void setFlagsOnAdd(Ingredient ingredient) {
+        if (ingredient.getIsGlutenFree() == ThreeValueLogic.NO) {
+            noGF += 1;
+            isGF = false;
+            isGlutenFreeText.setVisible(false);
+        }
+        if (ingredient.getIsVegan() == ThreeValueLogic.NO) {
+            noVegan += 1;
+            isVegan = false;
+            isVeganText.setVisible(false);
+        }
+        if (ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
+            noVege += 1;
+            isVege = false;
+            isVegetarianText.setVisible(false);
+        }
+    }
 
-    private boolean checkForErrors() {
+    private boolean checkForErrorsIngredient() {
+        boolean hasError = false;
+        if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
+            hasError = true;
+        }
+        if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
+            hasError = true;
+        }
+
+        return hasError;
+    }
+
+    private boolean checkForErrorsMenu() {
         boolean hasError = false;
 
         if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkMenuItemValidId(idTextField, idErrorText) == false) {
@@ -237,13 +315,7 @@ public class ManuallyAddMenuItemController {
         if (InputValidationHelper.checkEmpty(menuItemNameTextField, menuItemNameErrorText)) {
             hasError = true;
         }
-        if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
-            hasError = true;
-        }
-        if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
-            hasError = true;
-        }
-        if (InputValidationHelper.isValidFloat(markupPercent, markupPercentErrorText)) {
+        if (!InputValidationHelper.isValidFloat(markupPercent, markupPercentErrorText)) {
             hasError = true;
         }
 
@@ -251,10 +323,24 @@ public class ManuallyAddMenuItemController {
     }
 
     public void addMenuItem() {
-        if (checkForErrors() == false) {
+        System.out.println("\n===============================");
+        if (checkForErrorsMenu() == false) {
+            System.out.println("really in");
             String id = idTextField.getText();
             String name = menuItemNameTextField.getText();
             ItemType itemType = itemTypeCheckBox.getValue();
+            MenuItem menuItem = new MenuItem(id, name, ingredients, itemType);
+            if (editing) {
+                currentMenu.filterMenuItems().replace(id, menuItem);
+            } else {
+                System.out.println("really really in");
+                currentMenu.filterMenuItems().put(id, menuItem);
+            }
+            idTextField.setText("");
+            menuItemNameTextField.setText("");
+            ingredientQuantity.setText("");
+            ingredientKey.setText("");
+            System.out.println("done");
         }
 
     }
