@@ -121,12 +121,22 @@ public class KitchenController {
         createOrderComboBox();
     }
 
+    public ArrayList<Order> getOrders() {
+        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
+        ArrayList<Order> newOrders = new ArrayList<Order>();
+        for (Order ordered: orders) {
+            if (ordered.getStatus() == OrderStatus.QUEUED) {
+                newOrders.add(ordered);
+            }
+        }
+        return newOrders;
+    }
 
     /**
      * Removes a TextFlow containing an order from the orderGridPane. Called when the remove button is pressed
      */
     public void popFromOrderGrid() {
-        List<Order> orders = new ArrayList<>(salesHandler.getDisplayOrdersHashMap().values());
+        ArrayList<Order> orders = getOrders();
         Object checkForNull = removeOrderCombo.getValue();
         if (checkForNull != null) {
             int orderNum = (Integer) removeOrderCombo.getSelectionModel().getSelectedItem();
