@@ -21,6 +21,7 @@
                      <TableColumn fx:id="salePriceCol" prefWidth="134.0" text="Sale Price" />
                      <TableColumn fx:id="servingsCol" prefWidth="146.0" text="Number Servings" />
                      <TableColumn fx:id="ingredientsCol" prefWidth="151.0" text=" Ingredients" />
+                     <TableColumn fx:id="editButtonCol" prefWidth="148.0" text="Edit" />
                      <TableColumn fx:id="deleteButtonCol" prefWidth="148.0" text="Delete" />
 
                  </columns>

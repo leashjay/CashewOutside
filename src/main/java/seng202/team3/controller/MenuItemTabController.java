@@ -62,6 +62,9 @@ public class MenuItemTabController {
     private TableColumn<MenuItem, Button> ingredientsCol;
 
     @FXML
+    private TableColumn<MenuItem, Button> editButtonCol;
+
+    @FXML
     private TableColumn<MenuItem, Button> deleteButtonCol;
 
     @FXML
@@ -118,6 +121,11 @@ public class MenuItemTabController {
 
         ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
             ViewIngredientsController.display(MenuItem);
+        }));
+
+        editButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Edit", "button", menuItem -> {
+            loadAddOrEditMenuItemScreen("Edit Menu Item", menuItem);
+
         }));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", menuItem ->         {
