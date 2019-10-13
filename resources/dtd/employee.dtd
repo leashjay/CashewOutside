@@ -7,7 +7,4 @@
         <!ELEMENT salt (#PCDATA)>
         <!ATTLIST employee
                 hasAdminRights (true|false) #REQUIRED
-        >
-
-
-
+                >

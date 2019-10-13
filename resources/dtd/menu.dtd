@@ -1,23 +1,32 @@
-<!-- DTD for representing menu -->
-<!-- (C) Neville Churcher 2019 -->
-<!-- Note that the ingredient names need to match the 
-    corresponding codes in ingredient.dtd
--->
-<!ENTITY version "V0.01 (C) Neville Churcher 2019">
-<!ELEMENT menu (title, description, (item*))>
+<!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT menu (title, description, items)>
+        <!ELEMENT items (item*)>
 <!ATTLIST menu
-    from CDATA #IMPLIED
-    to CDATA #IMPLIED
->
+        type CDATA #IMPLIED
+        >
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT description (#PCDATA)>
-<!ELEMENT item (id, name, (ingredient*))>
-<!ATTLIST item type (beverage|cocktail|snack|asian|grill|main) #IMPLIED>
+        <!ELEMENT item (id, name, cost, ingredients)>
+        <!ATTLIST item
+                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED
+                serves CDATA "1"
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isGF (YES|NO|UNKNOWN) "UNKNOWN"
+                >
 <!ELEMENT id (#PCDATA)>
 <!ELEMENT name (#PCDATA)>
-<!ATTLIST name serves CDATA "1">
-<!ELEMENT ingredient (name)>
-<!ATTLIST ingredient
-    unit (ml|g|count) #REQUIRED
-    quantity CDATA #REQUIRED
->
+        <!ELEMENT cost (#PCDATA)>
+        <!ELEMENT ingredients (entry*)>
+        <!ELEMENT entry (key, value)>
+        <!ELEMENT key (code, quantity)>
+        <!ATTLIST key
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA "0"
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+        <!ELEMENT value (#PCDATA)>
