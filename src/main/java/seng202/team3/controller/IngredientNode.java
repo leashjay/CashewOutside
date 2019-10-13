@@ -87,15 +87,10 @@ public class IngredientNode extends VBox {
 
     private void setUpDelButton() {
         Button delButton = new Button("Delete");
-        System.out.println("1");
         delButton.setOnAction(e -> this.parent.removeIngredient(this));
-        System.out.println("2");
         delButton.setAlignment(Pos.BOTTOM_CENTER);
-        System.out.println("3");
         delButton.setPrefWidth(100);
-        System.out.println("4");
         delButton.setPrefHeight(height * 0.33);
-        System.out.println("5");
         this.getChildren().add(2, delButton);
     }
 

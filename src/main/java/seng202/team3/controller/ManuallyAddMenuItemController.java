@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
@@ -18,7 +19,9 @@ import seng202.team3.util.ThreeValueLogic;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Set;
@@ -63,6 +66,9 @@ public class ManuallyAddMenuItemController {
 
     @FXML
     private Button addIngredientButton;
+
+    @FXML
+    private Button addMenuItemButton;
 
     @FXML
     private Text unitText;
@@ -155,6 +161,10 @@ public class ManuallyAddMenuItemController {
         if (editing) {
             cost = menuItem.getCostPriceFromIngredients();
             updatePriceString();
+            ingredients = menuItem.getIngredients();
+            for (Ingredient ingredient: ingredients.keySet()){
+                addIngredientNode(ingredient, this);
+            }
         }
     }
 
@@ -169,7 +179,6 @@ public class ManuallyAddMenuItemController {
     }
 
     public void updateUnitText() {
-        System.out.println("in");
         if(stock.containsKey(ingredientKey.getText())) {
             Ingredient ingredient = stock.get(ingredientKey.getText());
             UnitType unit = ingredient.getUnit();
@@ -189,7 +198,6 @@ public class ManuallyAddMenuItemController {
             }
         } else {
             unitText.setText("");
-            System.out.println("not reading");
         }
     }
 
@@ -208,6 +216,11 @@ public class ManuallyAddMenuItemController {
         this.scrollHBox.getChildren().remove(node);
     }
 
+    /**
+     * checks if any flags can be put up by decrementing the counts of the applicable flags and
+     * if the count is zero put up the flags and sets boolean value
+     * double checks that flags are not negative for error prevention
+     */
     public void checkFlags(IngredientNode node) {
         if (node.getIngredient().getIsGlutenFree() == ThreeValueLogic.NO) {
             noGF -= 1;
@@ -238,11 +251,17 @@ public class ManuallyAddMenuItemController {
         }
     }
 
+    /**
+     * adds ingredient node with delete button to the scroll pane
+     */
     public void addIngredientNode(Ingredient ingredient, ManuallyAddMenuItemController parent) {
         getScrollHBox().getChildren().add(new IngredientNode(ingredient, parent));
     }
 
-
+    /**
+     * adds ingredient to a scroll pane and to the ingredients hashmap for the menuitem
+     * shows the error texts and aborts if invalid inputs are given
+     */
     public void addIngredient() {
         //get and check ingredient and quantity values
         if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
@@ -276,6 +295,10 @@ public class ManuallyAddMenuItemController {
         ingredientQuantity.setText("");
     }
 
+    /**
+     * sets the flags for the menuitem when a new ingredient is added and removes the flags if needed
+     * and increases the counts for items with the flags that apply
+     */
     public void setFlagsOnAdd(Ingredient ingredient) {
         if (ingredient.getIsGlutenFree() == ThreeValueLogic.NO) {
             noGF += 1;
@@ -294,6 +317,10 @@ public class ManuallyAddMenuItemController {
         }
     }
 
+    /**
+     * checks for errors on the attributes that apply to the individual ingredients
+     * @return if menuitem feilds have errors
+     */
     private boolean checkForErrorsIngredient() {
         boolean hasError = false;
         if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
@@ -306,6 +333,10 @@ public class ManuallyAddMenuItemController {
         return hasError;
     }
 
+    /**
+     * checks for errors on the attributes that apply to the menuitem as opposed to individual ingredients
+     * @return if menuitem feilds have errors
+     */
     private boolean checkForErrorsMenu() {
         boolean hasError = false;
 
@@ -322,10 +353,12 @@ public class ManuallyAddMenuItemController {
         return hasError;
     }
 
-    public void addMenuItem() {
-        System.out.println("\n===============================");
+    /**
+     * adds the menuitem from the data that the user has given
+     * closes window and updates the table
+     */
+    public void addMenuItem() throws JAXBException, IOException {
         if (checkForErrorsMenu() == false) {
-            System.out.println("really in");
             String id = idTextField.getText();
             String name = menuItemNameTextField.getText();
             ItemType itemType = itemTypeCheckBox.getValue();
@@ -333,14 +366,21 @@ public class ManuallyAddMenuItemController {
             if (editing) {
                 currentMenu.filterMenuItems().replace(id, menuItem);
             } else {
-                System.out.println("really really in");
                 currentMenu.filterMenuItems().put(id, menuItem);
             }
             idTextField.setText("");
             menuItemNameTextField.setText("");
             ingredientQuantity.setText("");
             ingredientKey.setText("");
-            System.out.println("done");
+
+            Stage stage = (Stage) addMenuItemButton.getScene().getWindow();
+
+            MenuItemTabController.getInstance().updateMenuItemTable();
+
+            stage.close();
+
+            BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
+
         }
 
     }
