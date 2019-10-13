@@ -193,12 +193,12 @@ public class LoadingDataSteps {
         filename = "./src/main/resources/data/testdata/testErrorIngredients.xml";
     }
 
-    @When("the {string} is used and an integrity error is found")
-    public void theIsUsedAndAnIntegrityErrorIsFound(String string) throws JAXBException {
-        AddXMLController.errorMessageList.clear();
-        inventory = testInventoryLoader.loadIngredientsData(filename);
-        throw new cucumber.api.PendingException();
-    }
+//    @When("the {string} is used and an integrity error is found")
+//    public void theIsUsedAndAnIntegrityErrorIsFound(String string) throws JAXBException {
+//        AddXMLController.errorMessageList.clear();
+//        inventory = testInventoryLoader.loadIngredientsData(filename);
+//        throw new cucumber.api.PendingException();
+//    }
 
     @Then("an error message is returned to the user")
     public void anErrorMessageIsReturnedToTheUser() {
