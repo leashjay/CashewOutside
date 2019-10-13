@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import seng202.team3.model.Ingredient;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
 import seng202.team3.parsing.MenuLoader;
@@ -32,6 +33,9 @@ import java.util.List;
  * Controller class for the Menu Item tab in the management section of the GUI
  */
 public class MenuItemTabController {
+
+    @FXML
+    private Button addManuallyButton;
 
     @FXML
     private TableView menuItemsTable;
@@ -140,10 +144,37 @@ public class MenuItemTabController {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        stage.setTitle("Add supplier");
+        stage.setTitle("Add Menu Item");
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
+
+    public void openAddMenuItemScreen(){
+        loadAddOrEditMenuItemScreen("Add Menu Item", null);
+    }
+
+    private void loadAddOrEditMenuItemScreen(String title, MenuItem menuItemToEdit) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/addmenuitem.fxml"));
+            Parent root = loader.load();
+            ManuallyAddMenuItemController controller = loader.getController();
+            if(menuItemToEdit != null){
+                controller.setParameters(menuItemToEdit);
+            }
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 350, 600));
+            stage.showAndWait();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     /**
      * Updates the MenuItemTable with the most recent data in the menumanager.

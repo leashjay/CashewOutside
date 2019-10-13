@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
+import seng202.team3.model.MenuItem;
 import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
@@ -72,6 +73,14 @@ public class ManuallyAddMenuItemController {
 
     @FXML
     private Text isVeganText;
+
+    private boolean editing = false;
+
+    public void setParameters(MenuItem menuItemToEdit){
+        editing = true;
+        //TOdo add editing functionality here
+    }
+
 
     /**
      * current inventory of ingredients for the business and its corresponding
