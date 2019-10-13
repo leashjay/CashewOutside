@@ -52,6 +52,18 @@
      -fx-text-fill: #ffffff;
 }
 
+#editButtonCol {
+    -fx-pref-width: 70;
+}
+
+#deleteButtonCol {
+    -fx-pref-width: 100;
+}
+
+#ingredientsCol {
+    -fx-pref-width: 120;
+}
+
 #menuItemGrid {
     -fx-cell-size: 225, 200;
     -fx-background-color: #bdbdbd;
