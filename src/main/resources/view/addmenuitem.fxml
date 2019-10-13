@@ -99,7 +99,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
                <children>
-                  <TextField fx:id="ingredientKey" onInputMethodTextChanged="#updateUnitText" promptText="Ingredient ID">
+                  <TextField fx:id="ingredientKey" onInputMethodTextChanged="#updateUnitText" onKeyPressed="#updateUnitText" onKeyTyped="#updateUnitText" onMouseClicked="#updateUnitText" onMouseEntered="#updateUnitText" onMouseExited="#updateUnitText" onMouseMoved="#updateUnitText" promptText="Ingredient ID">
                      <VBox.margin>
                         <Insets left="10.0" right="20.0" />
                      </VBox.margin>
@@ -121,7 +121,7 @@
             </Text>
             <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="155.0" GridPane.rowIndex="3">
                <children>
-                  <TextField fx:id="ingredientQuantity" prefHeight="26.0" prefWidth="145.0" promptText="Quantity">
+                  <TextField fx:id="ingredientQuantity" onMouseClicked="#updateUnitText" onMouseEntered="#updateUnitText" prefHeight="26.0" prefWidth="145.0" promptText="Quantity">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -152,7 +152,7 @@
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
                <content>
-                  <HBox prefHeight="92.0" prefWidth="200.0" />
+                  <HBox fx:id="scrollHBox" prefHeight="92.0" prefWidth="200.0" />
                </content>
             </ScrollPane>
             <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients" GridPane.rowIndex="4">
@@ -210,7 +210,7 @@
             <Text fx:id="markupPercentErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR: Invalid Mark up" visible="false" />
          </children>
       </VBox>
-      <Text fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" text="\$00.00" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="TOP">
+      <Text fx:id="costString" fill="#1976d2" strokeType="OUTSIDE" strokeWidth="0.0" text="\$00.00" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" right="20.0" top="4.0" />
          </GridPane.margin>

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
@@ -18,6 +19,7 @@ import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.XmlElement;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -74,17 +76,15 @@ public class ManuallyAddMenuItemController {
     @FXML
     private Text isVeganText;
 
+    @FXML
+    private Text costString;
+
+    @FXML
+    private HBox scrollHBox;
+
+    private MenuItem menuItem;
+
     private boolean editing = false;
-
-    public void setParameters(MenuItem menuItemToEdit){
-        editing = true;
-        menuItemNameTextField.setText(menuItemToEdit.getName());
-        idTextField.setText(menuItemToEdit.getId());
-        itemTypeCheckBox.setValue(menuItemToEdit.getType());
-        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
-
-    }
-
 
     /**
      * current inventory of ingredients for the business and its corresponding
@@ -108,6 +108,23 @@ public class ManuallyAddMenuItemController {
      */
     private float cost;
 
+    public HBox getScrollHBox() {
+        return scrollHBox;
+    }
+
+    public float getQuantityText() {
+        return Float.parseFloat(ingredientQuantity.getText());
+    }
+
+    public void setParameters(MenuItem menuItemToEdit){
+        editing = true;
+        menuItem = menuItemToEdit;
+        menuItemNameTextField.setText(menuItemToEdit.getName());
+        idTextField.setText(menuItemToEdit.getId());
+        itemTypeCheckBox.setValue(menuItemToEdit.getType());
+        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
+
+    }
 
     public void initialize() {
         Set<String> possibleKeys = truckInventory.getIngredients().keySet();
@@ -121,10 +138,19 @@ public class ManuallyAddMenuItemController {
         itemTypeCheckBox.getItems().add(ItemType.OTHER);
         itemTypeCheckBox.getItems().add(ItemType.SNACK);
 
-        markupPercent.setText("120");
+        markupPercent.setText("1.1");
+        if (editing) {
+            cost = menuItem.getCostPriceFromIngredients();
+            updateCostString();
+        }
+    }
+
+    public void calculateServings() {
+
     }
 
     public void updateUnitText() {
+        System.out.println("in");
         if(stock.containsKey(ingredientKey.getId())) {
             Ingredient ingredient = stock.get(ingredientKey.getText());
             UnitType unit = ingredient.getUnit();
@@ -144,7 +170,18 @@ public class ManuallyAddMenuItemController {
             }
         } else {
             unitText.setText("");
+            System.out.println("not reading");
         }
+    }
+
+    public void updateCostString() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String numberAsString = decimalFormat.format(cost);
+        costString.setText("$" + numberAsString);
+    }
+
+    public void removeIngredient() {
+        return;
     }
 
 
@@ -156,7 +193,7 @@ public class ManuallyAddMenuItemController {
         if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
             return;
         }
-        float quantity = Float.parseFloat(ingredientQuantity.getText());
+        float quantity = getQuantityText();
         String id = ingredientKey.getText();
         Ingredient ingredient;
         //if id is valid
@@ -173,6 +210,10 @@ public class ManuallyAddMenuItemController {
             if (ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
                 isVegetarianText.setVisible(false);
             }
+
+            //setting cost string
+            cost += quantity * ingredient.getCost();
+            updateCostString();
 
             ingredients.put(ingredient, quantity);
 
