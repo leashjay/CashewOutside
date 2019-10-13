@@ -10,7 +10,6 @@ import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
 import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
-import seng202.team3.model.MenuItem;
 import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.ThreeValueLogic;
@@ -18,6 +17,7 @@ import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.XmlElement;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -74,17 +74,8 @@ public class ManuallyAddMenuItemController {
     @FXML
     private Text isVeganText;
 
-    private boolean editing = false;
-
-    public void setParameters(MenuItem menuItemToEdit){
-        editing = true;
-        menuItemNameTextField.setText(menuItemToEdit.getName());
-        idTextField.setText(menuItemToEdit.getId());
-        itemTypeCheckBox.setValue(menuItemToEdit.getType());
-        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
-
-    }
-
+    @FXML
+    private Text costString;
 
     /**
      * current inventory of ingredients for the business and its corresponding
@@ -173,6 +164,12 @@ public class ManuallyAddMenuItemController {
             if (ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
                 isVegetarianText.setVisible(false);
             }
+
+            //setting cost string
+            cost += quantity * ingredient.getCost();
+            DecimalFormat decimalFormat = new DecimalFormat("#.00");
+            String numberAsString = decimalFormat.format(cost);
+            costString.setText("$" + numberAsString);
 
             ingredients.put(ingredient, quantity);
 
