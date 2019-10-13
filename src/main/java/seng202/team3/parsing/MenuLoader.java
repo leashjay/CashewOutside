@@ -79,6 +79,7 @@ public class MenuLoader {
      * @return instance of Menu class
      */
     public Menu loadMenuData(String fileName) throws JAXBException {
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
             Unmarshaller unmarshaller = context.createUnmarshaller();

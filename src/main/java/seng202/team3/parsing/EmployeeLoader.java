@@ -59,6 +59,7 @@ public class EmployeeLoader {
      * @return instance of EmployeeHandler class
      */
     public EmployeeHandler loadEmployeeData(String fileName) throws JAXBException {
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
             Unmarshaller unmarshaller = context.createUnmarshaller();

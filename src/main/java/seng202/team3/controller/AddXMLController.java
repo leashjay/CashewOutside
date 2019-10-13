@@ -87,6 +87,7 @@ public class AddXMLController {
             Paths.get(fileString);
             inventory.addIngredientsFromXML(fileString);
             BusinessApp.getBusiness().exportInventoryAsXML(BusinessApp.ingredientsXML);
+            BusinessApp.getBusiness().getMenuManager().calculateServingForMenuItems(inventory);
         } catch (JAXBException jaxbe) {
             errorMessageList.add(jaxbe.getMessage());
         } catch (NullPointerException npe) {

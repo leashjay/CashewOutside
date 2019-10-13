@@ -84,6 +84,7 @@ public class SalesLoader {
      * @return Instance of SalesHandler
      */
     public SalesHandler loadSalesData(String fileName) throws JAXBException{
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {
