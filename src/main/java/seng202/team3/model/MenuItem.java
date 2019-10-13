@@ -262,6 +262,15 @@ public class MenuItem {
         return isVegetarian;
     }
 
+
+    /**
+     * Returns the markup which the menu item has
+     * @return the markup which the menu item has.
+     */
+    public float getMarkup(){
+        return markup;
+    }
+
     /**
      * Method to set the new markup of a menu Item
      * @param newMarkup a float showing the decimal value we use for markup e.g 1.1 for 10% markup
@@ -297,7 +306,7 @@ public class MenuItem {
     public String getRecipeAsString(){
         String ingredientQuantityString = "";
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
-            ingredientQuantityString += entry.getKey().getName() + ": " +  entry.getValue() + "\n";
+            ingredientQuantityString += entry.getKey().getCode() + ": " +  entry.getValue() + "\n";
         }
         return ingredientQuantityString;
     }
@@ -398,5 +407,7 @@ public class MenuItem {
         }
         return amountRequired;
     }
+
+
 }
 

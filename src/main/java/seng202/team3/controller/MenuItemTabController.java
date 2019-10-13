@@ -119,7 +119,7 @@ public class MenuItemTabController {
             return new SimpleStringProperty("$" + Double.valueOf(twoDForm.format(costPrice)));
         });
 
-        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients ↓", "ingredients-button", MenuItem -> {
+        ingredientsCol.setCellFactory(ActionButtonTableCell.forTableColumn("Ingredients", "ingredients-button", MenuItem -> {
             ViewIngredientsController.display(MenuItem);
         }));
 

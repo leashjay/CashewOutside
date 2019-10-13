@@ -78,7 +78,11 @@ public class ManuallyAddMenuItemController {
 
     public void setParameters(MenuItem menuItemToEdit){
         editing = true;
-        //TOdo add editing functionality here
+        menuItemNameTextField.setText(menuItemToEdit.getName());
+        idTextField.setText(menuItemToEdit.getId());
+        itemTypeCheckBox.setValue(menuItemToEdit.getType());
+        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
+
     }
 
 
