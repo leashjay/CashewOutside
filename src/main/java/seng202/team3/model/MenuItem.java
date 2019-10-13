@@ -155,6 +155,8 @@ public class MenuItem {
      * @return the sales price of a menu item
      */
     public float getSalePrice(){
+        // round the sale price to 2 dp
+        salePrice = (float) (Math.round(salePrice * 100.0) / 100.0);
         return salePrice;
     }
 
