@@ -12,6 +12,8 @@ import seng202.team3.model.Inventory;
 import seng202.team3.model.Menu;
 import seng202.team3.util.InputValidationHelper;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.ThreeValueLogic;
+import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -62,12 +64,21 @@ public class ManuallyAddMenuItemController {
     @FXML
     private Text unitText;
 
+    @FXML
+    private Text isGlutenFreeText;
+
+    @FXML
+    private Text isVegetarianText;
+
+    @FXML
+    private Text isVeganText;
+
     /**
      * current inventory of ingredients for the business and its corresponding
      * hash map storing it all
      */
     Inventory truckInventory = BusinessApp.getBusiness().getTruck().getInventory();
-    HashMap<String, Ingredient> stock;
+    HashMap<String, Ingredient> stock = truckInventory.getIngredients();
 
     /**
      * current menu
@@ -78,6 +89,11 @@ public class ManuallyAddMenuItemController {
      * List of ingredients and their quantities needed to make the menu item
      */
     private HashMap<Ingredient, Float> ingredients = new HashMap<>();
+
+    /**
+     * cost of the menu item
+     */
+    private float cost;
 
 
     public void initialize() {
@@ -96,26 +112,65 @@ public class ManuallyAddMenuItemController {
     }
 
     public void updateUnitText() {
-
+        if(stock.containsKey(ingredientKey.getId())) {
+            Ingredient ingredient = stock.get(ingredientKey.getText());
+            UnitType unit = ingredient.getUnit();
+            switch (unit) {
+                case GRAM:
+                    unitText.setText("grams");
+                    break;
+                case ML:
+                    unitText.setText("mL");
+                    break;
+                case COUNT:
+                    unitText.setText("units");
+                    break;
+                case UNKNOWN:
+                    unitText.setText("");
+                    break;
+            }
+        } else {
+            unitText.setText("");
+        }
     }
 
-    public void addIngredient() {
-        try {
-            float quantity = Float.parseFloat(ingredientQuantity.getText());
-        }
-        catch (NumberFormatException nfe)
-        {
-            ingredientQuantityErrorText.setVisible(true);
-        }
 
+    public void addIngredient() {
+        //get and check ingredient and quantity values
+        if (InputValidationHelper.checkEmpty(ingredientKey, ingredientKeyErrorText)) {
+            return;
+        }
+        if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
+            return;
+        }
+        float quantity = Float.parseFloat(ingredientQuantity.getText());
         String id = ingredientKey.getText();
         Ingredient ingredient;
+        //if id is valid
         if (stock.containsKey(id)) {
             ingredient = stock.get(id);
-            // TODO: either seperate the ui scroll pane of ingredient and hash map or have them seperated
+
+            //set flags
+            if (ingredient.getIsGlutenFree() == ThreeValueLogic.UNKNOWN || ingredient.getIsGlutenFree() == ThreeValueLogic.NO) {
+                isGlutenFreeText.setVisible(false);
+            }
+            if (ingredient.getIsVegan() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegan() == ThreeValueLogic.NO) {
+                isVeganText.setVisible(false);
+            }
+            if (ingredient.getIsVegetarian() == ThreeValueLogic.UNKNOWN || ingredient.getIsVegetarian() == ThreeValueLogic.NO) {
+                isVegetarianText.setVisible(false);
+            }
+
+            ingredients.put(ingredient, quantity);
+
         } else {
             ingredientKeyErrorText.setVisible(true);
+            return;
         }
+
+        //reset text fields
+        ingredientKey.setText("");
+        ingredientQuantity.setText("");
     }
 
 
