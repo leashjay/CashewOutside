@@ -111,7 +111,7 @@ public class BusinessApp extends Application {
     public static void loadMainPage() throws IOException {
         Parent root = FXMLLoader.load(BusinessApp.class.getResource("/view/main.fxml"));
         primaryStage.setTitle("Cashew Outside");
-        primaryStage.setScene(new Scene(root, 800, 300));
+        primaryStage.setScene(new Scene(root, 1000, 800));
     }
 
     /**
