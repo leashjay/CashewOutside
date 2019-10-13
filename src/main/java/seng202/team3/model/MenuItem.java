@@ -148,7 +148,7 @@ public class MenuItem {
     public float calculateSalePrice() {
         totalCost = getCostPriceFromIngredients();
         // round the sale price to 2dp
-        return (float) ((Math.round(totalCost * markup)) / 100.0);
+        return (float) ((Math.round(totalCost * markup * 100.0)) / 100.0);
     }
 
     /**
