@@ -31,7 +31,7 @@ public class MenuLoader {
             "        <!ELEMENT description (#PCDATA)>\n" +
             "        <!ELEMENT item (id, name, cost, ingredients)>\n" +
             "        <!ATTLIST item\n" +
-            "                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED\n" +
+            "                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN|OTHER) #IMPLIED\n" +
             "                serves CDATA \"1\"\n" +
             "                isVeg (YES|NO|UNKNOWN) \"NO\"\n" +
             "                isVegan (YES|NO|UNKNOWN) \"NO\"\n" +
