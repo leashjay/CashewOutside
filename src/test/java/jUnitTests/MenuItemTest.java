@@ -94,7 +94,7 @@ public class MenuItemTest {
         CAV.calculateServing(testInventory);
         LemCan.calculateServing(testInventory);
         assertEquals(10, LemCan.getServings());
-        assertEquals(1, CAV.getServings());
+        assertEquals(0, CAV.getServings());
     }
 
 

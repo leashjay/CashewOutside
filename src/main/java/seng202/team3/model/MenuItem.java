@@ -342,13 +342,15 @@ public class MenuItem {
                 String entryCode = entry.getKey().getCode();
                 quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
                 //System.out.println(entry.getKey().getCode() + ": " + quantities.values());
-                if (quantities.get(entryCode) <= 0f) {
+                if (quantities.get(entryCode) < 0f) {
                     numServings += 0;
                     outOfStock = true;
                     break;
                 }
             }
-            numServings += 1;
+            if (!outOfStock) {
+                numServings += 1;
+            }
         }
     }
 

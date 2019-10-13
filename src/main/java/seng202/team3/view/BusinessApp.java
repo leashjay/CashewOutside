@@ -62,6 +62,7 @@ public class BusinessApp extends Application {
         try {
             checkBusinessDay();
             business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML, truckXML);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,8 +74,10 @@ public class BusinessApp extends Application {
      * Backup plan to load default XML file
      */
     public static void checkBusinessDay() {
+        Boolean foundFiles = false;
         dateOperation = LocalDate.now();
         alterXMLPath();
+
         File ingredientsFile = new File(ingredientsXML);
         File menuFile = new File(menuXML);
         File salesFile = new File(salesXML);
