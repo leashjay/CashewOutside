@@ -77,27 +77,26 @@ public class BusinessApp extends Application {
         Boolean foundFiles = false;
         dateOperation = LocalDate.now();
         alterXMLPath();
-
-        File ingredientsFile = new File(ingredientsXML);
-        File menuFile = new File(menuXML);
-        File salesFile = new File(salesXML);
-        File suppliersFile = new File(suppliersXML);
-        File employeeFile = new File(employeeXML);
-        File truckFile = new File(truckXML);
-        if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
-            dateOperation = LocalDate.now().minusDays(1);
-            alterXMLPath();
-            ingredientsFile = new File(ingredientsXML);
-            menuFile = new File(menuXML);
-            salesFile = new File(salesXML);
-            suppliersFile = new File(suppliersXML);
-            employeeFile = new File(employeeXML);
-            truckFile = new File(truckXML);
+        Integer numOfDays = 365;
+        Integer i = 1;
+        while (!foundFiles && i < numOfDays) {
+            File ingredientsFile = new File(ingredientsXML);
+            File menuFile = new File(menuXML);
+            File salesFile = new File(salesXML);
+            File suppliersFile = new File(suppliersXML);
+            File employeeFile = new File(employeeXML);
+            File truckFile = new File(truckXML);
             if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
-                alterXMLPathToOriginal();
+                dateOperation = LocalDate.now().minusDays(1);
+                alterXMLPath();
+            } else {
+                foundFiles = true;
             }
+            i += 1;
         }
-
+        if (!foundFiles) {
+            alterXMLPathToOriginal();
+        }
     }
 
     /**
