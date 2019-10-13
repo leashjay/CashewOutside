@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import org.controlsfx.control.textfield.TextFields;
 import javafx.scene.text.Text;
 import seng202.team3.model.Ingredient;
@@ -75,22 +76,15 @@ public class ManuallyAddMenuItemController {
     @FXML
     private Text isVeganText;
 
+    @FXML
+    private Text costString;
+
+    @FXML
+    private HBox scrollHBox;
+
     private MenuItem menuItem;
 
     private boolean editing = false;
-
-    public void setParameters(MenuItem menuItemToEdit){
-        editing = true;
-        menuItem = menuItemToEdit;
-        menuItemNameTextField.setText(menuItemToEdit.getName());
-        idTextField.setText(menuItemToEdit.getId());
-        itemTypeCheckBox.setValue(menuItemToEdit.getType());
-        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
-
-    }
-
-    @FXML
-    private Text costString;
 
     /**
      * current inventory of ingredients for the business and its corresponding
@@ -113,6 +107,24 @@ public class ManuallyAddMenuItemController {
      * cost of the menu item
      */
     private float cost;
+
+    public HBox getScrollHBox() {
+        return scrollHBox;
+    }
+
+    public float getQuantityText() {
+        return Float.parseFloat(ingredientQuantity.getText());
+    }
+
+    public void setParameters(MenuItem menuItemToEdit){
+        editing = true;
+        menuItem = menuItemToEdit;
+        menuItemNameTextField.setText(menuItemToEdit.getName());
+        idTextField.setText(menuItemToEdit.getId());
+        itemTypeCheckBox.setValue(menuItemToEdit.getType());
+        markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
+
+    }
 
     public void initialize() {
         Set<String> possibleKeys = truckInventory.getIngredients().keySet();
@@ -168,6 +180,10 @@ public class ManuallyAddMenuItemController {
         costString.setText("$" + numberAsString);
     }
 
+    public void removeIngredient() {
+        return;
+    }
+
 
     public void addIngredient() {
         //get and check ingredient and quantity values
@@ -177,7 +193,7 @@ public class ManuallyAddMenuItemController {
         if (InputValidationHelper.isValidFloat(ingredientQuantity, ingredientQuantityErrorText)) {
             return;
         }
-        float quantity = Float.parseFloat(ingredientQuantity.getText());
+        float quantity = getQuantityText();
         String id = ingredientKey.getText();
         Ingredient ingredient;
         //if id is valid

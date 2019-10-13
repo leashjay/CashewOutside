@@ -34,8 +34,6 @@ public class MenuItemNode extends VBox {
         setupCost();
         setUpButtons();
         updateLabels();
-
-
     }
     /**
      * Updates the quantity Label and the costValue Label
