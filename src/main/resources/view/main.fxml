@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -21,14 +22,6 @@
         <RowConstraints maxHeight="560.6666666666666" minHeight="5.0" prefHeight="537.6666768391927" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Text fx:id="cashewBrandTxt" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Cashew Outside" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
-            <GridPane.margin>
-                <Insets />
-            </GridPane.margin>
-         <font>
-            <Font size="68.0" />
-         </font>
-        </Text>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
               <ImageView id="salesImg" accessibleHelp="Sales Application" accessibleText="Sales Application" fitHeight="200.0" fitWidth="200.0" onMousePressed="#salesButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
@@ -80,14 +73,20 @@
             </Text>
          </children>
       </VBox>
-        <ImageView id="cashewBrandImg" fitHeight="100.0" fitWidth="100.0" opacity="0.56" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-            <image>
-                <Image url="@../images/cashewBrand.jpg" />
-            </image>
-         <GridPane.margin>
-            <Insets top="180.0" />
-         </GridPane.margin>
-        </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3">
+         <children>
+              <Text fx:id="cashewBrandTxt" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Cashew Outside">
+               <font>
+                  <Font size="68.0" />
+               </font>
+              </Text>
+              <ImageView id="cashewBrandImg" fitHeight="100.0" fitWidth="100.0" opacity="0.56" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../images/cashewBrand.jpg" />
+                  </image>
+              </ImageView>
+         </children>
+      </HBox>
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
