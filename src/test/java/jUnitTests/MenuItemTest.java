@@ -3,16 +3,20 @@ package jUnitTests;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team3.model.Ingredient;
+import seng202.team3.model.Inventory;
+import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
+import seng202.team3.parsing.InventoryLoader;
+import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.ItemType;
 import seng202.team3.util.UnitType;
 import seng202.team3.view.BusinessApp;
 
+import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class MenuItemTest {
 
@@ -71,6 +75,26 @@ public class MenuItemTest {
         Float finalQtt = BusinessApp.getBusiness().getTruck().getInventory().getIngredients().get("TSauce").getQuantity();
         assertEquals(initialQtt - 10f, finalQtt);
 
+    }
+
+
+    /**
+     * Test calculateServing method
+     *
+     * @throws JAXBException
+     */
+    @Test
+    public void calculateServingTest() throws JAXBException {
+        InventoryLoader inventoryLoader = new InventoryLoader();
+        Inventory testInventory = inventoryLoader.loadIngredientsData("./src/main/resources/data/Ingredients.xml");
+        MenuLoader menuLoader = new MenuLoader();
+        Menu testMenu = menuLoader.loadMenuData("./src/main/resources/data/SampleMenu.xml");
+        MenuItem CAV = testMenu.getMenuItem("CAV");
+        MenuItem LemCan = testMenu.getMenuItem("Lem");
+        CAV.calculateServing(testInventory);
+        LemCan.calculateServing(testInventory);
+        assertEquals(10, LemCan.getServings());
+        assertEquals(1, CAV.getServings());
     }
 
 

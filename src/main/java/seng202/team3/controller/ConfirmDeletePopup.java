@@ -111,7 +111,4 @@ public class ConfirmDeletePopup {
         }
     }
 
-    public static void changeText(String message) {
-        text = new Text("\n\n    " + message);
-    }
 }

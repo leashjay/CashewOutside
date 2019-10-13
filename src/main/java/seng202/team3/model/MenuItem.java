@@ -313,11 +313,11 @@ public class MenuItem {
 
     /**
      * Get HashMap of ingredient and their corresponding quantity in inventory
-     *
+     * Helper function for calculateServing method
      * @param inventory truck Inventory
      * @return a hashmap of the ingredients with their corresponding stocks
      */
-    public HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
+    private HashMap<String, Float> getIngredientWithQuantityInStock(Inventory inventory) {
         HashMap<String, Float> quantities = new HashMap<String, Float>();
         for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
             if (inventory.getIngredients().containsKey(entry.getKey().getCode())) {
@@ -335,17 +335,17 @@ public class MenuItem {
      */
     public void calculateServing(Inventory inventory) {
         numServings = 0;
-
+        Boolean outOfStock = false;
         HashMap<String, Float> quantities = getIngredientWithQuantityInStock(inventory);
-
-        while (!quantities.values().contains(0f)) {
+        while (!outOfStock) {
             for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
                 String entryCode = entry.getKey().getCode();
-                if (quantities.get(entryCode) == 0f) {
-                    numServings = 0;
+                quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
+                //System.out.println(entry.getKey().getCode() + ": " + quantities.values());
+                if (quantities.get(entryCode) <= 0f) {
+                    numServings += 0;
+                    outOfStock = true;
                     break;
-                } else {
-                    quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
                 }
             }
             numServings += 1;
