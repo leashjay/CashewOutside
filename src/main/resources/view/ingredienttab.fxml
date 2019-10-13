@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="ingredientTabAnchorPane" maxHeight="-Infinity"
-            maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="seng202.team3.controller.IngredientTabController">
-    <children>
-        <VBox prefHeight="600.0" prefWidth="1000.0">
+    <center>
+        <VBox prefHeight="600.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
               <TableView fx:id="ingredientTable" maxWidth="-Infinity" prefHeight="650.0" prefWidth="990.0">
                   <columns>
@@ -28,31 +27,31 @@
                   <Insets left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
               </TableView>
-             <HBox prefHeight="100.0" prefWidth="1000.0">
-                 <children>
-                     <Button fx:id="addManuallyButton" mnemonicParsing="false" onAction="#openAddIngredientScreen"
-                             text="Add manually">
-                         <HBox.margin>
-                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                         </HBox.margin>
-                     </Button>
-                     <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddIngredientXMLScreen"
-                             text="Add from XML">
-                         <HBox.margin>
-                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                         </HBox.margin>
-                     </Button>
-                     <Button fx:id="exportToXMLButton" minHeight="-Infinity" mnemonicParsing="false"
-                             onAction="#exportIngredientsXML" prefWidth="110.0" text="Export">
-                         <HBox.margin>
-                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                         </HBox.margin>
-                     </Button>
-                 </children>
-             </HBox>
          </children>
         </VBox>
-
-
-    </children>
-</AnchorPane>
+    </center>
+    <bottom>
+        <HBox prefHeight="100.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="addManuallyButton" mnemonicParsing="false" onAction="#openAddIngredientScreen"
+                        text="Add manually">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="addFromXMLButton" mnemonicParsing="false" onAction="#openAddIngredientXMLScreen"
+                        text="Add from XML">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="exportToXMLButton" minHeight="-Infinity" mnemonicParsing="false"
+                        onAction="#exportIngredientsXML" prefWidth="110.0" text="Export">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -3,6 +3,26 @@
     -fx-font-size: 18;
 }
 
+#exportToXMLButton {
+    -fx-background-color: #2196F3;
+    -fx-font-size: 18;
+}
+
+#exportAsXMLButton {
+    -fx-background-color: #2196F3;
+    -fx-font-size: 18;
+}
+
+#exportToXMLButton {
+    -fx-background-color: #2196F3;
+    -fx-font-size: 18;
+}
+
+#addFromXMLButton {
+    -fx-background-color: #8BC34A;
+    -fx-font-size: 18;
+}
+
 #addFromXMLButton{
     -fx-background-color: #8BC34A;
     -fx-font-size: 18;
