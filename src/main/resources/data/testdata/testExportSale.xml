@@ -28,7 +28,7 @@
          <orderStatus>COMPLETE</orderStatus>
          <orderId>1</orderId>
          <customerName></customerName>
-          <orderCost>0.0</orderCost>
+         <orderCost>0.0</orderCost>
          <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
@@ -40,7 +40,7 @@
          <orderStatus>COOKING</orderStatus>
          <orderId>2</orderId>
          <customerName></customerName>
-          <orderCost>0.0</orderCost>
+         <orderCost>0.0</orderCost>
          <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
          <itemsOrdered>
             <id>KimchiStew</id>
