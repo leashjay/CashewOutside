@@ -25,7 +25,7 @@ public class CustomerChangeAlert {
         window.setMinWidth(200);
 
         Label label = new Label();
-        label.setText("Change to give: $" + change);
+        label.setText(String.format("Change to give: $%.2f", change));
         Button closeButton = new Button("Ok");
         closeButton.setOnAction(e -> window.close());
 
