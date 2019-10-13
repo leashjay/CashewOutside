@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE inventory [
+        <!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT inventory (description, ingredients)>
+        <!ELEMENT ingredients ((ingredient*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT ingredient (code, name, quantity)>
+        <!ATTLIST ingredient
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                isVegan (YES|NO|UNKNOWN) "UNKNOWN"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA #REQUIRED
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
+        ]>
+
+<inventory>
+    <description>Our ingredients in no particular order (incomplete).</description>
+    <ingredients>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.007">
+            <code>TSauce</code>
+            <name>Tomato sauce</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="NO" cost="1.0">
+            <code>BBun</code>
+            <name>Hamburger bun</name>
+            <quantity>30.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.007">
+            <code>Cream</code>
+            <name>Cream</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.004">
+            <code>RegMilk</code>
+            <name>Milk, homogenised</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.005">
+            <code>TrimMilk</code>
+            <name>Trim milk</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="4.5">
+            <code>Cheese</code>
+            <name>Cheddar cheese slice</name>
+            <quantity>30.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.0183">
+            <code>Bacon</code>
+            <name>Bacon, shoulder</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="2.0">
+            <code>LemCan</code>
+            <name>Lemonade, 300ml Can</name>
+            <quantity>27.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.026">
+            <code>CStock</code>
+            <name>Chicken stock</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="YES" isgf="NO" cost="0.04">
+            <code>Salt</code>
+            <name>Salt</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.01">
+            <code>Lettuce</code>
+            <name>Sliced Iceberg lettuce</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.013">
+            <code>RedWine</code>
+            <name>Red wine, 1l cask</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="3.0">
+            <code>BPat</code>
+            <name>Beef patty</name>
+            <quantity>30.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.01">
+            <code>OlOil</code>
+            <name>Olive oil, extra virgin</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.001">
+            <code>Rice</code>
+            <name>Long grain rice</name>
+            <quantity>1600.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="YES" cost="0.76">
+            <code>Beetroot</code>
+            <name>Beetroot slice</name>
+            <quantity>45.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.4">
+            <code>Herbs</code>
+            <name>Mixed herbs, dried</name>
+            <quantity>750.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.002">
+            <code>Onion</code>
+            <name>Diced onion</name>
+            <quantity>850.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.032">
+            <code>Brandy</code>
+            <name>Brandy, Courvoisier, 1l</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.022">
+            <code>Cassis</code>
+            <name>Torlesse Cassis, 750ml</name>
+            <quantity>2250.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.002">
+            <code>Flour</code>
+            <name>Flour, plain</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.05">
+            <code>Mayo</code>
+            <name>Eater plain Mayonnaise</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.06">
+            <code>Vodka</code>
+            <name>Vodka, Ivan's special brew, 1l</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.002">
+            <code>Oil</code>
+            <name>Canola oil</name>
+            <quantity>2120.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.026">
+            <code>Shrooms</code>
+            <name>Button mushrooms, sliced</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.012">
+            <code>OSauce</code>
+            <name>Oyster Sauce</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.042">
+            <code>Choc</code>
+            <name>Smith's Drinking chocolate</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.1">
+            <code>Chicken</code>
+            <name>Chicken breast, diced</name>
+            <quantity>950.0</quantity>
+        </ingredient>
+        <ingredient unit="GRAM" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.053">
+            <code>Garlic</code>
+            <name>Garlic, sliced</name>
+            <quantity>1500.0</quantity>
+        </ingredient>
+        <ingredient unit="COUNT" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.065">
+            <code>Bay</code>
+            <name>Bay leaf, dried</name>
+            <quantity>30.0</quantity>
+        </ingredient>
+        <ingredient unit="ML" isVeg="NO" isVegan="NO" isgf="UNKNOWN" cost="0.005">
+            <code>Soy</code>
+            <name>Soy sauce, dark</name>
+            <quantity>1370.0</quantity>
+        </ingredient>
+    </ingredients>
+</inventory>
