@@ -6,60 +6,88 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MainController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MainController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="231.0" minHeight="30.0" prefHeight="231.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="128.0" minHeight="5.0" prefHeight="59.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="560.6666666666666" minHeight="10.0" prefHeight="250.99998982747397" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="560.6666666666666" minHeight="5.0" prefHeight="537.6666768391927" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ImageView id="salesImg" accessibleHelp="Sales Application" accessibleText="Sales Application" fitHeight="200.0" fitWidth="200.0" onMousePressed="#salesButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../images/sales.png" />
-            </image>
-        </ImageView>
-        <ImageView id="kitchenImg" fx:id="stockBtn" fitHeight="200.0" fitWidth="200.0" onMousePressed="#kitchenButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../images/kitchen.png" />
-            </image>
-        </ImageView>
-        <ImageView id="ManageImg" accessibleHelp="Management Application" accessibleText="Management Application" fitHeight="200.0" fitWidth="200.0" onMousePressed="#managementButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../images/management.png" />
-            </image>
-        </ImageView>
-        <ImageView id="cashewBrandImg" fitHeight="100.0" fitWidth="50.0" opacity="0.56" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-            <image>
-                <Image url="@../images/cashewBrand.jpg" />
-            </image>
-        </ImageView>
-        <Text fx:id="cashewBrandTxt" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="cashewOutside" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+        <Text fx:id="cashewBrandTxt" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Cashew Outside" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
+         <font>
+            <Font size="68.0" />
+         </font>
         </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Management" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Text>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+         <children>
+              <ImageView id="salesImg" accessibleHelp="Sales Application" accessibleText="Sales Application" fitHeight="200.0" fitWidth="200.0" onMousePressed="#salesButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                  <image>
+                      <Image url="@../images/sales.png" />
+                  </image>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+              </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+              <ImageView id="kitchenImg" fx:id="stockBtn" fitHeight="200.0" fitWidth="200.0" onMousePressed="#kitchenButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                  <image>
+                      <Image url="@../images/kitchen.png" />
+                  </image>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+              </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+              <ImageView id="ManageImg" accessibleHelp="Management Application" accessibleText="Management Application" fitHeight="200.0" fitWidth="200.0" onMousePressed="#managementButtonPressed" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                  <image>
+                      <Image url="@../images/management.png" />
+                  </image>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+              </ImageView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Management">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+        <ImageView id="cashewBrandImg" fitHeight="100.0" fitWidth="100.0" opacity="0.56" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+            <image>
+                <Image url="@../images/cashewBrand.jpg" />
+            </image>
+         <GridPane.margin>
+            <Insets top="180.0" />
+         </GridPane.margin>
+        </ImageView>
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
