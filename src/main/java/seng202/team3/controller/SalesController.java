@@ -276,7 +276,7 @@ public class SalesController {
             GridPane.setConstraints(newButton, column, row, 1, 1, HPos.CENTER, VPos.CENTER);
             newButton.setText(menuItem.getName());
             newButton.setOnAction(e -> addToCurrentOrder(menuItem)); // lambda function
-            if (hasEnoughStock(menuItem)) {
+            if (menuItem.getServings() > 0) {
                 newButton.setStyle("-fx-background-radius: 10;-fx-border-color: #273746;-fx-border-radius: 10;" +
                         "-fx-pref-width: 100;-fx-pref-height: 100;-fx-background-color: #00bcd4;-fx-wrap-text: true;");
             } else {

@@ -86,6 +86,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
+
     /**
      * Constructor for MenuItem class
      *
@@ -102,6 +103,7 @@ public class MenuItem {
         this.numServings = 1;
         this.markup = (float) 1.1;
     }
+
 
     /**
      * Getter for menu item id

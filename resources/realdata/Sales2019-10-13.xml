@@ -153,7 +153,7 @@
             <flagsChecked>true</flagsChecked>
         </order>
         <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628281">
-            <orderStatus>COMPLETE</orderStatus>
+            <orderStatus>REFUNDED</orderStatus>
             <orderId>10</orderId>
             <customerName>hahoo</customerName>
             <orderCost>220.0</orderCost>
@@ -177,7 +177,7 @@
             <flagsChecked>true</flagsChecked>
         </order>
         <order dateOrdered="2019-10-04" timeOrdered="19:40:16.629033">
-            <orderStatus>QUEUED</orderStatus>
+            <orderStatus>REFUNDED</orderStatus>
             <orderId>12</orderId>
             <customerName>long dong duk</customerName>
             <orderCost>220.0</orderCost>
