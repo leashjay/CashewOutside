@@ -291,6 +291,18 @@ public class MenuItem {
     }
 
     /**
+     * Gets the ingredients and quantities that make up a menu item as a string
+     * @return the ingredients and quantities that make up a menu item as a string.
+     */
+    public String getRecipeAsString(){
+        String ingredientQuantityString = "";
+        for (Map.Entry<Ingredient, Float> entry : ingredients.entrySet()) {
+            ingredientQuantityString += entry.getKey().getName() + ": " +  entry.getValue() + "\n";
+        }
+        return ingredientQuantityString;
+    }
+
+    /**
      * Get HashMap of ingredient and their corresponding quantity in inventory
      *
      * @param inventory truck Inventory
