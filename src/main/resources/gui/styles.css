@@ -43,6 +43,10 @@
     -fx-text-fill: red;
 }
 
+.titlebox {
+    -fx-background-color: #FFFFFF;
+}
+
 /*
 the style taken from tabStyle.css, will be used for the tab classes across the different screens
  */
