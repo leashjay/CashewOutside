@@ -191,11 +191,6 @@
             <Font size="11.0" />
          </font>
       </Text>
-      <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" stylesheets="@../gui/styles.css" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </Button>
       <Button fx:id="addMenuItem" mnemonicParsing="false" prefHeight="33.0" prefWidth="73.0" stylesheets="@../gui/styles.css" text="Create" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
