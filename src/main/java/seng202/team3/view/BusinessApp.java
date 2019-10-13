@@ -18,24 +18,24 @@ public class BusinessApp extends Application {
     /**
      * Source ingredients XML file to load data from
      */
-    public static String ingredientsXML = "./src/main/resources/data/realdata/Ingredients.xml";
+    public static String ingredientsXML = "./resources/realdata/Ingredients.xml";
 
     /** Source menu XML file to load data from */
-    public static String menuXML = "./src/main/resources/data/realdata/SampleMenu.xml";
+    public static String menuXML = "./resources/realdata/SampleMenu.xml";
 
     /** Source supplier XML file to load data from */
-    public static String suppliersXML = "./src/main/resources/data/realdata/Suppliers.xml";
+    public static String suppliersXML = "./resources/realdata/Suppliers.xml";
 
     /** Source sales XML file to load data from */
-    public static String salesXML = "./src/main/resources/data/realdata/Sales.xml";
+    public static String salesXML = "./resources/realdata/Sales.xml";
 
     /** Source employee XML file to load data from */
-    public static String employeeXML = "./src/main/resources/data/realdata/Employees.xml";
+    public static String employeeXML = "./resources/realdata/Employees.xml";
 
     /**
      * Source truck XML file to load data from
      */
-    public static String truckXML = "./src/main/resources/data/realdata/Truck.xml";
+    public static String truckXML = "./resources/realdata/Truck.xml";
 
     /** Primary stage for CashewOutside application */
     private static Stage primaryStage;
@@ -51,7 +51,7 @@ public class BusinessApp extends Application {
     /**
      * XML path prefix
      */
-    private static String pathPrefix = "./src/main/resources/data/realdata/";
+    private static String pathPrefix = "./resources/realdata/";
 
     private static ArrayList<File> fileArrayList;
 
@@ -62,6 +62,7 @@ public class BusinessApp extends Application {
         try {
             checkBusinessDay();
             business = new Business(ingredientsXML, menuXML, suppliersXML, salesXML, employeeXML, truckXML);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,28 +74,29 @@ public class BusinessApp extends Application {
      * Backup plan to load default XML file
      */
     public static void checkBusinessDay() {
+        Boolean foundFiles = false;
         dateOperation = LocalDate.now();
         alterXMLPath();
-        File ingredientsFile = new File(ingredientsXML);
-        File menuFile = new File(menuXML);
-        File salesFile = new File(salesXML);
-        File suppliersFile = new File(suppliersXML);
-        File employeeFile = new File(employeeXML);
-        File truckFile = new File(truckXML);
-        if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
-            dateOperation = LocalDate.now().minusDays(1);
-            alterXMLPath();
-            ingredientsFile = new File(ingredientsXML);
-            menuFile = new File(menuXML);
-            salesFile = new File(salesXML);
-            suppliersFile = new File(suppliersXML);
-            employeeFile = new File(employeeXML);
-            truckFile = new File(truckXML);
+        Integer numOfDays = 365;
+        Integer i = 1;
+        while (!foundFiles && i < numOfDays) {
+            File ingredientsFile = new File(ingredientsXML);
+            File menuFile = new File(menuXML);
+            File salesFile = new File(salesXML);
+            File suppliersFile = new File(suppliersXML);
+            File employeeFile = new File(employeeXML);
+            File truckFile = new File(truckXML);
             if (!ingredientsFile.exists() || !menuFile.exists() || !salesFile.exists() || !suppliersFile.exists() || !employeeFile.exists() || !truckFile.exists()) {
-                alterXMLPathToOriginal();
+                dateOperation = LocalDate.now().minusDays(1);
+                alterXMLPath();
+            } else {
+                foundFiles = true;
             }
+            i += 1;
         }
-
+        if (!foundFiles) {
+            alterXMLPathToOriginal();
+        }
     }
 
     /**

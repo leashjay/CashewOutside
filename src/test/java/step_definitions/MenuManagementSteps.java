@@ -77,7 +77,7 @@ public class MenuManagementSteps {
     @Then("the menu item serving count is {int}")
     public void theMenuItemServingCount(Integer int1) {
         chocMilk.calculateServing(testInventory);
-        assertEquals(1, chocMilk.getServings());
+        assertEquals(0, chocMilk.getServings());
         assertFalse(testOrder.enoughStock()); // this boolean triggers an exception handler in SalesController class
     }
 

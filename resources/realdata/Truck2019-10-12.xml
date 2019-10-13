@@ -6,5 +6,5 @@
         <!ELEMENT cashAccount (#PCDATA)>
         ]>
 <truck>
-   <cashAccount>199.59</cashAccount>
+    <cashAccount>199.59</cashAccount>
 </truck>

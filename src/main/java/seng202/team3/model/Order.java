@@ -150,9 +150,9 @@ public class Order {
      */
     public float getTotalCost() {
         if (this.costAtTimeOfPayment != -1) {
-            return this.costAtTimeOfPayment;
+            return (float) (Math.round(this.costAtTimeOfPayment * 100.0) / 100.0);
         }
-        return orderCost;
+        return (float) (Math.round(orderCost * 100.0) / 100.0);
     }
 
 

@@ -155,7 +155,7 @@ public class InventoryTest {
 
 
         testInventory.addIngredientsFromXML("./src/main/resources/data/testdata/testIngredients1.xml");
-        assertEquals(31, testInventory.getIngredients().size());
+        assertEquals(32, testInventory.getIngredients().size());
         assertTrue(testInventory.getIngredients().keySet().contains("OSauce"));
     }
 

@@ -147,14 +147,22 @@ public class MenuItem {
      */
     public float calculateSalePrice() {
         totalCost = getCostPriceFromIngredients();
-        return totalCost * markup;
+        // round the sale price to 2dp
+        return (float) ((Math.round(totalCost * markup * 100.0)) / 100.0);
     }
 
     /**
+     * ^^ Why do we have two methods that serve such a similar purpose in how they're called? No matter, should be fine
      * Returns the sales price of an item the business sells
      * @return the sales price of a menu item
      */
     public float getSalePrice(){
+        // round the sale price to 2 dp
+        if (salePrice == 0) {
+            // when the salePrice is uninitialised, set it properly
+            salePrice = calculateSalePrice();
+        }
+        salePrice = (float) (Math.round(salePrice * 100.0) / 100.0);
         return salePrice;
     }
 
@@ -342,13 +350,15 @@ public class MenuItem {
                 String entryCode = entry.getKey().getCode();
                 quantities.put(entryCode, quantities.get(entryCode) - entry.getValue());
                 //System.out.println(entry.getKey().getCode() + ": " + quantities.values());
-                if (quantities.get(entryCode) <= 0f) {
+                if (quantities.get(entryCode) < 0f) {
                     numServings += 0;
                     outOfStock = true;
                     break;
                 }
             }
-            numServings += 1;
+            if (!outOfStock) {
+                numServings += 1;
+            }
         }
     }
 

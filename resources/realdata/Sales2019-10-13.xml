@@ -24,12 +24,12 @@
         ]>
 <sales>
     <orders>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.010091300">
-            <orderStatus>COMPLETE</orderStatus>
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.621942">
+            <orderStatus>QUEUED</orderStatus>
             <orderId>3</orderId>
             <customerName>Ooo a</customerName>
             <orderCost>3382.0</orderCost>
-            <costAtTimeOfPayment>3382.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
@@ -52,12 +52,12 @@
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.010091300">
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.624432">
             <orderStatus>QUEUED</orderStatus>
             <orderId>4</orderId>
             <customerName>This is IT</customerName>
             <orderCost>6244.0</orderCost>
-            <costAtTimeOfPayment>6244.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>BB1</id>
                 <name>Beefburger</name>
@@ -80,12 +80,12 @@
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.011089700">
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.626024">
             <orderStatus>COMPLETE</orderStatus>
             <orderId>5</orderId>
             <customerName>JErome</customerName>
             <orderCost>6245.0</orderCost>
-            <costAtTimeOfPayment>6245.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
@@ -112,12 +112,12 @@
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.012086300">
-            <orderStatus>COMPLETE</orderStatus>
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627116">
+            <orderStatus>QUEUED</orderStatus>
             <orderId>7</orderId>
             <customerName>Hunter</customerName>
             <orderCost>721.0</orderCost>
-            <costAtTimeOfPayment>721.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>BB1</id>
                 <name>Beefburger</name>
@@ -140,139 +140,63 @@
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.627906">
             <orderStatus>COMPLETE</orderStatus>
             <orderId>9</orderId>
             <customerName>hooha</customerName>
             <orderCost>220.0</orderCost>
-            <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628281">
             <orderStatus>COMPLETE</orderStatus>
             <orderId>10</orderId>
             <customerName>hahoo</customerName>
             <orderCost>220.0</orderCost>
-            <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.013083400">
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.628647">
             <orderStatus>COMPLETE</orderStatus>
             <orderId>11</orderId>
             <customerName>hoo</customerName>
             <orderCost>220.0</orderCost>
-            <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.014080300">
-            <orderStatus>REFUNDED</orderStatus>
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:16.629033">
+            <orderStatus>QUEUED</orderStatus>
             <orderId>12</orderId>
             <customerName>long dong duk</customerName>
             <orderCost>220.0</orderCost>
-            <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
-        <order dateOrdered="2019-10-09" timeOrdered="20:55:40.014080300">
-            <orderStatus>COMPLETE</orderStatus>
+        <order dateOrdered="2019-10-04" timeOrdered="19:40:45.481434">
+            <orderStatus>QUEUED</orderStatus>
             <orderId>13</orderId>
             <customerName>dong</customerName>
             <orderCost>220.0</orderCost>
-            <costAtTimeOfPayment>220.0</costAtTimeOfPayment>
+            <costAtTimeOfPayment>-1.0</costAtTimeOfPayment>
             <itemsOrdered>
                 <id>CF</id>
                 <name>Chicken fried rice</name>
-            </itemsOrdered>
-            <flagsChecked>true</flagsChecked>
-        </order>
-        <order dateOrdered="2019-10-11" timeOrdered="11:17:43.907265">
-            <orderStatus>QUEUED</orderStatus>
-            <orderId>14</orderId>
-            <customerName>sads</customerName>
-            <orderCost>1.1</orderCost>
-            <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
-            <itemsOrdered>
-                <id>Lem</id>
-                <name>LemCan</name>
-            </itemsOrdered>
-            <flagsChecked>true</flagsChecked>
-        </order>
-        <order dateOrdered="2019-10-12" timeOrdered="00:07:27.305104600">
-            <orderStatus>QUEUED</orderStatus>
-            <orderId>15</orderId>
-            <customerName>Yoyoma</customerName>
-            <orderCost>1.1</orderCost>
-            <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
-            <itemsOrdered>
-                <id>Lem</id>
-                <name>LemCan</name>
-            </itemsOrdered>
-            <flagsChecked>true</flagsChecked>
-        </order>
-        <order dateOrdered="2019-10-12" timeOrdered="00:08:55.900841400">
-            <orderStatus>REFUNDED</orderStatus>
-            <orderId>16</orderId>
-            <customerName>Agnes</customerName>
-            <orderCost>1.1</orderCost>
-            <costAtTimeOfPayment>1.1</costAtTimeOfPayment>
-            <itemsOrdered>
-                <id>Lem</id>
-                <name>LemCan</name>
-            </itemsOrdered>
-            <flagsChecked>true</flagsChecked>
-        </order>
-        <order dateOrdered="2019-10-13" timeOrdered="16:44:48.534312">
-            <orderStatus>QUEUED</orderStatus>
-            <orderId>18</orderId>
-            <customerName>Karen</customerName>
-            <orderCost>23.175901</orderCost>
-            <costAtTimeOfPayment>23.175901</costAtTimeOfPayment>
-            <itemsOrdered>
-                <id>BF</id>
-                <name>Baby face</name>
-            </itemsOrdered>
-            <itemsOrdered>
-                <id>Lem</id>
-                <name>LemCan</name>
-            </itemsOrdered>
-            <itemsOrdered>
-                <id>HotChoc</id>
-                <name>Hot Chocolate</name>
-            </itemsOrdered>
-            <itemsOrdered>
-                <id>BB1</id>
-                <name>Beefburger</name>
-            </itemsOrdered>
-            <itemsOrdered>
-                <id>CF</id>
-                <name>Chicken fried rice</name>
-            </itemsOrdered>
-            <flagsChecked>true</flagsChecked>
-        </order>
-        <order dateOrdered="2019-10-13" timeOrdered="16:46:57.887632">
-            <orderStatus>QUEUED</orderStatus>
-            <orderId>19</orderId>
-            <customerName>Alex</customerName>
-            <orderCost>2.937</orderCost>
-            <costAtTimeOfPayment>2.937</costAtTimeOfPayment>
-            <itemsOrdered>
-                <id>BF</id>
-                <name>Baby face</name>
             </itemsOrdered>
             <flagsChecked>true</flagsChecked>
         </order>
