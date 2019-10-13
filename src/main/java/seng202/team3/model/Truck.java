@@ -27,6 +27,21 @@ public class Truck {
     private float cashAccount;
 
     /**
+     * Indicates whether the day is currently in progress
+     */
+    public boolean startDay = false;
+
+    /**
+     * The value of cashAccount at the start of the day
+     */
+    private float startFloat;
+
+    /**
+     * The value of cashAccount at the end of the day
+     */
+    private float endFloat;
+
+    /**
      * No-arg constructor for JAXB
      */
     public Truck() { }
@@ -48,6 +63,53 @@ public class Truck {
         truckInventory = inventoryLoad.loadIngredientsData(fileName);
     }
 
+    /**
+     * Getter for startDay
+     * @return startDay
+     */
+    public boolean getStartDay() {
+        return this.startDay;
+    }
+
+    /**
+     * Setter for startDay
+     * @param startDay
+     */
+    public void setStartDay(boolean startDay) {
+        this.startDay = startDay;
+    }
+
+    /**
+     * Getter for startFloat
+     * @return startFloat
+     */
+    public float getStartFloat() {
+        return this.startFloat;
+    }
+
+    /**
+     * Setter for startFloat
+     * @param startFloat
+     */
+    public void setStartFloat(float startFloat) {
+        this.startFloat = startFloat;
+    }
+
+    /**
+     * Getter for endFloat
+     * @return endFloat
+     */
+    public float getEndFloat() {
+        return this.endFloat;
+    }
+
+    /**
+     * Setter for endFloat
+     * @param endFloat
+     */
+    public void setEndFloat(float endFloat) {
+        this.endFloat = endFloat;
+    }
 
     /**
      * Getter for truck inventory

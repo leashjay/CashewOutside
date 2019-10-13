@@ -106,11 +106,6 @@
          <name>Mixed herbs, dried</name>
          <quantity>250.0</quantity>
       </ingredient>
-      <ingredient unit="GRAM" isVeg="UNKNOWN" isVegan="UNKNOWN" isgf="UNKNOWN" cost="1.2">
-         <code>Kimchi</code>
-         <name>chikim</name>
-         <quantity>3.0</quantity>
-      </ingredient>
       <ingredient unit="GRAM" isVeg="YES" isVegan="NO" isgf="UNKNOWN" cost="0.5">
          <code>Onion</code>
          <name>Diced onion</name>

@@ -14,12 +14,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import seng202.team3.model.Ingredient;
 import seng202.team3.model.Menu;
 import seng202.team3.model.MenuItem;
+import seng202.team3.model.Order;
 import seng202.team3.parsing.MenuLoader;
 import seng202.team3.util.ActionButtonTableCell;
 import seng202.team3.util.ItemType;
+import seng202.team3.util.OrderStatus;
 import seng202.team3.view.BusinessApp;
 
 import javax.xml.bind.JAXBException;
@@ -27,7 +28,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controller class for the Menu Item tab in the management section of the GUI
@@ -129,10 +132,29 @@ public class MenuItemTabController {
         }));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", menuItem ->         {
-            ConfirmDeletePopup.display('M');
+            ConfirmDeletePopup.display('M', "Are you sure you want to delete this?");
             if (delete == true) {
-                delete = false;
-                menu.removeMenuItem(menuItem.getId());
+                Boolean canDelete = true;
+                HashMap<Integer, Order> listOfOrders = BusinessApp.getBusiness().getSalesHandler().getOrderHashMap();
+                for (Map.Entry<Integer, Order> orderEntry : listOfOrders.entrySet()) {
+                    if (orderEntry.getValue().getStatus() == OrderStatus.QUEUED) {
+                        for (MenuItem item : orderEntry.getValue().getOrderedItems()) {
+                            if (item.getId().equals(menuItem.getId())) {
+                                canDelete = false;
+                                break;
+                            }
+                        }
+                        if (canDelete == false) {
+                            break;
+                        }
+                    }
+                }
+                if (canDelete) {
+                    menu.removeMenuItem(menuItem.getId());
+                    delete = false;
+                } else {
+                    ConfirmDeletePopup.display('M', "Menu item queued for order\n cannot be deleted");
+                }
             }
             updateMenuItemTable();
         }));

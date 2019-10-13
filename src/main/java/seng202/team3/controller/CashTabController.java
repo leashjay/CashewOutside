@@ -45,60 +45,58 @@ public class CashTabController {
 
     private Truck truck = BusinessApp.getBusiness().getTruck();
 
-    private float startFloat;
-
-    private float endFloat;
-
     /**
      * Initialises all buttons etc. in the cashTab. It is called automatically y the fxml loader
      */
     public void initialize() {
-        endButton.setDisable(true);
-        plusButton.setDisable(true);
-        subtractButton.setDisable(true);
-        addFloatField.setDisable(true);
-        withdrawFloatField.setDisable(true);
+        startButton.setDisable(truck.getStartDay());
+        endButton.setDisable(!truck.getStartDay());
+        plusButton.setDisable(!truck.getStartDay());
+        subtractButton.setDisable(!truck.getStartDay());
+        addFloatField.setDisable(!truck.getStartDay());
+        withdrawFloatField.setDisable(!truck.getStartDay());
         currentFloatField.setStyle("-fx-border-color: lightgrey;-fx-background-color: White;");
         withdrawFloatField.setStyle("-fx-border-color: lightgrey;-fx-background-color: White;");
         Text text = new Text(Float.toString(truck.getCashAccount()));
         currentFloatField.getChildren().add(text);
+        truck.setStartDay(truck.getStartDay());
     }
 
     /**
      * Activates when the startButton is pressed, and disables/enables all the relevant fields/buttons
      */
     public void startButtonPushed() {
-        startFloat = truck.getCashAccount();
-        plusButton.setDisable(false);
-        subtractButton.setDisable(false);
-        startButton.setDisable(true);
-        endButton.setDisable(false);
-        addFloatField.setDisable(false);
-        withdrawFloatField.setDisable(false);
+        truck.setStartFloat(truck.getCashAccount());
+        plusButton.setDisable(truck.getStartDay());
+        subtractButton.setDisable(truck.getStartDay());
+        startButton.setDisable(!truck.getStartDay());
+        endButton.setDisable(truck.getStartDay());
+        addFloatField.setDisable(truck.getStartDay());
+        withdrawFloatField.setDisable(truck.getStartDay());
         currentFloatField.getChildren().clear();
         Text text = new Text(Float.toString(truck.getCashAccount()));
         currentFloatField.getChildren().add(text);
         dailyTake.getChildren().clear();
-
-
+        truck.setStartDay(!truck.getStartDay());
     }
 
     /**
      * Activates when the endButton is pressed, and disables/enables all the relevant fields/buttons
      */
     public void endButtonPushed() {
-        endFloat = truck.getCashAccount();
+        truck.setEndFloat(truck.getCashAccount());
         addText.setVisible(false);
         subtractText.setVisible(false);
-        endButton.setDisable(true);
-        plusButton.setDisable(true);
-        subtractButton.setDisable(true);
-        startButton.setDisable(false);
-        addFloatField.setDisable(true);
-        withdrawFloatField.setDisable(true);
-        Text text = new Text(Float.toString(endFloat - startFloat));
+        endButton.setDisable(truck.getStartDay());
+        plusButton.setDisable(truck.getStartDay());
+        subtractButton.setDisable(truck.getStartDay());
+        startButton.setDisable(!truck.getStartDay());
+        addFloatField.setDisable(truck.getStartDay());
+        withdrawFloatField.setDisable(truck.getStartDay());
+        Text text = new Text(Float.toString(truck.getEndFloat() - truck.getStartFloat()));
         dailyTake.getChildren().clear();
         dailyTake.getChildren().add(text);
+        truck.setStartDay(!truck.getStartDay());
     }
 
     /**

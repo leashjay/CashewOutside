@@ -100,7 +100,7 @@ public class SupplierTabController
         phoneTypeCol.setCellValueFactory(new PropertyValueFactory<>("phoneType"));
 
         deleteButtonCol.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", "delete-button", supplier -> {
-            ConfirmDeletePopup.display('S');
+            ConfirmDeletePopup.display('S', "Are you sure you want to delete this?");
             if (delete == true) {
                 delete = false;
                 supplierHandler.removeSupplier(supplier.getSid());

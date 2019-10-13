@@ -20,8 +20,8 @@
     <description>Our ingredients in no particular order (incomplete).</description>
     <ingredients>
         <ingredient unit="ML" cost="0.34">
-            <code>OSauce</code>
-            <name>Oyster Sauce</name>
+            <code>CSauce</code>
+            <name>Chilli Sauce</name>
             <quantity>500</quantity>
         </ingredient>
     </ingredients>
