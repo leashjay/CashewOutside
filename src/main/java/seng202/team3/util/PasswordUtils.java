@@ -85,9 +85,8 @@ public class PasswordUtils {
      */
     public static boolean verifyPassword (String password, String key, String salt) {
         key = key.trim();
+        salt = salt.trim();
         String encrypted = hashPassword(password, salt).get();
-        System.out.println("EXPECTED: " + key);
-        System.out.println("GOT: " + encrypted);
         System.out.println(key.equals(encrypted));
         return key.equals(encrypted);
     }
