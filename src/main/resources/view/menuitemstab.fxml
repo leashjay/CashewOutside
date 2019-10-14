@@ -3,7 +3,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team3.controller.MenuItemTabController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="menuTabBorderPane" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="seng202.team3.controller.MenuItemTabController">
     <center>
         <VBox prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>

@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -72,7 +72,7 @@ public class IngredientTabController {
     private TableColumn<Ingredient, ThreeValueLogic> veganCol;
 
     @FXML
-    private AnchorPane ingredientTabAnchorPane;
+    private BorderPane ingredientTabBorderPane;
 
     private static IngredientTabController instance;
 
@@ -223,7 +223,7 @@ public class IngredientTabController {
      */
     public void exportIngredientsXML() throws JAXBException, IOException {
         initializeFileChooser();
-        Stage stage = (Stage) ingredientTabAnchorPane.getScene().getWindow();
+        Stage stage = (Stage) ingredientTabBorderPane.getScene().getWindow();
         File file = chooser.showSaveDialog(stage);
         if (file != null) {
             inventoryLoader = new InventoryLoader();
