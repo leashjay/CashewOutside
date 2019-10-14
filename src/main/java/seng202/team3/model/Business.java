@@ -4,6 +4,7 @@ import seng202.team3.parsing.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -58,7 +59,7 @@ public class Business {
         Set<Integer> orderIDs = this.salesManager.getOrdersHashMap().keySet();
 
         if (orderIDs.size() <= 0) {
-            return 0; // default value
+            return getDefaultId(); // default value
         }
         int maxOrderID = (int) orderIDs.toArray()[0];
         for (Integer orderID : orderIDs) {
@@ -68,6 +69,20 @@ public class Business {
         }
         return maxOrderID;
     }
+
+    /**
+     * returns a default Id unique to each day
+     * @return the default id
+     */
+    private int getDefaultId() {
+        int defaultId = 0;
+        LocalDate today = LocalDate.now();
+        defaultId += today.getYear() * 1000;
+        defaultId += today.getMonth().getValue() * 10;
+        defaultId += today.getDayOfMonth();
+        return defaultId;
+    }
+
     /**
      * Getter for truck instance
      * @return instance of truck
@@ -135,6 +150,8 @@ public class Business {
     public void createSalesManager(String filename) throws JAXBException {
         SalesLoader salesLoader = new SalesLoader();
         salesManager = salesLoader.loadSalesData(filename);
+        LocalDate today = LocalDate.now();
+        salesManager.removeOrdersForADifferentDate(today);
     }
 
     /**

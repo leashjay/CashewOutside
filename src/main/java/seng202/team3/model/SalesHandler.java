@@ -9,8 +9,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Holds list of orders stored
@@ -207,8 +209,24 @@ public class SalesHandler {
     }
 
     /**
+     * removes all Orders from the SalesHandler that have a date different to the given date
+     * @param relevantDate the date that the orders should match
+     */
+    public void removeOrdersForADifferentDate(LocalDate relevantDate) {
+        HashMap<Integer, Order> newOrders = new HashMap<>();
+        for (Map.Entry<Integer, Order> entry : this.orders.entrySet()) {
+            Order order = entry.getValue();
+            if (order.getDate().isEqual(relevantDate)) {
+                newOrders.put(entry.getKey(), order);
+            }
+        }
+
+        this.orders = newOrders;
+    }
+
+    /**
      * Add order data from XML
-     *
+     * - Apparently this method is redundant?
      * @param file
      */
     public void addOrdersFromXML(String file) throws JAXBException {
@@ -216,7 +234,16 @@ public class SalesHandler {
         SalesHandler salesHandler = salesLoader.loadSalesData(file);
         if (orders != null) {
             HashMap<Integer, Order> newOrders = salesHandler.getOrderHashMap();
-            orders.putAll(newOrders);
+            //Only add orders for the current day
+            LocalDate today = LocalDate.now();
+            System.out.println("Today's date is: " + today);
+            for (Map.Entry<Integer, Order> entry : newOrders.entrySet()) {
+                Order curOrder = entry.getValue();
+                System.out.println("The order's date is: " + curOrder.getDate());
+                if (curOrder.getDate() == today) {
+                    orders.put(entry.getKey(), curOrder);
+                }
+            }
         }
 
     }
