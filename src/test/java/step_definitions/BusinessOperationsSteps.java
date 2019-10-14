@@ -18,6 +18,7 @@ public class BusinessOperationsSteps {
     SalesHandler salesHandler = new SalesHandler();
     float cashAdded;
     Order friedRiceOrder;
+    Order fluffyOrder;
     Menu menu = new Menu("Default menu", "the default menu", MenuType.SUMMER, new HashMap<String, MenuItem>());
     MenuItem hotChocolate;
 
@@ -59,13 +60,34 @@ public class BusinessOperationsSteps {
     @When("several orders are taken during the day")
     public void severalOrdersAreTakenDuringTheDay() {
         // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        friedRiceOrder = new Order();
+        Ingredient rice = new Ingredient("1", "Rice", 1000f, UnitType.GRAM, 0.01f);
+        HashMap<Ingredient, Float> friedRiceIngredients = new HashMap<Ingredient, Float>();
+        friedRiceIngredients.put(rice, 200f);
+        MenuItem friedRice = new MenuItem("1", "Fried rice", friedRiceIngredients, ItemType.MAIN);
+        friedRiceOrder.addToOrder(friedRice);
+        friedRiceOrder.setOrderId(1);
+
+        fluffyOrder = new Order();
+        Ingredient milk = new Ingredient("2", "Milk", 1000f, UnitType.ML, 0.01f);
+        HashMap<Ingredient, Float> fluffyIngredients = new HashMap<Ingredient, Float>();
+        fluffyIngredients.put(milk, 200f);
+        MenuItem fluffy = new MenuItem("2", "Fluffy", fluffyIngredients, ItemType.BEVERAGE);
+        fluffyOrder.addToOrder(fluffy);
+        fluffyOrder.setOrderId(2);
+
+
+        salesHandler.addOrder(friedRiceOrder);
+        salesHandler.customerPays(friedRiceOrder.getTotalCost(), 1, truck);
+
+        salesHandler.addOrder(fluffyOrder);
+        salesHandler.customerPays(fluffyOrder.getTotalCost(), fluffyOrder.getOrderId(), truck);
     }
 
     @Then("the business closes the float and a earnings value can be calculated")
     public void theBusinessClosesTheFloatAndAEarningsValueCanBeCalculated() {
         // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        assertEquals(truck.getCashAccount(), cashAdded + friedRiceOrder.getTotalCost() + fluffyOrder.getTotalCost());
     }
 
     @Given("The business has a hot chocolate on the menu")
