@@ -21,9 +21,6 @@ public class LoginController {
     Button backButton;
 
     @FXML
-    Button bypassLoginButton;
-
-    @FXML
     Text errorText;
 
     @FXML
@@ -65,9 +62,6 @@ public class LoginController {
 
     }
 
-    public void bypassLogin() throws IOException {
-        BusinessApp.loadManagementPage();
-    }
 
     public void returnToMainPage() throws IOException {
         BusinessApp.loadMainPage();
