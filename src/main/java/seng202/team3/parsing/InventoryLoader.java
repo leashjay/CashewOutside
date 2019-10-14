@@ -61,6 +61,7 @@ public class InventoryLoader {
      * @return instance of Inventory class
      */
     public Inventory loadIngredientsData(String fileName) throws JAXBException{
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
             Unmarshaller unmarshaller = context.createUnmarshaller();

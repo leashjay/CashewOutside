@@ -57,6 +57,7 @@ public class SuppliersLoader {
      * @return instance of SupplierHandler
      */
     public SupplierHandler loadSuppliersData(String fileName) throws JAXBException {
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
             Unmarshaller unmarshaller = context.createUnmarshaller();

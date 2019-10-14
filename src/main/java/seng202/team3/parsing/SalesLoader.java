@@ -27,7 +27,7 @@ public class SalesLoader {
             "        <!ENTITY version \"V0.01 (C) CashewOutside\">\n" +
             "        <!ELEMENT sales (orders)>\n" +
             "        <!ELEMENT orders (order*)>\n" +
-            "        <!ELEMENT order (orderId, customerName, orderStatus, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>\n" +
+            "        <!ELEMENT order (orderStatus, orderId, customerName, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>\n" +
             "        <!ATTLIST order\n" +
             "                dateOrdered CDATA #REQUIRED\n" +
             "                timeOrdered CDATA #REQUIRED\n" +
@@ -35,9 +35,9 @@ public class SalesLoader {
             "                isVegan (YES|NO|UNKNOWN) \"NO\"\n" +
             "                isVeg (YES|NO|UNKNOWN) \"UNKNOWN\"\n" +
             "                >\n" +
-            "        <!ELEMENT orderId (#PCDATA)>\n" +
-            "        <!ELEMENT customerName (#PCDATA)>\n" +
             "        <!ELEMENT orderStatus (#PCDATA)>\n" +
+            "        <!ELEMENT customerName (#PCDATA)>\n" +
+            "        <!ELEMENT orderId (#PCDATA)>\n" +
             "        <!ELEMENT orderCost (#PCDATA)>\n" +
             "        <!ELEMENT costAtTimeOfPayment (#PCDATA)>\n" +
             "        <!ELEMENT itemsOrdered (id, name)>\n" +
@@ -67,9 +67,9 @@ public class SalesLoader {
         Subgraph orders = salesInfo.addSubgraph("orders");
         Subgraph order = orders.addSubgraph("order");
         order.addAttributeNodes("dateOrdered", "timeOrdered", "isGF", "isVeg", "isVegan");
+        order.addSubgraph("orderStatus");
         order.addSubgraph("orderId");
         order.addSubgraph("name");
-        order.addSubgraph("orderStatus");
         order.addSubgraph("orderCost");
         order.addSubgraph("costAtTimeOfPayment");
         order.addSubgraph("flagsChecked");
@@ -84,6 +84,7 @@ public class SalesLoader {
      * @return Instance of SalesHandler
      */
     public SalesHandler loadSalesData(String fileName) throws JAXBException{
+        AddXMLController.errorMessageList.clear();
         try {
             validateXMLFile(fileName);
         } catch (ParserConfigurationException pce) {

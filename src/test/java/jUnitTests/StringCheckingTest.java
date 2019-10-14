@@ -5,6 +5,11 @@ import seng202.team3.util.StringChecking;
 
 import static junit.framework.TestCase.*;
 
+/**
+ * email unit tests were taken from https://www.regextester.com/96927
+ * This is to ensure we comply with email standards, and not just a few test cases I can think of.
+ */
+
 public class StringCheckingTest {
 
     @Test
@@ -112,6 +117,101 @@ public class StringCheckingTest {
 
     @Test
     public void isEmailTest1() {
+        assertTrue(StringChecking.isEmail("mkyong@yahoo.com"));
+    }
 
+    @Test
+    public void isEmailTest2() {
+        assertTrue(StringChecking.isEmail("mkyong-100@yahoo.com"));
+    }
+
+    @Test
+    public void isEmailTest3() {
+        assertTrue(StringChecking.isEmail("mkyong.100@yahoo.com"));
+    }
+
+    @Test
+    public void isEmailTest4() {
+        assertTrue(StringChecking.isEmail("mkyong111@mkyong.com"));
+    }
+
+    @Test
+    public void isEmailTest5() {
+        assertTrue(StringChecking.isEmail("mkyong-100@mkyong.net"));
+    }
+
+    @Test
+    public void isEmailTest6() {
+        assertTrue(StringChecking.isEmail("mkyong.100@mkyong.com.au"));
+    }
+
+    @Test
+    public void isEmailTest7() {
+        assertTrue(StringChecking.isEmail("mkyong@1.com"));
+    }
+
+    @Test
+    public void isEmailTest8() {
+        assertTrue(StringChecking.isEmail("mkyong@gmail.com.com"));
+    }
+
+    @Test
+    public void isEmailTest9() {
+        assertTrue(StringChecking.isEmail("mkyong+100@gmail.com"));
+    }
+
+    @Test
+    public void isEmailTest10() {
+        assertTrue(StringChecking.isEmail("mkyong-100@yahoo-test.com"));
+    }
+
+    @Test
+    public void isNotEmailTest1() {
+        assertFalse(StringChecking.isEmail("mkyong"));
+    }
+
+    @Test
+    public void isNotEmailTest2() {
+        assertFalse(StringChecking.isEmail("mkyong@.com.my"));
+    }
+
+    @Test
+    public void isNotEmailTest3() {
+        assertFalse(StringChecking.isEmail("mkyong123@.com"));
+    }
+
+    @Test
+    public void isNotEmailTest4() {
+        assertFalse(StringChecking.isEmail("mkyong123@.com.com"));
+    }
+
+    @Test
+    public void isNotEmailTest5() {
+        assertFalse(StringChecking.isEmail(".mkyong@mkyong.com"));
+    }
+
+    @Test
+    public void isNotEmailTest6() {
+        assertFalse(StringChecking.isEmail("mkyong()*@gmail.com"));
+    }
+
+    @Test
+    public void isNotEmailTest7() {
+        assertFalse(StringChecking.isEmail("mkyong@%*.com"));
+    }
+
+    @Test
+    public void isNotEmailTest8() {
+        assertFalse(StringChecking.isEmail("mkyong..2002@gmail.com"));
+    }
+
+    @Test
+    public void isNotEmailTest9() {
+        assertFalse(StringChecking.isEmail("mkyong.@gmail.com"));
+    }
+
+    @Test
+    public void isNotEmailTest10() {
+        assertFalse(StringChecking.isEmail("mkyong@mkyong@gmail.com"));
     }
 }

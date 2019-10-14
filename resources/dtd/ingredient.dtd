@@ -1,23 +1,17 @@
-<!-- DTD for representing ingredients -->
-<!-- (C) Neville Churcher 2019 -->
-<!-- Note that the ingredient codes will need to
-     match the corresponding entries in menus
--->
-        <!ENTITY version "V0.01 (C) CashewOutside 2019">
+<!ENTITY version "V0.01 (C) CashewOutside 2019">
         <!ELEMENT inventory (description, ingredients)>
         <!ELEMENT ingredients ((ingredient*))>
-<!ELEMENT description (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
         <!ELEMENT ingredient (code, name, quantity)>
-<!ATTLIST ingredient
-        unit (ML|GRAM|COUNT) #REQUIRED
-        isVeg (YES|NO|UNKNOWN) "UNKNOWN"
-        isVegan (YES|NO|UNKNOWN) "UNKNOWN"
-        isgf (YES|NO|UNKNOWN) "UNKNOWN"
-        cost CDATA #REQUIRED
-        >
-<!ELEMENT code (#PCDATA)>
-<!ELEMENT name (#PCDATA)>
+        <!ATTLIST ingredient
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                isVegan (YES|NO|UNKNOWN) "UNKNOWN"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA #REQUIRED
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
         <!ELEMENT quantity (#PCDATA)>
-        ]>
 
 

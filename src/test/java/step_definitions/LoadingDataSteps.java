@@ -87,7 +87,15 @@ public class LoadingDataSteps {
         Ingredient rice = new Ingredient("1", "Rice", 1f, UnitType.GRAM, 0.001f);
         HashMap riceStuff = new HashMap<>();
         riceStuff.put(rice, 200f);
-        MenuItem testItem = new MenuItem("1", "Fried rice", riceStuff, ItemType.MAIN);
+        testItem = new MenuItem("1", "Fried rice", riceStuff, ItemType.MAIN);
+
+    }
+
+    @When("a menu item is added")
+    public void aMenuItemIsAdded() {
+        testMenuItem = new MenuItem();
+        menuContents = new HashMap<>();
+        testMenu = new Menu("Test Menu", "A menu for filling and testing", MenuType.FESTIVAL, menuContents);
         menuContents.put(testItem.getId(), testItem);
         Menu testMenu = new Menu("Not Only Rice", "More than rice", MenuType.FESTIVAL, menuContents);
         this.testMenu = testMenu;
@@ -100,11 +108,6 @@ public class LoadingDataSteps {
         assertTrue(testMenu.searchMenuContent(testItem));
     }
 
-    @When("a menu item is added")
-    public void aMenuItemIsAdded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
 
     @Given("an supplier is known")
     public void anSupplierIsKnown() {
@@ -191,26 +194,69 @@ public class LoadingDataSteps {
     @Given("a ingredient {string} for an XML file containing ingredients")
     public void aIngredientForAnXMLFileContainingIngredients(String string) {
         filename = "./src/main/resources/data/testdata/testErrorIngredients.xml";
+        this.filename = filename;
     }
 
     @When("the {string} is used and an integrity error is found")
-    public void theIsUsedAndAnIntegrityErrorIsFound(String string) throws JAXBException {
+    public void theIsUsedAndAnIntegrityErrorIsFound(String string) {
         AddXMLController.errorMessageList.clear();
-        inventory = testInventoryLoader.loadIngredientsData(filename);
-        throw new cucumber.api.PendingException();
+        try {
+            InventoryLoader testInventoryLoader = new InventoryLoader();
+            inventory = testInventoryLoader.loadIngredientsData(filename);
+        } catch (JAXBException jaxbe) {
+            AddXMLController.errorMessageList.add(jaxbe.getMessage());
+        }
     }
 
     @Then("an error message is returned to the user")
     public void anErrorMessageIsReturnedToTheUser() {
         assertFalse(AddXMLController.errorMessageList.isEmpty());
-        throw new cucumber.api.PendingException();
     }
 
     @Given("a menu item {string} for an XML file containing menu items")
     public void aMenuItemForAnXMLFileContainingMenuItems(String string) {
         filename = "./src/main/resources/data/testdata/testErrorMenu.xml";
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    }
+
+
+    @When("the menu item {string} is used and an integrity error is found")
+    public void theMenuItemIsUsedAndAnIntegrityErrorIsFound(String string) {
+        AddXMLController.errorMessageList.clear();
+        try {
+            MenuLoader testMenuLoader = new MenuLoader();
+            testMenu = testMenuLoader.loadMenuData(filename);
+        } catch (JAXBException jaxbe) {
+            AddXMLController.errorMessageList.add(jaxbe.getMessage());
+        }
+    }
+
+    @Then("an error message due to menu item XML is returned to the user")
+    public void anErrorMessageDueToMenuItemXMLIsReturnedToTheUser() {
+        assertFalse(AddXMLController.errorMessageList.isEmpty());
+    }
+
+    @Given("a suppliers {string} for an XML file containing suppliers")
+    public void aSuppliersForAnXMLFileContainingSuppliers(String string) {
+        filename = "./src/main/resources/data/testdata/testErrorSupplier.xml";
+    }
+
+    @When("the supplier {string} is used and an integrity error is found")
+    public void theSupplierIsUsedAndAnIntegrityErrorIsFound(String string) {
+        AddXMLController.errorMessageList.clear();
+        try {
+            SuppliersLoader testSupplierLoader = new SuppliersLoader();
+            supplierHandler = testSupplierLoader.loadSuppliersData(filename);
+        } catch (JAXBException jaxbe) {
+            AddXMLController.errorMessageList.add(jaxbe.getMessage());
+        }
+    }
+
+    @Then("an error message due to supplier XML error is returned to the user")
+    public void anErrorMessageDueToSupplierXMLErrorIsReturnedToTheUser() {
+        assertFalse(AddXMLController.errorMessageList.isEmpty());
     }
 
 }
+
+
+

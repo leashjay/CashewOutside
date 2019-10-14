@@ -1,0 +1,20 @@
+<!ENTITY version "V0.01 (C) CashewOutside">
+        <!ELEMENT sales (orders)>
+        <!ELEMENT orders (order*)>
+        <!ELEMENT order (orderStatus, orderId, customerName, orderCost, costAtTimeOfPayment, itemsOrdered*, flagsChecked)>
+        <!ATTLIST order
+                dateOrdered CDATA #REQUIRED
+                timeOrdered CDATA #REQUIRED
+                isGF (YES|NO|UNKNOWN) "NO"
+                isVegan (YES|NO|UNKNOWN) "NO"
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                >
+        <!ELEMENT orderStatus (#PCDATA)>
+        <!ELEMENT customerName (#PCDATA)>
+        <!ELEMENT orderId (#PCDATA)>
+        <!ELEMENT orderCost (#PCDATA)>
+        <!ELEMENT costAtTimeOfPayment (#PCDATA)>
+        <!ELEMENT itemsOrdered (id, name)>
+        <!ELEMENT flagsChecked (#PCDATA)>
+        <!ELEMENT id (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>

@@ -1,0 +1,10 @@
+<!ENTITY version "V0.01 (C) CashewOutside 2019">
+        <!ELEMENT employeehandler (employees)>
+        <!ELEMENT employees (employee*)>
+        <!ELEMENT employee (username, password, salt)>
+        <!ELEMENT username (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT salt (#PCDATA)>
+        <!ATTLIST employee
+                hasAdminRights (true|false) #REQUIRED
+                >
