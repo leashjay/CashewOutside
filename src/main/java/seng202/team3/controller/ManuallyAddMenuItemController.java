@@ -357,7 +357,6 @@ public class ManuallyAddMenuItemController {
             hasError = true;
         }
         if (ingredients.size() <= 0) {
-            System.out.println("below zero");
             ingredientKeyErrorText.setVisible(true);
             ingredientQuantityErrorText.setVisible(true);
             hasError = true;

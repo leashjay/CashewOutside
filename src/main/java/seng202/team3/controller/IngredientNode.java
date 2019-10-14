@@ -52,7 +52,6 @@ public class IngredientNode extends VBox {
     private void makeLabels(String name, float quantity) {
         Label itemNameLabel = new Label();
         itemNameLabel.setText(name);
-        System.out.println(name);
         itemNameLabel.setStyle("-fx-text-alignment: center; -fx-wrap-text: true;");
         itemNameLabel.setAlignment(Pos.TOP_CENTER);
         itemNameLabel.setPrefWidth(100);
