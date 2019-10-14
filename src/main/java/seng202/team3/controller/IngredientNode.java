@@ -34,24 +34,25 @@ public class IngredientNode extends VBox {
         this.ingredient = ingredient;
         this.setPrefHeight(height);
         this.setPrefWidth(100);
-        makeLabels(ingredient.getName(), this.quantity);
+        makeLabels(ingredient.getCode(), this.quantity);
         setUpDelButton();
     }
 
-    public IngredientNode(Ingredient ingredient, float quantity) {
+    public IngredientNode(Ingredient ingredient, float quantity, ManuallyAddMenuItemController parent) {
         super();
         this.parent = parent;
         this.quantity = quantity;
         this.ingredient = ingredient;
         this.setPrefHeight(height);
         this.setPrefWidth(100);
-        makeLabels(ingredient.getName(), this.quantity);
+        makeLabels(ingredient.getCode(), quantity);
         setUpDelButton();
     }
 
     private void makeLabels(String name, float quantity) {
         Label itemNameLabel = new Label();
         itemNameLabel.setText(name);
+        System.out.println(name);
         itemNameLabel.setStyle("-fx-text-alignment: center; -fx-wrap-text: true;");
         itemNameLabel.setAlignment(Pos.TOP_CENTER);
         itemNameLabel.setPrefWidth(100);

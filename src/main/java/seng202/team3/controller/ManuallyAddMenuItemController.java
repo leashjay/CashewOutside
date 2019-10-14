@@ -68,7 +68,7 @@ public class ManuallyAddMenuItemController {
     private Button addIngredientButton;
 
     @FXML
-    private Button addMenuItemButton;
+    private Button addButton;
 
     @FXML
     private Text unitText;
@@ -142,6 +142,12 @@ public class ManuallyAddMenuItemController {
         idTextField.setText(menuItemToEdit.getId());
         itemTypeCheckBox.setValue(menuItemToEdit.getType());
         markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
+        cost = menuItem.getCostPriceFromIngredients();
+        updatePriceString();
+        ingredients = menuItem.getIngredients();
+        for (Ingredient ingredient: ingredients.keySet()) {
+            addIngredientNode(ingredient, ingredients.get(ingredient));
+        }
 
     }
 
@@ -159,14 +165,7 @@ public class ManuallyAddMenuItemController {
         itemTypeCheckBox.setValue(ItemType.OTHER);
 
         markupPercent.setText("1.1");
-        if (editing) {
-            cost = menuItem.getCostPriceFromIngredients();
-            updatePriceString();
-            ingredients = menuItem.getIngredients();
-            for (Ingredient ingredient: ingredients.keySet()){
-                addIngredientNode(ingredient, this);
-            }
-        }
+
     }
 
     public int calculateServings() {
@@ -258,6 +257,9 @@ public class ManuallyAddMenuItemController {
     public void addIngredientNode(Ingredient ingredient, ManuallyAddMenuItemController parent) {
         getScrollHBox().getChildren().add(new IngredientNode(ingredient, parent));
     }
+    public void addIngredientNode(Ingredient ingredient, float quantity) {
+        getScrollHBox().getChildren().add(new IngredientNode(ingredient, quantity, this));
+    }
 
     /**
      * adds ingredient to a scroll pane and to the ingredients hashmap for the menuitem
@@ -280,6 +282,7 @@ public class ManuallyAddMenuItemController {
 
             setFlagsOnAdd(ingredient);
             addIngredientNode(ingredient, this);
+            ingredients.put(ingredient, quantity);
 
             //setting cost string
             cost += quantity * ingredient.getCost();
@@ -353,6 +356,12 @@ public class ManuallyAddMenuItemController {
         if (!InputValidationHelper.isValidFloat(markupPercent, markupPercentErrorText)) {
             hasError = true;
         }
+        if (ingredients.size() <= 0) {
+            System.out.println("below zero");
+            ingredientKeyErrorText.setVisible(true);
+            ingredientQuantityErrorText.setVisible(true);
+            hasError = true;
+        }
 
         return hasError;
     }
@@ -370,21 +379,18 @@ public class ManuallyAddMenuItemController {
             if (editing) {
                 currentMenu.filterMenuItems().replace(id, menuItem);
             } else {
-                currentMenu.filterMenuItems().put(id, menuItem);
+                currentMenu.addMenuItem(menuItem);
             }
-            idTextField.setText("");
-            menuItemNameTextField.setText("");
-            ingredientQuantity.setText("");
-            ingredientKey.setText("");
+            menuItem.setMarkUp(getMarkup());
 
-            Stage stage = (Stage) addMenuItemButton.getScene().getWindow();
+
+            Stage stage = (Stage) addButton.getScene().getWindow();
 
             MenuItemTabController.getInstance().updateMenuItemTable();
 
             stage.close();
 
-            BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
-
+            //BusinessApp.getBusiness().exportMenuAsXML(BusinessApp.menuXML);
         }
 
     }
