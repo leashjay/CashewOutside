@@ -199,7 +199,7 @@
                                                 <Font size="18.0" />
                                             </font>
                                         </TextField>
-                                        <Label id="errorText" fx:id="payErrorLabel" prefHeight="16.0" prefWidth="297.0" stylesheets="@../gui/styles.css" text="Please enter a valid number" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                                        <Label id="errorText" fx:id="payErrorLabel" prefHeight="32.0" prefWidth="297.0" stylesheets="@../gui/styles.css" text="Please enter a number to two DP, that is greater than the price of the order" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
                                                 <Insets left="5.0" />
                                             </GridPane.margin>
