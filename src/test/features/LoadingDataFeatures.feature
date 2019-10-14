@@ -44,10 +44,10 @@ Feature: Loading Data Features
 
   Scenario: An XML Menu Items file with Errors is Handled
     Given a menu item "filepath" for an XML file containing menu items
-    When the "filepath" is used and an integrity error is found
-    Then an error message is returned to the user
+    When the menu item "filepath" is used and an integrity error is found
+    Then an error message due to menu item XML is returned to the user
 
   Scenario: An XML Supplier file with Errors is Handled
-    Given a supplier "filepath" for an XML file containing suppliers
-    When the "filepath" is used and an integrity error is found
-    Then an error message is returned to the user
+    Given a suppliers "filepath" for an XML file containing suppliers
+    When the supplier "filepath" is used and an integrity error is found
+    Then an error message due to supplier XML error is returned to the user
