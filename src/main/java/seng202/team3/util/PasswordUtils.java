@@ -87,7 +87,6 @@ public class PasswordUtils {
         key = key.trim();
         salt = salt.trim();
         String encrypted = hashPassword(password, salt).get();
-        System.out.println(key.equals(encrypted));
         return key.equals(encrypted);
     }
 }
