@@ -44,7 +44,8 @@ public class Employee {
     }
 
     /**
-     * Sets the username of the employee
+     * Sets the username of the employee.
+     * Feature available for implementation in future products
      * @param userName the new username of the employee
      */
     public void setUserName(String userName) {
