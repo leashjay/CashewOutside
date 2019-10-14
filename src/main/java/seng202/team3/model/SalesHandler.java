@@ -209,6 +209,22 @@ public class SalesHandler {
     }
 
     /**
+     * removes all Orders from the SalesHandler that have a date different to the given date
+     * @param relevantDate the date that the orders should match
+     */
+    public void removeOrdersForADifferentDate(LocalDate relevantDate) {
+        HashMap<Integer, Order> newOrders = new HashMap<>();
+        for (Map.Entry<Integer, Order> entry : this.orders.entrySet()) {
+            Order order = entry.getValue();
+            if (order.getDate().isEqual(relevantDate)) {
+                newOrders.put(entry.getKey(), order);
+            }
+        }
+
+        this.orders = newOrders;
+    }
+
+    /**
      * Add order data from XML
      * - Apparently this method is redundant?
      * @param file

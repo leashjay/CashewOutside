@@ -4,6 +4,7 @@ import seng202.team3.parsing.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -136,6 +137,8 @@ public class Business {
     public void createSalesManager(String filename) throws JAXBException {
         SalesLoader salesLoader = new SalesLoader();
         salesManager = salesLoader.loadSalesData(filename);
+        LocalDate today = LocalDate.now();
+        salesManager.removeOrdersForADifferentDate(today);
     }
 
     /**
