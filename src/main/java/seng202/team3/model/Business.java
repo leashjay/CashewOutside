@@ -139,7 +139,6 @@ public class Business {
     public void createMenuManager(String fileName) throws JAXBException {
         MenuLoader menuLoad = new MenuLoader();
         menuManager = menuLoad.loadMenuData(fileName);
-        System.out.println(menuManager == null);
         menuManager.calculateServingForMenuItems(thisTruck.getInventory());
     }
 
