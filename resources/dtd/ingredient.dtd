@@ -1,13 +1,17 @@
 <!ENTITY version "V0.01 (C) CashewOutside 2019">
-        <!ELEMENT employeehandler (employees)>
-        <!ELEMENT employees (employee*)>
-        <!ELEMENT employee (username, password, salt)>
-        <!ELEMENT username (#PCDATA)>
-        <!ELEMENT password (#PCDATA)>
-        <!ELEMENT salt (#PCDATA)>
-        <!ATTLIST employee
-                hasAdminRights (true|false) #REQUIRED
-        >
-
+        <!ELEMENT inventory (description, ingredients)>
+        <!ELEMENT ingredients ((ingredient*))>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT ingredient (code, name, quantity)>
+        <!ATTLIST ingredient
+                unit (ML|GRAM|COUNT) #REQUIRED
+                isVeg (YES|NO|UNKNOWN) "UNKNOWN"
+                isVegan (YES|NO|UNKNOWN) "UNKNOWN"
+                isgf (YES|NO|UNKNOWN) "UNKNOWN"
+                cost CDATA #REQUIRED
+                >
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT quantity (#PCDATA)>
 
 

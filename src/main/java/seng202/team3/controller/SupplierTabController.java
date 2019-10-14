@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -82,7 +82,7 @@ public class SupplierTabController
     private TableColumn<Supplier, Button> editButtonCol;
 
     @FXML
-    private AnchorPane supplierTabAnchorPane;
+    private BorderPane supplierTabBorderPane;
 
     public static boolean delete = false;
 
@@ -177,7 +177,7 @@ public class SupplierTabController
      */
     public void exportSuppliersXML() throws JAXBException, IOException {
         initializeFileChooser();
-        Stage stage = (Stage) supplierTabAnchorPane.getScene().getWindow();
+        Stage stage = (Stage) supplierTabBorderPane.getScene().getWindow();
         File file = chooser.showSaveDialog(stage);
         if (file != null) {
             suppliersLoader = new SuppliersLoader();

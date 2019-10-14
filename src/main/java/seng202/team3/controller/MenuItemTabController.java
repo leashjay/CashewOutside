@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -71,7 +71,7 @@ public class MenuItemTabController {
     private TableColumn<MenuItem, Button> deleteButtonCol;
 
     @FXML
-    private AnchorPane menuTabAnchorPane;
+    private BorderPane menuTabBorderPane;
 
     private static MenuItemTabController instance;
 
@@ -228,7 +228,7 @@ public class MenuItemTabController {
      */
     public void exportMenuXML() throws JAXBException, IOException {
         initializeFileChooser();
-        Stage stage = (Stage) menuTabAnchorPane.getScene().getWindow();
+        Stage stage = (Stage) menuTabBorderPane.getScene().getWindow();
         File file = chooser.showSaveDialog(stage);
         if (file != null) {
             menuLoader = new MenuLoader();

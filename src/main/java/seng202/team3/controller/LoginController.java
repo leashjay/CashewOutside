@@ -49,8 +49,6 @@ public class LoginController {
             String key = employee.getPassword();
 
             boolean isPasswordCorrect = PasswordUtils.verifyPassword(password, key, salt);
-            //System.out.println("Password was: " + PasswordUtils.hashPassword(password, salt));
-            //System.out.println("Expected: " + employee.getPassword());
 
             if(isPasswordCorrect) {
                 errorText.setVisible(false);

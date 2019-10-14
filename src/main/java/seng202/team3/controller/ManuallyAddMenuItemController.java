@@ -138,6 +138,7 @@ public class ManuallyAddMenuItemController {
         editing = true;
         menuItem = menuItemToEdit;
         menuItemNameTextField.setText(menuItemToEdit.getName());
+        idTextField.setDisable(true);
         idTextField.setText(menuItemToEdit.getId());
         itemTypeCheckBox.setValue(menuItemToEdit.getType());
         markupPercent.setText(String.valueOf(menuItemToEdit.getMarkup()));
@@ -340,9 +341,12 @@ public class ManuallyAddMenuItemController {
     private boolean checkForErrorsMenu() {
         boolean hasError = false;
 
-        if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkMenuItemValidId(idTextField, idErrorText) == false) {
-            hasError = true;
+        if(!editing){
+            if (InputValidationHelper.checkEmpty(idTextField, idErrorText) || InputValidationHelper.checkMenuItemValidId(idTextField, idErrorText) == false) {
+                hasError = true;
+            }
         }
+        
         if (InputValidationHelper.checkEmpty(menuItemNameTextField, menuItemNameErrorText)) {
             hasError = true;
         }

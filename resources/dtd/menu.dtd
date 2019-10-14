@@ -8,7 +8,7 @@
 <!ELEMENT description (#PCDATA)>
         <!ELEMENT item (id, name, cost, ingredients)>
         <!ATTLIST item
-                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN) #IMPLIED
+                type (BEVERAGE|COCKTAIL|SNACK|ASIAN|GRILL|MAIN|OTHER) #IMPLIED
                 serves CDATA "1"
                 isVeg (YES|NO|UNKNOWN) "NO"
                 isVegan (YES|NO|UNKNOWN) "NO"
